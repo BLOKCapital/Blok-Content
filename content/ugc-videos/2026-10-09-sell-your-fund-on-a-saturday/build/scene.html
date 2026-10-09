@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=block" rel="stylesheet">
+<script src="timeline.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --linen:#F6F3E8; --ink:#0B1B2B; --indigo:#004EBA; --sky:#7DD2FD; --lime:#7ED116; --coral:#EC464D; --earth:#844947; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--linen); font-family: Inter, sans-serif; color: var(--ink); }
+  .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+  .center { display: flex; flex-direction: column; align-items: center; }
+  .kicker { font-family: 'JetBrains Mono', monospace; font-size: 34px; letter-spacing: .12em; text-transform: uppercase; color: var(--earth); }
+  .pill { display: inline-block; padding: 14px 30px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 34px; letter-spacing: .08em; }
+  h1 { font-family: Fraunces, serif; font-weight: 800; color: var(--indigo); letter-spacing: -0.02em; line-height: 1.02; text-align: center; }
+  #bar { position: absolute; top: 0; left: 0; height: 10px; background: var(--lime); }
+
+  /* Scene A: phone */
+  #phone { position: absolute; left: 270px; top: 430px; width: 540px; height: 880px; border-radius: 64px; background: var(--ink); padding: 22px; box-shadow: 0 30px 80px rgba(11,27,43,.25); }
+  #screen { width: 100%; height: 100%; border-radius: 46px; background: #fff; padding: 70px 40px 40px; display: flex; flex-direction: column; gap: 26px; position: relative; overflow: hidden; }
+  .appbar { font-weight: 800; font-size: 34px; }
+  .card { border: 3px solid #E7E2D3; border-radius: 28px; padding: 30px; }
+  .card .t { font-size: 26px; color: #6B7280; font-weight: 500; }
+  .card .v { font-family: Fraunces, serif; font-weight: 800; font-size: 46px; margin-top: 8px; }
+  #sellbtn { margin-top: auto; height: 120px; border-radius: 28px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 40px; color: #fff; background: var(--indigo); }
+  #status { height: 64px; font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: var(--earth); }
+  #stamp { position: absolute; left: 50%; top: 46%; transform: translate(-50%,-50%) rotate(-10deg); border: 10px solid var(--coral); color: var(--coral); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 64px; padding: 14px 30px; border-radius: 18px; background: rgba(255,255,255,.92); opacity: 0; }
+  #aTop { position: absolute; top: 230px; width: 100%; display: flex; justify-content: center; gap: 20px; }
+
+  /* Scene B/C: week */
+  .week { position: absolute; left: 60px; width: 960px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px; }
+  .day { height: 230px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 32px; background: #E7E2D3; color: #9C968A; }
+  .day small { font-size: 20px; letter-spacing: .06em; }
+  #ledger { position: absolute; left: 90px; top: 900px; width: 900px; background: #fff; border-radius: 36px; padding: 36px 40px; box-shadow: 0 20px 60px rgba(11,27,43,.12); opacity: 0; }
+  .lh { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 24px; color: var(--earth); margin-bottom: 18px; }
+  .row { display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 30px; padding: 18px 0; border-top: 2px dashed #E7E2D3; opacity: 0; }
+  .row b { color: var(--lime); font-size: 34px; }
+
+  /* Scene D */
+  .stat { position: absolute; left: 90px; width: 900px; border-radius: 40px; padding: 50px; display: flex; align-items: center; gap: 40px; opacity: 0; }
+  .stat .ico { flex: none; width: 150px; height: 150px; border-radius: 36px; display: flex; align-items: center; justify-content: center; }
+  .stat .txt { font-family: Fraunces, serif; font-weight: 800; font-size: 66px; line-height: 1.05; }
+
+  /* Scene E */
+  .chip { display: inline-block; padding: 22px 40px; border-radius: 999px; font-weight: 800; font-size: 46px; border: 4px solid var(--earth); color: var(--earth); opacity: 0; }
+
+  /* Captions */
+  #cap { position: absolute; left: 70px; right: 70px; top: 1400px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; font-weight: 800; font-size: 58px; line-height: 1.15; }
+  #cap span { padding: 2px 12px; border-radius: 14px; background: rgba(255,255,255,.92); color: var(--ink); }
+  #cap span.on { background: var(--lime); }
+  #cap span.past { color: var(--ink); }
+  #cap span.future { color: #A9A49A; }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<!-- A: phone, Saturday -->
+<div class="scene" id="A">
+  <div id="aTop"><span class="pill" style="background:var(--ink);color:#fff">POV</span><span class="pill" style="background:var(--coral);color:#fff">SATURDAY</span></div>
+  <div id="phone"><div id="screen">
+    <div class="appbar">My investments</div>
+    <div class="card"><div class="t">Holding</div><div class="v">Index fund</div></div>
+    <div class="card"><div class="t">Market status</div><div class="v" id="mkt">—</div></div>
+    <div id="status"></div>
+    <div id="sellbtn">Sell</div>
+    <div id="stamp">MONDAY</div>
+  </div></div>
+</div>
+
+<!-- B/C: week -->
+<div class="scene" id="B">
+  <div style="position:absolute;top:250px;width:100%" class="center">
+    <div class="kicker" id="bKick">Traditional markets</div>
+    <h1 id="bTitle" style="font-size:96px;margin-top:24px;width:900px">Office hours.<br>Weekdays only.</h1>
+  </div>
+  <div class="week" id="week" style="top:620px"></div>
+  <div id="ledger">
+    <div class="lh"><span>PUBLIC LEDGER</span><span>ILLUSTRATIVE</span></div>
+    <div class="row"><span>SAT 02:14 · Rebalance</span><b>✓</b></div>
+    <div class="row"><span>SUN 11:40 · Buy</span><b>✓</b></div>
+    <div class="row"><span>SUN 23:05 · Sell</span><b>✓</b></div>
+  </div>
+</div>
+
+<!-- D: benefits -->
+<div class="scene" id="D">
+  <div style="position:absolute;top:250px;width:100%" class="center"><div class="kicker">On-chain</div></div>
+  <div class="stat" id="d1" style="top:420px;background:var(--indigo);color:#fff">
+    <div class="ico" style="background:var(--lime)"><svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#0B1B2B" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+    <div class="txt">Settles in<br>minutes</div>
+  </div>
+  <div class="stat" id="d2" style="top:800px;background:#fff;color:var(--ink);box-shadow:0 20px 60px rgba(11,27,43,.12)">
+    <div class="ico" style="background:var(--sky)"><svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#0B1B2B" stroke-width="2.4" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+    <div class="txt">See every<br>holding</div>
+  </div>
+</div>
+
+<!-- E: honest part -->
+<div class="scene" id="E">
+  <div style="position:absolute;top:300px;width:100%" class="center">
+    <div class="kicker">The honest part</div>
+    <h1 style="font-size:120px;margin-top:30px">Is it riskier?</h1>
+    <div style="display:flex;gap:24px;margin-top:70px"><span class="chip" id="e1">Newer</span><span class="chip" id="e2">Can swing more</span></div>
+    <h1 id="e3" style="font-size:150px;margin-top:90px;opacity:0"><span style="background:linear-gradient(transparent 58%, #7ED11699 58%)">Learn first.</span></h1>
+  </div>
+</div>
+
+<!-- F: end card -->
+<div class="scene" id="F">
+  <div style="position:absolute;top:470px;width:100%" class="center">
+    <img src="../../../../brand/assets/logo-wordmark.png" style="height:120px">
+    <h1 style="font-size:96px;margin-top:90px">Plain-English<br>money stuff.</h1>
+    <div style="margin-top:70px;background:var(--coral);color:#fff;font-weight:800;font-size:48px;padding:30px 60px;border-radius:999px">Follow @blok.capital</div>
+    <div style="margin-top:60px;font-size:26px;color:var(--earth);text-align:center;line-height:1.5">Educational only · Not financial advice<br>AI-generated voiceover</div>
+  </div>
+</div>
+
+<div id="cap"></div>
+
+<script>
+const TL = window.TIMELINE;
+window.DURATION = Math.ceil((TL[TL.length - 1].end + 1.6) * 10) / 10;
+const S = (i) => TL[i].start;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+// opacity for a window [a,b] with fade in/out
+const win = (t, a, b, f = 0.3) => clamp(Math.min((t - a) / f, (b - t) / f));
+const pop = (el, t, at, dy = 40) => { const k = ease((t - at) / 0.35); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * dy}px)`; };
+
+// scene boundaries derived from the voice timing
+const B1 = S(4) - 0.25, B2 = S(7) - 0.25, B3 = S(8) - 0.25, B4 = S(10) - 0.2;
+
+// week tiles
+const days = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
+$('week').innerHTML = days.map((d) => `<div class="day"><span>${d}</span><small></small></div>`).join('');
+const tiles = [...$('week').children];
+
+// caption words: real word timings when the voice provides them, else spread across the sentence by length
+const words = [];
+TL.forEach((s, si) => {
+  if (s.words) { s.words.forEach((w) => words.push({ ...w, si })); return; }
+  const ws = s.text.split(/\s+/).filter(Boolean);
+  const total = ws.reduce((n, w) => n + w.length + 2, 0);
+  let acc = s.start;
+  ws.forEach((w) => { const d = (s.end - s.start) * (w.length + 2) / total; words.push({ w, s: acc, e: acc + d, si }); acc += d; });
+});
+
+function captions(t) {
+  let si = TL.findIndex((s, i) => t >= s.start - 0.15 && t < (TL[i + 1] ? TL[i + 1].start - 0.15 : s.end + 0.8));
+  if (si < 0) { $('cap').innerHTML = ''; return; }
+  const ws = words.filter((w) => w.si === si);
+  // show up to 6 words around the current one
+  const cur = Math.max(0, ws.findIndex((w) => t < w.e));
+  const start = Math.floor((cur === -1 ? ws.length - 1 : cur) / 6) * 6;
+  $('cap').innerHTML = ws.slice(start, start + 6).map((w) => `<span class="${t >= w.s && t < w.e ? 'on' : t >= w.e ? 'past' : 'future'}">${w.w}</span>`).join('');
+}
+
+window.draw = (t) => {
+  $('bar').style.width = `${(t / window.DURATION) * 1080}px`;
+
+  // A: 0 → B1
+  $('A').style.opacity = win(t, -1, B1);
+  $('mkt').textContent = 'Closed for the weekend';
+  $('mkt').style.color = 'var(--coral)';
+  const placed = t >= S(1);
+  $('sellbtn').textContent = placed ? 'Order placed ✓' : 'Sell';
+  $('sellbtn').style.background = placed ? 'var(--lime)' : 'var(--indigo)';
+  $('sellbtn').style.color = placed ? 'var(--ink)' : '#fff';
+  $('status').textContent = t >= S(2) ? 'Processing' + '.'.repeat(1 + Math.floor(t * 3) % 3) : '';
+  const st = ease((t - S(3)) / 0.25);
+  $('stamp').style.opacity = st;
+  $('stamp').style.transform = `translate(-50%,-50%) rotate(-10deg) scale(${1.6 - 0.6 * st})`;
+  $('phone').style.transform = `translateY(${(1 - ease(t / 0.5)) * 80}px)`;
+
+  // B (office hours) then C (on-chain, open 24/7 + ledger): B1 → B2
+  $('B').style.opacity = win(t, B1, B2);
+  const onchain = t >= S(5) - 0.1;
+  $('bKick').textContent = onchain ? 'On-chain markets' : 'Traditional markets';
+  $('bTitle').innerHTML = onchain ? 'Open 24/7.<br>Every day.' : 'Office hours.<br>Weekdays only.';
+  tiles.forEach((el, i) => {
+    const weekend = i >= 5;
+    const lit = onchain ? t >= S(5) + i * 0.12 : t >= B1 + 0.2 + i * 0.15;
+    el.style.background = !lit ? '#E7E2D3' : onchain ? 'var(--lime)' : weekend ? '#E7E2D3' : 'var(--indigo)';
+    el.style.color = !lit ? '#9C968A' : onchain ? 'var(--ink)' : weekend ? 'var(--coral)' : '#fff';
+    el.querySelector('small').textContent = !lit ? '' : onchain ? 'OPEN' : weekend ? 'CLOSED' : 'OPEN';
+  });
+  $('week').style.top = `${620 - ease((t - S(6)) / 0.5) * 0}px`;
+  $('ledger').style.opacity = ease((t - S(6) - 0.6) / 0.4);
+  [...document.querySelectorAll('.row')].forEach((r, i) => pop(r, t, S(6) + 1.4 + i * 0.9, 20));
+
+  // D: B2 → B3
+  $('D').style.opacity = win(t, B2, B3);
+  pop($('d1'), t, S(7));
+  pop($('d2'), t, S(7) + 1.5);
+
+  // E: B3 → B4
+  $('E').style.opacity = win(t, B3, B4);
+  pop($('e1'), t, S(8) + 1.1, 20);
+  pop($('e2'), t, S(8) + 1.7, 20);
+  pop($('e3'), t, S(9), 30);
+
+  // F: B4 → end
+  $('F').style.opacity = win(t, B4, window.DURATION + 1);
+
+  captions(t);
+};
+window.draw(0);
+</script>
+</body>
+</html>
