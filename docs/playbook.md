@@ -104,6 +104,15 @@ This machine can't hand local files to Instagram, and the Composio sandbox can't
 Quota check if posting a lot: `INSTAGRAM_GET_IG_USER_CONTENT_PUBLISHING_LIMIT` (100 posts / 24h).
 Composio's first call each session is `COMPOSIO_SEARCH_TOOLS` (it returns a `session_id` to pass to later calls).
 
+## 6b. Scheduling posts
+Instagram's API has no scheduled publishing, and containers expire within 24h. So scheduling = a one-shot
+Routine per post (`mcp__claude-code-remote__create_trigger` with `run_once_at`, default binding = this session)
+whose prompt contains everything needed: folder, expected md5s, caption source, the section-6 steps, a
+duplicate check (`INSTAGRAM_GET_IG_USER_MEDIA`), logging, and "retry once, then report". Before scheduling:
+render, QA, commit + push, and pre-flight that GitHub raw serves the exact files. Record each post and its
+trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the user's explicit pre-approval
+(given for the 2026-10-10 batch). Cancel with `delete_trigger`, move with `update_trigger`.
+
 ## 7. Things that don't work (don't retry)
 | Attempt | Result | Do instead |
 |---|---|---|
