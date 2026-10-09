@@ -6,6 +6,8 @@ description: Write, design and render on-brand Instagram/LinkedIn carousels for 
 # Instagram carousel
 
 ## 1. Load context
+**Read `brand/instagram-strategy.md` first. It overrides the general brand guide for Instagram:** the audience is mutual fund / ETF investors, the content is purely educational about on-chain finance, and there's no crypto vocabulary or imagery at all. Footer handle: `@blok.capital`.
+
 Use the `blok-brand` skill's reading list. Pick the audience and pillar (`knowledge/audiences.md`).
 
 ## 2. Structure (7–10 slides; 7 is the sweet spot)
@@ -37,8 +39,8 @@ Fix copy (not CSS) first; adjust `scripts/render-carousel.mjs` only for systemic
 - Line 1: hook restated (≤125 chars so it shows before "more").
 - 3–6 short lines of value, 1–2 emoji max (🌱).
 - CTA: "Save this 🌱" / "Plant your first Garden: link in bio".
-- Risk line when investing is discussed.
-- 3–5 hashtags, niche over generic: #DeFi #CryptoInvesting #SelfCustody #Arbitrum #PersonalFinance.
+- Disclaimer from `brand/instagram-strategy.md` when investing is discussed.
+- 3–5 hashtags, no crypto tags: #InvestingBasics #MutualFunds #ETFInvesting #PersonalFinance #FinancialLiteracy #OnChainFinance.
 - Alt text for slide 1.
 
 ## 6. Compliance pass

@@ -9,6 +9,8 @@ UGC = looks like a real person filmed it on their phone: authentic, imperfect, n
 For BLOK it must also be **honest**: no fake customers, no fake gains, disclosed partnerships.
 
 ## 1. Load context
+**For Instagram (Reels/UGC), read `brand/instagram-strategy.md` first and follow it over everything below:** audience = mutual fund / ETF investors, purely educational about on-chain finance, no crypto words, visuals or token talk.
+
 `blok-brand` reading list + `knowledge/audiences.md`. Choose ONE audience and ONE message pillar per video.
 
 ## 2. Pick a format

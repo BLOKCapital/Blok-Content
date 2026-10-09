@@ -1,5 +1,12 @@
 # Audiences & Personas
 
+## Instagram primary: "The Fund Investor"
+- Invests through mutual funds, ETFs, index funds, SIPs or retirement accounts. Long-term, sensible, often crypto-sceptical.
+- Doesn't know what "on-chain" means and doesn't want crypto hype.
+- Pain points they may not have named yet: slow settlement, statements instead of live visibility, layers of intermediaries, markets that close, not really holding the asset themselves.
+- Message: on-chain finance is a better set of rails for the investing they already understand: transparent, owned, always on.
+- Rules: `brand/instagram-strategy.md` (purely educational, no crypto vocabulary).
+
 ## Primary: "The Busy Grower" (Investor / Garden Owner)
 - 24–45, salaried or freelance, curious about crypto, burned or scared by hype.
 - Has some savings; wants exposure without day-trading or trusting an exchange with custody.

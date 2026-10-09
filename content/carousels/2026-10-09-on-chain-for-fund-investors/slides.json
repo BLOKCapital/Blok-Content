@@ -1,0 +1,16 @@
+{
+  "title": "On-chain investing, explained for fund & ETF investors",
+  "handle": "@blok.capital",
+  "theme": "linen",
+  "disclaimer": "Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.",
+  "slides": [
+    { "type": "cover", "kicker": "For mutual fund & ETF investors", "title": "You can see your fund's **statement**. Not your fund.", "subtitle": "A 2-minute intro to on-chain investing, in plain English." },
+    { "type": "text", "kicker": "How investing works today", "title": "There's a lot of plumbing between you and your money.", "body": "A fund house, a custodian, a registrar, a broker. Each one does a real job. But each adds **time**, a **cost**, and a layer you don't see." },
+    { "type": "compare", "title": "Same goal, different rails", "left": { "label": "Traditional", "items": ["Holdings shared monthly or quarterly", "Trades settle in a day or more", "Markets open weekdays only", "Your record sits in their database"] }, "right": { "label": "On-chain", "items": ["Holdings visible any time", "Settles in minutes", "Open 24/7, every day", "Your record on a public ledger"] } },
+    { "type": "text", "kicker": "So what does \"on-chain\" mean?", "title": "A public ledger anyone can check.", "body": "Every buy, sell and rebalance is recorded on a shared ledger. It leaves a **receipt** that can't be quietly edited later." },
+    { "type": "list", "title": "Why it matters to you", "items": ["**Transparency:** see every holding, any time", "**Ownership:** assets sit in an account only you control", "**Speed:** move money in minutes, not days", "**Access:** start small, no high minimums"] },
+    { "type": "text", "theme": "indigo", "kicker": "A familiar idea on new rails", "title": "Index investing, rebuilt in the open.", "body": "Like an index fund, an on-chain portfolio can follow a basket and **rebalance automatically**. The difference: you can watch every rebalance happen." },
+    { "type": "text", "kicker": "The honest part", "title": "New rails, new risks.", "body": "On-chain markets are younger and can swing harder. Technology has its own risks. So learn first, start small, and never invest money you can't afford to lose." },
+    { "type": "cta", "title": "Learn it before you need it.", "body": "One plain-English idea a week on how investing is changing. No hype, no jargon.", "button": "Follow @blok.capital", "handle": "Save this · Send it to a friend who loves index funds", "disclaimer": true }
+  ]
+}

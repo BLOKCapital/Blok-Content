@@ -6,6 +6,7 @@ description: Write faceless / explainer / motion-graphics short-form videos (Ree
 # Short-form video (non-UGC)
 
 1. Load `blok-brand` context.
+0. **Instagram/Reels:** follow `brand/instagram-strategy.md` (fund/ETF investors, educational, no crypto vocabulary or visuals). It overrides the rest.
 2. Folder: `content/short-form/YYYY-MM-DD-<slug>/`.
 3. Write:
    - **Storyboard table**: `# | duration | visual (motion/b-roll/screen-record) | VO | on-screen text`.

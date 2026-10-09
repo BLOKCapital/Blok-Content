@@ -8,6 +8,8 @@ description: Generate, score and organise BLOK Capital content ideas (carousels,
 Load `blok-brand` context first (CLAUDE.md, brand/voice.md, knowledge/audiences.md).
 
 ## Process
+**Instagram ideas** must fit `brand/instagram-strategy.md`: audience = mutual fund / ETF investors, purely educational about on-chain finance, no crypto vocabulary.
+
 1. **Clarify the goal** if unclear: awareness, education, waitlist/app sign-ups, community, builder recruitment, Gardener recruitment.
 2. **Generate** ideas across the five pillars (Educate 35%, Contrast 20%, Product 20%, Trust 15%, Community 10%) and the four audiences.
 3. For each idea give: **working title · hook (first line/first 2s) · pillar · audience · best format(s) · why it'll work · source fact** (file in `knowledge/`).

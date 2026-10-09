@@ -6,6 +6,12 @@ the content calendar, and the brand knowledge that keeps it all on-message.
 
 Read this file first in every session. For depth, go to `knowledge/` and `brand/`.
 
+> **Instagram rule (overrides everything below for Instagram):** @blok.capital targets people
+> who invest in **mutual funds, ETFs and traditional finance**. Content is **purely educational**:
+> why on-chain finance is good, why an on-chain portfolio is great, and why it matters. **No crypto
+> vocabulary, visuals or token talk at all.** Every Instagram carousel, Reel and UGC video follows
+> `brand/instagram-strategy.md`.
+
 ---
 
 ## 1. What BLOK Capital is (the 60-second version)
@@ -86,7 +92,7 @@ Don't invent titles for anyone; ask if a role is needed.
 
 ### Official links
 - Site: https://blokcapital.io · Docs: https://docs.blokcapital.io (full corpus: `/llms-full.txt`)
-- X: [@blok_cap](https://x.com/blok_cap) · Telegram: t.me/BLOKCapital · Discord: discord.com/invite/blokc · Farcaster: warpcast.com/blokc
+- Instagram: [@blok.capital](https://www.instagram.com/blok.capital/) · X: [@blok_cap](https://x.com/blok_cap) · Telegram: t.me/BLOKCapital · Discord: discord.com/invite/blokc · Farcaster: warpcast.com/blokc
 - GitHub: github.com/BLOKCapital · Whitepaper: docsend.com/view/4j6qvvrudyr6izyb
 
 ---
@@ -138,7 +144,7 @@ Crypto marketing is regulated and BLOK's whole brand is trust. Every piece must 
 
 ```
 CLAUDE.md                 ← you are here
-brand/                    voice, visual identity, compliance, logo assets
+brand/                    voice, visual identity, compliance, Instagram strategy, logo assets
 knowledge/                product facts, glossary, tokenomics, audiences, FAQs, sources
 ideas/                    idea backlog + one file per idea worth developing
 content/
@@ -170,7 +176,7 @@ scripts/                  tooling: carousel renderer, Composio setup
 Project skills in `.claude/skills/` (invoke with `/skill-name`):
 - `blok-brand` — load brand context + voice + compliance before writing anything.
 - `content-ideation` — generate and score ideas by pillar and audience.
-- `instagram-carousel` — write + design + render on-brand carousels to PNG (1080×1350).
+- `instagram-carousel` — write + design + render on-brand carousels to PNG (1080×1350), following `brand/instagram-strategy.md`.
 - `ugc-video` — UGC briefs, hooks, scripts, shot lists, creator briefs, AI-avatar prompts.
 - `short-form-video` — faceless/explainer Reels & TikToks, captions, b-roll lists.
 - `x-thread` — X posts and threads in BLOK voice.

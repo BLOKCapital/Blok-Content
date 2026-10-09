@@ -12,6 +12,7 @@ Read, in order (skip any already in context this session):
 3. `brand/compliance.md`
 4. `knowledge/product.md`, `knowledge/glossary.md`, `knowledge/audiences.md` as relevant
 5. `brand/visual-identity.md` if the piece is visual
+6. `brand/instagram-strategy.md` for **anything going to Instagram** (it overrides the rest)
 
 For any fact not in `knowledge/`, check `knowledge/snapshots/` or fetch
 https://docs.blokcapital.io/llms-full.txt. Never invent stats, partners, dates, or features.
