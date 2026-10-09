@@ -10,7 +10,7 @@
 | Goal | Saves and follows. Purely educational, no product push |
 | Format | POV skit, one person, phone selfie camera, at home |
 | Talent | Team member or a real creator (disclosed if paid). AI avatar is a fallback, labelled |
-| Status | scripted → needs filming |
+| Status | script approved 2026-10-09 → needs filming |
 
 ## One-line concept
 A relatable weekend moment (wanting to act on your money and being told "wait till Monday")
