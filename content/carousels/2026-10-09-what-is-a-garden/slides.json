@@ -1,0 +1,15 @@
+{
+  "title": "What is a Garden?",
+  "handle": "@blok_cap",
+  "theme": "linen",
+  "disclaimer": "Crypto is volatile and you can lose money. Only invest what you can afford to lose. Not financial advice.",
+  "slides": [
+    { "type": "cover", "kicker": "Crypto, but different", "title": "Everyone deserves a **Garden**.", "subtitle": "Wealth management without the minimums, the middlemen, or the quarterly PDF." },
+    { "type": "compare", "title": "Two ways to grow money", "left": { "label": "Old way", "items": ["$100k+ minimums", "Someone else holds your assets", "2-and-20 fees", "A PDF every quarter"] }, "right": { "label": "A Garden", "items": ["Start from 10 USDC", "Your keys, always", "Gasless, no platform fees today", "Every move on-chain"] } },
+    { "type": "text", "kicker": "So what is it?", "title": "Your own on-chain portfolio.", "body": "A Garden is a smart contract that **you** own. Your crypto lives there, in your wallet, not ours." },
+    { "type": "list", "title": "Plant one in 4 steps", "items": ["Sign in with Google. No seed phrase.", "Create your Garden.", "Fund it, from 10 USDC.", "Pick an **Index** or tend it yourself."] },
+    { "type": "text", "theme": "indigo", "kicker": "Index Gardens", "title": "It prunes itself.", "body": "Connect to an Index and your Garden **rebalances automatically**, trimming what grew too big and topping up what shrank." },
+    { "type": "quote", "quote": "Compound, not pump. Boring is a feature.", "by": "BLOK Capital" },
+    { "type": "cta", "title": "Plant your first **Garden**.", "body": "Your keys never leave your wallet. Every receipt is on-chain.", "button": "blokcapital.io", "handle": "Save this · Share it with a friend who still trusts PDFs", "disclaimer": true }
+  ]
+}

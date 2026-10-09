@@ -1,0 +1,12 @@
+{
+  "name": "blok-content",
+  "private": true,
+  "type": "module",
+  "description": "BLOK Capital content studio tooling",
+  "scripts": {
+    "carousel": "node scripts/render-carousel.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}
