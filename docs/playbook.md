@@ -33,7 +33,7 @@ idea ─► script/slides ─► render locally ─► show user ─► "yes" �
 ```
 
 ## 3. Carousel (Instagram, 1080×1350)
-1. Write `content/carousels/YYYY-MM-DD-slug/slides.json` (schema: `templates/carousel/README.md`) and `caption.md`.
+1. Write `content/carousels/YYYY-MM-DD-slug/slides.json` with `"style": "sticker"` (rules + schema: `brand/carousel-style.md`) and `caption.md`.
 2. `npm install` (first time), then `npm run carousel -- content/carousels/<folder>/slides.json`.
 3. QA: stitch a contact sheet and look at every slide:
    `ffmpeg -i slide-01.png -i slide-02.png ... -filter_complex "[0][1]...hstack=N,scale=2160:-1" sheet.png`

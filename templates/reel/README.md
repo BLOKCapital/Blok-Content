@@ -17,7 +17,7 @@ Saturday"). Copy it into a new piece's `build/` folder and edit it.
 ## Rules
 - 1080×1920. Keep text between y=220 and y=1540 (Instagram UI covers the rest). Captions sit at y=1400.
 - Brand palette only (CSS vars at the top). Fonts: Fraunces / Inter / JetBrains Mono.
-- No emoji glyphs (the renderer's Chromium has no colour-emoji font); use inline SVG icons.
+- Emoji: load `Noto Color Emoji` from Google Fonts and set `font-family:'Noto Color Emoji'` on the element (the system has no colour-emoji font).
 - Instagram content: no crypto words or visuals (`brand/instagram-strategy.md`).
 - End card: logo + follow button + "Educational only · Not financial advice" + "AI-generated voiceover".
 - Logo path `../../../../brand/assets/logo-wordmark.png` assumes the file lives at `content/<type>/<slug>/build/`.

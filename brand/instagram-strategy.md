@@ -65,7 +65,7 @@ Keep claims general and true across markets. Say "typically" or "often" where pr
 - [ ] A fair comparison (no disparaging funds or named companies)
 - [ ] An honest risk/trade-off mention where investing is discussed
 - [ ] Disclaimer on the last slide/caption: *"Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money."*
-- [ ] Soft CTA: save, share, follow. No hard sell, no sign-up push (for now)
+- [ ] CTA from the library in `brand/carousel-style.md` (default: "Follow BLOK Capital for plain-English on-chain portfolio know-how" + "Follow @blok.capital" button). No hard sell, no sign-up push (for now)
 - [ ] Handle: **@blok.capital**
 
 ## Decisions log
@@ -75,3 +75,4 @@ Keep claims general and true across markets. Say "typically" or "often" where pr
 | 2026-10-09 | Bio shortlist (user to pick): "Everyone deserves a Garden 🌱 / Money, made simple and out in the open. / One plain-English idea a week. No hype." or "Your money, out in the open 🌱 / The future of investing, made simple. / Learn it before you need it." Name field: "BLOK Capital · Investing 101". |
 | 2026-10-09 | Reels voice: **Andrew** (`en-US-AndrewMultilingualNeural`), conversational script, AI voiceover disclosed in caption + end card. |
 | 2026-10-09 | Shipped: carousel "You can see your fund's statement. Not your fund." (+ story), Reel "POV: you try to sell your index fund on a Saturday". |
+| 2026-10-09 | Carousels use the **sticker style** (`brand/carousel-style.md`): killer cover, a visual on every slide, no real people. Default CTA: follow for on-chain portfolio know-how. |

@@ -11,6 +11,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { stickerPages } from './lib/sticker.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const W = 1080;
@@ -123,6 +124,20 @@ function css(t) {
   .page{position:absolute;top:60px;right:90px;font-family:'JetBrains Mono',monospace;font-size:24px;color:${t.muted}}`;
 }
 
+// Assets for the sticker style: the round logo mark plus any images slides reference (paths relative to slides.json).
+async function stickerAssets(spec, input, logos) {
+  const imgs = {};
+  for (const s of spec.slides || []) {
+    const src = s.visual?.img;
+    if (src && !imgs[src]) {
+      const buf = await readFile(path.resolve(path.dirname(input), src));
+      const ext = path.extname(src).slice(1).toLowerCase().replace('jpg', 'jpeg');
+      imgs[src] = `data:image/${ext === 'svg' ? 'svg+xml' : ext};base64,${buf.toString('base64')}`;
+    }
+  }
+  return { mark: logos['logo-mark-white-bg.png'], image: (src) => imgs[src] };
+}
+
 async function main() {
   const input = process.argv[2];
   if (!input) {
@@ -137,7 +152,7 @@ async function main() {
   const logos = {};
   for (const t of Object.values(THEMES)) logos[t.logo] ??= await dataUri(t.logo);
 
-  const pages = slides.map((s, i) => {
+  const pages = spec.style === 'sticker' ? stickerPages(spec, await stickerAssets(spec, input, logos)) : slides.map((s, i) => {
     const t = THEMES[s.theme || spec.theme || 'linen'] || THEMES.linen;
     const markClass = t.logo.startsWith('logo-mark') ? 'mark' : '';
     const disclaimer = s.disclaimer === true ? spec.disclaimer : s.disclaimer;

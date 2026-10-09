@@ -1,0 +1,174 @@
+{
+  "title": "Who actually holds your money?",
+  "style": "sticker",
+  "handle": "@blok.capital",
+  "tagline": "On-chain investing, explained",
+  "disclaimer": "Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.",
+  "slides": [
+    {
+      "type": "hook",
+      "title": "Who actually\n**holds** your\nmoney?",
+      "sub": "(It's not as simple as you think)",
+      "visual": {
+        "emoji": "🤔",
+        "size": 540,
+        "x": 400,
+        "y": 660,
+        "burst": [
+          690,
+          950
+        ],
+        "burstR": 300
+      },
+      "arrow": {
+        "from": [
+          150,
+          660
+        ],
+        "to": [
+          390,
+          930
+        ],
+        "bend": -140
+      }
+    },
+    {
+      "type": "flow",
+      "kicker": "When you buy a fund",
+      "title": "Your money takes\n**a little trip**",
+      "steps": [
+        {
+          "emoji": "📱",
+          "label": "Your app or broker",
+          "note": "takes the order"
+        },
+        {
+          "emoji": "🏢",
+          "label": "The fund house",
+          "note": "decides what to buy"
+        },
+        {
+          "emoji": "🏦",
+          "label": "The custodian",
+          "note": "holds the actual assets"
+        },
+        {
+          "emoji": "🗂️",
+          "label": "The registrar",
+          "note": "keeps the record of your units"
+        }
+      ],
+      "visual": {
+        "emoji": "💸",
+        "size": 230,
+        "x": 790,
+        "y": 860,
+        "rotate": 12
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "Here's the catch",
+      "title": "You own the units.\nSomeone else\n**holds** the assets.",
+      "body": "Safe and regulated. But what you actually see is a statement, every month or quarter.",
+      "visual": {
+        "emoji": "📄",
+        "size": 360,
+        "x": 640,
+        "y": 800,
+        "rotate": -8
+      },
+      "arrow": {
+        "from": [
+          260,
+          900
+        ],
+        "to": [
+          600,
+          1010
+        ],
+        "bend": -90
+      }
+    },
+    {
+      "type": "point",
+      "theme": "dark",
+      "kicker": "On-chain flips it",
+      "title": "Your assets.\nYour account.\n**Your view.**",
+      "body": "Holdings sit in an account only you control, recorded on a public ledger you can check any time.",
+      "visual": {
+        "emoji": "🔐",
+        "size": 340,
+        "x": 580,
+        "y": 840,
+        "burst": [
+          770,
+          1010
+        ],
+        "burstR": 230
+      }
+    },
+    {
+      "type": "compare",
+      "title": "Same goal,\n**new rails**",
+      "left": {
+        "emoji": "🏦",
+        "label": "Traditional",
+        "items": [
+          "Assets held by a custodian",
+          "Statement monthly or quarterly",
+          "Weekdays, office hours",
+          "Several hands in between"
+        ]
+      },
+      "right": {
+        "emoji": "🔐",
+        "label": "On-chain",
+        "items": [
+          "Assets in an account you control",
+          "Holdings visible any time",
+          "Open 24/7",
+          "Fewer hands in between"
+        ]
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "The honest part",
+      "title": "Is it **risk-free**?\nNo.",
+      "body": "It's newer, prices can swing more, and you're responsible for your own account. Learn first, start small.",
+      "visual": {
+        "emoji": "⚠️",
+        "size": 380,
+        "x": 580,
+        "y": 700,
+        "rotate": 6
+      }
+    },
+    {
+      "type": "cta",
+      "title": "Want to **own** your\nportfolio, not just\na statement?",
+      "body": "Follow BLOK Capital for plain-English on-chain portfolio know-how. One idea a week.",
+      "button": "Follow @blok.capital",
+      "visual": {
+        "emoji": "🌱",
+        "size": 280,
+        "x": 660,
+        "y": 790,
+        "rotate": 8
+      },
+      "arrow": {
+        "from": [
+          560,
+          760
+        ],
+        "to": [
+          650,
+          900
+        ],
+        "bend": -70
+      },
+      "disclaimer": true
+    }
+  ]
+}

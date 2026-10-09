@@ -1,5 +1,8 @@
 # Carousel template & renderer
 
+**Instagram default: `"style": "sticker"`.** Schema, visuals, arrows and checklists: `brand/carousel-style.md`.
+The schema below is the older editorial style (still supported).
+
 Render: `npm run carousel -- content/carousels/<slug>/slides.json`
 Output: `content/carousels/<slug>/export/slide-NN.png` (1080×1350) + `preview.html`.
 First time in a fresh environment: `npm install`.

@@ -3,6 +3,7 @@ name: instagram-carousel
 description: Write, design and render on-brand Instagram/LinkedIn carousels for BLOK Capital as 1080x1350 PNGs, plus caption and hashtags. Use whenever the user asks for a carousel, slide post, swipe post, educational slides or an infographic series.
 ---
 
+> **Style:** use `"style": "sticker"` and follow `brand/carousel-style.md` (killer cover, a visual on every slide, no real people, CTA library). Example: `content/carousels/2026-10-10-who-holds-your-money/`.
 > **Rendering and publishing:** follow `docs/playbook.md` sections 3 and 6. The renderer writes publish-ready JPEGs to `export/jpg/`.
 
 
