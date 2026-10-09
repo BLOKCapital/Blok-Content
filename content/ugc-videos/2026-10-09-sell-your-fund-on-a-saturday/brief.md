@@ -10,7 +10,7 @@
 | Goal | Saves and follows. Purely educational, no product push |
 | Format | POV skit, one person, phone selfie camera, at home |
 | Talent | **AI voiceover (Andrew) + motion graphics**, labelled as AI. See `production.md` |
-| Status | rendered `reel-final.mp4` → awaiting approval |
+| Status | posted 2026-10-09: https://www.instagram.com/reel/DeRg7VKCVkc/ |
 
 ## One-line concept
 A relatable weekend moment (wanting to act on your money and being told "wait till Monday")

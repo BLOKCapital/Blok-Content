@@ -29,4 +29,4 @@ Status: new · developing · in production · shipped · parked.
 | 2026-10-09 | IG: "On-chain is just gambling." Is it? | Myth-busting | Fund Investor | UGC talking head | 20 | new |
 | 2026-10-09 | IG: Receipts vs reports: what a public ledger actually is | Transparency | Fund Investor | Carousel | 22 | new |
 | 2026-10-09 | IG: The honest risks of on-chain investing | Honest risks | Fund Investor | Carousel | 21 | new |
-| 2026-10-09 | IG Reel (UGC POV): you try to sell your index fund on a Saturday | TradFi vs on-chain | Fund Investor / general | Reel (AI voice + motion) | 22 | rendered, awaiting approval |
+| 2026-10-09 | IG Reel (UGC POV): you try to sell your index fund on a Saturday | TradFi vs on-chain | Fund Investor / general | Reel (AI voice + motion) | 22 | shipped 2026-10-09 |
