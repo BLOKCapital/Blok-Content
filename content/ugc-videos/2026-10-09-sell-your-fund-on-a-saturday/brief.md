@@ -9,7 +9,7 @@
 | Pillar | TradFi vs on-chain, side by side (market hours and settlement) |
 | Goal | Saves and follows. Purely educational, no product push |
 | Format | POV skit, one person, phone selfie camera, at home |
-| Talent | Team member or a real creator (disclosed if paid). AI avatar is a fallback, labelled |
+| Talent | **AI presenter** (chosen 2026-10-09), labelled as AI. See `ai-presenter.md` |
 | Status | script approved 2026-10-09 → needs filming |
 
 ## One-line concept
@@ -62,7 +62,7 @@ On-chain markets work differently:
 
 It's newer and can be more volatile, so learn before you leap. Follow @blok.capital for one plain-English idea a week.
 
-Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.
+AI-generated presenter. Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.
 
 #InvestingBasics #PersonalFinance #MoneyTips #FinancialLiteracy #OnChainFinance
 ```
