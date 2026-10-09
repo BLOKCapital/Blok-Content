@@ -1,0 +1,147 @@
+{
+  "style": "sticker",
+  "handle": "@blok.capital",
+  "tagline": "On-chain investing, explained",
+  "disclaimer": "Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.",
+  "title": "On-chain investing is just gambling. Is it?",
+  "slides": [
+    {
+      "type": "hook",
+      "title": "\"On-chain is\njust **gambling**.\"",
+      "sub": "Is it, though?",
+      "visual": {
+        "emoji": "🎰",
+        "size": 520,
+        "x": 420,
+        "y": 640,
+        "rotate": -5,
+        "burst": [
+          700,
+          920
+        ],
+        "burstR": 300
+      },
+      "arrow": {
+        "from": [
+          150,
+          560
+        ],
+        "to": [
+          400,
+          880
+        ],
+        "bend": -140
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "Let's be fair",
+      "title": "The rails aren't\nthe **strategy**",
+      "body": "You can gamble on a stock app too. On-chain is just the plumbing. What you buy, and how long you hold it, is the strategy.",
+      "visual": {
+        "emoji": "🛤️",
+        "size": 330,
+        "x": 620,
+        "y": 850
+      }
+    },
+    {
+      "type": "compare",
+      "title": "Gambling vs\n**investing**",
+      "left": {
+        "emoji": "🎰",
+        "label": "Gambling",
+        "items": [
+          "Short-term bets",
+          "Chasing hype",
+          "All-in on one thing",
+          "No plan"
+        ]
+      },
+      "right": {
+        "emoji": "🌱",
+        "label": "Investing",
+        "items": [
+          "Long-term holding",
+          "A diversified basket",
+          "Rebalanced on rules",
+          "A plan you stick to"
+        ]
+      }
+    },
+    {
+      "type": "point",
+      "theme": "dark",
+      "kicker": "Plot twist",
+      "title": "On-chain can be\n**boring**. Good.",
+      "body": "Diversified baskets that rebalance on rules, recorded where you can check them. Boring is a feature.",
+      "visual": {
+        "emoji": "🧺",
+        "size": 340,
+        "x": 600,
+        "y": 830,
+        "burst": [
+          780,
+          1000
+        ],
+        "burstR": 230
+      }
+    },
+    {
+      "type": "list",
+      "kicker": "Real red flags",
+      "title": "These are the\n**real** gamble",
+      "items": [
+        "\"Guaranteed\" returns",
+        "\"Get in before it's too late\"",
+        "Borrowing to bet bigger",
+        "Money you can't afford to lose"
+      ],
+      "visual": {
+        "emoji": "🚩",
+        "size": 260,
+        "x": 740,
+        "y": 900,
+        "rotate": 10
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "The honest part",
+      "title": "Still risky?\n**Yes.**",
+      "body": "Newer markets can swing hard. Diversify, start small, and learn before you leap.",
+      "visual": {
+        "emoji": "⚠️",
+        "size": 360,
+        "x": 600,
+        "y": 740,
+        "rotate": 6
+      }
+    },
+    {
+      "type": "cta",
+      "title": "Want to **own** your\nportfolio, not just\na statement?",
+      "body": "Follow BLOK Capital for plain-English on-chain portfolio know-how. One idea a week.",
+      "button": "Follow @blok.capital",
+      "visual": {
+        "emoji": "🌱",
+        "size": 280,
+        "x": 660,
+        "y": 790,
+        "rotate": 8
+      },
+      "arrow": {
+        "from": [
+          560,
+          760
+        ],
+        "to": [
+          650,
+          900
+        ],
+        "bend": -70
+      },
+      "disclaimer": true
+    }
+  ]
+}

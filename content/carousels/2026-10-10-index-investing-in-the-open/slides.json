@@ -1,0 +1,148 @@
+{
+  "style": "sticker",
+  "handle": "@blok.capital",
+  "tagline": "On-chain investing, explained",
+  "disclaimer": "Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.",
+  "title": "Your index fund, but you can watch it work",
+  "slides": [
+    {
+      "type": "hook",
+      "title": "Your index fund,\nbut you can\n**watch** it work",
+      "sub": "(every single rebalance)",
+      "visual": {
+        "emoji": "👀",
+        "size": 500,
+        "x": 430,
+        "y": 700,
+        "burst": [
+          700,
+          960
+        ],
+        "burstR": 290
+      },
+      "arrow": {
+        "from": [
+          150,
+          700
+        ],
+        "to": [
+          410,
+          940
+        ],
+        "bend": -140
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "Quick refresher",
+      "title": "How an index\nfund **works**",
+      "body": "It holds a basket that tracks a market and rebalances to stay on target. Simple, diversified, low effort.",
+      "visual": {
+        "emoji": "🧺",
+        "size": 360,
+        "x": 600,
+        "y": 800,
+        "rotate": -4
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "The catch",
+      "title": "You rarely\n**see** it happen",
+      "body": "Rebalancing happens behind the scenes. You find out from a factsheet, later.",
+      "visual": {
+        "emoji": "🙈",
+        "size": 360,
+        "x": 600,
+        "y": 780
+      }
+    },
+    {
+      "type": "flow",
+      "kicker": "Same idea, on-chain",
+      "title": "Rebuilt\n**in the open**",
+      "steps": [
+        {
+          "emoji": "🧺",
+          "label": "A basket with set weights",
+          "note": "e.g. sized by market value"
+        },
+        {
+          "emoji": "📉",
+          "label": "Prices move",
+          "note": "weights drift off target"
+        },
+        {
+          "emoji": "🔄",
+          "label": "Rules rebalance it",
+          "note": "automatically, on schedule"
+        },
+        {
+          "emoji": "🧾",
+          "label": "Every trade recorded",
+          "note": "on a public ledger"
+        }
+      ]
+    },
+    {
+      "type": "compare",
+      "title": "Index fund vs\n**on-chain index**",
+      "left": {
+        "emoji": "🏦",
+        "label": "Index fund",
+        "items": [
+          "Factsheet tells you later",
+          "Weekday trading hours",
+          "Held by a custodian"
+        ]
+      },
+      "right": {
+        "emoji": "🔐",
+        "label": "On-chain index",
+        "items": [
+          "Every rebalance visible",
+          "Runs 24/7",
+          "Held in an account you control"
+        ]
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "The honest part",
+      "title": "New rails,\n**same rule**",
+      "body": "Diversifying helps, but prices can still fall. On-chain markets are younger and swing more. Start small.",
+      "visual": {
+        "emoji": "⚠️",
+        "size": 360,
+        "x": 600,
+        "y": 740,
+        "rotate": 6
+      }
+    },
+    {
+      "type": "cta",
+      "title": "Want to **own** your\nportfolio, not just\na statement?",
+      "body": "Follow BLOK Capital for plain-English on-chain portfolio know-how. One idea a week.",
+      "button": "Follow @blok.capital",
+      "visual": {
+        "emoji": "🌱",
+        "size": 280,
+        "x": 660,
+        "y": 790,
+        "rotate": 8
+      },
+      "arrow": {
+        "from": [
+          560,
+          760
+        ],
+        "to": [
+          650,
+          900
+        ],
+        "bend": -70
+      },
+      "disclaimer": true
+    }
+  ]
+}

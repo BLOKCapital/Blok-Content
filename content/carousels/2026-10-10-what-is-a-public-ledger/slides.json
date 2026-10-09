@@ -1,0 +1,164 @@
+{
+  "style": "sticker",
+  "handle": "@blok.capital",
+  "tagline": "On-chain investing, explained",
+  "disclaimer": "Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.",
+  "title": "What is a public ledger, really?",
+  "slides": [
+    {
+      "type": "hook",
+      "title": "What is a\n**public ledger**,\nreally?",
+      "sub": "(Explained like you're 10)",
+      "visual": {
+        "emoji": "📒",
+        "size": 520,
+        "x": 420,
+        "y": 660,
+        "rotate": -6,
+        "burst": [
+          700,
+          940
+        ],
+        "burstR": 300
+      },
+      "arrow": {
+        "from": [
+          150,
+          660
+        ],
+        "to": [
+          400,
+          920
+        ],
+        "bend": -140
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "Picture this",
+      "title": "A notebook\n**everyone** shares",
+      "body": "Everyone holds the same copy. New entries get added. Old ones can't be quietly rubbed out.",
+      "visual": {
+        "emoji": "🤝",
+        "size": 360,
+        "x": 600,
+        "y": 780,
+        "rotate": -4
+      }
+    },
+    {
+      "type": "flow",
+      "kicker": "How an entry gets in",
+      "title": "From your tap\nto **for good**",
+      "steps": [
+        {
+          "emoji": "📝",
+          "label": "You make a trade",
+          "note": "buy, sell or rebalance"
+        },
+        {
+          "emoji": "📡",
+          "label": "It's broadcast",
+          "note": "sent to a network of computers"
+        },
+        {
+          "emoji": "✅",
+          "label": "They check it",
+          "note": "agree it's valid"
+        },
+        {
+          "emoji": "📒",
+          "label": "It's recorded",
+          "note": "added to the ledger for good"
+        }
+      ],
+      "visual": {
+        "emoji": "🔍",
+        "size": 220,
+        "x": 790,
+        "y": 880,
+        "rotate": 10
+      }
+    },
+    {
+      "type": "compare",
+      "title": "Reports vs\n**receipts**",
+      "left": {
+        "emoji": "📄",
+        "label": "A report",
+        "items": [
+          "Made after the fact",
+          "Summarised for you",
+          "You trust the sender",
+          "Monthly or quarterly"
+        ]
+      },
+      "right": {
+        "emoji": "🧾",
+        "label": "A receipt",
+        "items": [
+          "Created as it happens",
+          "Every single entry",
+          "Anyone can verify",
+          "Available any time"
+        ]
+      }
+    },
+    {
+      "type": "point",
+      "theme": "dark",
+      "kicker": "Why it matters",
+      "title": "Don't trust.\n**Check.**",
+      "body": "You don't have to take anyone's word for what you own. You can look it up yourself, any time.",
+      "visual": {
+        "emoji": "🔍",
+        "size": 340,
+        "x": 600,
+        "y": 820,
+        "burst": [
+          780,
+          990
+        ],
+        "burstR": 230
+      }
+    },
+    {
+      "type": "point",
+      "kicker": "The honest part",
+      "title": "Transparent isn't\n**risk-free**",
+      "body": "Prices can still swing, and you're responsible for your own account. Learn first, start small.",
+      "visual": {
+        "emoji": "⚠️",
+        "size": 360,
+        "x": 600,
+        "y": 740,
+        "rotate": 6
+      }
+    },
+    {
+      "type": "cta",
+      "title": "Want to **own** your\nportfolio, not just\na statement?",
+      "body": "Follow BLOK Capital for plain-English on-chain portfolio know-how. One idea a week.",
+      "button": "Follow @blok.capital",
+      "visual": {
+        "emoji": "🌱",
+        "size": 280,
+        "x": 660,
+        "y": 790,
+        "rotate": 8
+      },
+      "arrow": {
+        "from": [
+          560,
+          760
+        ],
+        "to": [
+          650,
+          900
+        ],
+        "bend": -70
+      },
+      "disclaimer": true
+    }
+  ]
+}
