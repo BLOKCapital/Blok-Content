@@ -22,7 +22,7 @@ Status: new · developing · in production · shipped · parked.
 | 2026-10-09 | "Crypto is a casino." Okay, here's the boring version | Contrast | Busy Grower | UGC stitch/duet | 21 | new |
 | 2026-10-09 | 1 term a day: DeFi glossary series | Educate | Busy Grower | Reels series + stories | 20 | new |
 | 2026-10-09 | IG: You can see your fund's statement, not your fund (on-chain intro) | Transparency | Fund Investor | Carousel | 23 | shipped 2026-10-09 |
-| 2026-10-09 | IG: Who actually holds your mutual fund units? (custodians, registrars explained) | Ownership | Fund Investor | Carousel + Reel | 22 | carousel rendered, awaiting approval |
+| 2026-10-09 | IG: Who actually holds your mutual fund units? (custodians, registrars explained) | Ownership | Fund Investor | Carousel + Reel | 22 | carousel shipped 2026-10-09 |
 | 2026-10-09 | IG: T+1 vs minutes: why settlement speed matters | TradFi vs on-chain | Fund Investor | Carousel | 21 | new |
 | 2026-10-09 | IG: Markets close at 3:30. Your money doesn't sleep | TradFi vs on-chain | Fund Investor | Reel (faceless) | 21 | new |
 | 2026-10-09 | IG: Index investing, rebuilt in the open (rebalancing you can watch) | Familiar concepts | Fund Investor | Carousel | 22 | new |
