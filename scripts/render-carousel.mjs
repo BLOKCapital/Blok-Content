@@ -3,7 +3,8 @@
 //
 //   node scripts/render-carousel.mjs content/carousels/<slug>/slides.json
 //
-// Output: <slug>/export/slide-01.png ... plus <slug>/export/preview.html.
+// Output: <slug>/export/slide-01.png ..., publish-ready <slug>/export/jpg/slide-01.jpg ...,
+// plus <slug>/export/preview.html.
 // Slide schema: see templates/carousel/README.md.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -130,7 +131,7 @@ async function main() {
   }
   const spec = JSON.parse(await readFile(input, 'utf8'));
   const outDir = path.join(path.dirname(input), 'export');
-  await mkdir(outDir, { recursive: true });
+  await mkdir(path.join(outDir, 'jpg'), { recursive: true });
 
   const slides = spec.slides || [];
   const logos = {};
@@ -166,6 +167,8 @@ async function main() {
     await page.evaluate(() => document.fonts.ready);
     const file = path.join(outDir, `slide-${String(i + 1).padStart(2, '0')}.png`);
     await page.locator('.slide').screenshot({ path: file });
+    // Instagram only accepts JPEG, so write a publish-ready copy alongside the PNG.
+    await page.locator('.slide').screenshot({ path: path.join(outDir, 'jpg', path.basename(file, '.png') + '.jpg'), type: 'jpeg', quality: 95 });
     files.push(path.basename(file));
   }
   await browser.close();

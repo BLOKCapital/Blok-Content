@@ -3,6 +3,9 @@ name: short-form-video
 description: Write faceless / explainer / motion-graphics short-form videos (Reels, TikTok, YouTube Shorts) for BLOK Capital, including scripts, storyboards, voiceover, on-screen text, b-roll lists, and render plans (Remotion/ffmpeg). Use when the video is not creator/UGC-led.
 ---
 
+> **Production route:** `instagram-reel` skill / `docs/playbook.md` section 5 (voice, timeline, scene template, renderer).
+
+
 # Short-form video (non-UGC)
 
 1. Load `blok-brand` context.

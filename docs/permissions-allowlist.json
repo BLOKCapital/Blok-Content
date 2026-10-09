@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run carousel:*)",
+      "Bash(node scripts/render-carousel.mjs:*)",
+      "Bash(node scripts/render-reel.mjs:*)",
+      "Bash(python3 scripts/build-timeline.py:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(ffprobe:*)",
+      "Bash(md5sum:*)",
+      "Bash(curl -sSL https://backend.composio.dev/api/v3/sl/:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:blokcapital.io)",
+      "WebFetch(domain:docs.blokcapital.io)",
+      "mcp__Composio__COMPOSIO_SEARCH_TOOLS",
+      "mcp__Composio__COMPOSIO_GET_TOOL_SCHEMAS",
+      "mcp__Composio__COMPOSIO_MULTI_EXECUTE_TOOL",
+      "mcp__Composio__COMPOSIO_REMOTE_WORKBENCH",
+      "mcp__Composio__COMPOSIO_REMOTE_BASH_TOOL"
+    ]
+  }
+}

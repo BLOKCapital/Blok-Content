@@ -1,5 +1,8 @@
 # Composio setup
 
+> **Primary route:** Composio is connected as a claude.ai connector (`mcp__Composio__*`). The CLI below is optional.
+> Publishing steps live in `docs/playbook.md`.
+
 Composio connects Claude to the apps we publish and work in: Instagram, X, LinkedIn,
 YouTube, TikTok, Telegram, Discord, Google Drive, Notion, Slack, and more.
 

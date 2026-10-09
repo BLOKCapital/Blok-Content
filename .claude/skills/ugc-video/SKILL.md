@@ -3,6 +3,9 @@ name: ugc-video
 description: Plan and write UGC-style (user-generated-content look) short videos for BLOK Capital, covering concepts, hook variants, timestamped scripts, shot lists, on-screen text, captions/SRT, creator briefs, AI-avatar/voice prompts, and post-production. Use for TikTok/Reels/Shorts UGC, creator ads, testimonial-style, POV, talking-head, green-screen or "street interview" formats.
 ---
 
+> **No one to film?** Make it as an AI-voiceover motion reel with the `instagram-reel` skill (`docs/playbook.md` section 5). That's the default production route.
+
+
 # UGC video
 
 UGC = looks like a real person filmed it on their phone: authentic, imperfect, native to the feed.

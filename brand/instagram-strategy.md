@@ -67,3 +67,11 @@ Keep claims general and true across markets. Say "typically" or "often" where pr
 - [ ] Disclaimer on the last slide/caption: *"Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money."*
 - [ ] Soft CTA: save, share, follow. No hard sell, no sign-up push (for now)
 - [ ] Handle: **@blok.capital**
+
+## Decisions log
+| Date | Decision |
+|---|---|
+| 2026-10-09 | Audience: people who invest via mutual funds / ETFs; purely educational, no crypto vocabulary. The **bio** should speak to a general audience (no "for fund & ETF investors" framing). |
+| 2026-10-09 | Bio shortlist (user to pick): "Everyone deserves a Garden 🌱 / Money, made simple and out in the open. / One plain-English idea a week. No hype." or "Your money, out in the open 🌱 / The future of investing, made simple. / Learn it before you need it." Name field: "BLOK Capital · Investing 101". |
+| 2026-10-09 | Reels voice: **Andrew** (`en-US-AndrewMultilingualNeural`), conversational script, AI voiceover disclosed in caption + end card. |
+| 2026-10-09 | Shipped: carousel "You can see your fund's statement. Not your fund." (+ story), Reel "POV: you try to sell your index fund on a Saturday". |

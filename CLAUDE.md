@@ -6,6 +6,11 @@ the content calendar, and the brand knowledge that keeps it all on-message.
 
 Read this file first in every session. For depth, go to `knowledge/` and `brand/`.
 
+> **Before making or posting anything, read `docs/playbook.md`.** It's the operating manual: account IDs,
+> the exact carousel / story / Reel pipelines, the Composio publishing route, the approved voice, and the
+> list of approaches that don't work. Follow it instead of rediscovering. If you learn something new, update it.
+> The only approval needed per post is the user's "yes" to the final media + caption.
+
 > **Instagram rule (overrides everything below for Instagram):** @blok.capital targets people
 > who invest in **mutual funds, ETFs and traditional finance**. Content is **purely educational**:
 > why on-chain finance is good, why an on-chain portfolio is great, and why it matters. **No crypto
@@ -179,15 +184,15 @@ Project skills in `.claude/skills/` (invoke with `/skill-name`):
 - `instagram-carousel` — write + design + render on-brand carousels to PNG (1080×1350), following `brand/instagram-strategy.md`.
 - `ugc-video` — UGC briefs, hooks, scripts, shot lists, creator briefs, AI-avatar prompts.
 - `short-form-video` — faceless/explainer Reels & TikToks, captions, b-roll lists.
+- `instagram-reel` — finished Reels with AI voiceover + motion graphics, no filming (playbook section 5).
 - `x-thread` — X posts and threads in BLOK voice.
 - `composio-publish` — publish/schedule via Composio (Instagram, X, LinkedIn, etc.).
 
 Recommended marketplace plugins (install from the Claude plugin directory):
 **Social Media Skills**, **Remotion** (programmatic video rendering), **Marketing** (Anthropic).
 
-**Composio** — see `scripts/setup-composio.sh` and `docs/composio.md`. Needs
-`COMPOSIO_API_KEY` set as an environment secret. **Never post publicly without explicit
-user confirmation for that specific post.**
+**Composio** is connected as a claude.ai connector (`mcp__Composio__*` tools; Instagram + X linked).
+Publishing route and IDs: `docs/playbook.md`. Post only after the user's "yes" to the final media + caption.
 
 ## 7. Rules for Claude in this repo
 - Ground every factual claim in `knowledge/` or the live docs. If unsure, check
