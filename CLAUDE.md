@@ -198,5 +198,5 @@ Publishing route and IDs: `docs/playbook.md`. Post only after the user's "yes" t
 - Ground every factual claim in `knowledge/` or the live docs. If unsure, check
   https://docs.blokcapital.io/llms-full.txt or ask. Don't invent stats, partners, or dates.
 - When facts change (launches, roadmap, team), update `knowledge/` **and** this file.
-- Default formats: Instagram carousel 1080×1350 (4:5), Reels/TikTok 1080×1920 (9:16), X ≤ 280 chars/post.
+- Default formats: Instagram carousel 1080×1440 (3:4, rules in `brand/carousel-maker.md`), Reels/TikTok 1080×1920 (9:16), X ≤ 280 chars/post.
 - Write in **English** by default; docs also exist in Spanish and French if localising.
