@@ -32,7 +32,21 @@ idea ─► script/slides ─► render locally ─► show user ─► "yes" �
         ─► md5 check ─► upload_local_file() ─► s3key ─► Instagram tool ─► verify ─► log
 ```
 
-## 3. Carousel (Instagram, 1080×1350)
+## 3. Carousel (Instagram)
+**Current rules: `brand/carousel-maker.md`** (set 2026-10-10): 1080×1440, left-aligned Z-pattern, minimal,
+Hook → Point 1 → Point 2 → Point 3 → CTA, brand colours only, and **music on every carousel**.
+1. Write `content/carousels/YYYY-MM-DD-slug/slides.json` (`"style": "minimal"`, see the 2026-10-10-sold-is-not-paid
+   example) and `caption.md`. Music: `"music": "../../../assets/music/<track>.m4a"`; make new original tracks with
+   `python3 scripts/make-music.py out.wav 31` then master with ffmpeg
+   (`lowpass=f=9000,aecho=0.8:0.6:60|110:0.25|0.18,loudnorm=I=-14:TP=-1.5:LRA=9,alimiter=limit=0.84:level=disabled,volume=-1.5dB`).
+2. `node scripts/render-minimal.mjs content/carousels/<folder>/slides.json` → PNG, JPG and `export/mp4/` (one 6s video per
+   slide, each carrying the next segment of the track so the music runs on as people swipe).
+3. Publish the MP4s with `INSTAGRAM_CREATE_CAROUSEL_CONTAINER` → `child_video_files` (verified 2026-10-10: 1080×1440 video
+   slides are accepted). Run the create call inside the workbench (`run_composio_tool`); it can exceed the 60s MCP timeout,
+   so if it times out, read the result variable in a second cell rather than re-running.
+   Instagram's own music library can't be attached through the API; video slides are how music gets in.
+
+### Older sticker pipeline (1080×1350, superseded)
 1. Write `content/carousels/YYYY-MM-DD-slug/slides.json` with `"style": "sticker"` (rules + schema: `brand/carousel-style.md`) and `caption.md`.
 2. `npm install` (first time), then `npm run carousel -- content/carousels/<folder>/slides.json`.
 3. QA: stitch a contact sheet and look at every slide:
@@ -127,7 +141,7 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 | `git push --delete` a branch | 403 from the session's git proxy | User deletes branches on GitHub |
 | `rm -f $VAR/*` in Bash | Blocked by safety check | Use literal paths or `"${VAR:?}"/*` |
 | Composio remote bash writing into dirs the workbench created | Permission denied (bash runs as `user`, workbench as root) | Use a fresh dir from bash (e.g. `~/kk`), or do it all in the workbench |
-| Instagram API: music, AI label, alt text on carousel slides, link stickers, bio edits | Not supported | Tell the user to do it in the app |
+| Instagram API: library music (use video slides with our own track instead), AI label, alt text on carousel slides, link stickers, bio edits | Not supported | Tell the user to do it in the app |
 
 ## 8. Permissions (so nothing prompts)
 In the session's mode dropdown pick **Auto**. For per-command rules, the user pastes
