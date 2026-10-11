@@ -1,6 +1,6 @@
 # Receipts beat reports (Reel / X video)
 
-**Format:** vertical 1080x1920, 45.7s, 30fps · **Audience:** fund and ETF investors (Instagram rules apply) · **Status:** rendered, not posted
+**Format:** vertical 1080x1920, 45.7s, 30fps · **Audience:** fund and ETF investors (Instagram rules apply) · **Status:** posted to Instagram 2026-10-11 ([DeWmtrykZR6](https://www.instagram.com/reel/DeWmtrykZR6/))
 **Trend hook:** "asset management should have a public record" (research/2026-10-11-x-trends.md, #2)
 **Style:** old money: linen stationery, double-rule frame, Cormorant Garamond italics, chapter numerals, wax seal, solo piano.
 
