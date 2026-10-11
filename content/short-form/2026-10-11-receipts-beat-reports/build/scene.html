@@ -1,0 +1,449 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=block" rel="stylesheet">
+<script src="timeline.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --linen:#F6F3E8; --paper:#FBF9F2; --ink:#0B1B2B; --indigo:#004EBA; --navy:#0A2A5C; --sky:#7DD2FD; --lime:#7ED116; --coral:#EC464D; --earth:#844947; --rule:#B9A99A; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--linen); color: var(--ink); font-family: 'Cormorant Garamond', serif; }
+  .abs { position: absolute; }
+  .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .caps { font-family: 'Inter', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: .32em; font-size: 22px; color: var(--earth); }
+  .kicker { position: absolute; left: 110px; top: 330px; display: flex; align-items: center; gap: 22px; }
+  .kicker i { display: block; width: 60px; height: 1.5px; background: var(--earth); }
+  .title { font-style: italic; font-weight: 600; color: var(--ink); line-height: .98; letter-spacing: -0.01em; }
+  #grain { position: absolute; inset: 0; opacity: .09; pointer-events: none; mix-blend-mode: multiply; }
+  #vig { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(132,73,71,.13) 100%); }
+  #frame { position: absolute; left: 44px; top: 120px; width: 992px; height: 1680px; border: 2px solid rgba(132,73,71,.55); }
+  #frame::after { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(132,73,71,.35); }
+  #letter { position: absolute; left: 110px; right: 110px; top: 228px; display: flex; justify-content: space-between; align-items: center; }
+  #lrule { position: absolute; left: 110px; top: 278px; height: 1px; background: rgba(132,73,71,.45); }
+  #prog { position: absolute; left: 110px; top: 278px; height: 3px; margin-top: -1px; background: var(--earth); }
+
+  /* A: the quiet rule */
+  .obj { position: absolute; border-radius: 6px; }
+  #rep { left: 120px; top: 760px; width: 380px; height: 500px; background: linear-gradient(150deg, #0B5AD0 0%, var(--indigo) 45%, var(--navy) 100%); box-shadow: 0 30px 60px rgba(11,27,43,.25); color: var(--linen); padding: 46px 38px; }
+  #rep .gloss { position: absolute; inset: 0; border-radius: 6px; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.28) 45%, transparent 60%); }
+  #book { left: 580px; top: 760px; width: 380px; height: 500px; background: linear-gradient(160deg, #9A5855, var(--earth) 50%, #5E3230); box-shadow: 0 30px 60px rgba(11,27,43,.25); color: var(--linen); padding: 46px 38px 46px 70px; }
+  #book .spine { position: absolute; left: 0; top: 0; bottom: 0; width: 34px; background: rgba(0,0,0,.18); border-right: 2px solid rgba(246,243,232,.25); }
+  #book .band { position: absolute; left: 0; width: 34px; height: 3px; background: rgba(246,243,232,.5); }
+  .objlabel { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: .3em; font-size: 20px; text-transform: uppercase; opacity: .85; }
+  .objtitle { font-style: italic; font-weight: 600; font-size: 70px; line-height: .95; margin-top: 26px; }
+  #bookline { position: absolute; left: 70px; height: 3px; background: var(--lime); top: 238px; }
+
+  /* B: envelope + report */
+  #env { left: 170px; top: 700px; width: 740px; height: 480px; background: var(--paper); border: 2px solid rgba(132,73,71,.5); box-shadow: 0 25px 50px rgba(11,27,43,.15); border-radius: 4px; overflow: hidden; }
+  #env svg { position: absolute; inset: 0; }
+  #seal { position: absolute; left: 470px; top: 860px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle at 38% 35%, #A8605C, var(--earth) 55%, #5A2E2C); box-shadow: 0 6px 14px rgba(0,0,0,.25), inset 0 0 0 8px rgba(0,0,0,.08); display: flex; align-items: center; justify-content: center; color: rgba(246,243,232,.85); font-style: italic; font-weight: 700; font-size: 58px; }
+  #cover { left: 250px; top: 470px; width: 580px; height: 800px; background: linear-gradient(150deg, #0B5AD0 0%, var(--indigo) 40%, var(--navy) 100%); color: var(--linen); padding: 70px 60px; box-shadow: 0 40px 80px rgba(11,27,43,.3); transform-origin: left center; }
+  #cover .gloss { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,.25) 42%, transparent 58%); }
+  #inner { left: 250px; top: 470px; width: 580px; height: 800px; background: var(--paper); padding: 60px 54px; box-shadow: 0 40px 80px rgba(11,27,43,.22); border: 1px solid #E5DCCB; transform-origin: 50% 37%; }
+  .ih { font-weight: 700; font-size: 46px; color: var(--ink); }
+  #asof { display: inline-block; margin-top: 8px; font-size: 22px; color: var(--earth); padding: 4px 8px; margin-left: -8px; }
+  .trow { display: flex; justify-content: space-between; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 20px; color: #49505A; padding: 13px 0; border-top: 1px solid #E5DCCB; }
+  #qchips { position: absolute; left: 110px; top: 390px; display: flex; gap: 14px; }
+  .q { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 22px; letter-spacing: .12em; padding: 8px 18px; border: 1.5px solid var(--rule); color: #9B8F84; }
+  #lens { position: absolute; width: 300px; height: 300px; border-radius: 50%; border: 6px solid var(--earth); box-shadow: 0 0 0 2px rgba(255,255,255,.6) inset, 0 20px 40px rgba(11,27,43,.2); opacity: 0; }
+  #lens::after { content: ''; position: absolute; width: 26px; height: 150px; background: var(--earth); border-radius: 8px; left: 250px; top: 230px; transform: rotate(-45deg); transform-origin: top center; }
+
+  /* C: gap timeline */
+  #track { position: absolute; left: 150px; top: 900px; height: 3px; background: var(--ink); }
+  .node { position: absolute; width: 30px; height: 30px; border-radius: 50%; border: 3px solid var(--ink); background: var(--linen); top: 887px; }
+  .nlab { position: absolute; top: 950px; }
+  .nlab b { display: block; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 34px; color: var(--ink); }
+  .nlab span { display: block; font-style: italic; font-size: 36px; color: #5B5148; margin-top: 4px; }
+  .tick { position: absolute; top: 884px; width: 2px; height: 16px; background: var(--ink); opacity: .5; }
+  #brk { position: absolute; top: 790px; height: 40px; border: 3px solid var(--coral); border-bottom: none; }
+  #brklab { position: absolute; top: 720px; font-style: italic; font-weight: 600; font-size: 46px; color: var(--coral); }
+  .qm { position: absolute; font-style: italic; font-weight: 600; font-size: 64px; color: rgba(132,73,71,.45); }
+  #stamp { position: absolute; left: 190px; top: 1150px; padding: 20px 40px; border: 5px double var(--earth); color: var(--earth); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: .25em; text-transform: uppercase; transform-origin: center; opacity: 0; }
+
+  /* D: split */
+  #divider { position: absolute; left: 539px; top: 330px; width: 2px; background: rgba(132,73,71,.55); }
+  .col { position: absolute; top: 330px; width: 420px; }
+  .colh { display: flex; align-items: center; justify-content: space-between; }
+  .ttl { font-style: italic; font-weight: 600; font-size: 78px; margin-top: 18px; line-height: 1; }
+  #mini { margin-top: 50px; width: 340px; height: 470px; background: linear-gradient(150deg, #0B5AD0 0%, var(--indigo) 40%, var(--navy) 100%); color: var(--linen); padding: 36px 30px; position: relative; box-shadow: 0 20px 40px rgba(11,27,43,.2); }
+  .facts { margin-top: 50px; font-size: 40px; line-height: 1.35; color: #5B5148; }
+  .facts b { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 30px; color: var(--ink); display: block; margin-top: 14px; }
+  #live { display: flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: .2em; color: #3D6A0A; }
+  #live i { width: 14px; height: 14px; border-radius: 50%; background: var(--lime); display: block; }
+  #clock { margin-top: 40px; font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 28px; color: var(--ink); padding: 14px 0; border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; }
+  .lrow { position: relative; padding: 24px 0 24px; border-bottom: 1px dashed var(--rule); opacity: 0; }
+  .lrow .tm { font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 27px; color: #6B6259; display: inline-block; padding: 0 4px; margin-left: -4px; }
+  .lrow .ev { font-weight: 600; font-size: 46px; line-height: 1.05; margin-top: 4px; color: var(--ink); }
+  .lrow .lock { position: absolute; right: 0; top: 22px; opacity: 0; }
+  #deny { position: absolute; right: 0; top: 64px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 18px; letter-spacing: .12em; text-transform: uppercase; color: var(--earth); opacity: 0; }
+  #verify { margin-top: 16px; padding: 18px 20px; background: var(--paper); border: 1.5px solid var(--ink); display: flex; gap: 14px; align-items: center; opacity: 0; }
+  #verify .ck { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--lime); display: flex; align-items: center; justify-content: center; }
+  #verify span { font-weight: 600; font-size: 36px; line-height: 1.05; }
+  #cursor { position: absolute; width: 46px; height: 46px; opacity: 0; z-index: 5; }
+  .illu { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .2em; color: #9B8F84; text-transform: uppercase; }
+
+  /* E: honest */
+  .hl { position: absolute; left: 110px; font-style: italic; font-weight: 600; font-size: 104px; line-height: 1; opacity: 0; }
+
+  /* F: verdict */
+  #vrep { left: 120px; top: 560px; width: 380px; height: 500px; background: linear-gradient(150deg, #0B5AD0 0%, var(--indigo) 40%, var(--navy) 100%); color: var(--linen); padding: 44px 36px; box-shadow: 0 30px 60px rgba(11,27,43,.22); }
+  #vrec { left: 600px; top: 560px; width: 360px; background: #FFFEFA; overflow: hidden; box-shadow: 0 30px 60px rgba(11,27,43,.18); }
+  #vrec .in { padding: 34px 30px 50px; }
+  .rl { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 20px; color: #3E3832; padding: 9px 0; border-bottom: 1px dotted #C9BEB0; }
+  .vlab { position: absolute; top: 1110px; }
+  .vlab b { display: block; font-style: italic; font-weight: 600; font-size: 72px; line-height: 1; }
+  .vlab span { display: block; font-size: 32px; color: #5B5148; margin-top: 10px; line-height: 1.15; }
+
+  /* G: close */
+  #gt { position: absolute; left: 110px; top: 470px; font-style: italic; font-weight: 600; font-size: 168px; line-height: .92; color: var(--ink); letter-spacing: -0.015em; }
+  #gt em { color: var(--indigo); }
+  #grule { position: absolute; left: 110px; top: 850px; height: 2px; background: var(--earth); }
+  #end { position: absolute; left: 110px; top: 930px; width: 860px; opacity: 0; }
+  #follow { display: inline-block; margin-top: 60px; padding: 30px 56px; background: var(--ink); color: var(--linen); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 40px; letter-spacing: .06em; outline: 1.5px solid var(--ink); outline-offset: 6px; }
+  #disc { margin-top: 64px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 26px; line-height: 1.55; color: #6B6259; }
+
+  /* Captions */
+  #cap { position: absolute; left: 110px; width: 860px; top: 1408px; display: flex; flex-wrap: wrap; gap: 4px 16px; font-weight: 600; font-size: 60px; line-height: 1.12; }
+  #cap span { color: var(--ink); position: relative; }
+  #cap span.future { color: rgba(11,27,43,.28); }
+  #cap span.on { color: var(--indigo); }
+  #cap span.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 3px; background: var(--indigo); }
+</style>
+</head>
+<body>
+<svg id="grain" width="1080" height="1920"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .2  0 0 0 1 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div id="vig"></div>
+<div id="frame"></div>
+<div id="letter"><span class="caps">BLOK Capital</span><span class="caps">Est. 2023</span></div>
+<div id="lrule"></div><div id="prog"></div>
+
+<!-- A: the quiet rule -->
+<div class="scene" id="A">
+  <div class="kicker"><span class="caps">I · The quiet rule</span><i></i></div>
+  <div class="abs title" id="aT" style="left:110px;top:420px;font-size:132px">Old money<br><em style="color:var(--indigo)">checks the books.</em></div>
+  <div class="obj" id="rep"><div class="gloss"></div><div class="objlabel">Quarterly</div><div class="objtitle">The<br>Report</div>
+    <div class="abs" style="left:38px;right:38px;bottom:46px;height:120px">
+      <svg width="304" height="120" viewBox="0 0 304 120"><path d="M0 100 C60 90 80 40 140 55 S230 20 304 12" fill="none" stroke="#F6F3E8" stroke-width="3" opacity=".8"/><line x1="0" y1="118" x2="304" y2="118" stroke="#F6F3E8" stroke-width="1" opacity=".5"/></svg>
+    </div></div>
+  <div class="obj" id="book"><div class="spine"></div><div class="band" style="top:80px"></div><div class="band" style="top:100px"></div><div class="band" style="bottom:100px"></div><div class="band" style="bottom:80px"></div>
+    <div class="objlabel">Every entry</div><div class="objtitle">The<br>Books</div><div id="bookline"></div>
+    <div class="abs" style="left:70px;right:38px;bottom:46px">
+      <div style="height:1px;background:rgba(246,243,232,.45);margin-top:22px"></div><div style="height:1px;background:rgba(246,243,232,.45);margin-top:22px"></div><div style="height:1px;background:rgba(246,243,232,.45);margin-top:22px"></div><div style="height:1px;background:rgba(246,243,232,.45);margin-top:22px"></div>
+    </div></div>
+</div>
+
+<!-- B + C: the report -->
+<div class="scene" id="B">
+  <div class="kicker"><span class="caps">II · The report</span><i></i></div>
+  <div id="qchips"><span class="q">Q1</span><span class="q">Q2</span><span class="q">Q3</span><span class="q">Q4</span></div>
+  <div class="obj" id="env"><svg width="740" height="480"><path id="flap" d="M0 0 L370 250 L740 0" fill="none" stroke="rgba(132,73,71,.55)" stroke-width="2"/><path d="M0 480 L300 210 M740 480 L440 210" stroke="rgba(132,73,71,.3)" stroke-width="1.5"/></svg></div>
+  <div id="seal">Q</div>
+  <div class="obj" id="cover"><div class="gloss"></div>
+    <div class="objlabel">Quarterly report</div>
+    <div style="height:1px;background:rgba(246,243,232,.5);margin:26px 0 0"></div>
+    <div class="objtitle" style="font-size:96px;margin-top:60px">The<br>Fund</div>
+    <div style="font-style:italic;font-size:40px;margin-top:24px;opacity:.85">Second quarter</div>
+    <div class="abs" style="left:60px;right:60px;bottom:70px"><div style="height:1px;background:rgba(246,243,232,.5)"></div><div class="objlabel" style="margin-top:20px;font-size:16px">For the period ended 30 June</div></div>
+  </div>
+  <div class="obj" id="inner">
+    <div class="ih">Portfolio holdings</div>
+    <div class="mono" id="asof">As of 30 June</div>
+    <svg width="472" height="190" viewBox="0 0 472 190" style="margin:26px 0 10px;display:block"><path id="chart" d="M0 160 C50 150 70 120 120 126 S200 70 250 84 S340 40 380 46 S440 20 472 14" fill="none" stroke="#004EBA" stroke-width="4"/><path d="M0 188 H472" stroke="#C9BEB0" stroke-width="1.5"/><path d="M0 120 H472 M0 60 H472" stroke="#E5DCCB" stroke-width="1" stroke-dasharray="4 6"/></svg>
+    <div class="trow"><span>Global equities</span><span>42%</span></div>
+    <div class="trow"><span>Government bonds</span><span>28%</span></div>
+    <div class="trow"><span>Corporate bonds</span><span>17%</span></div>
+    <div class="trow"><span>Real estate</span><span>8%</span></div>
+    <div class="trow"><span>Cash</span><span>5%</span></div>
+    <div class="illu" style="margin-top:14px">Illustrative</div>
+  </div>
+  <div id="lens"></div>
+
+  <div id="C" class="abs" style="left:0;top:0;width:1080px;height:1920px;opacity:0">
+    <div id="ticks"></div>
+    <div id="track"></div>
+    <div class="node" id="n1" style="left:135px"></div>
+    <div class="node" id="n2" style="left:905px"></div>
+    <div class="nlab" id="l1" style="left:110px"><b>30 JUN</b><span>The snapshot</span></div>
+    <div class="nlab" id="l2" style="right:110px;text-align:right"><b>AUG</b><span>It reaches you</span></div>
+    <div id="brk" style="left:180px;width:715px"></div>
+    <div id="brklab" style="left:180px">often weeks later</div>
+    <div id="qms"></div>
+    <div id="stamp">Taken on trust</div>
+    <div class="illu abs" style="left:110px;top:1080px">Illustrative dates</div>
+  </div>
+</div>
+
+<!-- D: the books (split) -->
+<div class="scene" id="D">
+  <div id="divider"></div>
+  <div class="col" id="colL" style="left:100px">
+    <div class="colh"><span class="caps">The report</span></div>
+    <div class="ttl">Once a<br>quarter</div>
+    <div id="mini"><div class="objlabel" style="font-size:14px">Quarterly report</div><div class="objtitle" style="font-size:58px;margin-top:40px">The<br>Fund</div></div>
+    <div class="facts">Frozen at<b id="frozen">AS OF 30 JUN</b></div>
+  </div>
+  <div class="col" id="colR" style="left:580px">
+    <div class="colh"><span class="caps">The books</span><span id="live"><i></i>LIVE</span></div>
+    <div class="ttl">Every<br>trade</div>
+    <div id="clock"><span>11 OCT</span><span id="clk">09:14:02</span></div>
+    <div class="lrow" id="r0"><span class="tm">08:02:11</span><div class="ev">Deposit received</div></div>
+    <div class="lrow" id="r1"><span class="tm">08:02:54</span><div class="ev">Set to target mix</div><svg class="lock" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#844947" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><div id="deny">Can't be edited</div></div>
+    <div class="lrow" id="r2"><span class="tm">09:13:40</span><div class="ev">Rebalanced</div></div>
+    <div class="lrow" id="r3"><span class="tm" id="r3t"></span><div class="ev" id="r3e"></div><svg class="lock" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#844947" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+    <div id="verify"><div class="ck"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B1B2B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div><span>Checked on the public ledger</span></div>
+    <div class="illu" style="margin-top:18px">Illustrative</div>
+  </div>
+  <svg id="cursor" viewBox="0 0 24 24"><path d="M4 2l15 10.5-6.5 1.2 3.8 7.3-2.6 1.3-3.8-7.3L4 19.5z" fill="#0B1B2B" stroke="#F6F3E8" stroke-width="1.2" stroke-linejoin="round"/></svg>
+</div>
+
+<!-- E: the honest part -->
+<div class="scene" id="E">
+  <div class="kicker"><span class="caps">A note of candour</span><i></i></div>
+  <div class="hl" id="h1" style="top:470px">It's newer.</div>
+  <div class="hl" id="h2" style="top:600px">Prices can swing.</div>
+  <div class="abs" id="hr" style="left:110px;top:800px;height:2px;background:var(--earth)"></div>
+  <div class="hl" id="h3" style="top:870px;font-style:normal;font-weight:700;color:var(--indigo)">The record<br>stays open.</div>
+</div>
+
+<!-- F: the verdict -->
+<div class="scene" id="F">
+  <div class="kicker"><span class="caps">III · The verdict</span><i></i></div>
+  <div class="obj" id="vrep" style="opacity:0"><div class="objlabel" style="font-size:16px">Quarterly report</div><div class="objtitle" style="font-size:76px;margin-top:50px">The<br>Fund</div><div class="abs" style="left:36px;right:36px;bottom:44px"><div style="height:1px;background:rgba(246,243,232,.5)"></div><div class="objlabel" style="margin-top:16px;font-size:14px">As of 30 June</div></div></div>
+  <div class="obj" id="vrec" style="height:0"><div class="in">
+    <div class="caps" style="font-size:16px;letter-spacing:.25em">Public ledger</div>
+    <div style="height:1.5px;background:var(--ink);margin:14px 0 6px"></div>
+    <div class="rl"><span>08:02:11</span><span>Deposit</span></div>
+    <div class="rl"><span>08:02:54</span><span>Target mix</span></div>
+    <div class="rl"><span>09:13:40</span><span>Rebalance</span></div>
+    <div class="rl"><span>09:14:07</span><span>Trade</span></div>
+    <div class="rl"><span>09:14:08</span><span>Checked ✓</span></div>
+    <div class="illu" style="margin-top:14px;font-size:13px">Illustrative</div>
+  </div><svg class="abs" style="left:0;bottom:0" width="360" height="16" viewBox="0 0 360 16"><path d="M0 16 L0 0 L12 12 L24 0 L36 12 L48 0 L60 12 L72 0 L84 12 L96 0 L108 12 L120 0 L132 12 L144 0 L156 12 L168 0 L180 12 L192 0 L204 12 L216 0 L228 12 L240 0 L252 12 L264 0 L276 12 L288 0 L300 12 L312 0 L324 12 L336 0 L348 12 L360 0 L360 16 Z" fill="#F6F3E8"/></svg></div>
+  <div class="vlab" id="vl1" style="left:120px;opacity:0"><b>A report</b><span>A summary,<br>after the fact.</span></div>
+  <div class="vlab" id="vl2" style="left:600px;opacity:0"><b>A receipt</b><span>The record,<br>as it happens.</span></div>
+</div>
+
+<!-- G: close -->
+<div class="scene" id="G">
+  <div id="gt"><span id="g1">Receipts</span><br><em id="g2">beat reports.</em></div>
+  <div id="grule"></div>
+  <div id="end">
+    <img src="../../../../brand/assets/logo-wordmark.png" style="height:120px;display:block">
+    <div id="follow">Follow @blok.capital</div>
+    <div id="disc">Educational only, not financial or investment advice.<br>On-chain assets can be volatile and you can lose money.<br>AI-generated voiceover.</div>
+  </div>
+</div>
+
+<div id="cap"></div>
+
+<script>
+const TL = window.TIMELINE;
+const LAST = TL[TL.length - 1].end;
+window.DURATION = Math.ceil((LAST + 2.6) * 10) / 10;
+const S = (i) => TL[i].start, E = (i) => TL[i].end;
+// start time of the first word in line i that begins with `w`
+const W = (i, w) => { const x = TL[i].words.find((k) => k.w.toLowerCase().replace(/[^a-z-]/g, '').startsWith(w)); return x ? x.s : S(i); };
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const eio = (x) => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const back = (x) => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const lerp = (a, b, k) => a + (b - a) * k;
+const win = (t, a, b, f = 0.3) => clamp(Math.min((t - a) / f, (b - t) / f));
+const pop = (el, t, at, dy = 30, d = 0.4) => { const k = ease((t - at) / d); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * dy}px)`; return k; };
+
+// Scene boundaries (cuts) keyed to the voice
+const CUT = { B: S(2) - 0.3, C: S(5) - 0.15, D: S(7) - 0.3, E: S(11) - 0.3, F: S(12) - 0.3, G: S(13) - 0.25 };
+
+// Sound cues read by build/sfx.py (same times the visuals use)
+const CUES = [];
+const cue = (t, s, g = 1) => CUES.push({ t: +t.toFixed(3), s, g });
+cue(0.05, 'pen', .5);
+cue(W(1, 'report') , 'tap', .6);
+cue(W(1, 'books'), 'pen', .8);
+cue(CUT.B, 'whoosh', .8);
+cue(S(2) - 0.35, 'slide', 1);
+cue(S(2) + 0.85, 'thud', 1);
+cue(S(3) - 0.1, 'whoosh', .45);
+cue(W(3, 'every') + 0.05, 'tick', .7);
+cue(W(3, 'heavy'), 'thud', .55);
+cue(W(3, 'lovely') - 0.05, 'flip', 1);
+cue(S(4) - 0.1, 'whoosh', .5);
+cue(S(4) + 0.55, 'click', .6);
+cue(CUT.C, 'whoosh', .6);
+for (let k = 0; k < 9; k++) cue(S(5) + 0.35 + k * 0.17, 'tick', .45);
+cue(W(5, 'weeks') - 0.05, 'click', .5);
+cue(W(6, 'trust') - 0.05, 'stamp', 1);
+cue(CUT.D, 'whoosh', 1);
+[0, 1, 2].forEach((k) => cue(S(8) + 0.5 + k * 0.55, 'type', .7));
+cue(W(8, 'quietly') + 0.15, 'click', .8);
+cue(W(8, 'edit') + 0.05, 'deny', .9);
+for (let k = 0; k < 14; k++) cue(W(9, 'written') + k * 0.075, 'key', .35);
+cue(W(10, 'time') + 0.05, 'tap', .5);
+cue(W(10, 'permanent') + 0.05, 'thud', .5);
+cue(W(10, 'anyone') + 0.35, 'click', .9);
+cue(W(10, 'anyone') + 0.5, 'ding', .7);
+cue(CUT.E, 'whoosh', .7);
+cue(W(11, 'newer'), 'tap', .45);
+cue(W(11, 'swing'), 'tap', .45);
+cue(W(11, 'record') - 0.1, 'pen', .6);
+cue(CUT.F, 'whoosh', .8);
+cue(W(12, 'report') - 0.05, 'thud', .6);
+cue(W(12, 'receipt') - 0.25, 'print', .8);
+cue(CUT.G, 'whoosh', .7);
+cue(W(13, 'beat'), 'chime', 1);
+cue(LAST + 0.3, 'tap', .4);
+window.CUES = CUES;
+
+// Timeline ticks and question marks (scene C)
+$('ticks').innerHTML = Array.from({ length: 22 }, (_, k) => `<div class="tick" style="left:${185 + k * 33}px"></div>`).join('');
+const qpos = [[230, 820], [360, 860], [470, 800], [590, 850], [700, 810], [810, 860], [300, 760], [650, 770]];
+$('qms').innerHTML = qpos.map(([x, y]) => `<div class="qm" style="left:${x}px;top:${y - 60}px">?</div>`).join('');
+const ticks = [...$('ticks').children], qms = [...$('qms').children];
+
+// Caption words
+const words = [];
+TL.forEach((s, si) => s.words.forEach((w) => words.push({ ...w, si })));
+function captions(t) {
+  const si = TL.findIndex((s, i) => t >= s.start - 0.12 && t < (TL[i + 1] ? TL[i + 1].start - 0.12 : s.end + 0.6));
+  if (si < 0 || si === TL.length - 1) { $('cap').innerHTML = ''; return; }
+  const ws = words.filter((w) => w.si === si);
+  let cur = ws.findIndex((w) => t < w.e); if (cur < 0) cur = ws.length - 1;
+  const start = Math.floor(cur / 6) * 6;
+  $('cap').innerHTML = ws.slice(start, start + 6).map((w) => `<span class="${t >= w.s && t < w.e + 0.04 ? 'on' : t >= w.e ? '' : 'future'}">${w.w}</span>`).join('');
+}
+
+const pad = (n) => String(n).padStart(2, '0');
+const clockAt = (t) => { const s = 2 + Math.floor(Math.max(0, t - CUT.D)); return `09:14:${pad(s)}`; };
+
+window.draw = (t) => {
+  // chrome
+  const fr = ease(t / 0.9);
+  $('frame').style.opacity = fr;
+  $('lrule').style.width = `${fr * 860}px`;
+  $('letter').style.opacity = ease((t - 0.2) / 0.6);
+  $('prog').style.width = `${clamp(t / window.DURATION) * 860}px`;
+
+  /* A */
+  $('A').style.opacity = win(t, -1, CUT.B, 0.25);
+  pop($('aT'), t, 0.15, 30, 0.6);
+  const ra = pop($('rep'), t, 0.35, 60, 0.6), ba = pop($('book'), t, 0.55, 60, 0.6);
+  const dim = ease((t - W(1, 'check')) / 0.4);
+  const rdim = ease((t - W(1, 'report')) / 0.3);
+  $('rep').style.opacity = ra * (1 - 0.45 * dim);
+  $('rep').style.transform += ` scale(${1 + 0.03 * rdim * (1 - dim)})`;
+  $('rep').querySelector('.gloss').style.transform = `translateX(${lerp(-400, 400, clamp((t - 0.6) / 1.4))}px)`;
+  $('book').style.transform = `translateY(${(1 - ba) * 60 - 26 * dim}px) scale(${1 + 0.05 * dim})`;
+  $('book').style.boxShadow = `0 ${30 + 30 * dim}px ${60 + 40 * dim}px rgba(11,27,43,${0.25 + 0.1 * dim})`;
+  $('bookline').style.width = `${ease((t - W(1, 'books')) / 0.5) * 230}px`;
+
+  /* B (envelope, cover, inner page) */
+  $('B').style.opacity = win(t, CUT.B, CUT.D, 0.3);
+  const envIn = ease((t - (S(2) - 0.4)) / 0.6);
+  const envOut = ease((t - (S(3) + 0.05)) / 0.5);
+  $('env').style.opacity = envIn * (1 - envOut);
+  $('env').style.transform = `translateY(${(1 - envIn) * 500 + envOut * 300}px)`;
+  const sk = clamp((t - (S(2) + 0.7)) / 0.18);
+  $('seal').style.opacity = sk * (1 - envOut);
+  $('seal').style.transform = `translateY(${envOut * 300}px) scale(${sk < 1 ? 1.8 - 0.8 * sk : 1})`;
+  const cv = ease((t - (S(3) - 0.15)) / 0.55);
+  const flip = clamp((t - (W(3, 'lovely') - 0.1)) / 0.45);
+  $('cover').style.opacity = cv * (flip < 0.5 ? 1 : 0);
+  $('cover').style.transform = `translateY(${(1 - cv) * 260}px) perspective(1800px) rotateY(${-eio(flip) * 180}deg)`;
+  $('cover').querySelector('.gloss').style.transform = `translateX(${lerp(-600, 600, clamp((t - S(3) - 0.3) / 1.3))}px)`;
+  const inner = flip >= 0.5 ? 1 : 0;
+  const zoom = eio((t - (S(4) + 0.5)) / 0.6);
+  const innerOut = ease((t - CUT.C) / 0.3);
+  $('inner').style.opacity = inner * (1 - innerOut);
+  $('inner').style.transform = `perspective(1800px) rotateY(${inner ? (1 - eio(flip)) * -180 + 180 * 0 : 0}deg) scale(${1 + 0.55 * zoom - 0.35 * innerOut})`;
+  if (inner) $('inner').style.transform = `perspective(1800px) rotateY(${180 - eio(flip) * 180}deg) scale(${1 + 0.55 * zoom - 0.35 * innerOut})`;
+  const ch = $('chart'); const L = 620; ch.style.strokeDasharray = L; ch.style.strokeDashoffset = L * (1 - ease((t - (W(3, 'charts') - 0.1)) / 0.9));
+  $('asof').style.background = `rgba(126,209,22,${0.0 + 0.55 * ease((t - (S(4) + 0.7)) / 0.3)})`;
+  // quarter chips
+  $('qchips').style.opacity = ease((t - (S(3) - 0.05)) / 0.3) * (1 - innerOut);
+  [...$('qchips').children].forEach((q, k) => { const on = k === 1 && t >= W(3, 'every') + 0.05; q.style.background = on ? 'var(--ink)' : 'transparent'; q.style.color = on ? 'var(--linen)' : '#9B8F84'; q.style.borderColor = on ? 'var(--ink)' : 'var(--rule)'; });
+  // lens sweeps to the date
+  const lk = eio((t - (S(4) - 0.1)) / 0.65);
+  $('lens').style.opacity = ease((t - (S(4) - 0.1)) / 0.25) * (1 - ease((t - (S(4) + 0.55)) / 0.25));
+  $('lens').style.left = `${lerp(760, 260, lk)}px`; $('lens').style.top = `${lerp(1150, 450, lk)}px`;
+
+  // C: the gap
+  $('C').style.opacity = ease((t - CUT.C - 0.2) / 0.35);
+  const tr = eio((t - (S(5) + 0.3)) / 1.6);
+  $('track').style.width = `${tr * 770}px`;
+  pop($('n1'), t, S(5) + 0.15, 0, 0.25); pop($('l1'), t, S(5) + 0.2, 20);
+  pop($('n2'), t, S(5) + 1.9, 0, 0.25); pop($('l2'), t, S(5) + 1.95, 20);
+  ticks.forEach((el, k) => { el.style.opacity = tr * 770 > (185 + k * 33 - 150) ? .45 : 0; });
+  const bk = ease((t - (W(5, 'weeks') - 0.1)) / 0.4);
+  $('brk').style.opacity = bk; $('brk').style.transform = `scaleX(${bk})`; $('brk').style.transformOrigin = 'left';
+  pop($('brklab'), t, W(5, 'weeks') - 0.05, 20);
+  qms.forEach((el, k) => { const a = S(6) + 0.1 + k * 0.12; const kk = ease((t - a) / 0.4); el.style.opacity = kk * 0.9; el.style.transform = `translateY(${(1 - kk) * 30 + Math.sin(t * 2 + k) * 6}px)`; });
+  const st = clamp((t - (W(6, 'trust') - 0.08)) / 0.16);
+  $('stamp').style.opacity = st;
+  $('stamp').style.transform = `rotate(-7deg) scale(${st < 1 ? 1.7 - 0.7 * st : 1})`;
+
+  /* D: split screen */
+  $('D').style.opacity = win(t, CUT.D, CUT.E, 0.3);
+  $('divider').style.height = `${eio((t - CUT.D) / 0.6) * 1000}px`;
+  const dl = ease((t - CUT.D - 0.1) / 0.5), dr = ease((t - S(7) - 0.1) / 0.5);
+  $('colL').style.opacity = dl * (1 - 0.35 * ease((t - S(8)) / 1.0)); $('colL').style.transform = `translateX(${(1 - dl) * -60}px)`;
+  $('colL').style.filter = `saturate(${1 - 0.7 * ease((t - S(8)) / 1.0)})`;
+  $('colR').style.opacity = dr; $('colR').style.transform = `translateX(${(1 - dr) * 60}px)`;
+  $('live').querySelector('i').style.opacity = 0.35 + 0.65 * (0.5 + 0.5 * Math.cos(t * 5));
+  $('clk').textContent = clockAt(t);
+  $('frozen').style.color = t > W(10, 'anyone') ? 'var(--earth)' : 'var(--ink)';
+  ['r0', 'r1', 'r2'].forEach((id, k) => pop($(id), t, S(8) + 0.45 + k * 0.55, 20, 0.3));
+  // attempted edit on r1
+  const deny = W(8, 'edit') + 0.05;
+  const shake = t > deny && t < deny + 0.4 ? Math.sin((t - deny) * 60) * 10 * (1 - (t - deny) / 0.4) : 0;
+  if (t > deny) $('r1').style.transform = `translateX(${shake}px)`;
+  $('r1').querySelector('.lock').style.opacity = ease((t - deny) / 0.2);
+  $('deny').style.opacity = ease((t - deny) / 0.2) * (1 - ease((t - (S(9) + 0.3)) / 0.3));
+  // live row typed in
+  const r3at = W(9, 'written');
+  pop($('r3'), t, r3at - 0.15, 10, 0.2);
+  const txt = 'Trade written';
+  $('r3e').textContent = txt.slice(0, clamp(Math.floor((t - r3at) / 0.075), 0, txt.length));
+  $('r3t').textContent = t >= r3at ? clockAt(r3at) : '';
+  const tsHi = ease((t - W(10, 'time')) / 0.25);
+  $('r3t').style.background = `rgba(126,209,22,${0.55 * tsHi})`;
+  $('r3').querySelector('.lock').style.opacity = ease((t - W(10, 'permanent')) / 0.2);
+  const ck = W(10, 'anyone') + 0.35;
+  const vf = pop($('verify'), t, ck + 0.1, 16, 0.3);
+  // cursor path: in for the edit attempt, then to the live row
+  const c1 = eio((t - (W(8, 'quietly') - 0.5)) / 0.6), c2 = eio((t - (ck - 0.6)) / 0.55);
+  const cx = lerp(lerp(1040, 900, c1), 860, c2), cy = lerp(lerp(1500, 860, c1), 1100, c2);
+  const press = (t > W(8, 'quietly') + 0.15 && t < W(8, 'quietly') + 0.27) || (t > ck && t < ck + 0.12) ? 0.85 : 1;
+  $('cursor').style.opacity = ease((t - (W(8, 'quietly') - 0.5)) / 0.3) * (1 - ease((t - (S(9) + 0.2)) / 0.3)) + (t > ck - 0.6 ? ease((t - (ck - 0.6)) / 0.3) * (1 - ease((t - (ck + 1.1)) / 0.3)) : 0);
+  $('cursor').style.left = `${cx}px`; $('cursor').style.top = `${cy}px`; $('cursor').style.transform = `scale(${press})`;
+
+  /* E: honest */
+  $('E').style.opacity = win(t, CUT.E, CUT.F, 0.3);
+  pop($('h1'), t, W(11, 'newer') - 0.25, 30);
+  pop($('h2'), t, W(11, 'swing') - 0.45, 30);
+  $('hr').style.width = `${ease((t - (W(11, 'record') - 0.4)) / 0.5) * 420}px`;
+  pop($('h3'), t, W(11, 'record') - 0.2, 30);
+
+  /* F: verdict */
+  $('F').style.opacity = win(t, CUT.F, CUT.G, 0.3);
+  pop($('vrep'), t, W(12, 'report') - 0.15, 40); pop($('vl1'), t, W(12, 'report'), 20);
+  $('vrec').style.height = `${ease((t - (W(12, 'receipt') - 0.25)) / 0.8) * 500}px`;
+  pop($('vl2'), t, W(12, 'receipt') + 0.1, 20);
+  $('vrep').style.filter = `saturate(${1 - 0.5 * ease((t - (W(12, 'receipt'))) / 0.5)})`;
+
+  /* G: close + end card */
+  $('G').style.opacity = win(t, CUT.G, window.DURATION + 5, 0.3);
+  pop($('g1'), t, S(13), 30); $('g1').style.display = 'inline-block';
+  pop($('g2'), t, W(13, 'beat') - 0.05, 30); $('g2').style.display = 'inline-block';
+  $('grule').style.width = `${ease((t - (W(13, 'beat') + 0.2)) / 0.7) * 860}px`;
+  pop($('end'), t, LAST + 0.3, 30, 0.6);
+
+  captions(t);
+};
+window.draw(0);
+</script>
+</body>
+</html>

@@ -80,6 +80,14 @@ Folder: `content/ugc-videos/YYYY-MM-DD-slug/` (or `content/short-form/...`) with
 8. Caption must include "AI-generated voiceover". Remind the user to switch on Instagram's **AI info** label in
    the app (API can't) and optionally add library music (API can't).
 
+**Storytelling variant (more control, used for "Receipts beat reports", 2026-10-11):** voice each line separately
+with `scripts/sandbox/voiceover-lines.py` (same sandbox steps), stitch locally with hand-set pauses using
+`scripts/assemble-vo.py` (writes `vo.wav` + `vo.json`, so `build-timeline.py` works unchanged). Put sound cues in the
+scene as `window.CUES` (same times the visuals use), dump them with `node scripts/preview-reel.mjs <scene> /tmp cues`,
+and synthesise original music + SFX + the final mix with a `score.py` (example:
+`content/short-form/2026-10-11-receipts-beat-reports/build/score.py`). `preview-reel.mjs <scene> <dir> 1.2 4.5 ...`
+screenshots key frames before the full render.
+
 Other voices that work (tested): Kokoro `af_heart` / `am_michael` (open-source; `pip install kokoro-onnx`,
 models from github.com/thewh1teagle/kokoro-onnx releases, runs in the sandbox in ~25s), edge `Ava`, `Emma`, `Brian`.
 
@@ -127,6 +135,7 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 | `git push --delete` a branch | 403 from the session's git proxy | User deletes branches on GitHub |
 | `rm -f $VAR/*` in Bash | Blocked by safety check | Use literal paths or `"${VAR:?}"/*` |
 | Composio remote bash writing into dirs the workbench created | Permission denied (bash runs as `user`, workbench as root) | Use a fresh dir from bash (e.g. `~/kk`), or do it all in the workbench |
+| `curl` on Composio's `s3_url` (backend.composio.dev) from this machine | 403 from the egress proxy (2026-10-11) | In the workbench, `requests.get(s3_url, allow_redirects=False).headers["location"]` gives an r2.cloudflarestorage.com URL that downloads fine here |
 | Instagram API: music, AI label, alt text on carousel slides, link stickers, bio edits | Not supported | Tell the user to do it in the app |
 
 ## 8. Permissions (so nothing prompts)
