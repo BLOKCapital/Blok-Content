@@ -1,6 +1,6 @@
 # The night a bank vanished (Reel)
 
-**Format:** vertical 1080x1920, 107s, 30fps · **Audience:** fund and ETF investors (Instagram rules apply) · **Status:** rendered, not posted
+**Format:** vertical 1080x1920, 107s, 30fps · **Audience:** fund and ETF investors (Instagram rules apply) · **Status:** published 2026-10-12 (instagram.com/reel/DeZeaBpnefg)
 **Reverse-engineered from:** @maya.creates.history, "The night Bitcoin was born" (instagram.com/reel/DdUibQFTzRv, 15K likes).
 **Topic choice:** "Is my money safe in the bank?" is one of the most-searched money questions every time a bank wobbles (searches rose 43% during the 2023 bank failures, MediaPost). It ties straight to BLOK's "your keys, always" idea, told without any crypto vocabulary.
 
