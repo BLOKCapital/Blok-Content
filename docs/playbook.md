@@ -97,6 +97,14 @@ Instagram blocks this machine and logged-out scraping. From the Composio workben
 - **Not available:** Veo video (`GEMINI_GENERATE_VIDEOS`) returns 429 quota; ElevenLabs instant account only allows stock "Roger"; HF FLUX spaces give ~3 free images.
 - Worked example: `content/ugc-videos/2026-10-12-the-night-a-bank-vanished/` (scene.html, mix.py, align.py, preview.mjs).
 
+## 5d. Talking-head Reel with lip sync (learned 2026-10-12)
+Worked example: `content/ugc-videos/2026-10-12-the-one-percent-fee/` (brief.md lists every step; scripts in `build/`).
+- Presenter + motion: Higgsfield Soul V2 still, then Higgsfield DOP Lite image-to-video clips (~$0.13 each, 5.4 s). Say "hands below the frame, no phone" or he picks up a phone mid-clip.
+- Voice: ElevenLabs instant account allows stock Roger (male) only, so cast a male presenter.
+- Lip sync: no hosted lip-sync on the instant accounts and HF ZeroGPU quota is 0 for anonymous use. Wav2Lip GAN runs locally on CPU (weights from HF via the sandbox), then GFPGAN restores the mouth. Budget ~1 hour of CPU for a 1-minute Reel.
+- Keep captions and cards off the mouth: maths card at the top, captions under the chin.
+- Credits: the Gemini instant key ran out (402) and later the Composio wallet hit zero, which pauses every instant tool (including status checks). Top up at the Composio dashboard before a big generation run.
+
 ## 6. Publishing via Composio (the reliable route)
 This machine can't hand local files to Instagram, and the Composio sandbox can't render big videos
 (~1GB RAM; Chromium crashes at 1080×1920). So: **render here, push to GitHub, let the sandbox fetch it.**
