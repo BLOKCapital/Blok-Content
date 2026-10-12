@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #F6F3E8; font-family: Inter, sans-serif; color: #04163a; }
+  * { box-sizing: border-box; }
+  .top { position: absolute; left: 0; right: 0; top: 0; padding: 340px 60px 0; }
+  .eyebrow { font-weight: 700; font-size: 28px; color: #844947; letter-spacing: 1px; display: flex; gap: 16px; align-items: center; }
+  .pill { font-size: 20px; background: rgba(132,73,71,.12); padding: 6px 12px; border-radius: 99px; letter-spacing: .5px; }
+  .value { font-weight: 900; font-size: 104px; letter-spacing: -2px; margin-top: 8px; }
+  .tabs { display: flex; gap: 14px; margin-top: 34px; }
+  .tab { padding: 16px 30px; border-radius: 99px; font-weight: 800; font-size: 30px; background: #fff; color: #004EBA; border: 3px solid #004EBA; transition: all .3s; }
+  .tab.on { background: #004EBA; color: #fff; }
+  .list { position: absolute; left: 60px; right: 60px; top: 800px; transition: opacity .35s; }
+  .row { display: flex; justify-content: space-between; align-items: center; background: #fff; border-radius: 22px; padding: 30px 32px; margin-bottom: 18px;
+    font-size: 32px; font-weight: 700; box-shadow: 0 6px 20px rgba(4,22,58,.06); border: 3px solid transparent; transition: all .3s; }
+  .row small { display: block; font-size: 23px; color: #7a6f6e; font-weight: 600; margin-top: 6px; }
+  .row.hl { border-color: #7ED116; transform: scale(1.03); }
+  .row .amt { font-weight: 900; }
+  .dot { width: 22px; height: 22px; border-radius: 50%; display: inline-block; margin-right: 18px; vertical-align: middle; }
+  .hidden { opacity: 0; pointer-events: none; }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 1300px; background: #04163a; color: #fff; border-radius: 44px 44px 0 0;
+    padding: 70px 64px; transform: translateY(105%); transition: transform .55s cubic-bezier(.2,.9,.3,1); }
+  .sheet.on { transform: translateY(0); }
+  .sheet h2 { margin: 0; font-size: 50px; font-weight: 900; }
+  .kv { display: flex; justify-content: space-between; font-size: 30px; padding: 22px 0; border-bottom: 2px solid rgba(255,255,255,.1); }
+  .kv span:first-child { color: #9fc4ee; font-weight: 600; }
+  .kv span:last-child { font-weight: 800; }
+  .check { margin-top: 40px; display: flex; align-items: center; gap: 20px; font-size: 32px; font-weight: 800; color: #7ED116; opacity: 0; transition: opacity .4s; }
+  .check.on { opacity: 1; }
+  .check i { width: 56px; height: 56px; border-radius: 50%; background: #7ED116; color: #04163a; font-style: normal; display: grid; place-items: center; font-size: 36px; }
+  .tap { position: absolute; width: 90px; height: 90px; border-radius: 50%; background: rgba(4,22,58,.25); border: 4px solid rgba(255,255,255,.9);
+    transform: translate(-50%,-50%) scale(.4); opacity: 0; pointer-events: none; transition: all .25s; }
+  .tap.on { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="eyebrow">MY PORTFOLIO <span class="pill">ILLUSTRATIVE</span></div>
+  <div class="value">$12,480</div>
+  <div class="tabs"><div class="tab on" id="t-h">Holdings</div><div class="tab" id="t-a">Activity</div></div>
+</div>
+<div class="list" id="holdings">
+  <div class="row" id="h1"><span><i class="dot" style="background:#7ED116"></i>Global stocks basket<small>Rebalances to target</small></span><span class="amt">60%</span></div>
+  <div class="row" id="h2"><span><i class="dot" style="background:#7DD2FD"></i>Bond basket<small>Rebalances to target</small></span><span class="amt">30%</span></div>
+  <div class="row" id="h3"><span><i class="dot" style="background:#844947"></i>Cash<small>Ready to withdraw</small></span><span class="amt">10%</span></div>
+</div>
+<div class="list hidden" id="activity">
+  <div class="row" id="a1"><span>Rebalance trade<small>Today, 09:14 · stocks → bonds</small></span><span class="amt">$212.40</span></div>
+  <div class="row" id="a2"><span>Fee<small>Today, 09:14 · shown line by line</small></span><span class="amt">$0.21</span></div>
+  <div class="row" id="a3"><span>Deposit<small>2 Oct, 18:02</small></span><span class="amt">$500.00</span></div>
+  <div class="row" id="a4"><span>Rebalance trade<small>1 Oct, 09:10 · bonds → stocks</small></span><span class="amt">$96.15</span></div>
+</div>
+<div class="sheet" id="sheet">
+  <h2>Rebalance trade</h2>
+  <div style="margin-top:34px">
+    <div class="kv"><span>Amount</span><span>$212.40</span></div>
+    <div class="kv"><span>Fee</span><span>$0.21</span></div>
+    <div class="kv"><span>Time</span><span>12 Oct, 09:14:07</span></div>
+    <div class="kv"><span>Recorded on</span><span>Public record</span></div>
+  </div>
+  <div class="check" id="check"><i>✓</i>Anyone can check this entry</div>
+</div>
+<div class="tap" id="tap"></div>
+<script>
+  const $ = (id) => document.getElementById(id);
+  window.act = {
+    hl: (id) => { document.querySelectorAll(".row").forEach((r) => r.classList.remove("hl")); if (id) $(id).classList.add("hl"); },
+    tap: (x, y) => { const t = $("tap"); t.style.left = x + "px"; t.style.top = y + "px"; t.classList.add("on"); setTimeout(() => t.classList.remove("on"), 380); },
+    activity: () => { $("t-h").classList.remove("on"); $("t-a").classList.add("on"); $("holdings").classList.add("hidden"); $("activity").classList.remove("hidden"); },
+    sheet: () => $("sheet").classList.add("on"),
+    check: () => $("check").classList.add("on"),
+  };
+</script>
+</body>
+</html>

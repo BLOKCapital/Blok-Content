@@ -1,0 +1,265 @@
+Only in pv/skill/scripts: __pycache__
+diff -ru pitch-video/.agents/skills/pitch-video/scripts/common.py pv/skill/scripts/common.py
+--- pitch-video/.agents/skills/pitch-video/scripts/common.py	2026-10-12 22:03:33.146680332 +0000
++++ pv/skill/scripts/common.py	2026-10-12 22:08:21.480430809 +0000
+@@ -4,7 +4,7 @@
+ TB = os.environ.get("PITCH_VIDEO_HOME", os.path.expanduser("~/.cache/pitch-video"))
+ SKILL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ FPS = 30
+-W, H = 1920, 1080
++W, H = 1080, 1920  # portrait 9:16 for Instagram Reels
+ 
+ 
+ def run(args, **kw):
+diff -ru pitch-video/.agents/skills/pitch-video/scripts/compose.py pv/skill/scripts/compose.py
+--- pitch-video/.agents/skills/pitch-video/scripts/compose.py	2026-10-12 22:03:33.146680332 +0000
++++ pv/skill/scripts/compose.py	2026-10-12 22:47:28.850424421 +0000
+@@ -18,10 +18,16 @@
+ TOTAL = t["total"]
+ OUT = P.get("output", "out/demo.mp4")
+ os.makedirs(os.path.dirname(OUT) or ".", exist_ok=True)
+-run(["-f", "lavfi", "-i", "color=c=black@0.0:s=1920x1080,format=rgba", "-frames:v", "1", "ov/blank.png"])
++run(["-f", "lavfi", "-i", "color=c=black@0.0:s=1080x1920,format=rgba", "-frames:v", "1", "ov/blank.png"])
+ 
+ def track(name, items):
+     items = sorted(items)
++    # Playwright saves fully opaque overlays (e.g. a solid end card) as RGB PNGs. Mixed RGB/RGBA inputs make the concat
++    # demuxer stop at the format change and the track freezes on the last good frame, so force every PNG to RGBA.
++    for png in {x[2] for x in items}:
++        if probe(png)["streams"][0].get("pix_fmt") != "rgba":
++            run(["-i", png, "-pix_fmt", "rgba", png + ".rgba.png"])
++            os.replace(png + ".rgba.png", png)
+     lines, cur = [], 0.0
+     for a, b, png in items:
+         a, b = max(a, cur), min(b, TOTAL)
+@@ -45,7 +51,9 @@
+     if p.get("card"):
+         cards.append((p["start"] + p.get("card_delay", 0.4), p["end"], f"ov/card_{p['card']}.png"))
+     if p.get("end_card"):
+-        cards.append((p["start"], p["end"], "ov/end.png"))
++        # Portrait/Reels: optionally keep the face on screen until the last word, then the end card.
++        es = max(p["start"], t["caps"][-1]["end"] + 0.1) if P.get("end", {}).get("after_last_word") else p["start"]
++        cards.append((es, p["end"], "ov/end.png"))
+ track("trk_cards", cards)
+ track("trk_chips", [(s["start"] + 0.2, min(s["start"] + 3.6, s["end"]), f"ov/chip{s['n']}.png") for s in t["scenes"] if s["chip"]])
+ 
+@@ -85,6 +93,6 @@
+ run(["-i", "out/_video.mp4", "-i", "out/_audio.wav", "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+      "-ar", "48000", "-movflags", "+faststart", OUT])
+ small = OUT.replace(".mp4", "_small.mp4")
+-run(["-i", OUT, "-c:v", "libx264", "-preset", "slow", "-crf", "26", "-vf", "scale=1600:-2", "-c:a", "aac", "-b:a", "160k", "-ar", "48000",
++run(["-i", OUT, "-c:v", "libx264", "-preset", "slow", "-crf", "26", "-vf", "scale=720:-2", "-c:a", "aac", "-b:a", "160k", "-ar", "48000",
+      "-movflags", "+faststart", small])
+ print("wrote", OUT, "and", small)
+diff -ru pitch-video/.agents/skills/pitch-video/scripts/prep.py pv/skill/scripts/prep.py
+--- pitch-video/.agents/skills/pitch-video/scripts/prep.py	2026-10-12 22:03:33.146680332 +0000
++++ pv/skill/scripts/prep.py	2026-10-12 22:08:21.481090609 +0000
+@@ -29,7 +29,7 @@
+ afix = f",adelay={int(off * 1000)}:all=1" if off > 0.005 else (f",atrim=start={-off},asetpts=PTS-STARTPTS" if off < -0.005 else "")
+ print(f"audio offset {off * 1000:+.0f} ms, duration {vdur:.2f}s")
+ run(["-i", a.input, "-filter_complex",
+-     f"[0:v]setpts=PTS-STARTPTS,fps=30,scale=-2:1080,format=yuv420p[v];"
++     f"[0:v]setpts=PTS-STARTPTS,fps=30,scale=-2:1920,format=yuv420p[v];"
+      f"[0:a]asetpts=PTS-STARTPTS,aresample=48000{afix},apad[a]",
+      "-map", "[v]", "-map", "[a]", "-t", f"{vdur:.3f}", "-c:v", "libx264", "-preset", "fast", "-crf", "15",
+      "-c:a", "pcm_s16le", "-ar", "48000", "-ac", "2", "source.mov"])
+diff -ru pitch-video/.agents/skills/pitch-video/scripts/render_anim.mjs pv/skill/scripts/render_anim.mjs
+--- pitch-video/.agents/skills/pitch-video/scripts/render_anim.mjs	2026-10-12 22:03:33.146680332 +0000
++++ pv/skill/scripts/render_anim.mjs	2026-10-12 22:08:21.481682474 +0000
+@@ -19,7 +19,7 @@
+   .map((c) => ({ t: +(c.start - shot.start).toFixed(3), end: +(c.end - shot.start).toFixed(3), text: c.html.replace(/<[^>]+>/g, "") }));
+ 
+ const b = await chromium.launch();
+-const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
++const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
+ await p.addInitScript((c) => (window.CUES = c), cues);
+ await p.goto("file://" + process.cwd() + `/anims/${name}.html`);
+ await p.waitForTimeout(1200);
+diff -ru pitch-video/.agents/skills/pitch-video/scripts/render_overlays.mjs pv/skill/scripts/render_overlays.mjs
+--- pitch-video/.agents/skills/pitch-video/scripts/render_overlays.mjs	2026-10-12 22:03:33.146680332 +0000
++++ pv/skill/scripts/render_overlays.mjs	2026-10-12 22:08:21.484944510 +0000
+@@ -10,12 +10,12 @@
+ const t = JSON.parse(fs.readFileSync("timeline.json", "utf8"));
+ const P = JSON.parse(fs.readFileSync("project.json", "utf8"));
+ const theme = { accent: "#ffe040", head: "Inter", body: "Inter", ...(P.theme || {}) };
+-const PIP = { size: 380, margin: 48 };
++const PIP = { size: 300, margin: 48, top: 230 };
+ fs.rmSync("ov", { recursive: true, force: true });
+ fs.mkdirSync("ov");
+ 
+ const b = await chromium.launch();
+-const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
++const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
+ await p.goto("file://" + path.join(SKILL, "templates/overlay.html"));
+ // Weight lists must exist for each family or Google returns 400; override with theme.google_fonts for unusual fonts.
+ const fams = theme.google_fonts || [...new Set([theme.head, theme.body])].map((f) => `family=${f.replace(/ /g, "+")}:wght@400;700`).join("&");
+@@ -48,9 +48,9 @@
+ }
+ const e = P.end || {};
+ await shot("end.png", `<div class="end"><h1>${e.title || P.title || ""}</h1>${e.tagline ? `<div class="tag">${e.tagline}</div>` : ""}
+-  <div class="links">${(e.links || []).map((l) => `<span>${l}</span>`).join("")}</div>${e.by ? `<div class="by">${e.by}</div>` : ""}
++  <div class="links">${(e.links || []).map((l) => `<span>${l}</span>`).join("")}</div>${e.by ? `<div class="by">${e.by}</div>` : ""}${e.note ? `<div class="note">${e.note}</div>` : ""}
+   ${P.credit === false ? "" : `<div class="credit">Edited by an agent · github.com/codeswithroh/pitch-video</div>`}</div>`);
+-const px = 1920 - PIP.margin - PIP.size, py = 1080 - PIP.margin - PIP.size;
++const px = 1080 - PIP.margin - PIP.size, py = PIP.top;
+ await shot("pipframe.png", `<div class="pipframe" style="left:${px - 5}px;top:${py - 5}px;width:${PIP.size + 10}px;height:${PIP.size + 10}px"></div>`);
+ await p.setViewportSize({ width: PIP.size, height: PIP.size });
+ await p.evaluate(() => (document.body.style.background = "#000"));
+diff -ru pitch-video/.agents/skills/pitch-video/scripts/verify.py pv/skill/scripts/verify.py
+--- pitch-video/.agents/skills/pitch-video/scripts/verify.py	2026-10-12 22:03:33.146680332 +0000
++++ pv/skill/scripts/verify.py	2026-10-12 22:45:59.745716667 +0000
+@@ -48,25 +48,35 @@
+     from mediapipe.tasks.python import vision, BaseOptions
+     lm = vision.FaceLandmarker.create_from_options(vision.FaceLandmarkerOptions(
+         base_options=BaseOptions(model_asset_path=os.path.join(TB, "face_landmarker.task")), running_mode=vision.RunningMode.VIDEO))
+-    Wd, Hd = 480, 320
++    Wd, Hd = 360, 640
+     raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", "speaker_cut.mov", "-vf", f"fps=30,scale={Wd}:{Hd},format=rgb24",
+                           "-f", "rawvideo", "-"], capture_output=True).stdout
+     fr = np.frombuffer(raw, np.uint8).reshape(-1, Hd, Wd, 3)
+     op = np.full(len(fr), np.nan)
++    dk = np.full(len(fr), np.nan)
+     for i in range(len(fr)):
+         r = lm.detect_for_video(mp.Image(image_format=mp.ImageFormat.SRGB, data=np.ascontiguousarray(fr[i])), int(i * 1000 / 30))
+         if r.face_landmarks:
+             p = r.face_landmarks[0]
+             op[i] = np.hypot(p[13].x - p[14].x, (p[13].y - p[14].y) * Hd / Wd) / (np.hypot(p[10].x - p[152].x, (p[10].y - p[152].y) * Hd / Wd) + 1e-6)
++            # Second measure: dark (open-mouth) pixels inside the lip box. Lip landmarks lock poorly onto generated or
++            # re-synthesised mouths (Wav2Lip etc.), the mouth interior does not.
++            xs = [p[k].x * Wd for k in (61, 291)]; ys = [p[k].y * Hd for k in (0, 17)]
++            box = fr[i, int(ys[0]):int(ys[1]) + 1, int(xs[0]):int(xs[1]) + 1].mean(2)
++            dk[i] = (box < np.percentile(box, 50) * 0.6).mean() if box.size > 20 else np.nan
+     x = pcm("speaker_cut.mov", 48000)
+     k = len(x) // 1600
+     rms = np.log(np.sqrt((x[:k * 1600].reshape(k, 1600) ** 2).mean(1)) + 1e-4)
+     m = min(len(op), len(rms))
+-    o = np.nan_to_num(op[:m], nan=np.nanmean(op)); r_ = rms[:m]
+-    o, r_ = (o - o.mean()) / (o.std() + 1e-9), (r_ - r_.mean()) / (r_.std() + 1e-9)
+-    sc = {L: np.dot(o[max(0, L):m + min(0, L)], r_[max(0, -L):m - max(0, L)]) / m for L in range(-15, 16)}
+-    L = max(sc, key=sc.get)
+-    print(f"[3] lip sync: mouth vs voice best lag {L * 33:+d} ms (r={sc[L]:.2f}; + = picture later). Face found in {100 * np.mean(~np.isnan(op)):.0f}% of frames")
++    def curve(sig):
++        o = np.nan_to_num(sig[:m], nan=np.nanmean(sig)); r_ = rms[:m]
++        o, r_ = (o - o.mean()) / (o.std() + 1e-9), (r_ - r_.mean()) / (r_.std() + 1e-9)
++        sc = {L: np.dot(o[max(0, L):m + min(0, L)], r_[max(0, -L):m - max(0, L)]) / m for L in range(-15, 16)}
++        return max(sc, key=sc.get), sc
++    L1, s1 = curve(op); L2, s2 = curve(dk)
++    print(f"[3] lip sync (+ = picture later): lip landmarks {L1 * 33:+d} ms (r={s1[L1]:.2f}), mouth interior {L2 * 33:+d} ms (r={s2[L2]:.2f})."
++          f" Face found in {100 * np.mean(~np.isnan(op)):.0f}% of frames")
++    L, sc = (L2, s2) if s2[L2] > s1[L1] else (L1, s1)  # trust whichever measure actually tracks the voice
+     if sc[L] > 0.15 and not (-70 <= L * 33 <= 140):
+         fails.append(f"lip sync off by {L * 33} ms")
+ except Exception as e:
+@@ -94,7 +104,7 @@
+ lufs = re.findall(r"I:\s+(-?[\d.]+) LUFS", err)
+ print(f"[5] integrated loudness {lufs[-1] if lufs else '?'} LUFS (target -16..-11)")
+ os.makedirs("out", exist_ok=True)
+-run(["-i", OUT, "-vf", f"fps=16/{TOTAL},scale=480:-2,tile=4x4", "-frames:v", "1", "out/contact.png"])
++run(["-i", OUT, "-vf", f"fps=16/{TOTAL},scale=270:-2,tile=8x2", "-frames:v", "1", "out/contact.png"])
+ print("    contact sheet: out/contact.png")
+ 
+ print("\nRESULT:", "PASS" if not fails else "FAIL\n  - " + "\n  - ".join(fails))
+diff -ru pitch-video/.agents/skills/pitch-video/templates/film.template.mjs pv/skill/templates/film.template.mjs
+--- pitch-video/.agents/skills/pitch-video/templates/film.template.mjs	2026-10-12 22:03:33.147434504 +0000
++++ pv/skill/templates/film.template.mjs	2026-10-12 22:08:21.484077711 +0000
+@@ -29,7 +29,7 @@
+ 
+ const browser = await chromium.launch({
+   headless: false,
+-  args: ["--window-size=1920,1180", "--force-device-scale-factor=1", "--autoplay-policy=no-user-gesture-required"],
++  args: ["--window-size=1080,2020", "--force-device-scale-factor=1", "--autoplay-policy=no-user-gesture-required"],
+ });
+ 
+ /** Continuous screencast of `page` into shots/<name>/ (≈30 fps JPEG) with timestamps on the ev() clock. */
+@@ -46,7 +46,7 @@
+     stamps.push([i, f.metadata.timestamp]);
+     cdp.send("Page.screencastFrameAck", { sessionId: f.sessionId }).catch(() => {});
+   });
+-  await cdp.send("Page.startScreencast", { format: "jpeg", quality: 88, maxWidth: 1920, maxHeight: 1080, everyNthFrame: 2 });
++  await cdp.send("Page.startScreencast", { format: "jpeg", quality: 88, maxWidth: 1080, maxHeight: 1920, everyNthFrame: 2 });
+   const startedAt = (Date.now() - T0) / 1000;
+   ev(name, "rec-start");
+   return {
+@@ -60,7 +60,7 @@
+ }
+ 
+ async function newPage(seed = {}) {
+-  const ctx = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
++  const ctx = await browser.newContext({ viewport: { width: 1080, height: 1920 } });
+   await ctx.addInitScript((s) => { for (const [k, v] of Object.entries(s)) localStorage.setItem(k, v); }, seed);
+   const page = await ctx.newPage();
+   page.on("pageerror", (e) => console.log("pageerror", e.message));
+diff -ru pitch-video/.agents/skills/pitch-video/templates/overlay.html pv/skill/templates/overlay.html
+--- pitch-video/.agents/skills/pitch-video/templates/overlay.html	2026-10-12 22:03:33.147434504 +0000
++++ pv/skill/templates/overlay.html	2026-10-12 22:08:39.153233769 +0000
+@@ -4,38 +4,41 @@
+ <meta charset="utf-8" />
+ <link id="fonts" rel="stylesheet" />
+ <style>
+-  :root { --accent: #ffe040; --ink: #ffffff; --soft: #c9d2ff; --panel: rgba(6, 8, 18, 0.8); --head: "Inter"; --body: "Inter"; }
+-  html, body { margin: 0; width: 1920px; height: 1080px; background: transparent; overflow: hidden; }
++  :root { --accent: #7ED116; --ink: #ffffff; --soft: #cfe6ff; --panel: rgba(4, 22, 58, 0.86); --head: "Inter"; --body: "Inter"; }
++  html, body { margin: 0; width: 1080px; height: 1920px; background: transparent; overflow: hidden; }
+   * { box-sizing: border-box; }
+   #root { position: absolute; inset: 0; }
+-  /* Captions: big, high-contrast, bottom-centre; shifted left while the face bubble is on screen. */
+-  .cap { position: absolute; left: 50%; bottom: 64px; transform: translateX(-50%); max-width: 1320px;
+-    padding: 14px 28px 16px; background: var(--panel); border: 2px solid rgba(255,255,255,0.08); border-radius: 14px;
+-    box-shadow: 0 10px 40px rgba(0,0,0,.45); font: 700 44px/1.18 var(--body), sans-serif; color: var(--ink); text-align: center; }
+-  .cap b { color: var(--accent); font-weight: 800; }
+-  .cap.pip { transform: translateX(calc(-50% - 210px)); max-width: 1180px; }
+-  /* Scene chip, top-left. */
+-  .chip { position: absolute; left: 48px; top: 44px; display: flex; align-items: center; gap: 14px; padding: 10px 18px 10px 12px;
+-    background: var(--panel); border-radius: 10px; border: 2px solid rgba(255,255,255,0.1);
+-    font: 700 22px var(--head), sans-serif; color: var(--ink); letter-spacing: 1.5px; text-transform: uppercase; }
+-  .chip .n { background: var(--accent); color: #000; padding: 2px 9px; border-radius: 6px; font-size: 20px; }
+-  /* Full-screen statement ("UNTIL NOW."). */
+-  .big { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 18px; }
+-  .big h1 { margin: 0; font: 800 124px var(--head), sans-serif; color: var(--ink); letter-spacing: 4px; text-align: center;
++  /* Portrait: captions sit above Instagram's bottom UI (caption, buttons ~ bottom 420 px), centred, max 2-3 lines. */
++  .cap { position: absolute; left: 50%; bottom: 480px; transform: translateX(-50%); width: max-content; max-width: 940px;
++    padding: 16px 30px 18px; background: var(--panel); border: 2px solid rgba(255,255,255,0.08); border-radius: 18px;
++    box-shadow: 0 10px 40px rgba(0,0,0,.45); font: 800 54px/1.16 var(--body), sans-serif; color: var(--ink); text-align: center; }
++  .cap b { color: var(--accent); font-weight: 900; }
++  .cap.pip { }
++  /* Scene chip, top-left, level with the face bubble. */
++  .chip { position: absolute; left: 48px; top: 240px; display: flex; align-items: center; gap: 14px; padding: 12px 20px 12px 14px;
++    background: var(--panel); border-radius: 12px; border: 2px solid rgba(255,255,255,0.1);
++    font: 800 30px var(--head), sans-serif; color: var(--ink); letter-spacing: 1.5px; text-transform: uppercase; }
++  .chip .n { background: var(--accent); color: #04163a; padding: 2px 10px; border-radius: 7px; font-size: 26px; }
++  /* Full-screen statement. */
++  .big { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 26px; padding: 0 70px; }
++  .big h1 { margin: 0; font: 900 128px/1.02 var(--head), sans-serif; color: var(--ink); letter-spacing: 1px; text-align: center;
+     text-shadow: 0 0 60px color-mix(in srgb, var(--accent) 35%, transparent); }
+-  .big p { margin: 0; font: 500 40px var(--body), sans-serif; color: var(--soft); }
+-  /* End card. */
+-  .end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+-    background: radial-gradient(ellipse at center, rgba(5,7,15,.6), rgba(5,7,15,.95) 72%); }
+-  .end h1 { margin: 0; font: 800 140px var(--head), sans-serif; color: var(--ink); letter-spacing: 6px; }
+-  .end .tag { font: 500 46px var(--body), sans-serif; color: var(--soft); } .end .tag b { color: var(--accent); }
+-  .end .links { display: flex; gap: 18px; margin-top: 10px; }
+-  .end .links span { padding: 12px 22px; background: rgba(0,0,0,.6); border-radius: 10px; border: 2px solid rgba(255,255,255,.12);
+-    font: 700 24px var(--body), sans-serif; color: var(--ink); }
+-  .end .links span:first-child { background: var(--accent); color: #000; }
+-  .end .by { font: 500 28px var(--body), sans-serif; color: #8a90b0; }
+-  .end .credit { position: absolute; bottom: 34px; font: 500 20px var(--body), sans-serif; color: rgba(255,255,255,.42); letter-spacing: .3px; }
+-  .pipframe { position: absolute; border-radius: 28px; border: 5px solid var(--accent); box-shadow: 0 14px 40px rgba(0,0,0,.6); }
++  .big h1 b { color: var(--accent); }
++  .big p { margin: 0; font: 600 46px var(--body), sans-serif; color: var(--soft); text-align: center; }
++  /* End card: opaque linen, brand indigo. */
++  .end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;
++    background: #F6F3E8; padding: 0 80px; text-align: center; }
++  .end img { width: 520px; }
++  .end h1 { margin: 0; font: 900 92px/1.05 var(--head), sans-serif; color: #004EBA; letter-spacing: 0; }
++  .end .tag { font: 700 60px/1.15 var(--body), sans-serif; color: #04163a; } .end .tag b { color: #4c8f00; }
++  .end .links { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; align-items: center; }
++  .end .links span { padding: 14px 28px; background: #fff; border-radius: 12px; border: 3px solid #004EBA;
++    font: 800 38px var(--body), sans-serif; color: #004EBA; }
++  .end .links span:first-child { background: #004EBA; color: #fff; }
++  .end .by { font: 600 30px var(--body), sans-serif; color: #844947; }
++  .end .note { position: absolute; bottom: 300px; left: 80px; right: 80px; font: 500 27px/1.4 var(--body), sans-serif; color: #5b4a48; }
++  .end .credit { position: absolute; bottom: 240px; font: 500 22px var(--body), sans-serif; color: rgba(4,22,58,.45); }
++  .pipframe { position: absolute; border-radius: 28px; border: 6px solid var(--accent); box-shadow: 0 14px 40px rgba(0,0,0,.6); }
+ </style>
+ <style id="extra"></style>
+ </head>

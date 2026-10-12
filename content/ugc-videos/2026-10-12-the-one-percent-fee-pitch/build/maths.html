@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; font-family: Inter, sans-serif; color: #fff;
+    background: radial-gradient(ellipse at 50% 35%, #0a3a8c 0%, #04163a 62%, #020b1f 100%); }
+  .abs { position: absolute; }
+  .lbl { font-weight: 800; font-size: 34px; letter-spacing: .5px; }
+  .big { font-weight: 900; font-size: 92px; letter-spacing: -1px; }
+  .note { font-weight: 500; font-size: 24px; color: rgba(255,255,255,.55); line-height: 1.35; }
+  .card { border-radius: 26px; background: #F6F3E8; color: #04163a; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// Deterministic explainer keyed to the narration (window.CUES). Maths:
+// 10,000 x 1.07^30 = 76,122.55 ; 10,000 x 1.06^30 = 57,434.91 (1% fee modelled as 7% - 1% = 6% net) ; gap 18,687.64.
+const C = window.CUES || [];
+const cue = (re, fb) => C.find((c) => re.test(c.text))?.t ?? fb;
+const cueEnd = (re, fb) => C.find((c) => re.test(c.text))?.end ?? fb;
+const B0 = cue(/10,000/, 0.1);
+const B1 = cue(/Growing 7%/i, 1.2);
+const B2 = cue(/76,000/, 3.5);
+const B3 = cue(/Same money/i, 5.5);
+const B4 = cue(/57,000/, 8.5);
+const B5 = cue(/19,000/, 9.6);
+const B6 = cue(/^Gone/i, 11.4);
+const B7 = cue(/never get a bill/i, 12.2);
+const B8 = cue(/quietly/i, 13.6);
+const END8 = cueEnd(/every single day/i, B8 + 3.6);
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const ease = (t, t0, d = 0.45) => 1 - Math.pow(1 - clamp((t - t0) / d), 3);
+const fmt = (v) => "$" + Math.round(v).toLocaleString("en-US");
+
+// chart geometry
+const X0 = 120, X1 = 960, Y0 = 1190, Y1 = 860, VMAX = 78000;
+const px = (yr) => X0 + (X1 - X0) * yr / 30;
+const py = (v) => Y0 - (Y0 - Y1) * v / VMAX;
+const path = (r, upTo) => {
+  let d = "";
+  for (let k = 0; k <= 60 * upTo; k++) {
+    const yr = k / 60;
+    d += (k ? "L" : "M") + px(yr).toFixed(1) + "," + py(10000 * Math.pow(1 + r, yr)).toFixed(1);
+  }
+  return d;
+};
+
+window.seek = (t) => {
+  const a0 = ease(t, B0), g1 = clamp((t - B1) / Math.max(0.8, B2 - B1 - 0.1)), l2 = ease(t, B2);
+  const g3 = clamp((t - B3) / Math.max(0.8, B4 - B3 - 0.1)), l4 = ease(t, B4), gap = ease(t, B5, 0.6);
+  const gone = ease(t, B6, 0.25), bill = ease(t, B7, 0.5), drip = ease(t, B8, 0.5);
+  const chartOut = 1 - bill; // chart steps back when the bill card arrives
+  const yA = 10000 * Math.pow(1.07, 30 * g1), yB = 10000 * Math.pow(1.06, 30 * g3);
+  // gap polygon between the curves (only once both are drawn)
+  let gp = "";
+  if (gap > 0) {
+    for (let k = 0; k <= 30; k++) gp += (k ? "L" : "M") + px(k) + "," + py(10000 * Math.pow(1.07, k));
+    for (let k = 30; k >= 0; k--) gp += "L" + px(k) + "," + py(10000 * Math.pow(1.06, k));
+    gp += "Z";
+  }
+  const days = Math.round(10950 * clamp((t - B8 - 0.3) / Math.max(1, END8 - B8 - 0.4)));
+  const flash = gone > 0 && gone < 1 ? 1.25 - 0.25 * gone : 1;
+  document.getElementById("root").innerHTML = `
+  <div class="abs" style="left:0;top:0;width:1080px;height:1920px;opacity:${chartOut};transform:scale(${1 - 0.06 * bill});transform-origin:50% 40%">
+    <div class="abs lbl" style="left:${X0}px;top:575px;opacity:${a0};color:#cfe6ff">START WITH <span style="color:#fff">$10,000</span></div>
+    <svg class="abs" style="left:0;top:0" width="1080" height="1920">
+      <line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" stroke="rgba(255,255,255,.35)" stroke-width="3" opacity="${a0}"/>
+      <text x="${X0}" y="${Y0 + 44}" fill="rgba(255,255,255,.6)" font-size="28" font-weight="700" opacity="${a0}">Year 0</text>
+      <text x="${X1}" y="${Y0 + 44}" fill="rgba(255,255,255,.6)" font-size="28" font-weight="700" text-anchor="end" opacity="${a0}">Year 30</text>
+      <circle cx="${px(0)}" cy="${py(10000)}" r="12" fill="#fff" opacity="${a0}"/>
+      ${gap > 0 ? `<path d="${gp}" fill="#EC464D" opacity="${0.42 * gap}"/>` : ""}
+      ${g1 > 0 ? `<path d="${path(0.07, 30 * g1)}" fill="none" stroke="#7ED116" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="${px(30 * g1)}" cy="${py(yA)}" r="14" fill="#7ED116"/>` : ""}
+      ${g3 > 0 ? `<path d="${path(0.06, 30 * g3)}" fill="none" stroke="#7DD2FD" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="${px(30 * g3)}" cy="${py(yB)}" r="14" fill="#7DD2FD"/>` : ""}
+    </svg>
+    ${g1 > 0 ? `<div class="abs" style="left:${X0}px;top:640px;display:flex;align-items:baseline;gap:20px">
+       <span style="font-size:${l2 > 0 ? 76 : 60}px;font-weight:900;color:#7ED116">${fmt(l2 > 0 ? 76123 : yA)}</span>
+       <span style="font-size:30px;color:#cfe6ff;font-weight:700">7% a year, no fee</span></div>` : ""}
+    ${g3 > 0 ? `<div class="abs" style="left:${X0}px;top:740px;display:flex;align-items:baseline;gap:20px">
+       <span style="font-size:${l4 > 0 ? 76 : 60}px;font-weight:900;color:#7DD2FD">${fmt(l4 > 0 ? 57435 : yB)}</span>
+       <span style="font-size:30px;color:#cfe6ff;font-weight:700">same growth, 1% fee a year</span></div>` : ""}
+    ${gap > 0 ? `<div class="abs" style="left:${X0}px;top:890px;opacity:${gap};transform:scale(${flash});transform-origin:left center;display:flex;align-items:baseline;gap:22px">
+       <span style="font-size:84px;font-weight:900;color:#EC464D">−${fmt(18688)}</span>
+       <span class="lbl" style="font-size:44px;font-weight:900;color:#fff">${gone > 0 ? "GONE." : ""}</span></div>` : ""}
+    <div class="abs note" style="left:${X0}px;top:1268px;width:860px;opacity:${a0}">Illustration: $10,000 compounding yearly for 30 years at 7%, vs 6% after a 1% yearly fee. Not a forecast.</div>
+  </div>
+  ${bill > 0 ? `
+  <div class="abs card" style="left:120px;top:${640 + (1 - bill) * 120}px;width:840px;padding:46px 54px;opacity:${bill}">
+    <div style="font-weight:800;font-size:30px;letter-spacing:2px;color:#844947">YOUR FUND FEE</div>
+    <div style="display:flex;justify-content:space-between;margin-top:26px;font-weight:700;font-size:40px"><span>Bills sent to you</span><span>0</span></div>
+    <div style="display:flex;justify-content:space-between;margin-top:18px;font-weight:700;font-size:40px"><span>Taken from the fund</span><span style="color:#EC464D">every day</span></div>
+    <div style="height:3px;background:rgba(4,22,58,.15);margin:30px 0"></div>
+    <div style="opacity:${drip};font-weight:600;font-size:30px;color:#004EBA">Days of fees over 30 years</div>
+    <div style="opacity:${drip};font-weight:900;font-size:110px;letter-spacing:-2px;color:#004EBA">${days.toLocaleString("en-US")}</div>
+  </div>` : ""}`;
+};
+window.seek(0);
+</script>
+</body>
+</html>

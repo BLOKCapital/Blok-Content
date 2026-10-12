@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #2b2f38; font-family: Inter, sans-serif; }
+  #doc { position: absolute; left: 90px; top: 560px; width: 900px; background: #fff; color: #222; padding: 60px 64px 80px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.6); transition: transform 2.4s cubic-bezier(.4,0,.2,1); }
+  h1 { margin: 0; font-size: 42px; font-weight: 800; color: #1b2a4a; }
+  .sub { margin-top: 8px; font-size: 24px; color: #777; }
+  .hl { background: transparent; transition: background .5s; border-radius: 6px; padding: 0 6px; margin: 0 -6px; }
+  .hl.on { background: #ffe58a; }
+  table { width: 100%; border-collapse: collapse; margin-top: 40px; font-size: 25px; }
+  td, th { padding: 16px 4px; border-bottom: 1px solid #e3e3e3; text-align: left; }
+  th { color: #888; font-weight: 700; font-size: 20px; letter-spacing: 1px; text-transform: uppercase; }
+  td.r, th.r { text-align: right; }
+  .grey { color: #bbb; }
+  .stamp { position: absolute; right: 50px; top: 330px; transform: rotate(-8deg) scale(1.6); opacity: 0; border: 6px solid #EC464D;
+    color: #EC464D; font-weight: 900; font-size: 34px; padding: 10px 20px; border-radius: 10px; transition: all .35s cubic-bezier(.2,1.6,.4,1); }
+  .stamp.on { opacity: 1; transform: rotate(-8deg) scale(1); }
+  .small { font-size: 21px; color: #999; margin-top: 30px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div id="doc">
+  <h1>Quarterly Statement</h1>
+  <div class="sub">Global Equity Fund · Class A · <span class="hl" id="asof">Holdings as of 30 June</span></div>
+  <div class="stamp" id="stamp">NEXT UPDATE: 3 MONTHS</div>
+  <table>
+    <tr><th>Top holdings</th><th class="r">Weight</th></tr>
+    <tr><td>Company A</td><td class="r">4.1%</td></tr>
+    <tr><td>Company B</td><td class="r">3.8%</td></tr>
+    <tr><td>Company C</td><td class="r">3.2%</td></tr>
+    <tr><td>Company D</td><td class="r">2.9%</td></tr>
+    <tr><td>Company E</td><td class="r">2.4%</td></tr>
+    <tr class="grey"><td>+ 1,407 other holdings</td><td class="r">83.6%</td></tr>
+  </table>
+  <table>
+    <tr><th>Costs this quarter</th><th class="r">Amount</th></tr>
+    <tr><td>Ongoing charges</td><td class="r"><span class="hl" id="fee">Included in fund price</span></td></tr>
+    <tr><td>Trades made by the fund</td><td class="r"><span class="hl" id="trades">Not itemised</span></td></tr>
+  </table>
+  <div class="small">Illustrative example. Fund names and figures are made up.</div>
+</div>
+<script>
+  window.act = {
+    scroll: (y) => {},
+    hl: (id) => document.getElementById(id).classList.add("on"),
+    stamp: () => document.getElementById("stamp").classList.add("on"),
+  };
+</script>
+</body>
+</html>

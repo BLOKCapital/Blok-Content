@@ -1,0 +1,139 @@
+{
+ "title": "The 1% fee",
+ "speed": 1.1,
+ "output": "out/demo.mp4",
+ "theme": {
+  "accent": "#7ED116",
+  "head": "Inter",
+  "body": "Inter",
+  "google_fonts": "family=Inter:wght@400;600;700;800;900"
+ },
+ "background": "0x04163a",
+ "pause": {
+  "scene": 0.8,
+  "long": 0.5,
+  "short_max": 0.7,
+  "head": 0.15,
+  "tail": 2.9
+ },
+ "music": "synth",
+ "credit": false,
+ "end": {
+  "after_last_word": true,
+  "title": "<img src='file:///home/claude/Blok-Content/brand/assets/logo-wordmark.png' style='width:560px'>",
+  "tagline": "Not a report. <b>A receipt.</b>",
+  "links": [
+   "Follow @blok.capital"
+  ],
+  "by": "Look up what your fund charges you.",
+  "note": "AI-generated presenter and voice. Example figures are illustrative.<br>Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money."
+ },
+ "scenes": [
+  {
+   "title": "Hook",
+   "start": "Nobody told me",
+   "shots": [
+    {
+     "speaker": true
+    }
+   ]
+  },
+  {
+   "title": "The maths",
+   "start": "Then I actually did the maths",
+   "shots": [
+    {
+     "speaker": true
+    },
+    {
+     "from": "$10,000",
+     "anim": "maths"
+    }
+   ]
+  },
+  {
+   "title": "What I could see",
+   "start": "And the part that really got me",
+   "shots": [
+    {
+     "speaker": true
+    },
+    {
+     "from": "I couldn't even see",
+     "rec": "statement",
+     "t": 1.65,
+     "to": 5.05
+    },
+    {
+     "from": "Just a statement",
+     "rec": "statement",
+     "t": 5.25,
+     "to": 9.25
+    }
+   ]
+  },
+  {
+   "title": "Receipts",
+   "start": "That's why I like the idea",
+   "shots": [
+    {
+     "rec": "app",
+     "t": 12.45,
+     "to": 13.93
+    },
+    {
+     "from": "Every holding",
+     "rec": "app",
+     "t": 13.93,
+     "to": 18.4
+    },
+    {
+     "from": "a public record",
+     "rec": "app",
+     "t": 19.4,
+     "to": 21.9
+    },
+    {
+     "from": "Any time",
+     "rec": "app",
+     "t": 21.9
+    },
+    {
+     "from": "From your phone",
+     "title": "Not a report.<br><b>A receipt.</b>"
+    }
+   ]
+  },
+  {
+   "title": "Outro",
+   "start": "So, go look up",
+   "end_card": true,
+   "shots": [
+    {
+     "speaker": true
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "sound": "ticks",
+   "phrase": "A little bit every single day"
+  },
+  {
+   "sound": "click",
+   "rec": "app",
+   "t": 16.21
+  },
+  {
+   "sound": "click",
+   "rec": "app",
+   "t": 19.57
+  },
+  {
+   "sound": "ding",
+   "rec": "app",
+   "t": 20.77
+  }
+ ]
+}
