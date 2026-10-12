@@ -1,0 +1,27 @@
+Shh. Look at his phone.|0.45
+It's March 2023, California.|0.2
+And by tomorrow, his bank will be gone.|0.7
+Okay. Simple version.|0.35
+When you put money in a bank, it doesn't sit in a drawer with your name on it.|0.25
+The bank lends it out. Invests it.|0.25
+Your balance is a promise. You've got a hundred, they owe you a hundred.|0.3
+And that promise works fine... as long as everyone doesn't ask at the same time.|0.6
+Yesterday, this bank announced a big loss on its investments, and said it needed to raise cash.|0.35
+So today, the group chats lit up.|0.2
+Founders texting founders. Get your money out. Now.|0.55
+By tonight, customers had asked for forty-two billion dollars back.|0.25
+In one day.|0.7
+And tomorrow, they're expecting another hundred billion.|0.2
+The bank can't pay it.|0.6
+Tomorrow morning, regulators shut it down.|0.4
+Nobody in this room did anything wrong. They just didn't hold their money. The bank did.|0.6
+This time, the government stepped in, and everyone got their money back.|0.25
+But for a whole weekend, nobody knew.|0.8
+So here's the idea.|0.4
+What if what you own didn't sit on someone else's books?|0.3
+What if it sat in an account only you control, on a public ledger anyone can check?|0.35
+Nobody lends it out. Nobody else can move it. And you can see it yourself, any hour, any day.|0.45
+That's an on-chain portfolio.|0.6
+It's newer. Prices can swing. And you're the one responsible for it. That's the trade.|0.6
+But that night taught a lot of people one thing.|0.35
+A promise to pay you isn't the same as owning it.|1.2

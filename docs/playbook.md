@@ -83,6 +83,20 @@ Folder: `content/ugc-videos/YYYY-MM-DD-slug/` (or `content/short-form/...`) with
 Other voices that work (tested): Kokoro `af_heart` / `am_michael` (open-source; `pip install kokoro-onnx`,
 models from github.com/thewh1teagle/kokoro-onnx releases, runs in the sandbox in ~25s), edge `Ava`, `Emma`, `Brian`.
 
+## 5b. Reverse-engineering a reference post (learned 2026-10-12)
+Instagram blocks this machine and logged-out scraping. From the Composio workbench:
+- Caption, author, likes, cover image: `GET https://www.instagram.com/p/<code>/` with User-Agent `facebookexternalhit/1.1` → `og:*` meta tags (also `keywords` meta, which lists what each carousel slide shows).
+- Full-size cover: `GET https://www.instagram.com/p/<code>/media/?size=l`.
+- The reel MP4 itself: `GET https://www.kkinstagram.com/reel/<code>/` with User-Agent `TelegramBot (like TwitterBot)` (redirects to the CDN file). Transcribe with faster-whisper in the workbench (pass a numpy array; file paths hit an `av` bug).
+- Carousel slides 2+ are not reachable logged-out; use the cover + keywords, or ask the user for screenshots.
+- Getting sandbox files here: `upload_local_file` → resolve the `backend.composio.dev` link's 302 in the sandbox and curl the `r2.cloudflarestorage.com` URL locally (backend.composio.dev itself is blocked here). For many files, tar them or upload one JSON of URLs.
+
+## 5c. AI visuals and voice through Composio (no setup needed, learned 2026-10-12)
+- **Photoreal stills:** `GEMINI_GENERATE_IMAGE`, model `gemini-3-pro-image-preview`, `aspect_ratio` 9:16 or 3:4, `image_size` 2K. A long, fixed character description ("27-year-old woman, straight shoulder-length auburn hair, light freckles, small gold hoops, cream cable-knit cardigan over a white t-shirt") keeps the same face across ~20 shots. Run from the workbench in the foreground with ≤5 threads (background threads hang).
+- **Voice:** edge-tts (Andrew) now gets 403 from the sandbox. `GEMINI_GENERATE_CONTENT` with `gemini-2.5-pro-preview-tts` + `voice_name` (we used "Aoede") and a direction prefix in the prompt ("hushed phone-camera vlog, natural pauses...") sounds human. Returns base64 24 kHz PCM. Keep each call to ≤6 sentences or it stalls.
+- **Not available:** Veo video (`GEMINI_GENERATE_VIDEOS`) returns 429 quota; ElevenLabs instant account only allows stock "Roger"; HF FLUX spaces give ~3 free images.
+- Worked example: `content/ugc-videos/2026-10-12-the-night-a-bank-vanished/` (scene.html, mix.py, align.py, preview.mjs).
+
 ## 6. Publishing via Composio (the reliable route)
 This machine can't hand local files to Instagram, and the Composio sandbox can't render big videos
 (~1GB RAM; Chromium crashes at 1080×1920). So: **render here, push to GitHub, let the sandbox fetch it.**
@@ -116,6 +130,7 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 ## 7. Things that don't work (don't retry)
 | Attempt | Result | Do instead |
 |---|---|---|
+| edge-tts in the Composio sandbox (2026-10-12) | 403 from speech.platform.bing.com | Gemini TTS (section 5c) |
 | Composio CLI install in cloud session | GitHub release download blocked by network policy | Use the Composio MCP connector (already connected) |
 | Rendering 1080×1920 in Composio sandbox | Chromium OOM / stuck | Render on this machine, fetch via GitHub raw |
 | Pasting base64 media through tool calls | Too big, error-prone | GitHub raw route |

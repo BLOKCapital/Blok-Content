@@ -1,0 +1,236 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800;9..144,900&family=JetBrains+Mono:wght@400;500;700&display=block" rel="stylesheet">
+<style>
+  :root { --lime:#7ED116; --sky:#7DD2FD; --ink:#0B1B2B; }
+  html,body { margin:0; width:1080px; height:1920px; overflow:hidden; background:#000; }
+  .shot { position:absolute; left:-54px; top:-96px; width:1188px; height:2112px; object-fit:cover; opacity:0; filter:contrast(1.06) saturate(.88) brightness(.9); will-change:transform; }
+  #grade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,18,40,.18),rgba(0,0,0,0) 40%,rgba(0,0,0,.35)); mix-blend-mode:multiply; }
+  #vig { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%); }
+  #edge { position:absolute; inset:0; box-shadow: inset 6px 0 10px -6px rgba(255,40,80,.35), inset -6px 0 10px -6px rgba(40,200,255,.35); }
+  #grain { position:absolute; inset:0; opacity:.13; mix-blend-mode:overlay; }
+  #flash { position:absolute; inset:0; background:#fff; opacity:0; }
+  #title { position:absolute; left:70px; top:1060px; opacity:0; font-family:Fraunces,serif; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,.55); }
+  #title .a { font-weight:800; font-size:76px; line-height:1; margin-left:40px; }
+  #title .b { font-weight:900; font-size:168px; line-height:.95; color:var(--lime); letter-spacing:-.02em; }
+  #title .c { font-weight:800; font-size:76px; line-height:1; margin-left:150px; }
+  #cap { position:absolute; left:60px; right:60px; top:1420px; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:500; font-size:50px; color:#fff; letter-spacing:.01em; text-shadow:0 2px 3px rgba(0,0,0,.9),0 0 18px rgba(0,0,0,.6); }
+  .screen { position:absolute; inset:0; opacity:0; background:#05080d; font-family:'JetBrains Mono',monospace; color:#dfe7ef; }
+  /* group chat */
+  #chat .hdr { position:absolute; top:150px; left:0; right:0; text-align:center; font-size:34px; color:#9fb0c2; }
+  #chat .hdr b { display:block; color:#fff; font-size:42px; margin-bottom:6px; }
+  #chat .msgs { position:absolute; left:70px; right:70px; top:420px; display:flex; flex-direction:column; gap:34px; }
+  .msg { max-width:760px; padding:26px 34px; border-radius:38px; font-size:40px; line-height:1.3; background:#1c2633; opacity:0; transform:translateY(20px); }
+  .msg small { display:block; font-size:24px; color:#8fa1b4; margin-bottom:6px; }
+  .msg.me { align-self:flex-end; background:#1f5fd1; }
+  .label { position:absolute; left:70px; bottom:110px; font-size:24px; color:#6f8193; letter-spacing:.08em; text-transform:uppercase; }
+  /* typing screen */
+  #typer { padding:0; }
+  #typer .lines { position:absolute; left:80px; right:60px; top:640px; font-size:46px; line-height:1.6; white-space:pre-wrap; }
+  #typer .big { color:#fff; font-weight:700; font-size:64px; }
+  #typer .cursor { display:inline-block; width:26px; height:52px; background:#dfe7ef; vertical-align:-8px; margin-left:4px; }
+  /* ledger */
+  #ledger .card { position:absolute; left:70px; right:70px; top:470px; border:2px solid #23364b; border-radius:30px; padding:46px 48px; background:#08111c; }
+  #ledger .t1 { font-size:30px; color:#8fa1b4; letter-spacing:.1em; text-transform:uppercase; }
+  #ledger .t2 { font-family:Fraunces,serif; font-weight:800; font-size:70px; color:#fff; margin:14px 0 8px; }
+  #ledger .chip { display:inline-block; padding:10px 22px; border-radius:999px; border:2px solid var(--lime); color:var(--lime); font-size:28px; }
+  #ledger .row { display:flex; justify-content:space-between; font-size:32px; padding:24px 0; border-top:2px dashed #1f3044; opacity:0; }
+  #ledger .row:first-of-type { margin-top:34px; }
+  #ledger .row span:last-child { color:var(--lime); }
+  #ledger .check { margin-top:30px; font-size:36px; color:var(--sky); opacity:0; }
+  /* end card */
+  #end { background:#05080d; text-align:center; }
+  #end img { width:220px; margin-top:560px; border-radius:40px; }
+  #end .f { font-family:Fraunces,serif; font-weight:800; font-size:64px; color:#fff; margin-top:56px; }
+  #end .h { font-size:40px; color:var(--lime); margin-top:20px; }
+  #end .d { position:absolute; left:110px; right:110px; bottom:180px; font-size:25px; line-height:1.5; color:#8fa1b4; }
+</style></head><body>
+<div id="shots"></div>
+<div id="grade"></div>
+
+<div class="screen" id="chat">
+  <div class="hdr"><b>founders (bay area)</b>Thu, 9 Mar · 7:48 PM</div>
+  <div class="msgs">
+    <div class="msg"><small>Priya</small>anyone else moving money out?</div>
+    <div class="msg"><small>Dan</small>our investors are telling everyone to pull it</div>
+    <div class="msg"><small>Leo</small>wire's in. moved everything.</div>
+    <div class="msg me">get your money out. now.</div>
+  </div>
+  <div class="label">Illustrative</div>
+</div>
+
+<div class="screen" id="typer"><div class="lines"></div>
+  <div class="label">Source: US Federal Reserve, Vice Chair Barr testimony, 28 Mar 2023</div></div>
+
+<div class="screen" id="ledger">
+  <div class="card">
+    <div class="t1">Public ledger</div>
+    <div class="t2">Your account</div>
+    <span class="chip">only you control it</span>
+    <div class="row"><span>07:02 · deposit</span><span>recorded</span></div>
+    <div class="row"><span>07:03 · bought a basket</span><span>recorded</span></div>
+    <div class="row"><span>now · holdings</span><span>visible</span></div>
+    <div class="check">✓ anyone can check it, any hour</div>
+  </div>
+  <div class="label">Illustrative</div>
+</div>
+
+<div class="screen" id="end">
+  <img src="img/logo.png">
+  <div class="f">Learn it before you need it.</div>
+  <div class="h">Follow @blok.capital</div>
+  <div class="d">Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money. AI-generated voice and visuals. Events dramatised; figures from the US Federal Reserve.</div>
+</div>
+
+<div id="title"><div class="a">The night a</div><div class="b">bank</div><div class="c">vanished.</div></div>
+<div id="cap"></div>
+<div id="vig"></div><div id="edge"></div>
+<canvas id="grain" width="540" height="960"></canvas>
+<div id="flash"></div>
+
+<script>
+const TIMING = __TIMING__;
+const L = TIMING.lines.map(l => l.s);          // line start times
+const LE = TIMING.lines.map(l => l.e);
+const END = LE[LE.length - 1];
+window.DURATION = END + 0.9 + 3.6;
+
+// shot list: [image or screen id, start, kb {z0,z1,x0,x1,y0,y1}]
+const S = (i) => L[i] - 0.15;
+const SHOTS = [
+  ['A', 0, {z0:1.04,z1:1.16,x0:0,x1:-30,y0:0,y1:-20}],
+  ['B', S(2), {z0:1.02,z1:1.12,x0:20,x1:-10,y0:0,y1:0}],
+  ['A', L[2]+0.9, {z0:1.25,z1:1.32,x0:120,x1:130,y0:360,y1:380}],
+  ['C', S(3), {z0:1.03,z1:1.10,x0:0,x1:0,y0:0,y1:-20}],
+  ['D', S(4)+1.0, {z0:1.05,z1:1.22,x0:0,x1:-40,y0:0,y1:20}],
+  ['C', S(5), {z0:1.10,z1:1.16,x0:0,x1:10,y0:-60,y1:-70}],
+  ['C', S(6)+1.6, {z0:1.34,z1:1.40,x0:40,x1:40,y0:470,y1:500}],
+  ['E', S(8), {z0:1.04,z1:1.14,x0:0,x1:-30,y0:0,y1:0}],
+  ['R', S(8)+3.0, {z0:1.06,z1:1.12,x0:0,x1:20,y0:0,y1:0}],
+  ['Q', S(9), {z0:1.05,z1:1.25,x0:0,x1:40,y0:0,y1:60}],
+  ['#chat', S(10), null],
+  ['#typer', S(11), null],
+  ['B', S(14), {z0:1.15,z1:1.24,x0:-40,x1:-50,y0:-120,y1:-140}],
+  ['H', S(15), {z0:1.03,z1:1.10,x0:0,x1:-30,y0:0,y1:0}],
+  ['I', S(16), {z0:1.04,z1:1.12,x0:0,x1:0,y0:0,y1:-20}],
+  ['T', S(17), {z0:1.03,z1:1.09,x0:20,x1:-20,y0:0,y1:0}],
+  ['J', S(18), {z0:1.06,z1:1.14,x0:0,x1:0,y0:0,y1:-30}],
+  ['K', S(19), {z0:1.03,z1:1.10,x0:0,x1:0,y0:0,y1:0}],
+  ['K', S(20)+1.8, {z0:1.30,z1:1.36,x0:60,x1:60,y0:300,y1:330}],
+  ['#ledger', S(21), null],
+  ['L', S(22), {z0:1.04,z1:1.14,x0:0,x1:30,y0:0,y1:0}],
+  ['M', S(23), {z0:1.03,z1:1.09,x0:0,x1:0,y0:0,y1:0}],
+  ['M', S(24)+2.2, {z0:1.32,z1:1.38,x0:20,x1:20,y0:340,y1:370}],
+  ['S', S(25), {z0:1.04,z1:1.10,x0:0,x1:-20,y0:0,y1:0}],
+  ['N', S(26), {z0:1.04,z1:1.14,x0:0,x1:0,y0:-20,y1:-40}],
+  ['#end', END + 0.9, null],
+];
+SHOTS.forEach((s, k) => { s.push(k + 1 < SHOTS.length ? SHOTS[k + 1][1] : window.DURATION + 1); });
+
+const holder = document.getElementById('shots');
+const imgs = {};
+for (const [k] of SHOTS) if (!k.startsWith('#') && !imgs[k]) {
+  const im = document.createElement('img'); im.src = `img/${k}.jpg`; im.className = 'shot'; holder.appendChild(im); imgs[k] = im;
+}
+const screens = ['#chat', '#typer', '#ledger', '#end'].reduce((o, id) => (o[id] = document.querySelector(id), o), {});
+
+// grain frames
+const gc = document.getElementById('grain').getContext('2d');
+const grains = [...Array(6)].map(() => { const d = gc.createImageData(540, 960); for (let i = 0; i < d.data.length; i += 4) { const v = Math.random() * 255; d.data[i] = d.data[i+1] = d.data[i+2] = v; d.data[i+3] = 255; } return d; });
+
+const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+
+// typer content
+const TYPE = [
+  { at: () => L[11] + 0.1, text: 'THU 09 MAR 2023\n', cls: '' },
+  { at: () => L[11] + 1.3, text: 'asked back: $42,000,000,000\n', cls: 'big' },
+  { at: () => L[12], text: 'in one day.\n\n', cls: '' },
+  { at: () => L[13] + 0.9, text: 'expected tomorrow:\n', cls: '' },
+  { at: () => L[13] + 2.0, text: '$100,000,000,000', cls: 'big' },
+];
+const CPS = 34;
+function drawTyper(t) {
+  let html = '';
+  let typing = false;
+  TYPE.forEach((seg, k) => {
+    const st = seg.at(); if (t < st) return;
+    const n = Math.min(seg.text.length, Math.floor((t - st) * CPS));
+    if (n < seg.text.length) typing = true;
+    const s = seg.text.slice(0, n).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    html += seg.cls ? `<span class="${seg.cls}">${s}</span>` : s;
+  });
+  const blink = typing || Math.floor(t * 2) % 2 === 0;
+  return html + (blink ? '<span class="cursor"></span>' : '');
+}
+window.typingActive = (t) => TYPE.some(seg => { const st = seg.at(); return t >= st && t < st + seg.text.length / CPS; });
+
+const typerLines = document.querySelector('#typer .lines');
+const chatMsgs = [...document.querySelectorAll('#chat .msg')];
+const ledgerRows = [...document.querySelectorAll('#ledger .row')];
+const ledgerCheck = document.querySelector('#ledger .check');
+const title = document.getElementById('title');
+const cap = document.getElementById('cap');
+const flash = document.getElementById('flash');
+
+window.draw = (t) => {
+  // active shot
+  let cur = SHOTS.findIndex(s => t >= s[1] && t < s[3]);
+  if (cur < 0) cur = SHOTS.length - 1;
+  const [key, st, kb, en] = SHOTS[cur];
+  for (const k in imgs) imgs[k].style.opacity = 0;
+  for (const k in screens) screens[k].style.opacity = 0;
+  // handheld wobble
+  const wx = Math.sin(t * 1.3) * 5 + Math.sin(t * 2.9 + 1) * 3;
+  const wy = Math.sin(t * 1.1 + 2) * 6 + Math.sin(t * 3.7) * 2;
+  const wr = Math.sin(t * 0.9) * 0.25;
+  if (key.startsWith('#')) {
+    const el = screens[key]; el.style.opacity = 1;
+    el.style.transform = key === '#end' ? '' : `translate(${wx * .4}px,${wy * .4}px)`;
+  } else {
+    const p = ease((t - st) / Math.max(0.1, en - st));
+    const z = lerp(kb.z0, kb.z1, p), x = lerp(kb.x0, kb.x1, p) + wx, y = lerp(kb.y0, kb.y1, p) + wy;
+    const im = imgs[key]; im.style.opacity = 1;
+    im.style.transform = `translate(${x}px,${y}px) scale(${z}) rotate(${wr}deg)`;
+  }
+  // cut flash (tiny exposure bump on each cut)
+  const since = t - st;
+  flash.style.opacity = cur > 0 && since < 0.12 ? (0.12 - since) * 1.2 : 0;
+
+  // chat bubbles
+  const chatT = [L[10] - 0.1, L[10] + 0.9, L[10] + 1.7, L[10] + 2.3];
+  chatMsgs.forEach((m, k) => { const p = clamp((t - chatT[k]) / 0.25); m.style.opacity = p; m.style.transform = `translateY(${(1 - p) * 20}px)`; });
+  // typer
+  if (key === '#typer') typerLines.innerHTML = drawTyper(t);
+  // ledger
+  const lt = [L[21] + 0.8, L[21] + 1.7, L[21] + 2.6];
+  ledgerRows.forEach((r, k) => r.style.opacity = clamp((t - lt[k]) / 0.3));
+  ledgerCheck.style.opacity = clamp((t - (L[21] + 3.6)) / 0.4);
+
+  // title card
+  const ti = clamp((t - (L[1] - 0.2)) / 0.35) * (1 - clamp((t - (LE[2] + 0.3)) / 0.35));
+  title.style.opacity = ti;
+  title.style.transform = `translateY(${(1 - ti) * 16}px)`;
+
+  // captions
+  const c = TIMING.caps.find(c => t >= c.s && t < c.e);
+  cap.textContent = c && t < END + 0.9 ? c.t : '';
+  cap.style.top = key === '#typer' || key === '#chat' || key === '#ledger' ? '1500px' : '1420px';
+
+  // grain
+  gc.putImageData(grains[Math.floor(t * 24) % grains.length], 0, 0);
+};
+// sound cue list for the mixer
+window.CUES = () => {
+  const c = [];
+  SHOTS.forEach((s, k) => { if (k > 0) c.push({ t: s[1], k: 'cut' }); });
+  c.push({ t: 0.25, k: 'buzz' }, { t: L[9] + 0.2, k: 'buzz' }, { t: L[9] + 1.1, k: 'buzz' });
+  [0, 0.9, 1.7, 2.3].forEach(d => c.push({ t: L[10] - 0.1 + d, k: 'pop' }));
+  c.push({ t: L[1] - 0.2, k: 'hit' }, { t: L[12], k: 'boom' }, { t: L[15], k: 'boom' }, { t: L[19], k: 'rise' });
+  [0.8, 1.7, 2.6].forEach(d => c.push({ t: L[21] + d, k: 'tick' }));
+  c.push({ t: L[21] + 3.6, k: 'ding' }, { t: END + 0.9, k: 'chime' });
+  return { cues: c, lines: L, end: END, duration: window.DURATION };
+};
+</script>
+</body></html>

@@ -1,0 +1,12 @@
+{
+  "format": "photo-dump",
+  "size": [1080, 1440],
+  "reference": "Reverse-engineered from @darshcoded 'my current passions' carousel: candid full-bleed photo, huge condensed headline in bright cyan, one monospace line in brackets.",
+  "slides": [
+    {"photo": "photos/p1.jpg", "headline": "my new money rules", "sub": "(ever since $42 billion tried to leave one bank in a single day)", "foot": "Silicon Valley Bank, 9 March 2023 · Source: US Federal Reserve", "pos": "top"},
+    {"photo": "photos/p2.jpg", "headline": "1. own it", "sub": "(a bank balance is a promise. i'd rather hold the thing itself, in an account only i control)", "pos": "top"},
+    {"photo": "photos/p3.jpg", "headline": "2. check it", "sub": "(on a public ledger i can see every holding, any hour, no waiting for a statement)", "pos": "top"},
+    {"photo": "photos/p4.jpg", "headline": "3. go slow", "sub": "(on-chain is newer and prices can swing. start small, learn first, keep tending)", "pos": "top"},
+    {"photo": "photos/p5.jpg", "headline": "your turn", "sub": "(which rule would you add? follow @blok.capital for plain-english money lessons)", "foot": "Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money. AI-generated images.", "pos": "top"}
+  ]
+}
