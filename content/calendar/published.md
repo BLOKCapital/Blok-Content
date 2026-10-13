@@ -13,3 +13,4 @@
 | 2026-10-13 | Instagram (@blok.capital) | `content/carousels/2026-10-13-wall-street-vault/` (5 animated video slides, 1080×1440) | [DebrKQXCOR9](https://www.instagram.com/p/DebrKQXCOR9/) · media id 18445472191120826 | Published ~11:14 UTC. Sheetal asked for a viral carousel on X, IG and LinkedIn. Second IG post today (news-driven). |
 | 2026-10-13 | Instagram Story (@blok.capital) | Cover of `2026-10-13-wall-street-vault` on 1080×1920 indigo | media id 18104139707341208 | Published ~11:14 UTC. Add a link sticker in-app. |
 | 2026-10-13 | X (@blok_cap) | Same carousel as a 23s video + source reply | [post](https://x.com/blok_cap/status/2109965892050108652) · [reply](https://x.com/blok_cap/status/2109965895523082449) | Published ~11:14 UTC. |
+| 2026-10-13 | X (@blok_cap) | Fee card post + calculator reply | [post](https://x.com/blok_cap/status/2110017570044608991) | Published 14:40 UTC by the X daily run. |

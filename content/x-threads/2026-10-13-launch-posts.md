@@ -9,7 +9,7 @@ The principle is settled. The hard part is usability: most people will never saf
 
 Self-custody wins when it feels like signing in with Google, and you still own every asset. 🌱
 
-## 2. One number + image (fee card), link in first reply
+## 2. One number + image (fee card), link in first reply — posted 14:40 UTC: https://x.com/blok_cap/status/2110017570044608991
 $10,000. 30 years. 7% a year.
 
 A 1% fee quietly takes about $18,688 of it.
