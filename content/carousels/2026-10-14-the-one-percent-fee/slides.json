@@ -1,0 +1,44 @@
+{
+  "style": "minimal",
+  "size": [1080, 1440],
+  "topic": "The 1% fee: what a fund's expense ratio costs over 30 years",
+  "music": "../../../assets/music/blok-morning-soil.m4a",
+  "secondsPerSlide": 6,
+  "slides": [
+    {
+      "role": "hook", "theme": "indigo",
+      "kicker": "Investing 101",
+      "title": "Your fund's\n1% fee isn't\n**small.**",
+      "sub": "It never shows up as a bill. Here's what it costs."
+    },
+    {
+      "role": "point", "n": 1, "theme": "linen",
+      "kicker": "Point 1 · Where it hides",
+      "title": "You never **pay** it.\nIt's just gone.",
+      "body": "A fund's running cost (the **expense ratio**) comes out of the fund itself, a little every day. Your statement shows what's left, not the charge."
+    },
+    {
+      "role": "point", "n": 2, "theme": "linen",
+      "kicker": "Point 2 · The maths",
+      "big": "$18,688",
+      "title": "What 1% a year costs over **30 years.**",
+      "body": "$10,000 growing 7% a year ≈ $76,123.\nSame money, minus a 1% yearly fee ≈ $57,435.",
+      "source": "Illustrative maths, not a forecast: steady 7% vs 6% a year, compounded yearly."
+    },
+    {
+      "role": "point", "n": 3, "theme": "linen",
+      "kicker": "Point 3 · The new rails",
+      "big": "Visible",
+      "title": "On-chain, every fee sits on a **public record.**",
+      "body": "Every holding, trade and fee can be checked by you, any time. The catch: prices swing more and the tech is newer. Start small."
+    },
+    {
+      "role": "cta", "theme": "indigo",
+      "kicker": "Your move",
+      "title": "Look up your fund's **expense ratio** today.",
+      "body": "It takes two minutes, and many index funds charge far less. Follow BLOK Capital for plain-English money lessons.",
+      "button": "Follow @blok.capital",
+      "disclaimer": "Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money."
+    }
+  ]
+}
