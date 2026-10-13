@@ -14,7 +14,9 @@ A fund's running cost (the expense ratio) comes out of the fund itself, a little
 
 On-chain, every holding, trade and fee sits on a public record you can check yourself, any time. It's newer and prices can swing more, so learn first and start small.
 
-Do you know your fund's expense ratio? Drop it below 👇
+Want your own fee receipt? DM us the word FEE and we'll send you a free calculator that shows what your fund's fee costs you over the years 🧾
+
+Or drop your fund's expense ratio below 👇
 
 Follow @blok.capital for plain-English money lessons. Save this for later.
 
