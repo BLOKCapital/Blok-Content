@@ -18,7 +18,7 @@ Follow @blok.capital for plain-English money lessons.
 
 Educational content only, not financial or investment advice. Diversification doesn't guarantee a profit or protect against loss. On-chain assets can be volatile and you can lose money. Video made with AI (person is AI-generated). Original music.
 
-#investing #mutualfunds #indexfunds #ETF #diversification #personalfinance #financialliteracy
+#investing #mutualfunds #personalfinance
 
 ## X (attach a-diversified.mp4)
 -A checked your "diversified" portfolio.
