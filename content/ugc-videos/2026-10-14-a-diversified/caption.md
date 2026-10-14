@@ -20,9 +20,11 @@ Educational content only, not financial or investment advice. Diversification do
 
 #investing #mutualfunds #personalfinance
 
-## X (attach a-diversified.mp4)
+## X (attach a-diversified.mp4, no hashtags; scheduled 15 Oct 14:30 UTC)
 -A checked your "diversified" portfolio.
 
-3 funds. 3 names. Same giant companies at the top of all of them.
+3 funds. 3 different names. Often the same giant companies sitting at the top of all three.
 
-Lay your funds' top 10 holdings side by side today. Count the repeats.
+Do this today: put each fund's top 10 holdings side by side and count the repeats.
+
+What's your number?
