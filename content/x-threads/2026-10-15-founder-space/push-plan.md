@@ -1,5 +1,8 @@
 # Founder X Space push: "From Billions to Trillions: What's Still Missing for RWAs?"
 
+> **Superseded 14 Oct:** Sheetal chose one post only. Live: https://x.com/blok_cap/status/2110423001304846386 (see post.md). Keep the rest as reference. Under X's Oct 2026 ranking, the wins now are replies (ours to repliers, especially mutuals, inside our own thread), not more posts; video watch time doesn't count, and tagging people who don't know us risks mutes and reports.
+
+
 **The Space:** hosted by @ShiftRWA (58.6K followers), **Thu 15 Oct 2026, 4:00 PM UTC**.
 Link: https://x.com/i/spaces/1MJgNbLjLlXGL · Announcement: https://x.com/ShiftRWA/status/2110395164241858663
 (35 likes, 8 reposts, 17 replies, 834 views at 17:14 UTC Wed).
