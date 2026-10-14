@@ -1,6 +1,6 @@
 # How to invest your money (for dummies)
 
-Scheduled: **Thu 15 Oct 2026, 15:30 IST (10:00 UTC)** on Instagram and X. Approved by Sheetal 14 Oct ("Okay. Perfect.").
+Scheduled: Instagram **Thu 15 Oct 2026, 15:30 IST (10:00 UTC)**; X **17:45 IST (12:15 UTC)**, the new X afternoon slot. Approved by Sheetal 14 Oct ("Okay. Perfect.").
 
 **Format:** 7-slide carousel, 1080x1350, layout recreated from @tobi.the.og's "how to market your app (for dummies)":
 grey paper, faint logo watermark, Inter Display Bold headings + Space Mono body, halftone cut-out photos.
