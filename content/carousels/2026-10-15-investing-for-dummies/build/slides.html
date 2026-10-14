@@ -1,0 +1,164 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Space Mono';src:url(fonts/SpaceMono-Regular.ttf);font-weight:400}
+@font-face{font-family:'Space Mono';src:url(fonts/SpaceMono-Bold.ttf);font-weight:700}
+@font-face{font-family:'Instrument Serif';src:url(fonts/InstrumentSerif-Regular.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#999}
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;background:#E8E7E3;color:#111;font-family:'Space Mono',monospace;margin-bottom:20px}
+.wm{position:absolute;left:-330px;top:-60px;width:1740px;height:1740px}
+.grain{position:absolute;inset:0;opacity:.18;mix-blend-mode:multiply;pointer-events:none}
+.h{font-family:'Inter Display','Inter',sans-serif;font-weight:700;letter-spacing:-0.028em;color:#111}
+.handle{position:absolute;left:46px;bottom:42px;font-size:22px;letter-spacing:.01em}
+.mono{font-size:26px;line-height:39px}
+.abs{position:absolute}
+ul.b{list-style:none}
+ul.b li{position:relative;padding-left:46px}
+ul.b li:before{content:'';position:absolute;left:18px;top:15px;width:9px;height:9px;border-radius:50%;background:#111}
+.tile{position:absolute;width:120px;height:120px;border-radius:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.center{text-align:center}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute">
+ <defs>
+  <symbol id="mark" viewBox="0 0 1024 1024">
+   <path d="M290 170H275a95 95 0 0 0-95 95V735a95 95 0 0 0 95 95H748a95 95 0 0 0 95-95V612H735v38a80 80 0 0 1-80 80H360a70 70 0 0 1-70-70Z"/>
+   <path d="M400 170H748a95 95 0 0 1 95 95V387H735V350a80 80 0 0 0-80-80H400Z"/>
+   <rect x="400" y="387" width="225" height="225" rx="30"/>
+  </symbol>
+  <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+ </defs>
+</svg>
+<template id="bg">
+ <svg class="wm" viewBox="0 0 1024 1024"><use href="#mark" fill="#E1E0DB"/></svg>
+ <svg class="grain" width="1080" height="1350"><rect width="1080" height="1350" filter="url(#noise)"/></svg>
+</template>
+
+<!-- 1 COVER -->
+<section class="slide" id="s1">
+ <svg class="grain" width="1080" height="1350" style="opacity:.22"><rect width="1080" height="1350" filter="url(#noise)"/></svg>
+ <svg class="abs" style="left:893px;top:22px" width="120" height="40" viewBox="0 0 120 40"><path d="M2 20H116M98 3L116 20L98 37" fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="abs" style="right:70px;top:82px;font-size:20px;letter-spacing:.02em">@blok.capital</div>
+ <div class="abs h" style="right:82px;top:250px;font-size:58px;line-height:62px;text-align:right">how to invest your money<br>(for dummies)</div>
+ <img class="abs" src="man_ht.png" style="left:40px;top:430px;width:1020px">
+</section>
+
+<!-- 2 -->
+<section class="slide bgd" id="s2">
+ <div class="abs center" style="left:0;right:0;top:458px;font-size:32px;line-height:36px;letter-spacing:.005em">
+  compounding - the great<br>equalizer<br><br>
+  this is where savings go to nap<br>or quietly grow.<br><br>
+  most people wait for the "right time"<br>to invest,<br>
+  all the patient ones did was start<br>early and stay.<br><br>
+  and you can too.
+ </div>
+</section>
+
+<!-- 3 PROOF -->
+<section class="slide bgd" id="s3">
+ <div class="tile" style="left:108px;top:124px;background:#7ED116">
+  <svg width="70" height="70" viewBox="0 0 70 70"><path d="M35 60V34" stroke="#2F5A06" stroke-width="6" stroke-linecap="round"/><path d="M35 36C35 22 26 14 12 14c0 14 9 22 23 22Z" fill="#2F5A06"/><path d="M35 30c0-12 8-19 22-19 0 12-8 19-22 19Z" fill="#2F5A06" opacity=".75"/></svg>
+ </div>
+ <div class="tile" style="left:502px;top:122px;background:#F6F3E8">
+  <svg width="78" height="78" viewBox="0 0 78 78"><path d="M22 12h34v14a17 17 0 0 1-34 0Z" fill="none" stroke="#004EBA" stroke-width="6" stroke-linejoin="round"/><path d="M22 18H12c0 10 5 15 11 16M56 18h10c0 10-5 15-11 16M39 43v12M27 64h24M31 56h16v8H31Z" fill="none" stroke="#004EBA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </div>
+ <div class="tile" style="left:889px;top:122px;background:#16181D">
+  <svg width="72" height="72" viewBox="0 0 72 72"><path d="M16 56L56 16" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="20" cy="20" r="9" fill="none" stroke="#fff" stroke-width="6.5"/><circle cx="52" cy="52" r="9" fill="none" stroke="#fff" stroke-width="6.5"/></svg>
+ </div>
+ <div class="tile" style="left:325px;top:270px;background:#7DD2FD">
+  <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="24" fill="#F6F3E8"/><path d="M35 35V11a24 24 0 0 1 20.8 36Z" fill="#004EBA"/><path d="M35 35L55.8 47A24 24 0 0 1 21 54.4Z" fill="#004EBA" opacity=".55"/></svg>
+ </div>
+ <div class="tile" style="left:714px;top:270px;background:#16181D">
+  <svg width="66" height="66" viewBox="0 0 66 66"><g stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M12 52V22M25 52V30M38 52V14M51 52V36"/></g></svg>
+ </div>
+ <div class="abs h" style="left:108px;top:428px;font-size:37px">1. the proof</div>
+ <ul class="abs b mono" style="left:108px;top:497px;width:870px">
+  <li>buffett told his family's trustee: put 90% in a cheap s&amp;p 500 index fund.</li>
+  <li>he bet $1M an index fund would beat hand-picked hedge funds. 10 years later: 125.8% vs 36.3%.</li>
+  <li>over 15 years, nearly 9 in 10 active us large-cap funds trailed the s&amp;p 500.</li>
+  <li>a 1% yearly fee can eat about a quarter of your pot over 30 years.</li>
+  <li>the first index fund for regular people launched in 1976. people called it "bogle's folly".</li>
+ </ul>
+ <div class="abs mono" style="left:108px;top:935px">none of them needed a hot stock tip.<br>so how did they do it?</div>
+ <svg class="abs" style="left:402px;top:1000px" width="320" height="320" viewBox="0 0 320 320"><path d="M60 250A120 120 0 1 1 262 214" fill="none" stroke="#004EBA" stroke-width="34" stroke-linecap="butt" opacity=".9"/><path d="M226 170l58 6-22 54" fill="none" stroke="#004EBA" stroke-width="34" stroke-linejoin="miter" opacity=".9"/></svg>
+ <img class="abs" src="duo_ht.png" style="left:240px;top:1050px;width:610px">
+ <div class="handle">@blok.capital</div>
+</section>
+
+<!-- 4 STRATEGY -->
+<section class="slide bgd" id="s4">
+ <img class="abs" src="chess_ht.png" style="right:-40px;top:-60px;height:760px">
+ <div class="abs h" style="left:94px;top:384px;font-size:37px">2. the strategy</div>
+ <div class="abs mono" style="left:94px;top:440px;width:560px">index funds.<br>own a slice of hundreds of companies at once. no picking. no timing.</div>
+ <div class="abs mono" style="left:94px;top:635px;width:580px">when was the last time a "hot tip" actually worked for you?<br>exactly.</div>
+ <div class="abs mono" style="left:94px;top:780px;width:880px">but that boring fund someone in your family quietly topped up every month for 20 years, the one nobody ever brags about at dinner?<br><br>that's investing in a nutshell.<br><br>here's how you can run this yourself.</div>
+ <div class="handle">@blok.capital</div>
+</section>
+
+<!-- 5 SYSTEM -->
+<section class="slide bgd" id="s5">
+ <div class="abs h center" style="left:0;right:0;top:128px;font-size:37px">3. the system</div>
+ <div class="abs center" style="left:60px;right:60px;top:198px;font-size:26px;line-height:42px">
+  1. pick one broad, low-cost index fund.<br>
+  2. choose an amount you won't miss.<br>
+  3. automate it every payday.<br>
+  4. check the fees you're paying.<br>
+  5. raise it when your pay goes up.<br>
+  6. ignore the scary headlines.<br>
+  7. repeat. for years.<br><br>
+  that's the whole system.<br><br>
+  if that sounds like a lot of work, it doesn't have to<br>be.
+ </div>
+ <svg class="abs" id="tangle" style="left:0;top:760px" width="1080" height="460" viewBox="0 0 1080 460"></svg>
+ <div class="handle">@blok.capital</div>
+</section>
+
+<!-- 6 PLATFORM -->
+<section class="slide bgd" id="s6">
+ <div class="abs h" style="left:144px;top:243px;font-size:40px">4. the platform</div>
+ <div class="abs" style="left:144px;top:362px;width:830px;font-size:28px;line-height:42px">
+  we're building something to handle the whole thing.<br><br>
+  BLOK Capital puts the same boring playbook on a public ledger, in an account only you control.<br><br>
+  ready-made baskets that rebalance themselves (coming soon), or pick your own.<br><br>
+  comment "garden" and we'll send you the link.
+ </div>
+ <div class="abs" style="left:0;right:0;top:905px;height:445px;border-radius:30px 30px 0 0;overflow:hidden;background:linear-gradient(180deg,#2D6CE0 0%,#4C8AF0 55%,#8DBBF8 100%)">
+  <div class="abs" style="left:-80px;top:-40px;width:420px;height:200px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));filter:blur(6px)"></div>
+  <div class="abs" style="left:760px;top:30px;width:420px;height:230px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.6),rgba(255,255,255,0));filter:blur(8px)"></div>
+  <div class="abs" style="left:620px;top:250px;width:520px;height:260px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.7),rgba(255,255,255,0));filter:blur(10px)"></div>
+  <div class="abs" style="left:-60px;top:290px;width:460px;height:240px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));filter:blur(10px)"></div>
+  <div class="abs" style="left:430px;top:110px;width:200px;height:90px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.4),rgba(255,255,255,0))"></div>
+  <div class="abs" style="left:50%;top:16px;transform:translateX(-50%);display:flex;align-items:center;gap:7px;padding:6px 13px;border:1.5px solid rgba(255,255,255,.75);border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font:600 14px Inter">
+   <svg width="15" height="15" viewBox="0 0 1024 1024"><use href="#mark" fill="#fff"/></svg>BLOK Capital</div>
+  <div class="abs center" style="left:0;right:0;top:86px;color:#fff;font-family:'Instrument Serif';font-size:66px;line-height:56px;letter-spacing:-.025em">Everyone deserves<br>a Garden.</div>
+  <div class="abs center" style="left:0;right:0;top:218px;color:rgba(255,255,255,.88);font:400 14.5px/20px Inter;letter-spacing:-.01em">Your own portfolio, out in the open. Ready-made baskets that tend<br>themselves, or run it yourself. Every move on the record.</div>
+  <div class="abs" style="left:383px;top:293px;width:314px;height:42px;border-radius:999px;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35);display:flex;align-items:center;justify-content:space-between;padding:0 4px 0 18px;font:500 13px Inter;color:#556">See how it works<span style="width:34px;height:34px;border-radius:50%;background:#2D6CE0;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></span></div>
+  <div class="abs center" style="left:0;right:0;top:346px;color:rgba(255,255,255,.8);font:400 9px Inter">Educational content only. Not financial advice.</div>
+  <div class="abs" style="left:350px;top:412px;width:120px;height:60px;border-radius:8px;background:#C9D5C0;transform:rotate(-3deg);padding:6px 8px"><div style="background:#fff;font:700 9px/10px Inter;padding:2px 4px;display:inline-block">the night a bank<br>vanished</div></div>
+  <div class="abs" style="left:472px;top:396px;width:132px;height:70px;border-radius:8px;background:#9FB8D8;padding:6px 8px"><div style="background:#fff;font:700 10px/11px Inter;padding:3px 5px;display:inline-block">the 1% fee that eats<br>your retirement</div></div>
+  <div class="abs" style="left:606px;top:414px;width:120px;height:60px;border-radius:8px;background:#7F8B98;transform:rotate(3deg);padding:6px 8px"><div style="color:#fff;font:700 9px/10px Inter;padding:2px 0">receipts beat<br>reports</div></div>
+ </div>
+ <div class="handle" style="z-index:2">@blok.capital</div>
+</section>
+
+<!-- 7 -->
+<section class="slide bgd" id="s7">
+ <div class="abs center" style="left:0;right:0;top:562px;font-size:37px;line-height:64px">you probably won't see this page<br>again.<br><b>follow @blok.capital</b></div>
+ <div class="abs center" style="left:120px;right:120px;bottom:52px;font-size:15px;line-height:22px;color:#6b6a66">educational content only, not financial or investment advice.<br>investing involves risk and you can lose money.</div>
+</section>
+
+<script>
+const tpl=document.getElementById('bg');
+document.querySelectorAll('.bgd').forEach(s=>s.prepend(tpl.content.cloneNode(true)));
+// tangle -> circle
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const svg=document.getElementById('tangle');
+let pts=[];const cx=290,cy=235;
+for(let i=0;i<90;i++){const a=rnd()*Math.PI*2,r=40+rnd()*150,ry=r*(0.75+rnd()*0.3);pts.push([cx+Math.cos(a)*r+(rnd()-.5)*40,cy+Math.sin(a)*ry+(rnd()-.5)*40]);}
+pts.push([440,300]);pts.push([560,190]);
+const ccx=765,ccy=232;
+for(let i=0;i<=4*48;i++){const a=Math.PI*1.05+i/48*Math.PI*2,r=150+Math.sin(i*.09)*6+(i%48===0?0:0);pts.push([ccx+Math.cos(a)*r*(1+.015*Math.sin(i*.2)),ccy+Math.sin(a)*r*1.0]);}
+function cat(p){let d=`M${p[0][0]} ${p[0][1]}`;for(let i=0;i<p.length-1;i++){const p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p2;const t=.5;d+=` C${p1[0]+(p2[0]-p0[0])*t/3} ${p1[1]+(p2[1]-p0[1])*t/3} ${p2[0]-(p3[0]-p1[0])*t/3} ${p2[1]-(p3[1]-p1[1])*t/3} ${p2[0]} ${p2[1]}`;}return d}
+svg.innerHTML=`<path d="${cat(pts)}" fill="none" stroke="#111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>`;
+</script>
+</body></html>
