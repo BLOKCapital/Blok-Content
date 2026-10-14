@@ -1,0 +1,88 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Dancing Script";src:url(../2026-10-14-anatomy-of-blockchain/slides/dancing-script-latin-700-normal.woff2) format("woff2");font-weight:700}
+:root{--indigo:#004EBA;--lime:#7ED116;--sky:#7DD2FD;--coral:#EC464D;--ink:#0B1B2B}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1440px;overflow:hidden;background:transparent;font-family:Inter,sans-serif}
+body.preview{background:#555 center/cover}
+.slide{position:absolute;inset:0;display:none;color:#fff}
+.slide.on{display:block}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,24,.55) 0%,rgba(5,12,24,0) 20%,rgba(5,12,24,0) 34%,rgba(5,12,24,.80) 60%,rgba(5,12,24,.95) 100%)}
+.inner{position:absolute;inset:0;padding:72px 80px 68px;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;font:600 26px Inter}
+.handle{display:flex;align-items:center;gap:14px;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.handle i{width:16px;height:16px;border-radius:50%;background:var(--lime);display:block}
+.pg{font:500 24px Inter;background:rgba(0,0,0,.32);padding:8px 16px;border-radius:999px}
+.body{margin-top:auto}
+.pill{display:inline-block;font:800 24px Inter;letter-spacing:.12em;text-transform:uppercase;background:var(--coral);padding:12px 22px;border-radius:8px;margin-bottom:30px}
+.script{font:700 78px/1 'Dancing Script';color:var(--lime);display:block;margin-bottom:12px;transform:rotate(-2deg);transform-origin:left;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.script.sky{color:var(--sky)}
+h1{font:900 80px/1.03 Inter;letter-spacing:-.035em;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+h1 em{font-style:normal;color:var(--lime)}
+h1 .s{font:700 98px/1 'Dancing Script';color:var(--lime);letter-spacing:0}
+.big{font:900 150px/.95 Inter;letter-spacing:-.05em;margin-top:18px}
+.big small{font:700 40px Inter;letter-spacing:-.01em;color:rgba(255,255,255,.85);display:block;margin-top:10px}
+.sub{font:500 33px/1.4 Inter;margin-top:24px;color:rgba(255,255,255,.9);max-width:900px}
+.sub b{color:#fff}
+.src{font:500 21px/1.4 Inter;color:rgba(255,255,255,.62)}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:38px;gap:30px}
+.nx{font:700 28px Inter;white-space:nowrap}
+.nx span{color:var(--lime)}
+.btn{display:inline-block;background:var(--lime);color:var(--ink);font:800 36px Inter;padding:22px 38px;border-radius:999px;margin-top:34px}
+.disc{font:400 19px/1.4 Inter;color:rgba(255,255,255,.65);max-width:640px}
+.catch{margin-top:26px;font:500 29px/1.4 Inter;color:rgba(255,255,255,.9);border-left:6px solid var(--coral);padding-left:22px;max-width:900px}
+.catch b{color:#fff}
+</style></head>
+<body>
+<section class="slide" id="s1"><div class="shade"></div><div class="inner">
+  <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">1/5</span></div>
+  <div class="body">
+    <span class="pill">Myth-busting</span>
+    <h1>3 money myths fund investors <span class="s">still believe</span></h1>
+    <div class="sub">Number 2 quietly costs more than most people think.</div>
+    <div class="foot"><span class="src"></span><span class="nx">Swipe <span>→</span></span></div>
+  </div></div></section>
+
+<section class="slide" id="s2"><div class="shade"></div><div class="inner">
+  <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">2/5</span></div>
+  <div class="body">
+    <span class="script">myth 1</span>
+    <h1>"I own 3 funds, so I'm <em>diversified.</em>"</h1>
+    <div class="sub">Three names, but often the same giant companies sitting at the top of all three. <b>Put each fund's top 10 holdings side by side and count the repeats.</b></div>
+    <div class="foot"><span class="src">Check: your fund's latest factsheet</span><span class="nx">Next <span>→</span></span></div>
+  </div></div></section>
+
+<section class="slide" id="s3"><div class="shade"></div><div class="inner">
+  <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">3/5</span></div>
+  <div class="body">
+    <span class="script sky">myth 2</span>
+    <h1>"A 1% fee is <em>tiny.</em>"</h1>
+    <div class="big">$18,700<small>is what it takes from $10,000 over 30 years</small></div>
+    <div class="sub">At 7% a year, $10,000 grows to about $76,100. Lose 1% a year to fees and it ends near $57,400.</div>
+    <div class="foot"><span class="src">Illustrative maths, not a forecast or a promise of returns.</span><span class="nx">Next <span>→</span></span></div>
+  </div></div></section>
+
+<section class="slide" id="s4"><div class="shade"></div><div class="inner">
+  <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">4/5</span></div>
+  <div class="body">
+    <span class="script">myth 3</span>
+    <h1>"My statement shows <em>what I own.</em>"</h1>
+    <div class="sub">It shows your units. The fund's actual holdings are disclosed periodically (monthly in India, quarterly in the US) and held by a custodian for you.</div>
+    <div class="catch"><b>On-chain flips that:</b> you hold the assets and can check them any time. The catch: it's newer tech, and prices still swing.</div>
+    <div class="foot"><span class="src"></span><span class="nx">Next <span>→</span></span></div>
+  </div></div></section>
+
+<section class="slide" id="s5"><div class="shade"></div><div class="inner">
+  <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">5/5</span></div>
+  <div class="body">
+    <h1>Check. Don't just <em>trust.</em></h1>
+    <span class="script" style="font-size:84px;margin-top:22px">Which one did you believe?</span>
+    <div class="sub">Tell us in the comments, and save this for your next fund review.</div>
+    <div class="btn">Follow @blok.capital</div>
+    <div class="foot"><span class="disc">Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.</span><span class="nx">Save it</span></div>
+  </div></div></section>
+<script>
+window.show=(i,bg)=>{document.querySelectorAll('.slide').forEach((s,k)=>s.classList.toggle('on',k===i));if(bg){document.body.classList.add('preview');document.body.style.backgroundImage=`url(${bg})`}else{document.body.classList.remove('preview');document.body.style.backgroundImage=''}};
+</script>
+</body></html>
