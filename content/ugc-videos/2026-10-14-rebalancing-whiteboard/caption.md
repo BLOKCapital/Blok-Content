@@ -1,12 +1,13 @@
-# "Your 60/40 isn't 60/40 anymore" (UGC teaching Reel, 28.5s, 1080x1920)
+# "Your portfolio got riskier and you didn't touch it" (UGC teaching Reel, 28.9s, 1080x1920)
 
 **Format:** a presenter at his desk explains one idea to camera while handwritten notes and sketches appear on the wall beside him, word by word (the "whiteboard creator" look Sheetal shared on 14 Oct).
+**Hook (0-3.9s):** spoken "Your portfolio got riskier this year... and you didn't even touch it." On screen from frame 0: "your portfolio got RISKIER ↗" in coral, then "& you didn't even touch it", with a slow push-in on the presenter.
 **Topic:** portfolio drift and rebalancing. Pillar: "Familiar concepts, new rails" (`brand/instagram-strategy.md`).
-**Made with:** one Higgsfield GPT Image 2.5 still (0.25 credits) + two 15s Wan 2.7 clips lip-synced to our own voiceover (22.5 credits each). Total 45.25 credits. Voice: Andrew (edge-tts, approved BLOK voice). Notes drawn in code (Caveat font) and timed to the voiceover word timings. Music: our original track "Morning Soil" at low volume.
+**Made with:** one Higgsfield GPT Image 2.5 still (0.25 credits) + two 15s Wan 2.7 clips lip-synced to our own voiceover (22.5 credits each). Hook re-shot on 14 Oct (new first-half clip, +22.5): 67.75 credits in total. Voice: Andrew (edge-tts, approved BLOK voice). Notes drawn in code (Caveat font) and timed to the voiceover word timings. Music: our original track "Morning Soil" at low volume.
 **Maths:** illustrative only. 60/40 drifting to 75/25 after a strong year for stocks is a teaching example, not a forecast.
 
 ## Instagram
-Your 60/40 portfolio probably isn't 60/40 anymore. 🌱
+Your portfolio got riskier this year. And you didn't even touch it. 👀
 
 Say you set it up as 60% stocks, 40% bonds. Stocks have a great year, and suddenly you're closer to 75/25. Nobody asked you. You just quietly ended up taking more risk than you planned.
 
@@ -23,7 +24,7 @@ Illustrative example, not a forecast. Educational content only, not financial or
 #investing #rebalancing #assetallocation #mutualfunds #ETF #indexfunds #personalfinance #financialliteracy
 
 ## X (attach rebalancing-whiteboard.mp4)
-Your 60/40 isn't 60/40 anymore.
+Your portfolio got riskier this year. You didn't even touch it.
 
 One good year for stocks and you're sitting at 75/25. More risk, and you never chose it.
 
