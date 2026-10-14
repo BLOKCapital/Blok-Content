@@ -127,8 +127,13 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 | `git push --delete` a branch | 403 from the session's git proxy | User deletes branches on GitHub |
 | `rm -f $VAR/*` in Bash | Blocked by safety check | Use literal paths or `"${VAR:?}"/*` |
 | Composio remote bash writing into dirs the workbench created | Permission denied (bash runs as `user`, workbench as root) | Use a fresh dir from bash (e.g. `~/kk`), or do it all in the workbench |
+| Downloading Higgsfield results (cloudfront) or Composio `s3_url` short links straight into this machine | 403 from the network policy | In the Composio workbench: curl the Higgsfield URL, `upload_local_file`, then `curl -sI` the short link and download its `Location` (r2.cloudflarestorage.com presigned URL) here |
 | Instagram API: music, AI label, alt text on carousel slides, link stickers, bio edits | Not supported | Tell the user to do it in the app |
 
 ## 8. Permissions (so nothing prompts)
 In the session's mode dropdown pick **Auto**. For per-command rules, the user pastes
 `docs/permissions-allowlist.json` into `.claude/settings.json` (Claude isn't allowed to edit that file itself).
+
+## 9. Higgsfield (connected 2026-10-14)
+- Cheapest convincing real-person clip: `kling3_0`, `mode:std`, `sound:off`, 9:16 = **1.5 credits/sec** (8s = 12). Seedance 2.5 720p silent is ~7/sec. Preflight with `get_cost:true`.
+- Generate one silent clip, then do all text, music and edit locally (ffmpeg + Playwright overlays). Example: `content/ugc-videos/2026-10-14-a-texted-me/`.
