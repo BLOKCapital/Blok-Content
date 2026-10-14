@@ -42,6 +42,18 @@ idea ─► script/slides ─► render locally ─► show user ─► "yes" �
    (`child_image_files` = list of `{name, mimetype:"image/jpeg", s3key}` in slide order, `caption`), then
    `INSTAGRAM_POST_IG_USER_MEDIA_PUBLISH` with the returned `creation_id`.
 
+## 3b. Photo carousels (Sheetal, 2026-10-14: the default look now)
+Real photos with text overlay read as authentic; flat designed slides read as AI. Fonts: Inter + one script accent (Dancing Script).
+1. Find CC0 / public-domain photos in the Composio workbench via the Wikimedia Commons API (`generator=search`, `prop=imageinfo`,
+   `iiprop=url|size|extmetadata`, `iiurlwidth=3000`; keep only LicenseShortName CC0 / Public domain). Unsplash/Pexels need keys;
+   this machine can't reach Wikimedia, Unsplash, Pexels or Flickr directly.
+2. Get files from the workbench to this machine: `upload_local_file()` then `requests.get(s3_url, allow_redirects=False)` and print
+   the `Location` header. That presigned `*.r2.cloudflarestorage.com` URL downloads fine here (`backend.composio.dev` is blocked).
+3. Scene: `content/carousels/2026-10-14-ten-trillion-on-chain/scene.html` (photo + gradient, Ken Burns, slide 1 settled at t=0
+   so the feed thumbnail shows the hook). Render with `node scripts/render-animated-carousel.mjs <scene.html>`.
+4. Publish video slides with `INSTAGRAM_CREATE_CAROUSEL_CONTAINER` → `child_video_files` (run in a workbench thread; it can pass
+   60s, so read the result in a second cell). X: `TWITTER_UPLOAD_LARGE_MEDIA` (`tweet_video`) then `TWITTER_CREATION_OF_A_POST`.
+
 ## 4. Story (1080×1920)
 - From a carousel cover: paste the 1080×1350 slide onto a 1080×1920 `#F6F3E8` canvas at y=285 (no new copy).
   `ffmpeg -i slide-01.png -vf "pad=1080:1920:0:285:color=0xF6F3E8" story-01.jpg`

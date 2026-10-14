@@ -14,3 +14,5 @@
 | 2026-10-13 | Instagram Story (@blok.capital) | Cover of `2026-10-13-wall-street-vault` on 1080×1920 indigo | media id 18104139707341208 | Published ~11:14 UTC. Add a link sticker in-app. |
 | 2026-10-13 | X (@blok_cap) | Same carousel as a 23s video + source reply | [post](https://x.com/blok_cap/status/2109965892050108652) · [reply](https://x.com/blok_cap/status/2109965895523082449) | Published ~11:14 UTC. |
 | 2026-10-13 | X (@blok_cap) | Fee card post + calculator reply | [post](https://x.com/blok_cap/status/2110017570044608991) | Published 14:40 UTC by the X daily run. |
+| 2026-10-14 | Instagram (@blok.capital) | `content/carousels/2026-10-14-ten-trillion-on-chain/` (5 photo video slides, 1080×1440, Morning Soil) | [DeeJiH3DYBG](https://www.instagram.com/p/DeeJiH3DYBG/) · media id 18115681634021191 | Published 10:17 UTC. Recreated from a @coingrams news card Sheetal shared; first post in the real-photo + Inter/Dancing Script style. |
+| 2026-10-14 | X (@blok_cap) | Same carousel as a 23s video + sources reply | [post](https://x.com/blok_cap/status/2110314084537188597) · [reply](https://x.com/blok_cap/status/2110314115444941201) | Published ~10:18 UTC. |
