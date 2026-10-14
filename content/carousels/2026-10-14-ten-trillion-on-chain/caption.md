@@ -1,6 +1,7 @@
 # "Up to $10 trillion could live on-chain by 2030"
 
-**Format:** 5 animated slides, 1080x1440, music "Morning Soil". Instagram: video slides. X: one 23s video.
+**Format:** 5 animated video slides, 1080x1440, real photos with text overlay (Inter + Dancing Script accent), music "Morning Soil". Instagram: video slides. X: one 23s video.
+**Photos (all CC0 / public domain, Wikimedia Commons):** NYSE flag by Balon Greyjoy (CC0); Manhattan skyline by Sushant Sakhalkar (CC0); office monitors by Jason Pack/FEMA (public domain); bank vault door 1967 by Aldo Moisio (public domain); hands with smartphone and coffee (CC0).
 **Recreated from:** @coingrams post (https://www.instagram.com/p/Dedjhe9H5I_/), a headline card shared by Sheetal on 14 Oct 2026. Our version drops the crypto framing, adds the ownership angle and the honest catch.
 **Patterns used:** News (2 days old) + named giant + one big number (~250x) + "the part nobody says" twist + share prompt. Sequel to the 13 Oct "Wall Street vault" post.
 **Sources:** Amy Oldenburg (Morgan Stanley, head of digital asset strategy), remarks on 12 Oct 2026: $3T to $10T in on-chain real-world assets by 2030; Morgan Stanley's Sept 2026 base case $2.3T; tokenized equities on its ATS moved to Q1 2027; private shares, structured notes and funds named as candidates. Market today ~$38.6B to $40B. Reported by Crypto Briefing, 12 Oct 2026 (https://cryptobriefing.com/morgan-stanley-tokenized-assets-10-trillion-2030/) and Cryptonomist (https://en.cryptonomist.ch/2026/10/12/tokenized-assets-market-forecast/).
