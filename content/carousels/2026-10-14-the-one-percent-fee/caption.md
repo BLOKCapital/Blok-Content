@@ -1,6 +1,6 @@
 # Caption: "Your fund's 1% fee isn't small" (carousel)
 
-**Format:** 5 slides, 1080x1440, minimal (carousel-maker rules), video slides with "Morning Soil" · **Status:** rendered, not posted
+**Format:** 5 slides, 1080x1440, minimal (carousel-maker rules), video slides with "Morning Soil" · **Status:** posted 14 Oct 13:25 UTC, https://www.instagram.com/p/DeefHPsD5__/
 **Post:** Wed 14 Oct 2026, ~13:30 UTC
 
 ## Caption

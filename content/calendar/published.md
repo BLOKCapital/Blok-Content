@@ -14,3 +14,6 @@
 | 2026-10-13 | Instagram Story (@blok.capital) | Cover of `2026-10-13-wall-street-vault` on 1080×1920 indigo | media id 18104139707341208 | Published ~11:14 UTC. Add a link sticker in-app. |
 | 2026-10-13 | X (@blok_cap) | Same carousel as a 23s video + source reply | [post](https://x.com/blok_cap/status/2109965892050108652) · [reply](https://x.com/blok_cap/status/2109965895523082449) | Published ~11:14 UTC. |
 | 2026-10-13 | X (@blok_cap) | Fee card post + calculator reply | [post](https://x.com/blok_cap/status/2110017570044608991) | Published 14:40 UTC by the X daily run. |
+| 2026-10-14 | Instagram (@blok.capital) | `content/carousels/2026-10-14-the-one-percent-fee/` (5 video slides) | [DeefHPsD5__](https://www.instagram.com/p/DeefHPsD5__/) · media id 17942360220363665 | Published 13:25 UTC by the daily run. CTA: DM FEE. |
+| 2026-10-14 | Instagram Story (@blok.capital) | Fee carousel cover on linen | media id 18114519554015985 | Published 13:27 UTC. Add a link sticker in-app. |
+| 2026-10-14 | Instagram Story (@blok.capital) | Growth receipt #2 (41 followers) | media id 18180511891438401 | Published 13:27 UTC. |
