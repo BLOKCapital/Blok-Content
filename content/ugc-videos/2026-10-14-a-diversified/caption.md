@@ -9,7 +9,7 @@
 
 Lots of us own three or four funds and feel spread out. But popular funds often hold the same giant companies at the top. Three fund names can mean one big bet.
 
-Try this tonight: pull up the top 10 holdings of each fund you own and lay them side by side. How many names repeat?
+Try this today: pull up the top 10 holdings of each fund you own and lay them side by side. How many names repeat?
 
 On-chain portfolios make this easier: every holding sits on a public record you can see live, so you know exactly what you own and where it overlaps.
 
@@ -25,4 +25,4 @@ Educational content only, not financial or investment advice. Diversification do
 
 3 funds. 3 names. Same giant companies at the top of all of them.
 
-Lay your funds' top 10 holdings side by side tonight. Count the repeats.
+Lay your funds' top 10 holdings side by side today. Count the repeats.
