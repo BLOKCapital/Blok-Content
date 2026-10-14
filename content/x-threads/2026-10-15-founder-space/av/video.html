@@ -1,0 +1,59 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=block');
+*{box-sizing:border-box;margin:0}
+body{width:1080px;height:1350px;background:#0A1430;color:#F6F3E8;font-family:Inter,sans-serif;overflow:hidden;position:relative}
+.glow{position:absolute;border-radius:50%;filter:blur(90px)}
+#g1{width:700px;height:700px;background:#004EBA;left:-200px;top:-150px;opacity:.55}
+#g2{width:600px;height:600px;background:#7ED116;right:-260px;bottom:-200px;opacity:.22}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(125,210,253,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(125,210,253,.06) 1px,transparent 1px);background-size:60px 60px}
+.wrap{position:absolute;inset:0;padding:90px 84px}
+#kick{display:flex;align-items:center;gap:18px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:30px;letter-spacing:.14em;color:#7DD2FD}
+#dot{width:22px;height:22px;border-radius:50%;background:#EC464D}
+#ring{position:absolute;left:84px;top:94px;width:22px;height:22px;border-radius:50%;border:3px solid #EC464D}
+#numbox{position:absolute;left:84px;top:210px}
+#lab1{font-size:32px;color:#A9B3C9;font-weight:500}
+#num{font-family:Fraunces,serif;font-weight:800;font-size:250px;line-height:1;letter-spacing:-.03em;color:#F6F3E8;font-variant-numeric:tabular-nums;margin-top:10px}
+#num.big{color:#7ED116}
+#lab2{font-size:30px;color:#A9B3C9;margin-top:8px}
+#lab2 b{color:#F6F3E8;font-weight:600}
+#bar{position:absolute;left:84px;top:640px;width:912px;height:14px;border-radius:7px;background:rgba(246,243,232,.12);overflow:hidden}
+#fill{height:100%;width:0;background:linear-gradient(90deg,#7DD2FD,#7ED116)}
+#q{position:absolute;left:84px;top:705px;width:920px;font-family:Fraunces,serif;font-weight:800;font-size:104px;line-height:1.0;letter-spacing:-.02em}
+#q em{font-style:normal;color:#7DD2FD}
+#card{position:absolute;left:84px;right:84px;bottom:90px;background:#F6F3E8;color:#16213A;border-radius:36px;padding:34px 40px;display:flex;align-items:center;gap:30px}
+#card img{width:150px;height:150px;border-radius:50%;border:5px solid #7ED116;object-fit:cover}
+.n1{font-family:Fraunces,serif;font-weight:800;font-size:50px;line-height:1.05}
+.n2{font-size:27px;color:#5D6578;margin-top:4px}
+.n3{margin-top:14px;display:inline-flex;gap:12px;align-items:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:25px;background:#004EBA;color:#F6F3E8;padding:10px 18px;border-radius:999px}
+.src{position:absolute;right:84px;top:600px;font-size:20px;color:#6E7891}
+</style></head><body>
+<div class="glow" id="g1"></div><div class="glow" id="g2"></div><div class="grid"></div>
+<div id="ring"></div>
+<div class="wrap">
+ <div id="kick"><span id="dot"></span>LIVE ON X · TOMORROW · 4 PM UTC</div>
+</div>
+<div id="numbox"><div id="lab1">Real-world assets on-chain</div><div id="num">$40B</div><div id="lab2"><span id="l2">today</span></div></div>
+<div class="src" id="src">Forecast: Morgan Stanley, 12 Oct 2026</div>
+<div id="bar"><div id="fill"></div></div>
+<div id="q">So what's <em>still missing?</em></div>
+<div id="card"><img src="sheetal.jpg"><div><div class="n1">0xSheetal</div><div class="n2">Founder, BLOK Capital · on @ShiftRWA's panel</div><div class="n3">THU 15 OCT · 4:00 PM UTC</div></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x)=>Math.max(0,Math.min(1,x)), ease=x=>1-Math.pow(1-cl(x),3), io=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+function fmt(v){return v>=1e12?'$'+(v/1e12<9.95?(v/1e12).toFixed(1):Math.round(v/1e12))+'T':'$'+Math.round(v/1e9)+'B'}
+window.render=function(t){
+ const k=ease(t/0.6); $('kick').style.opacity=k; $('kick').style.transform=`translateY(${(1-k)*-20}px)`;
+ const p=(t*1.2)%1; $('ring').style.transform=`scale(${1+p*1.1})`; $('ring').style.opacity=(1-p)*k;
+ const a=ease((t-0.3)/0.6); $('numbox').style.opacity=a; $('numbox').style.transform=`translateY(${(1-a)*40}px)`;
+ const c=io((t-1.4)/2.0); const v=Math.exp(Math.log(40e9)+(Math.log(10e12)-Math.log(40e9))*c);
+ let s=fmt(v); if(c>=1)s='$10T'; $('num').textContent=s; $('num').className=c>=1?'big':'';
+ $('l2').innerHTML=c<0.02?'<b>today</b>':(c>=1?'by 2030, <b>Morgan Stanley\'s high case</b>':'by 2030 …');
+ $('fill').style.width=(0.4+99.6*c)+'%'; $('bar').style.opacity=a;
+ $('src').style.opacity=ease((t-3.4)/0.5);
+ const pop=t>3.4&&t<3.8?1+0.06*Math.sin((t-3.4)/0.4*Math.PI):1; $('num').style.transform=`scale(${pop})`; $('num').style.transformOrigin='left center';
+ const q=ease((t-3.9)/0.7); $('q').style.opacity=q; $('q').style.transform=`translateY(${(1-q)*50}px)`;
+ const d=ease((t-5.0)/0.7); $('card').style.opacity=d; $('card').style.transform=`translateY(${(1-d)*80}px)`;
+}
+render(0);
+</script></body></html>
