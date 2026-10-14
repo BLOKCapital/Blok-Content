@@ -5,7 +5,7 @@ Reviewed render (14 Oct, 23:14 UTC): 5 video slides, 1080x1440, 6s each with mus
 
 ## Build the files (mechanical, about 2 minutes, Composio workbench)
 ```
-B=https://raw.githubusercontent.com/BLOKCapital/Blok-Content/<this commit>/content/carousels/2026-10-15-three-money-myths
+B=https://raw.githubusercontent.com/BLOKCapital/Blok-Content/9c9d7bdef672d27b80ef70e8a28f6a7a8fb783ae/content/carousels/2026-10-15-three-money-myths
 mkdir -p /home/user/myths/ov && cd /home/user/myths
 for f in composite.sh fetch-photos.sh music.m4a; do curl -sfL $B/$f -o $f; done
 for i in 1 2 3 4 5; do curl -sfL $B/overlays/o$i.png -o ov/o$i.png; done
