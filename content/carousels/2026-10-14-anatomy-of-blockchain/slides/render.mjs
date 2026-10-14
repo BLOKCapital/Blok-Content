@@ -13,6 +13,9 @@ const [music, outDir] = process.argv.slice(2);
 const only = Number((process.argv.find((a) => a.startsWith("--only=")) || "=0").split("=")[1]);
 const stillsOnly = process.argv.includes("--stills");
 const FPS = 30, SECS = 6;
+// --reel: one 9:16 video (1080x1920), the same scenes inside Instagram's safe area, no slide numbers or swipe prompts
+const REEL = process.argv.includes("--reel");
+const H = REEL ? 1920 : 1440;
 const fig = JSON.parse(readFileSync(join(HERE, "../figure/ledger-figure.json"), "utf8"));
 const script = readFileSync(join(HERE, "dancing-script-latin-700-normal.woff2")).toString("base64");
 
@@ -28,7 +31,7 @@ const SLIDES = [
 const css = `
 @font-face{font-family:"Dancing Script";src:url(data:font/woff2;base64,${script}) format("woff2");font-weight:700}
 *{box-sizing:border-box;margin:0}
-html,body{width:1080px;height:1440px;overflow:hidden;background:#F6F3E8}
+html,body{width:1080px;height:${H}px;overflow:hidden;background:#F6F3E8}
 body{font-family:Inter,sans-serif;color:#0B1B2B;-webkit-font-smoothing:antialiased}
 .frame{position:absolute;inset:0;padding:72px 80px}
 .kicker{position:absolute;left:80px;top:72px;font-weight:600;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:#004EBA}
@@ -47,10 +50,12 @@ h1 em{font-family:"Dancing Script";font-style:normal;font-weight:700;font-size:1
 .cta{position:absolute;right:80px;bottom:60px;background:#004EBA;color:#fff;font-weight:700;font-size:26px;padding:16px 28px;border-radius:999px}
 .disc{position:absolute;left:80px;bottom:132px;width:920px;font-size:18px;line-height:1.4;color:#7d8794}
 .iso-plate-corner{display:none}
+${REEL ? `.frame{top:210px;bottom:auto;height:1440px}.marker,.next,.handle{display:none}.cta{left:80px;right:auto}` : ""}
 `;
 
 function page(i) {
-  const s = SLIDES[i];
+  const s = { ...SLIDES[i] };
+  if (REEL) { s.kicker = s.kicker.replace(/^Part \d+ · /, ""); s.sub = s.sub.replace("Swipe to open it up.", "Watch it work."); }
   const subTop = 136 + s.lines * 82 + 34;
   const foot = s.cta
     ? `<div class="disc">Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.</div><div class="handle">Follow @blok.capital</div><div class="cta">Follow for plain-English money lessons</div>`
@@ -86,7 +91,7 @@ for (let i = 0; i < SLIDES.length; i++) {
   if (only && only !== i + 1) continue;
   const html = join(outDir, `.slide-${i + 1}.html`);
   writeFileSync(html, page(i));
-  const pg = await browser.newPage({ viewport: { width: 1080, height: 1440 }, deviceScaleFactor: 1 });
+  const pg = await browser.newPage({ viewport: { width: 1080, height: H }, deviceScaleFactor: 1 });
   pg.on("pageerror", (e) => console.error("page error", e));
   await pg.goto(pathToFileURL(html).href);
   await pg.waitForFunction(() => window.ready);
