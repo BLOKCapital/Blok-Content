@@ -1,0 +1,4 @@
+# Part A (clip A, 0-13.5s)
+Quick money lesson Say your portfolio is sixty-forty Sixty stocks forty bonds Then stocks have a great year and suddenly you're seventy-five twenty-five That's more risk And you never chose it
+# Part B (clip B, 13.5-28.5s)
+Fixing that is called rebalancing You trim what grew top up what fell behind and you're back to sixty-forty Most people just never do it On-chain portfolios can do it automatically on rules anyone can check

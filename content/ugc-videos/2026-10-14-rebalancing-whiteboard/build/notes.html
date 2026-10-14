@@ -1,0 +1,139 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Hand; src: url(fonts/Caveat.woff2) format('woff2'); font-weight: 400 700; }
+html, body { margin: 0; width: 1080px; height: 1920px; background: transparent; overflow: hidden; }
+svg { position: absolute; inset: 0; }
+text { font-family: Hand; fill: #fff; font-weight: 600; }
+.ink { stroke: #fff; stroke-width: 5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.lime { stroke: #9BE33A; }
+text.limet { fill: #9BE33A; }
+#all { filter: drop-shadow(0 2px 2px rgba(0,0,0,.45)) drop-shadow(0 0 6px rgba(0,0,0,.18)); }
+</style></head>
+<body>
+<svg id="svg" width="1080" height="1920" viewBox="0 0 1080 1920"><defs id="defs"></defs><g id="all"></g></svg>
+<script>
+// Handwritten notes overlay, drawn in sync with the voiceover.
+// Part A plays 0..OB, part B starts at OB (seconds). Word times come from a.json / b.json (edge-tts).
+const OB = 13.5;
+window.DURATION = OB + 15;
+const NS = 'http://www.w3.org/2000/svg';
+const all = document.getElementById('all'), defs = document.getElementById('defs');
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const j = (a) => (rnd() - 0.5) * 2 * a;
+const items = [];
+function group(board) { const g = document.createElementNS(NS, 'g'); g.dataset.board = board; all.appendChild(g); return g; }
+const boardA = group('A'), boardB = group('B'), boardEnd = group('E');
+
+// text written left-to-right: clip rect grows with progress
+function write(g, t, x, y, str, size, opts = {}) {
+  const el = document.createElementNS(NS, 'text');
+  el.setAttribute('x', x); el.setAttribute('y', y); el.setAttribute('font-size', size);
+  if (opts.weight) el.setAttribute('font-weight', opts.weight);
+  if (opts.cls) el.setAttribute('class', opts.cls);
+  el.setAttribute('transform', `rotate(${opts.rot ?? j(1.2)} ${x} ${y})`);
+  el.textContent = str;
+  const id = 'c' + items.length;
+  const cp = document.createElementNS(NS, 'clipPath'); cp.id = id;
+  const r = document.createElementNS(NS, 'rect'); cp.appendChild(r); defs.appendChild(cp);
+  el.setAttribute('clip-path', `url(#${id})`);
+  g.appendChild(el);
+  const dur = opts.dur ?? Math.max(0.35, str.length * 0.045);
+  items.push({ t, dur, kind: 'text', el, r, x, y, size });
+}
+// stroke path drawn with dash offset
+function stroke(g, t, d, opts = {}) {
+  const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d);
+  p.setAttribute('class', 'ink' + (opts.cls ? ' ' + opts.cls : ''));
+  if (opts.w) p.setAttribute('stroke-width', opts.w);
+  g.appendChild(p);
+  items.push({ t, dur: opts.dur ?? 0.4, kind: 'path', el: p });
+}
+function line(x1, y1, x2, y2, wob = 3) {
+  const mx = (x1 + x2) / 2 + j(wob), my = (y1 + y2) / 2 + j(wob);
+  return `M${x1 + j(1)} ${y1 + j(1)} Q${mx} ${my} ${x2 + j(1)} ${y2 + j(1)}`;
+}
+function circle(cx, cy, r, rx2 = 1, start = -100) { // hand-drawn loop that overshoots its start a little
+  let d = '', n = 40;
+  for (let i = 0; i <= n + 4; i++) {
+    const a = (start + i * 360 / n) * Math.PI / 180, rr = r * (1 + j(0.03)) * (1 + i * 0.002);
+    d += (i ? 'L' : 'M') + (cx + Math.cos(a) * rr * rx2).toFixed(1) + ' ' + (cy + Math.sin(a) * rr).toFixed(1) + ' ';
+  }
+  return d;
+}
+function arrowHead(x, y, ang, s = 22) {
+  const a1 = ang + 2.6, a2 = ang - 2.6;
+  return `M${x + Math.cos(a1) * s} ${y + Math.sin(a1) * s} L${x} ${y} L${x + Math.cos(a2) * s} ${y + Math.sin(a2) * s}`;
+}
+const opts_hatch = false;
+function pie(g, t, cx, cy, r, frac, labelBig, labelSmall) {
+  stroke(g, t, circle(cx, cy, r), { dur: 0.55 });
+  const a = (-90 + frac * 360) * Math.PI / 180;
+  stroke(g, t + 0.45, line(cx, cy, cx, cy - r, 1) + ' ' + line(cx, cy, cx + Math.cos(a) * r, cy + Math.sin(a) * r, 1), { dur: 0.3 });
+  // hatch the stocks slice lightly
+  let h = '';
+  for (let k = 0.12; k < frac - 0.04; k += 0.07) {
+    const b = (-90 + k * 360) * Math.PI / 180;
+    h += line(cx + Math.cos(b) * r * 0.35, cy + Math.sin(b) * r * 0.35, cx + Math.cos(b) * r * 0.82, cy + Math.sin(b) * r * 0.82, 1) + ' ';
+  }
+  if (opts_hatch) stroke(g, t + 0.7, h, { dur: 0.45, w: 3 });
+}
+
+// ---------- Part A: the drift ----------
+write(boardA, 1.3, 64, 205, 'your portfolio:', 70);
+pie(boardA, 2.55, 155, 430, 88, 0.6);
+write(boardA, 2.7, 280, 455, '60 / 40', 84, { weight: 700 });
+write(boardA, 3.84, 280, 522, 'stocks / bonds', 48);
+stroke(boardA, 6.1, `M70 820 L120 770 L150 800 L215 715 L245 745 L300 660`, { dur: 0.5 });
+stroke(boardA, 6.55, arrowHead(300, 660, Math.atan2(-85, 55)), { dur: 0.15 });
+write(boardA, 6.7, 320, 720, 'great year!', 62);
+pie(boardA, 8.9, 155, 960, 88, 0.75);
+write(boardA, 9.0, 280, 985, '75 / 25', 84, { weight: 700 });
+write(boardA, 11.15, 60, 1170, '= MORE RISK', 80, { weight: 700, dur: 0.55 });
+stroke(boardA, 11.6, line(60, 1192, 470, 1186, 4), { dur: 0.3 });
+write(boardA, 12.35, 70, 1260, "(you never chose it)", 54, { dur: 0.7 });
+
+// ---------- Part B: the fix ----------
+const b = (s) => OB + s;
+write(boardB, b(0.25), 60, 215, 'REBALANCING', 104, { weight: 700, dur: 0.9, rot: -1.5 });
+stroke(boardB, b(1.35), line(60, 245, 600, 232, 4) + ' ' + line(80, 268, 560, 258, 4), { dur: 0.45 });
+write(boardB, b(2.55), 60, 420, '− trim what grew', 64);
+write(boardB, b(3.75), 60, 505, '+ top up what', 64);
+write(boardB, b(4.4), 100, 568, 'fell behind', 64);
+stroke(boardB, b(5.4), line(150, 600, 150, 680, 2) + ' ' + arrowHead(150, 680, Math.PI / 2), { dur: 0.3 });
+write(boardB, b(5.65), 60, 765, 'back to 60 / 40', 70, { weight: 700 });
+stroke(boardB, b(6.4), `M505 735 L528 762 L580 690`, { cls: 'lime', w: 7, dur: 0.3 });
+write(boardB, b(7.25), 90, 900, 'most people:', 58);
+write(boardB, b(8.35), 110, 965, 'never do it', 58);
+stroke(boardB, b(8.9), circle(232, 932, 82, 2.4, -170), { dur: 0.45, w: 4 });
+// star
+const star = (cx, cy, R) => { let d = ''; for (let i = 0; i <= 5; i++) { const a = (-90 + i * 144) * Math.PI / 180; d += (i ? 'L' : 'M') + (cx + Math.cos(a) * R + j(2)) + ' ' + (cy + Math.sin(a) * R + j(2)) + ' '; } return d; };
+stroke(boardB, b(9.5), star(85, 1100, 30), { cls: 'lime', w: 5, dur: 0.35 });
+write(boardB, b(9.6), 130, 1118, 'on-chain:', 70, { weight: 700 });
+write(boardB, b(11.25), 130, 1190, 'automatic', 70, { weight: 700 });
+stroke(boardB, b(11.9), line(130, 1206, 400, 1200, 3), { cls: 'lime', w: 6, dur: 0.25 });
+write(boardB, b(12.3), 130, 1268, '+ rules anyone', 56);
+write(boardB, b(12.9), 160, 1325, 'can check', 56);
+// small honest footnote at the very end
+write(boardEnd, b(13.9), 280, 1725, 'AI-generated · educational only, not financial advice', 30, { dur: 0.5, rot: 0 });
+
+// measure text after fonts load
+window.ready = document.fonts.ready.then(() => {
+  for (const it of items) if (it.kind === 'text') {
+    const bb = it.el.getBBox(); it.bb = bb;
+    it.r.setAttribute('x', bb.x - 10); it.r.setAttribute('y', bb.y - 20); it.r.setAttribute('height', bb.height + 40);
+  } else { it.len = it.el.getTotalLength(); it.el.style.strokeDasharray = it.len; }
+});
+const ease = (p) => 1 - Math.pow(1 - p, 1.6);
+window.draw = (t) => {
+  for (const it of items) {
+    const p = Math.min(1, Math.max(0, (t - it.t) / it.dur)), e = ease(p);
+    if (it.kind === 'text') it.r.setAttribute('width', p <= 0 ? 0 : (it.bb.width + 20) * e);
+    else it.el.style.strokeDashoffset = it.len * (1 - e);
+  }
+  // board A wipes away as part B begins
+  const fa = Math.min(1, Math.max(0, (t - (OB - 0.25)) / 0.35));
+  boardA.style.opacity = 1 - fa;
+};
+</script>
+</body></html>

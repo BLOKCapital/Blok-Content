@@ -132,3 +132,11 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 ## 8. Permissions (so nothing prompts)
 In the session's mode dropdown pick **Auto**. For per-command rules, the user pastes
 `docs/permissions-allowlist.json` into `.claude/settings.json` (Claude isn't allowed to edit that file itself).
+
+## 9b. Whiteboard teaching UGC (learned 2026-10-14)
+Presenter talks to camera while handwritten notes appear beside him. Worked example:
+`content/ugc-videos/2026-10-14-rebalancing-whiteboard/` (45.25 credits total).
+- Still: Higgsfield `gpt_image_2_5` 9:16 (0.25 credits). Ask for the person on the right half and an empty mid-grey wall on the left.
+- Voice: edge-tts Andrew in the Composio workbench, split into two halves under 15s each (word timings in `a.json`/`b.json`).
+- Lip sync: Higgsfield `wan2_7`, 15s, 720p, `start_image` + `audio_references` = 22.5 credits per clip. Its output audio is our voice, sample-aligned. Upload audio as mp3 via `media_upload` and PUT from the Composio workbench (`If-None-Match: *` header). Decline the unrelated preset suggestion with `declined_preset_id`.
+- Notes: `build/notes.html` (SVG write-on, Caveat font) rendered to a transparent qtrle `.mov` by `build/render-notes.mjs`, then overlaid with ffmpeg.
