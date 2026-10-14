@@ -185,7 +185,7 @@ Project skills in `.claude/skills/` (invoke with `/skill-name`):
 - `ugc-video` — UGC briefs, hooks, scripts, shot lists, creator briefs, AI-avatar prompts.
 - `short-form-video` — faceless/explainer Reels & TikToks, captions, b-roll lists.
 - `instagram-reel` — finished Reels with AI voiceover + motion graphics, no filming (playbook section 5).
-- `x-thread` — X posts and threads in BLOK voice.
+- `x-thread` — X posts and threads in BLOK voice. Always follows `growth/x/x-algorithm-playbook.md` (how X ranks posts).
 - `composio-publish` — publish/schedule via Composio (Instagram, X, LinkedIn, etc.).
 
 Recommended marketplace plugins (install from the Claude plugin directory):
