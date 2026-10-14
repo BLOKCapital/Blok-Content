@@ -1,0 +1,142 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--linen:#F6F3E8;--indigo:#004EBA;--lime:#7ED116;--sky:#7DD2FD;--coral:#EC464D;--earth:#844947;--ink:#0B1B2B}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1440px;overflow:hidden;background:#000}
+.slide{position:absolute;inset:0;width:1080px;height:1440px;padding:96px 96px 0;display:none;flex-direction:column;font-family:Inter,sans-serif}
+.slide.on{display:flex}
+.indigo{background:var(--indigo);color:#fff}.linen{background:var(--linen);color:var(--ink)}
+.top{display:flex;justify-content:space-between;align-items:center;font:800 26px Montserrat;letter-spacing:.16em;text-transform:uppercase}
+.indigo .top{color:var(--sky)}.linen .top{color:var(--earth)}
+.top .pg{font:500 26px 'JetBrains Mono';letter-spacing:.04em}
+.indigo .pg{color:#fff}.linen .pg{color:var(--ink)}
+.rule{width:120px;height:12px;border-radius:6px;margin:0 0 44px}
+.indigo .rule{background:var(--lime)}.linen .rule{background:var(--indigo)}
+h1{font:900 92px/1.03 Montserrat;letter-spacing:-.01em}
+.linen h1{color:var(--indigo)}
+h2{font:900 70px/1.06 Montserrat;letter-spacing:-.01em}
+.linen h2{color:var(--indigo)}
+.hl{background:linear-gradient(transparent 60%,var(--lime) 60%);color:inherit}
+.indigo .hl{background:none;color:var(--lime)}
+.sub{font:500 40px/1.35 Inter;margin-top:34px;max-width:860px}
+.indigo .sub{color:#CFE6FF}
+.body{font:400 34px/1.45 Inter;margin-top:30px;max-width:870px;color:#3b3a36}
+.foot{margin-top:auto;border-top:2px solid rgba(11,27,43,.12);display:flex;justify-content:space-between;align-items:center;padding:30px 0 50px}
+.indigo .foot{border-color:rgba(255,255,255,.18)}
+.foot img{height:62px;border-radius:12px;background:var(--linen);padding:10px 14px}
+.foot .nx{font:800 32px Montserrat}
+.indigo .nx{color:#fff}.linen .nx{color:var(--indigo)}
+.src{font:500 20px 'JetBrains Mono';color:#6d6a62;max-width:520px;line-height:1.35}
+/* slide 1 */
+.breaking{display:flex;align-items:center;gap:18px;font:800 30px Montserrat;letter-spacing:.14em;color:#fff;background:var(--coral);align-self:flex-start;padding:14px 26px;border-radius:999px;margin:150px 0 50px}
+.dot{width:20px;height:20px;border-radius:50%;background:#fff}
+.ticker{position:absolute;left:0;right:0;bottom:178px;height:76px;background:var(--linen);overflow:hidden;display:flex;align-items:center}
+.ticker .tape{white-space:nowrap;font:700 30px 'JetBrains Mono';color:var(--ink);letter-spacing:.04em}
+.ticker .tape b{color:var(--coral)}
+/* slide 2 */
+.big{font:900 260px/0.95 Montserrat;color:var(--indigo);letter-spacing:-.03em;margin:70px 0 10px;font-variant-numeric:tabular-nums}
+.bigcap{font:600 30px 'JetBrains Mono';color:var(--earth);letter-spacing:.06em;text-transform:uppercase;margin-bottom:60px}
+/* slide 3 receipt */
+.rcpt{margin-top:56px;background:#fff;border:2px solid rgba(11,27,43,.1);border-radius:22px;padding:40px 44px;font-family:'JetBrains Mono';box-shadow:0 18px 40px rgba(0,78,186,.08)}
+.rcpt .hd{font:700 26px 'JetBrains Mono';letter-spacing:.12em;color:var(--earth);padding-bottom:22px;border-bottom:3px dashed rgba(11,27,43,.18)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;border-bottom:3px dashed rgba(11,27,43,.18);font:500 34px 'JetBrains Mono';color:var(--ink)}
+.row:last-child{border-bottom:0}
+.tick{width:58px;height:58px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font:900 34px Montserrat;color:var(--ink);flex:none}
+/* slide 4 split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:56px}
+.card{border-radius:22px;padding:36px 34px;min-height:380px;display:flex;flex-direction:column;gap:18px}
+.card .lb{font:800 24px Montserrat;letter-spacing:.14em;text-transform:uppercase}
+.card .tx{font:800 46px/1.12 Montserrat}
+.card .ic{font:500 24px 'JetBrains Mono';margin-top:auto;line-height:1.45}
+.then{background:#E7E1CF;color:#5B5A55}.then .lb{color:var(--earth)}
+.now{background:var(--indigo);color:#fff}.now .lb{color:var(--sky)}.now .ic{color:#CFE6FF}
+.catch{margin-top:40px;font:500 32px/1.45 Inter;color:#3b3a36;max-width:880px}
+.catch b{color:var(--ink)}
+/* slide 5 */
+.btn{display:inline-flex;align-self:flex-start;background:var(--coral);color:#fff;font:800 40px Montserrat;padding:28px 46px;border-radius:999px;margin-top:56px}
+.disc{font:400 21px/1.4 Inter;color:#CFE6FF;margin-top:auto;padding-top:40px;max-width:880px}
+.share{margin-top:40px;font:600 34px/1.4 Inter;color:#fff;border-left:8px solid var(--lime);padding-left:26px;max-width:860px}
+</style></head>
+<body>
+
+<section class="slide indigo" id="s1">
+  <div class="top"><span>BLOK Capital · Explained</span><span class="pg">01 / 05</span></div>
+  <div class="breaking"><span class="dot"></span>WALL STREET FORECAST</div>
+  <h1>Morgan Stanley: up to <span class="hl">$10 trillion</span> of stocks, bonds and funds could live on-chain by 2030.</h1>
+  <div class="sub">Not a side bet. The same things already in your portfolio.</div>
+  <div class="ticker"><div class="tape" id="tape"></div></div>
+  <div class="foot"><img class="logo" alt=""><span class="nx">Swipe →</span></div>
+</section>
+
+<section class="slide linen" id="s2">
+  <div class="top"><span>Point 1 · The number</span><span class="pg">02 / 05</span></div>
+  <div class="big" id="count">$10T</div>
+  <div class="bigcap">by 2030, top of the range · about $40B today</div>
+  <div class="rule"></div>
+  <h2>That's roughly <span class="hl">250 times bigger</span> in about four years.</h2>
+  <div class="body">Morgan Stanley's head of digital asset strategy, Amy Oldenburg, gave a $3T to $10T range on 12 Oct 2026. The bank's own base case, published a month earlier, was $2.3T.</div>
+  <div class="foot"><span class="src">Source: Morgan Stanley remarks, 12 Oct 2026; Sept 2026 forecast</span><span class="nx">Next →</span></div>
+</section>
+
+<section class="slide linen" id="s3">
+  <div class="top"><span>Point 2 · Why banks care</span><span class="pg">03 / 05</span></div>
+  <div class="rule" style="margin-top:110px"></div>
+  <h2>Same assets. <span class="hl">Better plumbing.</span></h2>
+  <div class="rcpt">
+    <div class="hd">WHAT ON-CHAIN RECORDS PROMISE</div>
+    <div class="row r"><span>Less paperwork</span><span class="tick">✓</span></div>
+    <div class="row r"><span>Simpler, faster transfers</span><span class="tick">✓</span></div>
+    <div class="row r"><span>Easier to borrow against</span><span class="tick">✓</span></div>
+  </div>
+  <div class="body" style="font-size:30px">First in line, she said: private shares, structured notes and investment funds. Morgan Stanley plans to support trading of on-chain shares from Q1 2027.</div>
+  <div class="foot"><span class="src">Source: Morgan Stanley remarks, 12 Oct 2026</span><span class="nx">Next →</span></div>
+</section>
+
+<section class="slide linen" id="s4">
+  <div class="top"><span>Point 3 · The part nobody says</span><span class="pg">04 / 05</span></div>
+  <div class="rule" style="margin-top:110px"></div>
+  <h2>On-chain doesn't automatically mean <span class="hl">yours.</span></h2>
+  <div class="split">
+    <div class="card then"><span class="lb">Held for you</span><span class="tx">A firm keeps the record. You get a statement.</span><span class="ic">new rails · same middlemen</span></div>
+    <div class="card now"><span class="lb">Held by you</span><span class="tx">An account only you control. You check it yourself.</span><span class="ic">new rails · your name on it</span></div>
+  </div>
+  <div class="catch"><b>The catch:</b> it's a forecast, not a promise. Even the bank's base case is far lower, and on-chain assets can still swing in price.</div>
+  <div class="foot"><span class="src"></span><span class="nx">Next →</span></div>
+</section>
+
+<section class="slide indigo" id="s5">
+  <div class="top"><span>Your move</span><span class="pg">05 / 05</span></div>
+  <div class="rule" style="margin-top:110px"></div>
+  <h1 style="font-size:84px">The question isn't <span class="hl">if</span> your money moves on-chain. It's who holds it when it does.</h1>
+  <div class="share">Send this to the friend who still thinks this is a fad.</div>
+  <div class="btn">Follow @blok.capital</div>
+  <div class="disc">Educational content only, not financial or investment advice. Forecasts are uncertain. On-chain assets can be volatile and you can lose money.</div>
+  <div class="foot"><img class="logo" alt=""><span class="nx">Save it ↓</span></div>
+</section>
+
+<script>
+const SLIDE=4.6, N=5;
+const tapeTxt=' <b>●</b> $3T TO $10T BY 2030 <b>●</b> STOCKS <b>●</b> BONDS <b>●</b> TREASURIES <b>●</b> INVESTMENT FUNDS <b>●</b> MORGAN STANLEY, 12 OCT 2026 ';
+document.getElementById('tape').innerHTML=tapeTxt.repeat(4);
+window.setLogo=src=>document.querySelectorAll('.logo').forEach(i=>i.src=src);
+const ease=x=>1-Math.pow(1-Math.min(1,Math.max(0,x)),3);
+// static=true renders the final resting state of slide i
+window.draw=function(t,staticSlide){
+  const i=staticSlide!=null?staticSlide:Math.min(N-1,Math.floor(t/SLIDE));
+  const lt=staticSlide!=null?99:t-i*SLIDE;
+  document.querySelectorAll('.slide').forEach((s,k)=>s.classList.toggle('on',k===i));
+  const s=document.querySelectorAll('.slide')[i];
+  // entrance: headline + body slide up
+  s.querySelectorAll('h1,h2,.sub,.body,.big,.bigcap,.rcpt,.split,.catch,.share,.btn,.breaking').forEach((el,k)=>{
+    const p=ease((lt-0.08*k)/0.55);el.style.opacity=p;el.style.transform=`translateY(${(1-p)*40}px)`});
+  if(i===0){document.querySelector('.dot').style.opacity=staticSlide!=null?1:(0.35+0.65*Math.abs(Math.sin(lt*3.2)));
+    document.getElementById('tape').style.transform=`translateX(${-(staticSlide!=null?0:lt*120)}px)`}
+  if(i===1){const p=ease((lt-0.2)/1.6);document.getElementById('count').textContent='$'+(p<1?(10*p).toFixed(1):'10')+'T'}
+  if(i===2){document.querySelectorAll('.r').forEach((r,k)=>{const p=ease((lt-0.9-0.45*k)/0.35);r.querySelector('.tick').style.transform=`scale(${p})`;r.style.opacity=0.25+0.75*p})}
+  if(i===3){const p=ease((lt-1.2)/0.5);document.querySelector('.now').style.transform=`translateY(${(1-p)*30}px)`;document.querySelector('.now').style.opacity=p}
+};
+window.TOTAL=SLIDE*N;
+</script>
+</body></html>
