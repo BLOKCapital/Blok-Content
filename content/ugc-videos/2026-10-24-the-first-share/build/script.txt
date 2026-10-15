@@ -1,0 +1,22 @@
+Shh. Watch the clerk's pen.|0.45
+It's August 1602. Amsterdam.|0.2
+And he's writing down the first shares anyone could buy.|0.7
+Okay. Simple version.|0.35
+A company needs money for ships. You chip in.|0.25
+Now you own a tiny piece of it. That's a share.|0.3
+But you don't get a certificate.|0.25
+You get a line in their book. Your name, your amount.|0.5
+By the last night, eleven hundred and forty-three people had signed, in Amsterdam alone.|0.25
+Almost three point seven million guilders.|0.6
+Want to sell? A director watches the clerk move your line to someone else.|0.5
+The oldest receipt ever found? 1606.|0.2
+A city messenger. A hundred and fifty guilders.|0.6
+Four hundred years on, owning a fund still works like this.|0.3
+Your units are a line in someone else's records. Mostly, that's fine.|0.6
+So here's the idea.|0.4
+What if the book was public, for anyone to read?|0.3
+And only you could sign your line?|0.4
+That's an on-chain portfolio.|0.6
+It's newer. Prices can swing. So start small, and learn first.|0.6
+But the idea is four hundred years old.|0.35
+Your name was always in the book. You just never held the pen.|1.2
