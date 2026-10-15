@@ -16,7 +16,7 @@ X base slots from here on (from @blok_cap analytics, 14 posts so far): **morning
 | When (UTC) | IST | Piece | Task | Status |
 |---|---|---|---|---|
 | 2026-10-15 04:45 | 10:15 | Build myths files (safety net, only if not built yet) | `trig_01MgvBj712aRYZFbjW5L4Z7z` | done 05:03 UTC, s3keys in ready.md |
-| 2026-10-15 06:00 | 11:30 | X morning: "3 money myths" full.mp4 | `trig_01AHkJEXEQRVY4bJ5fGCXaMH` | scheduled |
+| 2026-10-15 06:00 | 11:30 | X morning: "3 money myths" full.mp4 | `trig_01AHkJEXEQRVY4bJ5fGCXaMH` | posted https://x.com/blok_cap/status/2110612037755703500 (06:01 UTC) |
 | 2026-10-15 12:15 | 17:45 | X afternoon: "investing for dummies" (other thread) | `trig_01QnpRYHhk9pv31Ffhsa1N3b` | scheduled |
 | 2026-10-15 13:22 | 18:52 | IG carousel: `content/carousels/2026-10-15-three-money-myths/` + Story | IG growth daily (`trig_01WVnDVdmr2H5L7YykPCWj9s`) | scheduled |
 | 2026-10-15 14:30 | 20:00 | X night: diversified video (other thread) | `trig_01SDrFusVpgYyx1nBtuXM6po` | scheduled |
