@@ -7,6 +7,8 @@ description: Write X (Twitter) posts, threads, replies and Farcaster casts in BL
 
 0. **Read `growth/x/x-algorithm-playbook.md` first** and run its checklist: write for copy-link shares, replies,
    quotes and DM shares (likes barely count); no tagging strangers or clickbait; images must carry information.
+   Then **write it the way `growth/x/tweet-style-guide.md` says**: lowercase, one thought per line, a hook type from its
+   table, and an ending that gives people a reason to reply. Run its 30-second check before showing a draft.
 1. Load `blok-brand` context. Account: @blok_cap. X audience skews crypto-native, so less glossing, same anti-hype.
 2. Folder: `content/x-threads/YYYY-MM-DD-<slug>.md`.
 3. **Single post:** ≤280 chars, one idea, no hashtag spam (0–1), 0–1 emoji. Give 3 variants.
