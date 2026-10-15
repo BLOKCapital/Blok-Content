@@ -47,3 +47,14 @@ sources: jason zweig (2016) · morningstar us fund assets, end-2023
 
 not financial advice, crypto is volatile
 <!-- XR END -->
+
+## Media & schedule
+- Reel: https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/fe79d9cf-a8ff-4015-bc4b-fb14bf7882f6.mp4
+- Cover: https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/dbbd9c59-2aac-4135-8c81-08b6e1e38a0c.jpg
+- X images, in order:
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/a388f647-1635-469e-8b92-44b975631489.jpg
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/1883f9e5-c1df-4c0c-a326-c9ce3ec3ed41.jpg
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/fbfcaadb-268c-4224-9e64-ede733b8dbc0.jpg
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/6260ec79-b953-4f42-9e15-da3b1989c0d7.jpg
+- Scheduled: Instagram Fri 16 Oct 04:30 UTC (scheduled task trig_016AZ4RusPCCNy74gfcBGSot) · X Fri 16 Oct 12:15 UTC (trig_014nL7YGZZ1Pqgu8HxDShBem)
+- Status: scheduled, not posted yet

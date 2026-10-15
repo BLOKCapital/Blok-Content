@@ -62,4 +62,7 @@ up custody or control.**
 ## Pieces built on this thesis
 | Date | Piece | Angle |
 |---|---|---|
-| 16–18 Oct 2026 | `content/2026-10-17-buffett-index-collage/` (4 collage Reels + 4 X posts) | Bogle's folly 1976; Buttonwood 1792; know-nothing investor 1993; first index fund had one client 1971 |
+| 16 Oct 2026 | "they called it un-American" Reel + X post (`content/short-form/buffett-index/bogles-folly/`) | Bogle's folly, 1976: ridiculed, then won |
+| 16–17 Oct 2026 | "24 men and a tree" Reel + X post (`content/short-form/buffett-index/buttonwood-tree/`) | Buttonwood 1792: a fixed-fee middleman deal that lasted 183 years |
+| 17 Oct 2026 | "the know-nothing investor" Reel + X post (`content/short-form/buffett-index/know-nothing-investor/`) | Buffett's 1993 letter + SPIVA 9 in 10 |
+| 17–18 Oct 2026 | "the first index fund had one customer" Reel + X post (`content/short-form/buffett-index/one-customer/`) | 1971 Wells Fargo/Samsonite: new ideas start with institutions, then reach everyone (X: tokenized RWAs) |

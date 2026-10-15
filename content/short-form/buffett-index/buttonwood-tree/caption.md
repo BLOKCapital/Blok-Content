@@ -53,3 +53,14 @@ sources: buttonwood agreement 1792 · sec may day 1975
 
 not financial advice, crypto is volatile
 <!-- XR END -->
+
+## Media & schedule
+- Reel: https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/8066cac1-2dc3-496d-bf89-b87abec48da0.mp4
+- Cover: https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/d4d1ea43-704a-4518-82af-c7d2a377bf91.jpg
+- X images, in order:
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/c1b2bd24-70f2-45bf-ba7c-d01d059f4864.jpg
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/1e59e9c4-3cf5-4e92-bcec-7325fdd0808f.jpg
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/3652abbc-4635-43e9-8c98-74ff390b2b03.jpg
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/61f71b72-27b9-4957-94a4-38013e5f1a3e.jpg
+- Scheduled: Instagram Sat 17 Oct 04:30 UTC (trig_019RLfKmJT7bCEnTWgsZcTya) · X Fri 16 Oct 14:30 UTC (trig_01CZqHRafoqqmwAUeDvf2gNJ)
+- Status: scheduled, not posted yet

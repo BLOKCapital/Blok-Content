@@ -50,3 +50,13 @@ wells fargo built the 1971 portfolio for samsonite's pension. source: jason zwei
 
 not financial advice, crypto is volatile
 <!-- XR END -->
+
+## Media & schedule
+- Reel: https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/3776180d-3b99-48f2-acff-6e35b175dd93.mp4
+- Cover: https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/8890bf16-f9df-4799-86e7-c8c658bad4f3.jpg
+- X images, in order:
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/66992304-52e6-469c-b20c-cd7c084180db.jpg
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/4d90e630-4d92-4cf2-a164-80932465f876.jpg
+  - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/8a386705-1eec-4744-9060-d5fc6eb8b831.jpg
+- Scheduled: Instagram Sun 18 Oct 04:30 UTC (trig_01SptUqF6UDvBmXsb5tovJuL) · X Sat 17 Oct 12:15 UTC (trig_01S37C25SPjLvn3rWVyZbQsX)
+- Status: scheduled, not posted yet
