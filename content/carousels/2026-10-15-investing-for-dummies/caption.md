@@ -36,7 +36,7 @@ how to invest your money (for dummies):
 - ignore the headlines
 - repeat for years
 
-buffett bet $1m that boring would win
+buffett bet $1m boring would win
 
 index fund +125.8%, hedge funds +36.3%
 
