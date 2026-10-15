@@ -1,0 +1,174 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Space Mono';src:url(fonts/SpaceMono-Regular.ttf);font-weight:400}
+@font-face{font-family:'Space Mono';src:url(fonts/SpaceMono-Bold.ttf);font-weight:700}
+@font-face{font-family:'Instrument Serif';src:url(fonts/InstrumentSerif-Regular.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#999}
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;background:#E8E7E3;color:#111;font-family:'Space Mono',monospace;margin-bottom:20px}
+.wm{position:absolute;left:-330px;top:-60px;width:1740px;height:1740px}
+.grain{position:absolute;inset:0;opacity:.18;mix-blend-mode:multiply;pointer-events:none}
+.h{font-family:'Inter Display','Inter',sans-serif;font-weight:700;letter-spacing:-0.028em;color:#111}
+.handle{position:absolute;left:46px;bottom:42px;font-size:22px;letter-spacing:.01em}
+.mono{font-size:26px;line-height:39px}
+.abs{position:absolute}
+ul.b{list-style:none}
+ul.b li{position:relative;padding-left:46px}
+ul.b li:before{content:'';position:absolute;left:18px;top:15px;width:9px;height:9px;border-radius:50%;background:#111}
+.tile{position:absolute;width:120px;height:120px;border-radius:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.center{text-align:center}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute">
+ <defs>
+  <symbol id="mark" viewBox="0 0 1024 1024">
+   <path d="M290 170H275a95 95 0 0 0-95 95V735a95 95 0 0 0 95 95H748a95 95 0 0 0 95-95V612H735v38a80 80 0 0 1-80 80H360a70 70 0 0 1-70-70Z"/>
+   <path d="M400 170H748a95 95 0 0 1 95 95V387H735V350a80 80 0 0 0-80-80H400Z"/>
+   <rect x="400" y="387" width="225" height="225" rx="30"/>
+  </symbol>
+  <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+ </defs>
+</svg>
+<template id="bg">
+ <svg class="wm" viewBox="0 0 1024 1024"><use href="#mark" fill="#E1E0DB"/></svg>
+ <svg class="grain" width="1080" height="1350"><rect width="1080" height="1350" filter="url(#noise)"/></svg>
+</template>
+
+<!-- 1 COVER -->
+<section class="slide" id="s1">
+ <svg class="grain" width="1080" height="1350" style="opacity:.22"><rect width="1080" height="1350" filter="url(#noise)"/></svg>
+ <svg class="abs" style="left:893px;top:22px" width="120" height="40" viewBox="0 0 120 40"><path d="M2 20H116M98 3L116 20L98 37" fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="abs" style="right:70px;top:82px;font-size:20px;letter-spacing:.02em">@blok.capital</div>
+ <div class="abs h" style="right:82px;top:200px;font-size:58px;line-height:62px;text-align:right">5 questions to ask before<br>you invest in anything<br>(for dummies)</div>
+ <img class="abs" id="cover" src="magnifier_ht.png" style="left:50%;transform:translateX(-46%);bottom:-34px;height:960px">
+</section>
+
+<!-- 2 Q1 OWN -->
+<section class="slide bgd" id="s2">
+ <div class="tile" style="left:108px;top:124px;background:#7DD2FD">
+  <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="24" fill="#F6F3E8"/><path d="M35 35V11a24 24 0 0 1 20.8 36Z" fill="#004EBA"/><path d="M35 35L55.8 47A24 24 0 0 1 21 54.4Z" fill="#004EBA" opacity=".55"/></svg>
+ </div>
+ <div class="tile" style="left:502px;top:122px;background:#16181D">
+  <svg width="70" height="70" viewBox="0 0 70 70"><g stroke="#fff" stroke-width="6" stroke-linecap="round"><path d="M14 18h42M14 35h42M14 52h28"/></g></svg>
+ </div>
+ <div class="tile" style="left:889px;top:122px;background:#F6F3E8">
+  <svg width="74" height="74" viewBox="0 0 74 74"><circle cx="37" cy="37" r="25" fill="none" stroke="#004EBA" stroke-width="6"/><path d="M12 37h50M37 12c-12 14-12 36 0 50M37 12c12 14 12 36 0 50" fill="none" stroke="#004EBA" stroke-width="5"/></svg>
+ </div>
+ <div class="tile" style="left:325px;top:270px;background:#16181D">
+  <svg width="70" height="70" viewBox="0 0 70 70"><g fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"><path d="M35 12L60 25 35 38 10 25Z"/><path d="M10 35l25 13 25-13M10 45l25 13 25-13"/></g></svg>
+ </div>
+ <div class="tile" style="left:714px;top:270px;background:#7ED116">
+  <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="30" cy="30" r="16" fill="none" stroke="#2F5A06" stroke-width="7"/><path d="M42 42l16 16" stroke="#2F5A06" stroke-width="8" stroke-linecap="round"/></svg>
+ </div>
+ <div class="abs h" style="left:108px;top:428px;font-size:37px">1. what do i actually own?</div>
+ <div class="abs mono" style="left:108px;top:490px;width:870px">why: if you can't name what's inside, you can't judge the risk.</div>
+ <ul class="abs b mono" style="left:108px;top:600px;width:870px">
+  <li>ask for the full holdings list, not the top 10.</li>
+  <li>a "global" fund can still be mostly one country.</li>
+  <li>two funds with different names can own the same companies.</li>
+ </ul>
+ <div class="abs mono" style="left:108px;top:840px">if nobody can tell you, that's your answer.</div>
+ <img class="abs" id="box" src="box_ht.png" style="left:50%;transform:translateX(-50%);bottom:30px;height:400px">
+ <div class="handle">@blok.capital</div>
+</section>
+
+<!-- 3 Q2 COST -->
+<section class="slide bgd" id="s3">
+ <div class="abs h center" style="left:0;right:0;top:128px;font-size:37px">2. what does it cost me every year?</div>
+ <div class="abs center" style="left:60px;right:60px;top:198px;font-size:26px;line-height:42px">
+  why: fees come out every year,<br>good year or bad.<br><br>
+  ask for the all-in number:<br>
+  fund fee + advice or platform fee<br>
+  + any entry or exit charges.<br><br>
+  a 1% gap sounds tiny.<br>
+  over 30 years, 7% vs 6% a year<br>
+  leaves you with about 25% less.
+ </div>
+ <svg class="abs" id="chart" style="left:0;top:820px" width="1080" height="440" viewBox="0 0 1080 440"></svg>
+ <div class="handle">@blok.capital</div>
+</section>
+
+<!-- 4 Q3 WHO HOLDS -->
+<section class="slide bgd" id="s4">
+ <img class="abs" id="bino" src="binoculars_ht.png" style="right:-20px;top:-30px;height:640px">
+ <div class="abs h" style="left:94px;top:650px;font-size:37px">3. who holds it, and can i see it?</div>
+ <div class="abs mono" style="left:94px;top:712px;width:880px">why: your money passes through a few hands. know whose.</div>
+ <div class="abs mono" style="left:94px;top:830px;width:880px">with a fund, a custodian bank usually holds the assets, a registrar keeps the records, and you get a statement.<br><br>full holdings are usually published monthly in india, quarterly in the us. many ETFs show theirs daily.<br><br>so you mostly see your money on their schedule, not yours.</div>
+ <div class="handle">@blok.capital</div>
+</section>
+
+<!-- 5 Q4 EXIT -->
+<section class="slide bgd" id="s5">
+ <div class="abs h" style="left:108px;top:140px;font-size:37px">4. how do i get out, and how fast?</div>
+ <div class="abs mono" style="left:108px;top:202px;width:870px">why: money you can't reach in a pinch isn't a plan.</div>
+ <ul class="abs b mono" style="left:108px;top:330px;width:870px">
+  <li>stock and ETF trades in the us and india settle T+1: the next business day.</li>
+  <li>fund redemptions often take 1 to 3 business days.</li>
+  <li>markets close on weekends and holidays.</li>
+  <li>check exit fees and lock-ins before you go in.</li>
+ </ul>
+ <img class="abs" id="watch" src="stopwatch_ht.png" style="right:70px;bottom:50px;height:660px">
+ <div class="handle">@blok.capital</div>
+</section>
+
+<!-- 6 Q5 WORST YEAR -->
+<section class="slide bgd" id="s6">
+ <div class="abs h" style="left:94px;top:140px;font-size:37px">5. what's the worst year it's had?</div>
+ <div class="abs mono" style="left:94px;top:202px;width:880px">why: the best year sells it. the worst year tells you if you'll stay.</div>
+ <div class="abs mono" style="left:94px;top:360px;width:560px">in 2008 the s&amp;p 500 fell 37%, dividends included. funds tracking it fell about the same.<br><br>ask how far it dropped, and how long it took to come back.<br><br>if you'd sell in a year like that, it's too risky for you.</div>
+ <img class="abs" id="umb" src="umbrella_ht.png" style="right:-10px;bottom:0;height:820px">
+ <div class="handle" style="z-index:2">@blok.capital</div>
+</section>
+
+<!-- 7 THE BIT NOBODY TELLS YOU -->
+<section class="slide bgd" id="s7">
+ <div class="abs h" style="left:144px;top:150px;font-size:40px">the bit nobody tells you</div>
+ <div class="abs" style="left:144px;top:250px;width:830px;font-size:27px;line-height:41px">
+  you can now hold a portfolio on a public ledger, in an account only you control.<br><br>
+  what you own, what you pay, who holds it, every move in and out: all on the record, there for you to check anytime.<br><br>
+  the catch: it's newer and it can be volatile. start small and learn first.<br><br>
+  <b>follow @blok.capital</b> for more plain-english money basics.
+ </div>
+ <div class="abs" style="left:0;right:0;top:905px;height:445px;border-radius:30px 30px 0 0;overflow:hidden;background:linear-gradient(180deg,#2D6CE0 0%,#4C8AF0 55%,#8DBBF8 100%)">
+  <div class="abs" style="left:-80px;top:-40px;width:420px;height:200px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));filter:blur(6px)"></div>
+  <div class="abs" style="left:760px;top:30px;width:420px;height:230px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.6),rgba(255,255,255,0));filter:blur(8px)"></div>
+  <div class="abs" style="left:620px;top:250px;width:520px;height:260px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.7),rgba(255,255,255,0));filter:blur(10px)"></div>
+  <div class="abs" style="left:-60px;top:290px;width:460px;height:240px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));filter:blur(10px)"></div>
+  <div class="abs" style="left:430px;top:110px;width:200px;height:90px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.4),rgba(255,255,255,0))"></div>
+  <div class="abs" style="left:50%;top:16px;transform:translateX(-50%);display:flex;align-items:center;gap:7px;padding:6px 13px;border:1.5px solid rgba(255,255,255,.75);border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font:600 14px Inter">
+   <svg width="15" height="15" viewBox="0 0 1024 1024"><use href="#mark" fill="#fff"/></svg>BLOK Capital</div>
+  <div class="abs center" style="left:0;right:0;top:86px;color:#fff;font-family:'Instrument Serif';font-size:66px;line-height:56px;letter-spacing:-.025em">Everyone deserves<br>a Garden.</div>
+  <div class="abs center" style="left:0;right:0;top:218px;color:rgba(255,255,255,.88);font:400 14.5px/20px Inter;letter-spacing:-.01em">Your own portfolio, out in the open. What you own, what you pay<br>and every move, on the record for you to check.</div>
+  <div class="abs" style="left:383px;top:293px;width:314px;height:42px;border-radius:999px;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35);display:flex;align-items:center;justify-content:space-between;padding:0 4px 0 18px;font:500 13px Inter;color:#556">See how it works<span style="width:34px;height:34px;border-radius:50%;background:#2D6CE0;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></span></div>
+  <div class="abs center" style="left:0;right:0;top:346px;color:rgba(255,255,255,.85);font:400 11px/15px Inter">Educational content only, not financial or investment advice.<br>Investing involves risk. On-chain assets can be volatile and you can lose money.</div>
+  <div class="abs" style="left:350px;top:412px;width:120px;height:60px;border-radius:8px;background:#C9D5C0;transform:rotate(-3deg);padding:6px 8px"><div style="background:#fff;font:700 9px/10px Inter;padding:2px 4px;display:inline-block">how to invest your<br>money (for dummies)</div></div>
+  <div class="abs" style="left:472px;top:396px;width:132px;height:70px;border-radius:8px;background:#9FB8D8;padding:6px 8px"><div style="background:#fff;font:700 10px/11px Inter;padding:3px 5px;display:inline-block">5 questions to ask<br>before you invest</div></div>
+  <div class="abs" style="left:606px;top:414px;width:120px;height:60px;border-radius:8px;background:#7F8B98;transform:rotate(3deg);padding:6px 8px"><div style="color:#fff;font:700 9px/10px Inter;padding:2px 0">receipts beat<br>reports</div></div>
+ </div>
+ <div class="handle" style="z-index:2;bottom:auto;top:850px">@blok.capital</div>
+</section>
+
+<script>
+const tpl=document.getElementById('bg');
+document.querySelectorAll('.bgd').forEach(s=>s.prepend(tpl.content.cloneNode(true)));
+// hand-drawn fee chart: 7% vs 6% a year for 30 years (illustrative)
+let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const svg=document.getElementById('chart');
+const X0=170,X1=900,Y0=360,Ymax=40,TOPV=Math.pow(1.07,30);
+const px=t=>X0+(X1-X0)*t/30, py=v=>Y0-(Y0-Ymax)*(v-1)/(TOPV-1);
+function line(r){let d='';for(let t=0;t<=30;t+=0.5){const x=px(t)+(rnd()-.5)*1.6,y=py(Math.pow(1+r,t))+(rnd()-.5)*1.6;d+=(t?' L':'M')+x.toFixed(1)+' '+y.toFixed(1);}return d}
+const end7=py(Math.pow(1.07,30)), end6=py(Math.pow(1.06,30));
+svg.innerHTML=`
+<path d="M${X0} ${Ymax-20}V${Y0}H${X1+30}" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+<path d="${line(0.07)}" fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="${line(0.06)}" fill="none" stroke="#004EBA" stroke-width="2.4" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M${X1+18} ${end7+4}V${end6-4}" stroke="#EC464D" stroke-width="3" stroke-linecap="round"/>
+<path d="M${X1+10} ${end7+12}l8 -8 8 8M${X1+10} ${end6-12}l8 8 8 -8" fill="none" stroke="#EC464D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M${X0+40} 52h56" stroke="#111" stroke-width="2.4" stroke-linecap="round"/><text x="${X0+110}" y="60" font-family="Space Mono" font-size="22">7% a year</text>
+<path d="M${X0+40} 92h56" stroke="#004EBA" stroke-width="2.4" stroke-dasharray="7 6" stroke-linecap="round"/><text x="${X0+110}" y="100" font-family="Space Mono" font-size="22" fill="#004EBA">6% a year</text>
+<text x="${X1+44}" y="${(end7+end6)/2+8}" font-family="Space Mono" font-size="22" font-weight="700" fill="#EC464D">-25%</text>
+<text x="${X0}" y="${Y0+36}" font-family="Space Mono" font-size="19">year 0</text>
+<text x="${X1}" y="${Y0+36}" text-anchor="end" font-family="Space Mono" font-size="19">year 30</text>
+<text x="540" y="${Y0+72}" text-anchor="middle" font-family="Space Mono" font-size="17" fill="#6b6a66">illustrative math, same starting amount. not a forecast.</text>`;
+</script>
+</body></html>

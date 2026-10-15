@@ -1,0 +1,20 @@
+Shh. Hear that?|0.45
+Monday, October nineteenth, 1987. New York.|0.2
+And nobody's picking up.|0.7
+Okay. Simple version.|0.3
+Back then, to sell a share, you called your broker.|0.2
+That phone line was the only door.|0.45
+Today, everyone's calling at once.|0.45
+The Dow fell twenty-two point six percent. In one day.|0.6
+Six hundred and four million shares traded in New York.|0.4
+Small investors couldn't get through. Some market makers just stopped answering.|0.5
+Nobody here is a villain. They're overwhelmed.|0.3
+And yes, the market came back, within two years.|0.25
+But today, a lot of people can't even find out where they stand.|0.8
+So here's the idea.|0.4
+What if your portfolio sat in an account only you control, on a public ledger that's open around the clock, and anyone can check?|0.4
+Every holding, any hour. No waiting for someone to pick up.|0.45
+That's an on-chain portfolio.|0.6
+It's newer. Prices can swing. So start small, and learn first.|0.6
+That Monday taught a lot of people one thing.|0.35
+What you own shouldn't be one busy signal away.|1.2

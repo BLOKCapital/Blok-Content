@@ -1,0 +1,8 @@
+file 'tr_v2_take0.wav'
+file 'gap.wav'
+file 'tr_take1.wav'
+file 'gap.wav'
+file 'tr_take2.wav'
+file 'gap.wav'
+file 'tr_take3.wav'
+file 'gap.wav'
