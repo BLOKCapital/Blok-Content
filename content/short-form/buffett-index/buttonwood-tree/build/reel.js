@@ -6,8 +6,8 @@ window.REEL = {
     { line: 0, items: [
       { type: 'scrap', font: 'head', text: '1792', size: 170, x: 80, y: 330, at: { l: 0, w: '1792' }, rot: -3 },
       { type: 'html', html: '<div class="ticket">brokers<span class="n">24</span></div>', x: 680, y: 360, w: 320, at: { l: 0, w: 'twenty' }, rot: 4 },
-      { type: 'img', src: I('tree'), x: 130, y: 640, w: 820, at: { l: 0, w: 'tree' }, rot: 0 },
-      { type: 'scrap', text: 'the buttonwood agreement · wall street', size: 30, x: 80, y: 1390, at: { l: 0, w: 'deal' }, rot: -2 },
+      { type: 'img', src: I('tree'), x: 130, y: 640, w: 820, at: { l: 0, w: 'Wall' }, rot: 0 },
+      { type: 'scrap', text: 'the buttonwood agreement · wall street', size: 30, x: 80, y: 1390, at: { l: 0, w: 'named' }, rot: -2 },
     ] },
     { line: 1, items: [
       { type: 'img', src: I('gents'), x: 90, y: 400, w: 900, at: { l: 1, w: 'each' }, rot: -1 },
