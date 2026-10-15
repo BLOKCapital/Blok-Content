@@ -26,10 +26,11 @@ window.REEL = {
     ] },
     { line: 4, items: [
       { type: 'head', text: 'nobody wants <i>complexity.</i>', size: 100, x: 80, y: 340, w: 940, at: { l: 4, w: 'complexity' }, rot: 0 },
-      { type: 'html', html: '<svg id="tangle" width="900" height="300"></svg>', x: 90, y: 560, at: { l: 4, w: 'complexity' }, rot: 0, noShadow: true },
-      { type: 'tile', icon: 'pie', bg: '#7DD2FD', label: 'diversified', x: 110, y: 960, at: { l: 4, w: 'diversified' } },
-      { type: 'tile', icon: 'pct', bg: '#16181D', label: 'low cost', x: 465, y: 960, at: { l: 4, w: 'low' } },
-      { type: 'tile', icon: 'hourglass', bg: '#F6F3E8', label: 'set &amp; forget', x: 820, y: 960, at: { l: 4, w: 'forget' } },
+      { type: 'html', html: '<svg id="tangle" width="900" height="300"></svg>', x: 90, y: 600, at: { l: 4, w: 'complexity' }, rot: 0, noShadow: true },
+      { type: 'scrap', text: 'what most people want:', size: 34, x: 80, y: 940, at: { l: 4, w: 'want', o: 0.0 }, rot: -2 },
+      { type: 'tile', icon: 'pie', bg: '#7DD2FD', label: 'diversified', size: 190, x: 90, y: 1060, at: { l: 4, w: 'diversified' } },
+      { type: 'tile', icon: 'pct', bg: '#16181D', label: 'low cost', size: 190, x: 445, y: 1060, at: { l: 4, w: 'low' } },
+      { type: 'tile', icon: 'hourglass', bg: '#F6F3E8', label: 'set &amp; forget', size: 190, x: 800, y: 1060, at: { l: 4, w: 'forget' } },
     ] },
     { line: 5, items: [
       { type: 'head', text: 'ready-made baskets that <span class=hl>rebalance themselves</span>', size: 86, x: 80, y: 340, w: 940, at: { l: 5, w: 'ready' }, rot: 0 },

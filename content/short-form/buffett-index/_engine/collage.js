@@ -201,7 +201,7 @@
 
   if (STILL != null) {
     const b = R.boards[STILL];
-    b.items.forEach((it) => (it.still = true));
+    b.items.forEach((it) => { it.still = true; if (it.typeOnLine != null) it.typeOn = 0.01; });
     const tEnd = Math.max(...b.items.map((it) => it.tAt)) + 1.2;
     document.body.classList.add('still');
     window.draw(Math.min(tEnd, b.t1 - 0.01));
