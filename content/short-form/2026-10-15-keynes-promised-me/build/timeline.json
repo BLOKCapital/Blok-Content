@@ -1,0 +1,146 @@
+[
+ {
+  "who": "M",
+  "text": "Claude... Keynes said by now I'd work fifteen hours a week.",
+  "start": 0.35,
+  "end": 3.95
+ },
+ {
+  "who": "B",
+  "text": "He did. In nineteen thirty.",
+  "start": 4.23,
+  "end": 6.3
+ },
+ {
+  "who": "M",
+  "text": "So where are my hours?",
+  "start": 6.72,
+  "end": 7.968
+ },
+ {
+  "who": "B",
+  "text": "I took your emails. Your slides. Your spreadsheets.",
+  "start": 8.248,
+  "end": 11.834
+ },
+ {
+  "who": "M",
+  "text": "So I'm free?",
+  "start": 12.254,
+  "end": 13.141
+ },
+ {
+  "who": "B",
+  "text": "You have four meetings. About me.",
+  "start": 13.421,
+  "end": 15.683
+ },
+ {
+  "who": "M",
+  "text": "Is anyone working fifteen hours?",
+  "start": 16.103,
+  "end": 18.101
+ },
+ {
+  "who": "B",
+  "text": "Your money. Almost.",
+  "start": 18.381,
+  "end": 19.936
+ },
+ {
+  "who": "M",
+  "text": "My money?",
+  "start": 20.356,
+  "end": 21.02
+ },
+ {
+  "who": "B",
+  "text": "Stock markets open about six and a half hours. Weekdays only.",
+  "start": 21.3,
+  "end": 25.857
+ },
+ {
+  "who": "M",
+  "text": "So my money works thirty two hours a week?",
+  "start": 26.277,
+  "end": 28.644
+ },
+ {
+  "who": "B",
+  "text": "Then it clocks out.",
+  "start": 28.924,
+  "end": 30.218
+ },
+ {
+  "who": "M",
+  "text": "What does it do on weekends?",
+  "start": 30.638,
+  "end": 32.161
+ },
+ {
+  "who": "B",
+  "text": "Nothing. It waits for Monday. Like you.",
+  "start": 32.441,
+  "end": 34.972
+ },
+ {
+  "who": "M",
+  "text": "Keynes promised that to me. My money got it?",
+  "start": 35.392,
+  "end": 37.995
+ },
+ {
+  "who": "B",
+  "text": "Your money read the essay.",
+  "start": 38.275,
+  "end": 40.011
+ },
+ {
+  "who": "M",
+  "text": "Is there anywhere money works on a Sunday?",
+  "start": 40.431,
+  "end": 42.604
+ },
+ {
+  "who": "B",
+  "text": "On-chain markets. A hundred and sixty eight hours a week.",
+  "start": 42.884,
+  "end": 46.652
+ },
+ {
+  "who": "M",
+  "text": "Doesn't it get tired?",
+  "start": 47.072,
+  "end": 48.237
+ },
+ {
+  "who": "B",
+  "text": "It's code. And anyone can check what it's doing.",
+  "start": 48.517,
+  "end": 51.556
+ },
+ {
+  "who": "M",
+  "text": "Even at three in the morning?",
+  "start": 51.976,
+  "end": 53.377
+ },
+ {
+  "who": "B",
+  "text": "It's three in the morning now.",
+  "start": 53.657,
+  "end": 55.696
+ },
+ {
+  "who": "M",
+  "text": "...I have a meeting at nine.",
+  "start": 56.566,
+  "end": 57.847
+ },
+ {
+  "who": "B",
+  "text": "About me.",
+  "start": 58.577,
+  "end": 59.509
+ }
+]
