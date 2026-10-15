@@ -21,3 +21,12 @@ Poll `log.txt` until "full cut done". Check `out/slide-0N.jpg` stills look like 
 ## s3keys (filled in after the build)
 | File | s3key |
 |---|---|
+| slide-01.mp4 | project/pr_YM73spytt7te/tool_router_session/trs_U3YbTlxE6ZXk/2Aven72it8PI |
+| slide-02.mp4 | project/pr_YM73spytt7te/tool_router_session/trs_U3YbTlxE6ZXk/3HV8SwoNPKG4 |
+| slide-03.mp4 | project/pr_YM73spytt7te/tool_router_session/trs_U3YbTlxE6ZXk/dfk5OO4BLBhR |
+| slide-04.mp4 | project/pr_YM73spytt7te/tool_router_session/trs_U3YbTlxE6ZXk/ZCr4lGwah4K0 |
+| slide-05.mp4 | project/pr_YM73spytt7te/tool_router_session/trs_U3YbTlxE6ZXk/BDp5S7KSMLzG |
+| full.mp4 (X) | project/pr_YM73spytt7te/tool_router_session/trs_U3YbTlxE6ZXk/jR-R8D1ucIW_ |
+| slide-01.jpg (Story) | project/pr_YM73spytt7te/tool_router_session/trs_U3YbTlxE6ZXk/jSiw7Pp0QeYi |
+
+Built 15 Oct 05:03 UTC in the Composio workbench (composite.sh at this commit: 1-core-safe settings, same look), QC'd against reference-sheet.jpg (mean pixel difference under 4/255 on every slide). md5: slide-01 f26933a4e0c7c429d9ed422841022d50, slide-02 4ba99cf48abed70e84f34511539c0612, slide-03 2ae3be5241df5b2c812b386e289356d3, slide-04 e790fffbe0d9e5080f3c63c49f4743bb, slide-05 1fca7b510e7ef9b2086a56e1cfd3bf0d, full 92902476411d9bc938e32454864c2de9, slide-01.jpg f03ce3b458bf7820bb29b88286147948. **READY: publish only.** If an s3key is rejected at post time, rebuild with the steps above (about 5 minutes; keep the bash call in the foreground, the workbench pauses background jobs between calls).
