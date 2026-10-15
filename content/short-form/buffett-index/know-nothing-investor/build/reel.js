@@ -19,7 +19,7 @@ window.REEL = {
       { type: 'scrap', text: 'six screens', size: 34, x: 620, y: 1320, at: { l: 2, w: 'screens' }, rot: 2 },
     ] },
     { line: 3, items: [
-      { type: 'scrap', text: 'the data kept agreeing.', size: 40, x: 560, y: 380, at: { l: 3 }, rot: 3 },
+      { type: 'scrap', text: 'the data kept agreeing.', size: 40, x: 520, y: 1220, at: { l: 3 }, rot: 3 },
       { type: 'head', text: '<span class=hl>9 in 10</span>', size: 190, x: 80, y: 330, at: { l: 3, w: 'nine' }, rot: -2 },
       { type: 'html', html: dots(10, 9), x: 80, y: 640, at: { l: 3, w: 'nine' }, rot: 0, noShadow: true },
       { type: 'scrap', text: 'actively managed US large-company funds<br>that trailed the S&amp;P 500 over 15 years', size: 30, x: 80, y: 1050, at: { l: 3, w: 'trailed' }, rot: -1 },
@@ -41,7 +41,7 @@ window.REEL = {
       { type: 'tile', icon: 'lock', bg: '#7ED116', label: 'only you control it', x: 190, y: 1220, at: { l: 5, w: 'control' }, rot: 4 },
     ] },
     { line: 6, items: [
-      { type: 'head', text: 'be <i>honest.</i>', size: 120, x: 80, y: 330, at: { l: 6, w: 'honest' }, rot: -2 },
+      { type: 'head', text: 'be <i>honest.</i>', size: 120, x: 80, y: 330, at: { l: 6 }, rot: -2 },
       { type: 'img', src: I('stressed'), x: 60, y: 620, w: 470, at: { l: 6, w: 'genius' }, rot: -4 },
       { type: 'scrap', text: 'the genius', size: 40, x: 120, y: 1240, at: { l: 6, w: 'genius' }, rot: 3 },
       { type: 'img', src: I('calm'), x: 570, y: 600, w: 440, at: { l: 6, w: 'know' }, rot: 3 },
