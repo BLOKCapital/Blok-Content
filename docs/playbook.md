@@ -127,6 +127,12 @@ render, QA, commit + push, and pre-flight that GitHub raw serves the exact files
 trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the user's explicit pre-approval
 (given for the 2026-10-10 batch). Cancel with `delete_trigger`, move with `update_trigger`.
 
+## 6c. Trial reels (hook tests)
+One finished reel, 5 to 7 versions that change only the first seconds (hook card, cold open, slight zoom), posted as
+**trial reels** (non-followers only) to find the strongest hook. Full method: `growth/instagram-trial-reels-playbook.md`.
+Our Composio Instagram tool can't set `trial_params`, so trials are posted by hand in the Instagram app.
+Variant renderer example: `content/short-form/2026-10-15-trial-reels-keynes/build/make_variants.py`.
+
 ## 7. Things that don't work (don't retry)
 | Attempt | Result | Do instead |
 |---|---|---|
