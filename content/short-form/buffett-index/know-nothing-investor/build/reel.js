@@ -20,7 +20,7 @@ window.REEL = {
     ] },
     { line: 3, items: [
       { type: 'scrap', text: 'the data kept agreeing.', size: 40, x: 520, y: 1220, at: { l: 3 }, rot: 3 },
-      { type: 'head', text: '<span class=hl>9 in 10</span>', size: 190, x: 80, y: 330, at: { l: 3, w: 'nine' }, rot: -2 },
+      { type: 'head', text: '<span class=hl>9 in 10</span>', size: 190, x: 80, y: 330, at: { l: 3, w: 'kept' }, rot: -2 },
       { type: 'html', html: dots(10, 9), x: 80, y: 640, at: { l: 3, w: 'nine' }, rot: 0, noShadow: true },
       { type: 'scrap', text: 'actively managed US large-company funds<br>that trailed the S&amp;P 500 over 15 years', size: 30, x: 80, y: 1050, at: { l: 3, w: 'trailed' }, rot: -1 },
       { type: 'scrap', text: 'source: S&amp;P SPIVA U.S. scorecard, year-end 2024 (89.5%)', size: 20, x: 80, y: 1500, at: { l: 3, w: 'trailed' }, rot: 0 },
