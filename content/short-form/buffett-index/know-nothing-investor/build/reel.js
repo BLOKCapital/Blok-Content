@@ -19,13 +19,14 @@ window.REEL = {
       { type: 'scrap', text: 'six screens', size: 34, x: 620, y: 1320, at: { l: 2, w: 'screens' }, rot: 2 },
     ] },
     { line: 3, items: [
+      { type: 'scrap', text: 'the data kept agreeing.', size: 40, x: 560, y: 380, at: { l: 3 }, rot: 3 },
       { type: 'head', text: '<span class=hl>9 in 10</span>', size: 190, x: 80, y: 330, at: { l: 3, w: 'nine' }, rot: -2 },
       { type: 'html', html: dots(10, 9), x: 80, y: 640, at: { l: 3, w: 'nine' }, rot: 0, noShadow: true },
       { type: 'scrap', text: 'actively managed US large-company funds<br>that trailed the S&amp;P 500 over 15 years', size: 30, x: 80, y: 1050, at: { l: 3, w: 'trailed' }, rot: -1 },
       { type: 'scrap', text: 'source: S&amp;P SPIVA U.S. scorecard, year-end 2024 (89.5%)', size: 20, x: 80, y: 1500, at: { l: 3, w: 'trailed' }, rot: 0 },
     ] },
     { line: 4, items: [
-      { type: 'head', text: 'nobody wants <i>complexity.</i>', size: 100, x: 80, y: 340, w: 940, at: { l: 4, w: 'complexity' }, rot: 0 },
+      { type: 'head', text: 'nobody wants <i>complexity.</i>', size: 100, x: 80, y: 340, w: 940, at: { l: 4, w: 'people' }, rot: 0 },
       { type: 'html', html: '<svg id="tangle" width="900" height="300"></svg>', x: 90, y: 600, at: { l: 4, w: 'complexity' }, rot: 0, noShadow: true },
       { type: 'scrap', text: 'what most people want:', size: 34, x: 80, y: 940, at: { l: 4, w: 'want', o: 0.0 }, rot: -2 },
       { type: 'tile', icon: 'pie', bg: '#7DD2FD', label: 'diversified', size: 190, x: 90, y: 1060, at: { l: 4, w: 'diversified' } },
@@ -33,7 +34,7 @@ window.REEL = {
       { type: 'tile', icon: 'hourglass', bg: '#F6F3E8', label: 'set &amp; forget', size: 190, x: 800, y: 1060, at: { l: 4, w: 'forget' } },
     ] },
     { line: 5, items: [
-      { type: 'head', text: 'ready-made baskets that <span class=hl>rebalance themselves</span>', size: 86, x: 80, y: 340, w: 940, at: { l: 5, w: 'ready' }, rot: 0 },
+      { type: 'head', text: 'ready-made baskets that <span class=hl>rebalance themselves</span>', size: 86, x: 80, y: 340, w: 940, at: { l: 5 }, rot: 0 },
       { type: 'img', src: I('phone'), x: 540, y: 720, w: 480, at: { l: 5, w: 'baskets' }, rot: 3 },
       { type: 'tile', icon: 'basket', bg: '#7DD2FD', x: 110, y: 760, at: { l: 5, w: 'baskets' }, rot: -6 },
       { type: 'stamp', text: 'coming soon', size: 64, color: '#004EBA', x: 80, y: 1000, at: { l: 5, w: 'coming' }, rot: -7 },

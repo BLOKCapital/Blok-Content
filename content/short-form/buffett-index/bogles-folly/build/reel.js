@@ -30,7 +30,7 @@ window.REEL = {
       { type: 'img', src: I('calm'), x: 290, y: 900, w: 500, at: { l: 4, w: 'wait', o: 0.25 } },
     ] },
     { line: 5, items: [
-      { type: 'scrap', text: 'end of 2023 · money in US funds', size: 30, x: 80, y: 340, at: { l: 5, w: 'end' }, rot: -2 },
+      { type: 'scrap', text: 'end of 2023 · money in US funds', size: 40, x: 80, y: 340, at: { l: 5, w: 'end' }, rot: -2 },
       { type: 'html', html: '<div class="card" style="background:#7ED116;width:860px"><b>index funds</b> · ~$13.3 trillion</div>', x: 80, y: 470, at: { l: 5, w: 'index' }, rot: 0 },
       { type: 'html', html: '<div class="card" style="width:850px"><b>stock pickers</b> · ~$13.2 trillion</div>', x: 80, y: 600, at: { l: 5, w: 'stock' }, rot: 0 },
       { type: 'img', src: I('trader'), x: 600, y: 760, w: 430, at: { l: 5, w: 'pickers' }, rot: 4 },
@@ -38,6 +38,7 @@ window.REEL = {
       { type: 'scrap', text: 'source: morningstar, via hargreaves lansdown, 19 jan 2024', size: 20, x: 80, y: 1500, at: { l: 5, w: 'pickers' }, rot: 0 },
     ] },
     { line: 7, items: [
+      { type: 'scrap', text: 'the next step?', size: 40, x: 600, y: 470, at: { l: 7 }, rot: 4 },
       { type: 'head', text: 'same boring playbook.<br><i>new home.</i>', size: 84, x: 80, y: 330, w: 940, at: { l: 7, w: 'same' }, rot: 0 },
       { type: 'img', src: I('phone'), x: 520, y: 560, w: 520, at: { l: 7, w: 'account' }, rot: 3 },
       { type: 'tile', icon: 'lock', bg: '#7ED116', x: 90, y: 600, at: { l: 7, w: 'control' }, rot: -6 },

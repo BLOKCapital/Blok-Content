@@ -37,8 +37,8 @@ window.REEL = {
       { type: 'scrap', text: 'paraphrased from his berkshire hathaway shareholder letters', size: 20, x: 80, y: 1500, at: { l: 5, w: 'skip' }, rot: 0 },
     ] },
     { line: 6, items: [
-      { type: 'head', text: 'now: <span class=hl>nobody</span> in the middle.', size: 92, x: 80, y: 340, w: 940, at: { l: 6, w: 'nobody' }, rot: 0 },
-      { type: 'html', html: '<div class="card" style="font-size:42px;background:#7ED116"><b>you</b></div>', x: 80, y: 640, at: { l: 6, w: 'nobody' }, rot: -3 },
+      { type: 'head', text: 'now: <span class=hl>nobody</span> in the middle.', size: 92, x: 80, y: 340, w: 940, at: { l: 6 }, rot: 0 },
+      { type: 'html', html: '<div class="card" style="font-size:42px;background:#7ED116"><b>you</b></div>', x: 80, y: 640, at: { l: 6, w: 'index' }, rot: -3 },
       { type: 'arrow', dx: 240, dy: 0, bend: 30, x: 230, y: 660, at: { l: 6, w: 'money' } },
       { type: 'html', html: '<div class="card" style="font-size:42px;background:#EC464D;color:#fff"><b>your money</b></div>', x: 540, y: 640, at: { l: 6, w: 'money' }, rot: 2 },
       { type: 'scrap', text: 'the rules are<br>written in code', size: 40, x: 80, y: 880, at: { l: 6, w: 'rules' }, rot: -3 },
