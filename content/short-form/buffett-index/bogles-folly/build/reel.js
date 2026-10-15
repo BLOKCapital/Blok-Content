@@ -12,14 +12,14 @@ window.REEL = {
       { type: 'scrap', text: 'everyone else<br>was trying to', size: 32, x: 80, y: 1120, at: { l: 0, w: 'market', o: 0.25 }, rot: -4 },
     ] },
     { line: 1, items: [
-      { type: 'img', src: I('laughing'), x: 110, y: 360, w: 860, at: { l: 1, w: 'laughed' }, rot: -2 },
+      { type: 'img', src: I('laughing'), x: 160, y: 350, w: 760, at: { l: 1, w: 'laughed' }, rot: -2 },
       { type: 'scrap', font: 'serif', text: '“bogle’s folly”', size: 96, x: 120, y: 1100, at: { l: 1, w: 'folly' }, rot: 3 },
-      { type: 'stamp', text: 'un-american', size: 88, x: 250, y: 1330, at: { l: 2, w: 'un' }, rot: -8 },
+      { type: 'stamp', text: 'un-american', size: 88, x: 230, y: 1410, at: { l: 2, w: 'un' }, rot: -8 },
     ] },
     { line: 3, items: [
       { type: 'html', html: '<div class="ticket">the goal<span class="n">$150,000,000</span></div>', x: 80, y: 360, w: 920, at: { l: 3, w: 'hundred' }, rot: -2 },
       { type: 'html', html: '<div class="ticket" style="background:#7ED116">what came in<span class="n">$0</span></div>', x: 80, y: 700, w: 920, at: { l: 3, w: 'got' }, rot: 2, count: { from: 0, to: 11300000, dur: 0.8, fmt: usd } },
-      { type: 'html', html: '<svg width="900" height="430"><rect x="120" y="20" width="250" height="360" fill="#004EBA"/><rect x="530" y="353" width="250" height="27" fill="#7ED116" stroke="#111" stroke-width="2"/><text x="245" y="420" text-anchor="middle" font-family="Space Mono" font-size="28">goal</text><text x="655" y="420" text-anchor="middle" font-family="Space Mono" font-size="28">raised</text></svg>', x: 90, y: 1080, w: 900, at: { l: 3, w: 'eleven' }, rot: 0, noShadow: true },
+      { type: 'html', html: '<svg width="900" height="430"><rect x="120" y="20" width="250" height="360" fill="#004EBA"/><rect x="530" y="353" width="250" height="27" fill="#7ED116" stroke="#111" stroke-width="2"/><text x="245" y="420" text-anchor="middle" font-family="Space Mono" font-size="28">goal</text><text x="655" y="420" text-anchor="middle" font-family="Space Mono" font-size="28">raised</text></svg>', x: 90, y: 1030, w: 900, at: { l: 3, w: 'eleven' }, rot: 0, noShadow: true },
       { type: 'scrap', text: 'source: jason zweig, “bogle’s folly turns 40”', size: 20, x: 80, y: 1500, at: { l: 3, w: 'eleven' }, rot: 0 },
     ] },
     { line: 4, items: [
@@ -41,7 +41,7 @@ window.REEL = {
       { type: 'head', text: 'same boring playbook.<br><i>new home.</i>', size: 84, x: 80, y: 330, w: 940, at: { l: 7, w: 'same' }, rot: 0 },
       { type: 'img', src: I('phone'), x: 520, y: 560, w: 520, at: { l: 7, w: 'account' }, rot: 3 },
       { type: 'tile', icon: 'lock', bg: '#7ED116', x: 90, y: 600, at: { l: 7, w: 'control' }, rot: -6 },
-      { type: 'html', html: '<div class="card" style="width:520px"><div class="src" style="display:inline-block;margin-bottom:10px">public ledger · illustrative</div><br><b>your account</b><br>only you control it<br><br>07:02 · bought the basket ✓<br>07:03 · rebalanced ✓<br>now · every holding visible</div>', x: 70, y: 820, at: { l: 7, w: 'control' }, rot: -3 },
+      { type: 'html', html: '<div class="card" style="width:600px;font-size:28px"><div class="src" style="display:inline-block;margin-bottom:10px">public ledger · illustrative</div><br><b>your account</b><br>only you control it<br><br>07:02 · bought the basket ✓<br>07:03 · rebalanced ✓<br>now · every holding visible</div>', x: 70, y: 820, at: { l: 7, w: 'control' }, rot: -3 },
       { type: 'tile', icon: 'eye', bg: '#16181D', label: 'anyone can check', x: 160, y: 1330, at: { l: 7, w: 'check' }, rot: 5 },
     ] },
     { line: 8, items: [
