@@ -26,26 +26,30 @@ educational content only, not financial or investment advice. investing involves
 #investing #personalfinance #financialliteracy
 <!-- IG END -->
 
-## X post (4 photos: slide-01, slide-03, slide-04, slide-05; no hashtags)
+## X post (4 photos: slide-01, slide-03, slide-04, slide-05; no hashtags; follows growth/x/tweet-style-guide.md)
 <!-- X START -->
-How to invest your money (for dummies):
+how to invest your money (for dummies):
 
-1. one broad, low-cost index fund
-2. automate it every payday
-3. check your fees
-4. ignore the headlines
-5. repeat for years
+- one cheap index fund
+- automate it every payday
+- check your fees
+- ignore the headlines
+- repeat for years
 
-Buffett's $1M bet: index fund +125.8%, hedge funds +36.3%.
+buffett bet $1m that boring would win
 
-What money rule do you wish you'd learned at 22?
+index fund +125.8%, hedge funds +36.3%
+
+what's the money rule you wish you'd learned at 22?
 <!-- X END -->
 
 ## X self-reply with sources (post right after, as a reply to the main post)
 <!-- XR START -->
-Sources: Buffett's 2017 Berkshire letter (the 2008–2017 bet). S&P SPIVA US Year-End 2024: 89.5% of active large-cap funds trailed the S&P 500 over 15 years.
+sources: buffett's 2017 berkshire letter (the 2008–2017 bet)
 
-Past results don't guarantee future ones. Not financial advice.
+S&P SPIVA US year-end 2024: 89.5% of active large-cap funds trailed the S&P 500 over 15 years
+
+past results don't guarantee future ones, not financial advice
 <!-- XR END -->
 
 Why photos, not video, on X: `growth/x/x-algorithm-playbook.md` (video open = 0.07, watch time counts for nothing;
