@@ -58,5 +58,5 @@ not financial advice, crypto is volatile
   - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/66992304-52e6-469c-b20c-cd7c084180db.jpg
   - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/4d90e630-4d92-4cf2-a164-80932465f876.jpg
   - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/8a386705-1eec-4744-9060-d5fc6eb8b831.jpg
-- Scheduled: Instagram Sun 18 Oct 04:30 UTC (trig_01SptUqF6UDvBmXsb5tovJuL) · X Sat 17 Oct 12:15 UTC (trig_01S37C25SPjLvn3rWVyZbQsX)
+- Scheduled: Instagram Sun 18 Oct 04:30 UTC (trig_01SptUqF6UDvBmXsb5tovJuL) · X Sun 18 Oct 12:15 UTC (moved from Sat 17 Oct 12:15 UTC for the waitlist launch, 15 Oct) (trig_01S37C25SPjLvn3rWVyZbQsX)
 - Status: scheduled, not posted yet

@@ -57,5 +57,5 @@ past results don't guarantee future ones. not financial advice
   - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/7df6d559-216a-4b25-83a2-5be5d81febf8.jpg
   - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/82a60ab5-dc29-4695-85b5-bebd9998627d.jpg
   - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/45439183-9d56-41b4-82e1-bbc2ba72198e.jpg
-- Scheduled: Instagram Sat 17 Oct 10:00 UTC (trig_016RUQoFkTQ1v4voMz83gHZh) · X Sat 17 Oct 06:00 UTC (trig_01V5oHbfZvacpd8epFuyvbqW)
+- Scheduled: Instagram Sat 17 Oct 10:00 UTC (trig_016RUQoFkTQ1v4voMz83gHZh) · X Sun 18 Oct 06:00 UTC (moved from Sat 17 Oct 06:00 UTC for the waitlist launch, 15 Oct) (trig_01V5oHbfZvacpd8epFuyvbqW)
 - Status: scheduled, not posted yet
