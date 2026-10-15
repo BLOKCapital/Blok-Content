@@ -37,6 +37,13 @@ clients. Throughout, **the user's keys and assets never leave their own wallet.*
   long-term crypto exposure, *not* high-velocity traders or degens.
   (Docs: "We are going for this market and not professional high velocity traders.")
 
+### Core thesis (Sheetal, 15 Oct 2026): Buffett's index advice, on-chain
+Buffett tells the 99% to skip stock-picking, timing and expensive managers and own a cheap broad index. BLOK gives that
+set-and-forget simplicity on-chain (Index Gardens, rules-based Indices, self-managed Gardens) **without giving up custody**,
+with rules anyone can verify, which also gives people natural reasons to hold and use tokenized RWAs and broadens distribution.
+Full messaging, verified facts and platform rules: `growth/messaging/buffett-index-thesis.md`. Read it before writing about
+index investing, simplicity, fees or who BLOK is for.
+
 ### The three audiences
 | Audience | What they want | What BLOK gives them |
 |---|---|---|
