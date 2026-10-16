@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Dancing';src:url('fonts/DancingScript-Bold.ttf')}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1440px;background:transparent}
+#c{position:relative;width:1080px;height:1440px;overflow:hidden}
+.bg{position:absolute;inset:0;background:#F6F3E8}
+.top{position:absolute;left:72px;right:72px;top:64px;display:flex;justify-content:space-between;font:600 21px 'Inter';letter-spacing:.14em;color:#004EBA}
+.top b{color:#0B1B2B;opacity:.55;font-weight:600}
+.txt{position:absolute;left:72px;right:72px;top:128px}
+h1{font:700 70px/1.04 'Inter Display','Inter';letter-spacing:-.025em;color:#0B1B2B}
+h1 em{font-style:normal;color:#004EBA}
+.s{font:700 60px/1.1 'Dancing';color:#004EBA;margin-top:14px;display:inline-block;position:relative}
+.s:after{content:'';position:absolute;left:4px;right:0;bottom:4px;height:12px;background:#7ED116;opacity:.55;z-index:-1;border-radius:6px}
+p{font:400 28px/1.42 'Inter';color:#0B1B2B;opacity:.82;margin-top:18px;max-width:900px}
+ol{list-style:none;margin-top:20px;counter-reset:i}
+li{font:500 29px/1.3 'Inter';color:#0B1B2B;padding:13px 0 13px 64px;position:relative;border-top:1.5px solid rgba(0,78,186,.18);counter-increment:i}
+li:before{content:counter(i,decimal-leading-zero);position:absolute;left:0;top:15px;font:700 22px 'Inter';color:#004EBA;letter-spacing:.06em}
+.catch{font:500 25px/1.4 'Inter';color:#844947;margin-top:14px}
+.panel{position:absolute;left:72px;right:72px;border-radius:34px;background:transparent}
+.hole{position:absolute;left:72px;right:72px;border-radius:34px;box-shadow:0 0 0 2000px #F6F3E8}
+.bot{position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;align-items:center;font:600 23px 'Inter';color:#0B1B2B}
+.bot .sw{color:#004EBA}
+.fine{position:absolute;left:72px;right:72px;bottom:106px;font:400 17px/1.4 'Inter';color:#0B1B2B;opacity:.6}
+</style></head><body><div id="c"></div><script>
+const S=JSON.parse(decodeURIComponent(location.hash.slice(1)));
+const [y0,y1]=S.panel;
+let h=`<div class="hole" style="top:${y0}px;height:${y1-y0}px"></div>
+<div class="top"><span>${S.kicker}</span><b>0${S.n} / 05</b></div>
+<div class="txt"><h1>${S.head}</h1><div class="s">${S.script}</div>`;
+if(S.list){h+=`<ol>${S.list.map(x=>`<li>${x}</li>`).join('')}</ol><div class="catch">${S.body}</div>`}else h+=`<p>${S.body}</p>`;
+h+=`</div>`;
+if(S.fine)h+=`<div class="fine">${S.fine}</div>`;
+h+=`<div class="bot"><span>@blok.capital</span><span class="sw">${S.n<5?'swipe →':'follow for more'}</span></div>`;
+document.getElementById('c').innerHTML=h;
+</script></body></html>
