@@ -20,5 +20,5 @@ X base slots from here on (from @blok_cap analytics, 14 posts so far): **morning
 | 2026-10-15 12:15 | 17:45 | X afternoon: "investing for dummies" (other thread) | `trig_01QnpRYHhk9pv31Ffhsa1N3b` | scheduled |
 | 2026-10-15 13:22 | 18:52 | IG carousel: `content/carousels/2026-10-15-three-money-myths/` + Story | IG growth daily (`trig_01WVnDVdmr2H5L7YykPCWj9s`) | scheduled |
 | 2026-10-15 14:30 | 20:00 | X night: diversified video (other thread) | `trig_01SDrFusVpgYyx1nBtuXM6po` | scheduled |
-| 2026-10-16 06:00 | 11:30 | X morning: anatomy video | `trig_01GGnm239vxqXNuR3SFy88wm` | scheduled |
+| 2026-10-16 06:00 | 11:30 | X morning: anatomy video | `trig_01GGnm239vxqXNuR3SFy88wm` | posted https://x.com/blok_cap/status/2110974469627855287 (06:03 UTC) |
 | 2026-10-16 13:22 | 18:52 | IG Reel: `content/carousels/2026-10-14-anatomy-of-blockchain/reel/` + Story | IG growth daily (`trig_01WVnDVdmr2H5L7YykPCWj9s`) | scheduled |
