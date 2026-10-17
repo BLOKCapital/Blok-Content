@@ -1,0 +1,236 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--linen:#F6F3E8;--indigo:#004EBA;--lime:#7ED116;--sky:#7DD2FD;--coral:#EC464D;--earth:#844947;--ink:#0B1B2B;--paper:#FFFDF6}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:5400px;height:1440px;overflow:hidden;background:var(--linen)}
+#stage{position:relative;width:5400px;height:1440px;background:url(bg.jpg);font-family:Inter,sans-serif;color:var(--ink)}
+svg#fx{position:absolute;left:0;top:0}
+.copy{position:absolute;top:104px;width:900px}
+.kick{font:700 26px 'Space Mono',monospace;letter-spacing:.14em;color:var(--indigo);text-transform:uppercase}
+.mark{position:absolute;top:92px;display:flex;align-items:center;gap:14px;font:400 24px 'Space Mono',monospace;color:var(--earth);letter-spacing:.1em}
+.mark img{width:50px;height:50px}
+h1{font:700 100px/0.98 'Inter Display',Inter,sans-serif;letter-spacing:-0.035em;margin-top:34px}
+.acc{font:700 88px/1 'Dancing Script',cursive;color:var(--indigo);margin-top:8px;position:relative;display:inline-block}
+.acc.coral{color:var(--coral)}
+.acc i{position:absolute;left:0;bottom:-6px;height:10px;border-radius:6px;background:var(--lime);opacity:.85;width:0}
+.sub{font:400 35px/1.32 Inter,sans-serif;color:#2c3a48;margin-top:24px;max-width:860px}
+.sub b{font-weight:700;color:var(--ink)}
+.swipe{position:absolute;top:1376px;font:700 22px 'Space Mono',monospace;color:var(--earth);letter-spacing:.12em}
+.lab{position:absolute;font:700 22px 'Space Mono',monospace;letter-spacing:.1em;color:var(--earth);text-transform:uppercase;white-space:nowrap}
+.lab em{font:700 40px 'Dancing Script',cursive;letter-spacing:0;text-transform:none;color:var(--indigo);margin-left:10px}
+.lab.ind{color:var(--indigo)}
+.legend{position:absolute;font:400 22px/1.7 'Space Mono',monospace;color:#4a5560;letter-spacing:.04em}
+.legend b{display:inline-block;height:16px;background:var(--earth);vertical-align:middle;margin-right:12px;border-radius:2px}
+.risk{position:absolute;top:1388px;font:400 18px 'Space Mono',monospace;color:#5b6570;letter-spacing:.02em}
+#brand{position:absolute;left:4404px;top:1268px;display:flex;align-items:center;gap:22px}
+#brand img{height:58px}
+#brand span{font:700 24px 'Space Mono',monospace;color:var(--indigo);letter-spacing:.06em}
+#brand small{display:block;font:400 34px 'Dancing Script',cursive;color:var(--earth);letter-spacing:0;margin-top:2px}
+</style></head>
+<body><div id="stage">
+<svg id="fx" width="5400" height="1440" viewBox="0 0 5400 1440">
+ <defs>
+  <filter id="sh" x="-5%" y="-40%" width="110%" height="200%"><feDropShadow dx="4" dy="9" stdDeviation="5" flood-color="#844947" flood-opacity=".32"/></filter>
+  <filter id="glow" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="9"/></filter>
+  <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+   <stop offset="0" stop-color="#d9b07a"/><stop offset=".45" stop-color="#c8955c"/><stop offset="1" stop-color="#a8733f"/>
+  </linearGradient>
+  <!-- the stick: wood, charred through slide 3, turning into a ledger bar on slide 5 -->
+  <linearGradient id="along" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="5400" y2="0">
+   <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+   <stop offset=".42" stop-color="#fff" stop-opacity="0"/>
+   <stop offset=".47" stop-color="#1a0f0a" stop-opacity=".88"/>
+   <stop offset=".55" stop-color="#1a0f0a" stop-opacity=".92"/>
+   <stop offset=".60" stop-color="#1a0f0a" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="ledger" gradientUnits="userSpaceOnUse" x1="4440" y1="0" x2="4900" y2="0">
+   <stop offset="0" stop-color="#004EBA" stop-opacity="0"/><stop offset="1" stop-color="#004EBA" stop-opacity="1"/>
+  </linearGradient>
+  <clipPath id="clipStock"><path id="cpS"/></clipPath>
+  <clipPath id="clipFoil"><path id="cpF"/></clipPath>
+ </defs>
+ <g id="halves" filter="url(#sh)">
+  <g id="gStock"></g>
+  <g id="gFoil"></g>
+ </g>
+ <g id="embers"></g>
+ <g id="flames"></g>
+ <circle id="pulse" r="16" fill="#7ED116" filter="url(#glow)"/>
+ <circle id="pulse2" r="8" fill="#eaffd0"/>
+ <!-- sprout at the end -->
+ <g id="sprout" transform="translate(5060 990)">
+  <g id="spr">
+   <path d="M0 0 C 4 -60, -6 -110, 2 -170" fill="none" stroke="#3c7a00" stroke-width="10" stroke-linecap="round"/>
+   <path d="M2 -120 C -40 -150, -90 -140, -110 -100 C -70 -86, -30 -96, 2 -120 Z" fill="#7ED116" stroke="#0B1B2B" stroke-width="4"/>
+   <path d="M2 -165 C 40 -205, 100 -200, 118 -160 C 80 -140, 30 -145, 2 -165 Z" fill="#7ED116" stroke="#0B1B2B" stroke-width="4"/>
+  </g>
+ </g>
+</svg>
+
+<!-- slide copy -->
+<div class="copy" style="left:84px"><div class="kick">England · 1100s to 1826</div>
+ <h1>For 700 years, Britain's receipts were made of wood.</h1>
+ <div class="acc" id="a1">notched sticks.<i></i></div>
+ <div class="sub">Lend money to the king and the amount was cut into a stick of hazel. The wider the notch, the bigger the sum.</div></div>
+
+<div class="copy" style="left:1164px"><div class="kick">The clever part</div>
+ <h1>Then they split the stick in two.</h1>
+ <div class="acc" id="a2">so both sides had proof.<i></i></div>
+ <div class="sub">The lender kept the longer half, the <b>stock</b>. The borrower kept the <b>foil</b>. If the halves matched, the record was true. It's where "stock" in finance comes from.</div></div>
+
+<div class="copy" style="left:2244px"><div class="kick">16 October 1834</div>
+ <h1>Then they burned the old sticks.</h1>
+ <div class="acc coral" id="a3">and lost Parliament.<i></i></div>
+ <div class="sub">Tallies were scrapped in 1826. Years of leftover sticks went into the furnaces under the House of Lords. The fire spread and burned down most of the Palace of Westminster.</div></div>
+
+<div class="copy" style="left:3324px"><div class="kick">Today</div>
+ <h1>Your half of the record went missing.</h1>
+ <div class="acc" id="a4">you get a summary.<i></i></div>
+ <div class="sub">Your fund and broker keep the full books. You get a statement, after the fact, once a month or quarter.</div></div>
+
+<div class="copy" style="left:4404px"><div class="kick">What's next</div>
+ <h1>A public ledger gives everyone the matching half.</h1>
+ <div class="acc" id="a5">receipts, not reports.<i></i></div>
+ <div class="sub">An on-chain portfolio records every holding and trade in the open, so you can check it yourself, in an account only you control.</div></div>
+
+<!-- top-right brand marker on every slide -->
+<div class="mark" style="left:886px"><img src="logo-mark.png">1/5</div>
+<div class="mark" style="left:1966px"><img src="logo-mark.png">2/5</div>
+<div class="mark" style="left:3046px"><img src="logo-mark.png">3/5</div>
+<div class="mark" style="left:4126px"><img src="logo-mark.png">4/5</div>
+<div class="mark" style="left:5206px"><img src="logo-mark.png">5/5</div>
+
+<!-- slide 1: notch legend (Dialogue of the Exchequer, c.1180) -->
+<div class="legend" style="left:96px;top:1150px">
+ <div><b style="width:64px"></b>£1,000 · a hand's width</div>
+ <div><b style="width:36px"></b>£100 · a thumb's width</div>
+ <div><b style="width:20px"></b>£20 · a little finger</div>
+ <div><b style="width:8px"></b>£1 · a barleycorn</div>
+</div>
+<!-- slide 2 labels -->
+<div class="lab" id="lStock" style="left:1500px;top:880px">↓ the stock<em>lender keeps</em></div>
+<div class="lab" id="lFoil" style="left:1640px;top:1150px">↑ the foil<em>borrower keeps</em></div>
+<!-- slide 4 labels -->
+<div class="lab" style="left:3420px;top:800px">their books<em>every trade, live</em></div>
+<div class="lab" style="left:3420px;top:1240px">your statement<em>once a quarter</em></div>
+<!-- slide 5 label -->
+<div class="lab ind" style="left:4600px;top:1150px">one shared record<em>check it any time</em></div>
+
+<div id="brand"><img src="logo-wordmark.png"><span>@blok.capital<small>Everyone deserves a Garden.</small></span></div>
+<div class="risk" style="left:4404px">Prices can swing. Learn first, start small. Not financial advice.</div>
+
+<div class="swipe" style="left:930px">SWIPE →</div>
+<div class="swipe" style="left:2010px">SWIPE →</div>
+<div class="swipe" style="left:3090px">SWIPE →</div>
+<div class="swipe" style="left:4170px">SWIPE →</div>
+</div>
+
+<script>
+const P = 6;                                   // loop period (s): anything crossing a slide edge repeats every P
+const NS = 'http://www.w3.org/2000/svg';
+const $ = id => document.getElementById(id);
+const ease = x => x<0?0:x>1?1:1-Math.pow(1-x,3);
+const clamp = (x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const sstep = (a,b,x)=>{ const u=clamp((x-a)/(b-a)); return u*u*(3-2*u); };
+const mk = (tag, attrs, parent) => { const e=document.createElementNS(NS,tag); for (const k in attrs) e.setAttribute(k,attrs[k]); parent&&parent.appendChild(e); return e; };
+
+// ---- stick geometry
+const X0 = 40, X1 = 5060, CY = 1035, H = 54;   // each half is H tall
+const gap = x => 70*sstep(1300,1900,x) + 130*sstep(3240,3620,x) - 200*sstep(4360,4640,x);
+const wob = x => 6*Math.sin(x/310) + 3*Math.sin(x/97);   // a hand-cut, slightly bent stick
+// notches: [x, width] cut through both halves at the same spot, so the halves "tally"
+const NOTCH = [[150,64],[260,64],[380,36],[460,36],[530,36],[620,20],[680,20],[760,8],[800,8],[840,8],
+  [1040,64],[1160,36],[1240,20],[1300,8],[1420,64],[1530,36],[1610,20],[1670,20],[1740,8],[1860,36],[1950,20],[2020,8],
+  [2400,64],[2560,36],[2700,20],[2860,36],[3000,8],[3120,20],
+  [3340,64],[3480,36],[3600,20],[3700,8],[3820,36],[3930,20],[4060,8],[4150,64],[4300,20]];
+function edge(sign, outer){            // sign -1 = stock (top), +1 = foil (bottom)
+  const pts=[]; const D=outer?H:0;
+  for (let x=X0; x<=X1; x+=10){
+    let y = CY + wob(x) + sign*(gap(x)/2 + D);
+    if (outer){ for (const [nx,w] of NOTCH){ const dx=Math.abs(x-nx); if (dx<w/2+14) y -= sign*Math.max(0, 22*(1-dx/(w/2+14))); } }
+    pts.push([x,y]);
+  }
+  return pts;
+}
+function halfPath(sign){
+  const o = edge(sign,true), i = edge(sign,false).reverse();
+  const cap = sign<0 ? 'Q' : 'Q';
+  return 'M'+o.map(p=>p.join(' ')).join(' L')+` L${X1+18} ${CY+wob(X1)+sign*(gap(X1)/2+H/2)} L`+i.map(p=>p.join(' ')).join(' L')+` L${X0-14} ${CY+wob(X0)+sign*H/2} Z`;
+}
+function buildHalf(g, sign, clipId){
+  const d = halfPath(sign);
+  $(clipId==='clipStock'?'cpS':'cpF').setAttribute('d', d);
+  mk('path',{d, fill:'url(#wood)', stroke:'#5a3a1e','stroke-width':3,'stroke-linejoin':'round'},g);
+  const cg = mk('g',{'clip-path':`url(#${clipId})`},g);
+  // grain
+  for (let k=0;k<7;k++){
+    let s=''; for (let x=X0; x<=X1; x+=20){ const y = CY + wob(x) + sign*(gap(x)/2 + 6 + k*6) + 2*Math.sin(x/53+k*1.7); s += (x===X0?'M':'L')+x+' '+y.toFixed(1)+' '; }
+    mk('path',{d:s, fill:'none', stroke:'#8a5a2e','stroke-width':1.6, opacity:.35+(k%3)*.1},cg);
+  }
+  // knots
+  [[330,.6],[1700,.4],[3900,.7]].forEach(([x,f])=>mk('ellipse',{cx:x,cy:CY+wob(x)+sign*(gap(x)/2+H*f),rx:14,ry:6,fill:'none',stroke:'#6b4423','stroke-width':2.5},cg));
+  // char band (slide 3) and ledger colour (slide 5)
+  mk('rect',{x:0,y:600,width:5400,height:900,fill:'url(#along)'},cg);
+  mk('rect',{x:4440,y:600,width:700,height:900,fill:'url(#ledger)'},cg);
+  // ledger entries on the rejoined record: little rounded blocks
+  if (sign<0) for (let x=4720;x<=5000;x+=56) mk('rect',{x:x-14,y:CY+wob(x)-H+10,width:28,height:28,rx:7,fill:'#7DD2FD',opacity:.9},cg);
+  else for (let x=4748;x<=5000;x+=56) mk('rect',{x:x-14,y:CY+wob(x)+8,width:28,height:28,rx:7,fill:'#7DD2FD',opacity:.9},cg);
+}
+buildHalf($('gStock'),-1,'clipStock');
+buildHalf($('gFoil'),1,'clipFoil');
+// slide 4: your half of the record is patchy, punch gaps into the foil
+const foilMask = mk('mask',{id:'fm'},$('fx').querySelector('defs'));
+mk('rect',{x:0,y:0,width:5400,height:1440,fill:'#fff'},foilMask);
+for (let x=3420; x<4330; x+=120) mk('rect',{x:x+40,y:900,width:78,height:500,fill:'#000'},foilMask);
+$('gFoil').setAttribute('mask','url(#fm)');
+
+// ---- flames over slide 3 (periodic)
+const FL = $('flames'); const tongues = [];
+for (let i=0;i<14;i++){
+  const x = 2430 + i*44 + (i%3)*9;
+  const p = mk('path',{fill: i%2? '#EC464D':'#f59a2b', opacity:.9},FL);
+  const c = mk('path',{fill:'#ffd56b', opacity:.95},FL);
+  tongues.push({x, p, c, h: 120 + (i*37)%110, ph: i/14});
+}
+// ---- embers drift up and right across the slide 3 | 4 edge (periodic)
+const EM = $('embers'); const embers=[];
+for (let i=0;i<26;i++){ embers.push({c:mk('circle',{r:3+(i%4),fill:i%3?'#f59a2b':'#EC464D'},EM), x0:2400+(i*67)%640, ph:i/26, sp:1+(i%2), drift:300+(i*53)%500}); }
+
+function flamePath(x, base, h, w, t, ph){
+  const s1 = Math.sin(t*2*Math.PI*2 + ph*9), s2 = Math.sin(t*2*Math.PI*3 + ph*5);
+  const tip = base - h*(0.85+0.15*s1);
+  const lean = 18*s2;
+  return `M${x-w} ${base} C ${x-w} ${base-h*.45}, ${x-w*.2+lean*.5} ${base-h*.6}, ${x+lean} ${tip} C ${x+w*.3+lean*.5} ${base-h*.55}, ${x+w} ${base-h*.4}, ${x+w} ${base} Z`;
+}
+
+function draw(t){
+  const ph = (t % P) / P;
+  // flames (2 and 3 flickers per loop: periodic in P)
+  tongues.forEach(f=>{
+    const base = CY + wob(f.x) - gap(f.x)/2 - H + 10;
+    f.p.setAttribute('d', flamePath(f.x, base+6, f.h, 34, ph, f.ph));
+    f.c.setAttribute('d', flamePath(f.x, base+4, f.h*0.55, 18, ph, f.ph+0.3));
+  });
+  embers.forEach(e=>{
+    const q = (ph*e.sp + e.ph) % 1;
+    const x = e.x0 + q*e.drift + 14*Math.sin((q*3+e.ph)*Math.PI*2);
+    const y = 975 - q*230;
+    e.c.setAttribute('cx', x.toFixed(1)); e.c.setAttribute('cy', y.toFixed(1));
+    e.c.setAttribute('opacity', (clamp(q*8)*clamp((1-q)*3)).toFixed(3));
+  });
+  // a match-check glint runs along the record on slide 5, twice per loop
+  const gq = (ph*2)%1, gx = 4420 + gq*620;
+  $('pulse').setAttribute('cx',gx); $('pulse').setAttribute('cy',CY+wob(gx)); $('pulse').setAttribute('opacity',(Math.sin(gq*Math.PI)).toFixed(3));
+  $('pulse2').setAttribute('cx',gx); $('pulse2').setAttribute('cy',CY+wob(gx)); $('pulse2').setAttribute('opacity',(Math.sin(gq*Math.PI)).toFixed(3));
+  // slide-local intros (don't cross edges)
+  ['a1','a2','a3','a4','a5'].forEach(id=>{ $(id).querySelector('i').style.width = (ease((t-0.4)/0.9)*100)+'%'; });
+  $('lStock').style.opacity = ease((t-0.6)/0.6); $('lFoil').style.opacity = ease((t-0.9)/0.6);
+  const g = ease((t-0.3)/1.2);
+  $('spr').setAttribute('transform',`scale(${0.05+0.95*g}) rotate(${Math.sin(t*Math.PI*2/3)*4*g})`);
+}
+window.draw = draw;
+window.ready = document.fonts.ready.then(()=>draw(0));
+</script>
+</body></html>
