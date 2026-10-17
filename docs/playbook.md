@@ -141,6 +141,7 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 | `git push --delete` a branch | 403 from the session's git proxy | User deletes branches on GitHub |
 | `rm -f $VAR/*` in Bash | Blocked by safety check | Use literal paths or `"${VAR:?}"/*` |
 | Composio remote bash writing into dirs the workbench created | Permission denied (bash runs as `user`, workbench as root) | Use a fresh dir from bash (e.g. `~/kk`), or do it all in the workbench |
+| Downloading Composio `s3_url` files to this machine (voiceover step 2) | Proxy refuses `backend.composio.dev` (seen 2026-10-17) | Run Kokoro locally: `pip install kokoro-onnx soundfile`, model files from github.com/thewh1teagle/kokoro-onnx releases (`model-files-v1.0`), voice `am_michael`; example `content/short-form/2026-10-22-the-hidden-word/build/tts.py` |
 | Instagram API: library music (use video slides with our own track instead), AI label, alt text on carousel slides, link stickers, bio edits | Not supported | Tell the user to do it in the app |
 
 ## 8. Permissions (so nothing prompts)

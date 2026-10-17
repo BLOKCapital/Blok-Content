@@ -1,0 +1,135 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:IS;src:url(fonts/InstrumentSerif-Regular.ttf)}
+@font-face{font-family:ISI;src:url(fonts/InstrumentSerif-Italic.ttf)}
+@font-face{font-family:SM;src:url(fonts/SpaceMono-Regular.ttf)}
+@font-face{font-family:SMB;src:url(fonts/SpaceMono-Bold.ttf)}
+:root{--sky:#7DD2FD;--indigo:#004EBA;--lime:#7ED116;--linen:#F6F3E8;--coral:#EC464D;--earth:#844947;--night:#06142f;--ink:#1c2740}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--night)}
+#bg{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 38%,#123a7a 0%,#0a2350 45%,var(--night) 100%)}
+#grain{position:absolute;inset:0;opacity:.10;mix-blend-mode:screen}
+#vig{position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+.layer{position:absolute;inset:0}
+#hook{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px}
+#hook h1{font-family:IS;font-weight:400;color:var(--linen);font-size:104px;line-height:1.02;letter-spacing:-1px}
+#hook h1 em{font-family:ISI;color:var(--lime);font-style:normal}
+#hook p{font-family:SM;color:var(--sky);font-size:30px;margin-top:46px;letter-spacing:2px;text-transform:uppercase}
+#counters{position:absolute;left:80px;right:80px;top:230px;height:150px;display:flex;justify-content:space-between;align-items:flex-end}
+.ctr .lab{font-family:SM;font-size:22px;letter-spacing:3px;color:var(--sky);opacity:.85;text-transform:uppercase}
+.ctr .val{font-family:SMB;font-size:76px;color:var(--linen);line-height:1.05}
+.ctr.r{text-align:right}
+.ctr.r .val{color:var(--lime)}
+#page{position:absolute;left:62px;width:956px;top:410px;background:var(--linen);border-radius:6px;padding:46px 54px 40px 92px;
+  box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px rgba(132,73,71,.25) inset}
+#page:before{content:"";position:absolute;left:66px;top:0;bottom:0;width:2px;background:rgba(236,70,77,.45)}
+#page .hd{font-family:SM;font-size:20px;letter-spacing:3px;color:var(--earth);opacity:.8;margin-bottom:22px;text-transform:uppercase;display:flex;justify-content:space-between}
+#page p{font-family:IS;font-size:45px;line-height:1.13;color:var(--ink);margin-bottom:17px}
+#page p .h{color:transparent}
+#page p .fl{display:inline-block}
+#marker{position:absolute;left:84px;width:66px;border-radius:33px;background:rgba(126,209,22,.28);border:3px solid var(--lime)}
+#fly span{position:absolute;font-family:IS;font-size:45px;line-height:1;color:var(--ink);transform-origin:0 0;will-change:transform}
+#reveal{display:flex;flex-direction:column;align-items:center;text-align:center}
+#reveal .sub{position:absolute;top:1060px;left:90px;right:90px;font-family:ISI;color:var(--linen);font-size:62px;line-height:1.12}
+#reveal .sub b{font-family:IS;font-weight:400;color:var(--lime)}
+#reveal .q{position:absolute;top:300px;left:0;right:0;font-family:SM;color:var(--sky);font-size:30px;letter-spacing:3px;text-transform:uppercase}
+#end{display:flex;flex-direction:column;align-items:center;justify-content:center}
+#card{background:var(--linen);border-radius:28px;padding:70px 70px 56px;width:860px;text-align:center;box-shadow:0 40px 90px rgba(0,0,0,.5)}
+#card img{width:460px}
+#card .t{font-family:IS;font-size:58px;color:var(--ink);line-height:1.1;margin:44px 0 36px}
+#card .btn{display:inline-block;background:var(--indigo);color:var(--linen);font-family:SMB;font-size:32px;padding:22px 46px;border-radius:60px}
+#card .d{font-family:SM;font-size:20px;color:var(--earth);margin-top:40px;line-height:1.6}
+</style></head><body>
+<div id="bg"></div><canvas id="grain" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+<div class="layer" id="hook"><h1>There's <em>one word</em> hidden in this story.</h1><p>Most people never spot it</p></div>
+<div class="layer" id="story">
+  <div id="counters">
+    <div class="ctr"><div class="lab">Year</div><div class="val" id="yr">1935</div></div>
+    <div class="ctr r" id="ctrv"><div class="lab">3 shares, worth</div><div class="val" id="val">$180</div></div>
+  </div>
+  <div id="page"><div class="hd"><span>Lake Forest, Illinois</span><span>Grace, 1909&ndash;2010</span></div><div id="lines"></div></div>
+  <div id="marker"></div>
+</div>
+<div class="layer" id="reveal"><div class="q">Read the first letter of every line</div><div class="sub" id="sub"></div></div>
+<div class="layer" id="fly"></div>
+<div class="layer" id="end"><div id="card"><img src="../../../../brand/assets/logo-wordmark.png"><div class="t">Money stories with a hidden lesson.</div><div class="btn">Follow @blok.capital</div><div class="d">Educational only &middot; Not financial advice<br>AI-generated voice &middot; Story dramatised</div></div></div>
+<script src="lines.js"></script>
+<script>
+const L=window.LINES, S=i=>L[i].start, E=i=>L[i].end;
+const story=L.slice(1,9);                      // the 8 acrostic lines
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const win=(t,a,b,f=.4)=>cl((t-a)/f)*cl((b-t)/f);
+window.DURATION=E(11)+2.6;
+const linesEl=document.getElementById('lines');
+story.forEach((l,k)=>{const p=document.createElement('p');p.innerHTML=`<span class="fl">${l.text[0]}</span><span class="v"></span><span class="h">${l.text.slice(1)}</span>`;linesEl.appendChild(p)});
+const P=[...linesEl.children], FL=P.map(p=>p.querySelector('.fl'));
+const fly=document.getElementById('fly');
+const FS=FL.map(f=>{const s=document.createElement('span');s.textContent=f.textContent;fly.appendChild(s);return s});
+// grain frames
+const g=document.getElementById('grain').getContext('2d'), G=[];
+for(let n=0;n<6;n++){const d=g.createImageData(540,960);for(let i=0;i<d.data.length;i+=4){const v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}G.push(d)}
+let src=null,dst=null;
+function measure(){ // source rects of first letters, target slots for PATIENCE
+  src=FL.map(f=>{const r=f.getBoundingClientRect();return{x:r.left,y:r.top}});
+  const big=200, sc=big/45, ws=FL.map(f=>f.getBoundingClientRect().width*sc+4), total=ws.reduce((a,b)=>a+b,0);
+  let x=(1080-total)/2; dst=FL.map((f,k)=>{const d={x,y:700,s:sc};x+=ws[k];return d});
+  const m=document.getElementById('marker'), a=FL[0].getBoundingClientRect(), b=FL[7].getBoundingClientRect();
+  m.dataset.top=a.top-8; m.dataset.h=b.bottom-a.top+16;
+}
+const yrEl=document.getElementById('yr'), valEl=document.getElementById('val');
+const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+window.draw=function(t){
+  if(!src)measure();
+  g.putImageData(G[Math.floor(t*24)%6],0,0);
+  const hook=document.getElementById('hook'), st=document.getElementById('story'), rv=document.getElementById('reveal'), en=document.getElementById('end');
+  // hook
+  hook.style.opacity=t<S(1)-0.3?cl(t/0.25):cl((S(1)-t)/0.3+1);
+  hook.style.transform=`scale(${1+t*0.012})`;
+  // story layer
+  const stIn=cl((t-(S(1)-0.5))/0.6), stOut=cl((t-(S(10)-0.2))/0.7);
+  st.style.opacity=stIn*(1-stOut);
+  document.getElementById('page').style.transform=`translateY(${(1-ease(stIn))*80}px) rotate(-0.5deg) scale(${1+0.018*cl((t-S(1))/(S(9)-S(1)))})`;
+  story.forEach((l,k)=>{
+    const i=k+1, dur=E(i)-S(i), f=cl((t-S(i)+0.05)/(dur*0.9)), n=Math.floor(f*(l.text.length-1));
+    const v=P[k].children[1], h=P[k].children[2];
+    const vt=l.text.slice(1,1+n); if(v.textContent!==vt){v.textContent=vt;h.textContent=l.text.slice(1+n)}
+    FL[k].style.visibility=t>=S(i)-0.05?'visible':'hidden';
+    // dim during the hunt
+    const dim=ease((t-S(9))/1.6);
+    P[k].style.color=`rgba(28,39,64,${1-0.8*dim})`;
+  });
+  // counters
+  const yp=cl((t-S(3))/(S(7)+0.6-S(3)));
+  yrEl.textContent=t<S(1)?'1935':String(Math.round(1935+75*yp));
+  const ctrv=document.getElementById('ctrv'); ctrv.style.opacity=cl((t-S(2)-2.4)/0.4);
+  const vp=cl((t-S(8)-0.3)/(E(8)-S(8)-0.3));
+  valEl.textContent=vp<=0?'$180':fmt(180*Math.pow(7000000/180,Math.pow(vp,1.6)));
+  if(vp>=1)valEl.textContent='$7,000,000+';
+  // marker sweeping the first letters
+  const m=document.getElementById('marker'), mp=ease((t-S(9)-0.6)/2.4);
+  m.style.top=m.dataset.top+'px'; m.style.height=(mp*m.dataset.h)+'px';
+  m.style.opacity=t>S(9)+0.5?cl((t-S(9)-0.5)/0.3):0;
+  // flying letters
+  const showFly=t>S(9)+0.4;
+  FS.forEach((s,k)=>{
+    s.style.display=showFly?'block':'none'; if(!showFly)return;
+    FL[k].style.visibility='hidden';
+    const glow=cl((t-S(9)-0.6-k*0.28)/0.25);
+    const fp=ease((t-S(10)+0.25-k*0.05)/0.9);
+    const x=src[k].x+(dst[k].x-src[k].x)*fp, y=src[k].y+(dst[k].y-src[k].y)*fp, sc=1+(dst[k].s-1)*fp;
+    s.style.transform=`translate(${x}px,${y}px) scale(${sc})`;
+    s.style.color=glow>0? (fp>0.5?'#F6F3E8':'#3c7a00') : '#1c2740';
+    s.style.textShadow=fp>0.5?`0 0 ${30*fp}px rgba(126,209,22,.85)`:'none';
+    s.style.opacity=1-cl((t-(S(11)-0.1))/0.4);
+  });
+  // reveal text
+  rv.style.opacity=cl((t-S(10)+0.3)/0.4)*(1-cl((t-(S(11)-0.1))/0.4));
+  const sub=document.getElementById('sub');
+  const a=S(10)+0.75, b=a+((E(10)-a)*0.33), c=a+((E(10)-a)*0.68);
+  sub.innerHTML=`<span style="opacity:${cl((t-a)/.3)}">Not a hot tip.</span><br><span style="opacity:${cl((t-b)/.3)}">Not perfect timing.</span><br><b style="opacity:${cl((t-c)/.3)}">Just time.</b>`;
+  // end card
+  const ep=cl((t-S(11)+0.1)/0.5); en.style.opacity=ep; en.style.transform=`translateY(${(1-ease(ep))*60}px)`;
+};
+</script></body></html>
