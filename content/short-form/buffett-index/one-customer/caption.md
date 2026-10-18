@@ -44,7 +44,7 @@ too early or right on time?
 
 ## X self-reply
 <!-- XR START -->
-that's the bet behind blok capital: buffett-style index simplicity on-chain, without handing over custody
+that's the bet behind blok capital: a fund for everyone, not just pensions. start yours from $10, in your own wallet
 
 wells fargo built the 1971 portfolio for samsonite's pension. source: jason zweig, "bogle's folly turns 40" (2016)
 

@@ -36,14 +36,14 @@ buffett, 1993: "the know-nothing investor can actually out-perform most investme
 
 15 years to 2024: ~9 in 10 active us large-cap funds trailed the s&p 500
 
-most people need boring, cheap, set and forget
+most people need boring, simple, set and forget
 
 genius or know-nothing, which are you?
 <!-- X END -->
 
 ## X self-reply
 <!-- XR START -->
-on-chain, set and forget looks like an index garden: a basket that rebalances itself (planned), in your own wallet, rules anyone can verify
+on-chain, set and forget looks like an index garden: a basket that rebalances itself (planned), in your own wallet, from $10, no $10k minimum
 
 sources: berkshire letter (1993) · s&p spiva us year-end 2024
 

@@ -41,7 +41,7 @@ what are we laughing at today that we'll all be doing in 2076?
 
 ## X self-reply (sources + where this goes next)
 <!-- XR START -->
-next step for the boring playbook: the same index, held in your own wallet, with rules on-chain anyone can verify. that's what we're building at blok capital
+next step: a fund of your own. managed funds often want $10k-$100k to start. at blok capital, yours starts from $10, in your own wallet, rules on-chain anyone can verify
 
 sources: jason zweig (2016) · morningstar us fund assets, end-2023
 
