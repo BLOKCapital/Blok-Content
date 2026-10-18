@@ -15,7 +15,9 @@ and rolls their eyes at both Wall Street gatekeeping and crypto casino culture.
 ## Messaging pillars
 1. **Your keys, always.** Self-custody. Nobody, not us and not a Gardener, can move your money out.
 2. **Receipts beat reports.** Every position and trade is on-chain and verifiable. No quarterly PDFs.
-3. **Everyone deserves a Garden.** No minimums (10 USDC), no accreditation, no geography gate, gasless.
+3. **Everyone deserves a Garden (lead pillar since 18 Oct 2026).** Funds are for the big boys: $10k to $100k+
+   minimums, setup fees, bank intro fees. With BLOK everyone can have a fund, even your own $10 fund. No accreditation,
+   no geography gate, gasless. Don't attack 1% management fees; they're fair. The door is the problem, not the fee.
 4. **Compound, not pump.** Long-term, diversified, rebalanced. Boring is a feature.
 5. **Built by the community.** DAO-governed; BLOKC holders vote on upgrades.
 
@@ -26,6 +28,7 @@ and rolls their eyes at both Wall Street gatekeeping and crypto casino culture.
 - "Receipts beat reports."
 - "Your keys, always."
 - "Built by the community, for the world."
+- "Everyone gets a fund. Even a $10 one."
 - "We don't bite."
 - Sign-off: "Yours in the soil."
 

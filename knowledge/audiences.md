@@ -39,7 +39,7 @@ where access to wealth management is gated. The core team is global. Consider lo
 | Pillar | Share | Examples |
 |---|---|---|
 | **Educate** (crypto/DeFi made simple) | 35% | What's an index? What's self-custody? Rebalancing explained with a garden |
-| **Contrast** (TradFi & degen culture vs BLOK) | 20% | "Your wealth manager vs your Garden", "2-and-20 explained" |
+| **Contrast** (TradFi & degen culture vs BLOK) | 20% | "Your wealth manager vs your Garden", "The ₹50 lakh door vs your $10 fund" |
 | **Product** (how BLOK works) | 20% | Plant a Garden in 60s, Index vs Self-managed, gasless explained |
 | **Trust / receipts** (security, transparency, DAO) | 15% | Security reviews, open source, governance votes, "check the receipts" |
 | **Community & culture** (team, memes, BTS) | 10% | Founder letters, contributor spotlights, garden memes |

@@ -17,6 +17,12 @@ They aren't crypto people, and many are sceptical of crypto.
 We're not selling, and it isn't crypto content. The goal is "huh, I didn't know that,"
 then a follow, then a save. Trust comes first; the product comes much later.
 
+## The core story (set 18 Oct 2026)
+The fund world is built for the big boys: a fund built around you starts at $10,000 to $100,000+
+(India: SIF ₹10 lakh, PMS ₹50 lakh, AIF ₹1 crore), plus setup fees and a bank's intro fee.
+**On-chain, everyone can have a fund of their own, even a $10 one.** Lead with access and low minimums.
+1% fund fees are fair: don't attack them, and don't use the "1% fee costs you $X over 30 years" maths.
+
 ## The no-crypto rule
 | Don't use | Use instead |
 |---|---|

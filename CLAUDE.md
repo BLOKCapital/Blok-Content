@@ -31,8 +31,11 @@ clients. Throughout, **the user's keys and assets never leave their own wallet.*
 - **Motto:** *"It's crypto, but different."*
 - **Brand promise:** *"Everyone deserves a Garden."*
 - **Positioning:** The transparent, accessible alternative to traditional wealth
-  management (custodians charging "2-and-20" and sending quarterly PDFs as
-  "transparency"). BLOK gives you **on-chain receipts instead of reports**.
+  management, where a fund built around you starts at $10,000 to $100,000+ plus setup
+  and bank intro fees. **BLOK means everyone can have a fund, even your own $10 fund**,
+  with **on-chain receipts instead of reports**.
+- **Narrative rule (Sheetal, 18 Oct 2026):** lead with access and low minimums. 1% fund fees
+  are reasonable, so never run the "your 1% fee is costing you" story or attack management fees.
 - **Who it's for:** time-poor, novice-to-intermediate investors who want structured,
   long-term crypto exposure, *not* high-velocity traders or degens.
   (Docs: "We are going for this market and not professional high velocity traders.")
@@ -113,8 +116,8 @@ smart friend who's good with money and allergic to BS, not like a crypto shill o
   "Compound, not pump. Boring is a feature." · "Receipts beat reports." · "Your keys, always." ·
   "Built by the community, for the world." · Sign-off: "Yours in the soil."
 - **Explain like a human:** every jargon term gets a plain-English gloss the first time.
-- **Pick fights with the status quo, not with people:** TradFi gatekeeping, opaque fees,
-  quarterly PDFs, custodial blow-ups, "trust me bro" influencers.
+- **Pick fights with the status quo, not with people:** TradFi gatekeeping (high minimums,
+  setup and intro fees, invite-only funds), quarterly PDFs, custodial blow-ups, "trust me bro" influencers.
 - **Never:** moon/lambo/100x/"not financial advice but…", rocket-emoji spam, FOMO countdowns,
   price predictions, guaranteed returns.
 
