@@ -1,0 +1,27 @@
+{
+  "talk": "talk.mp4",
+  "talk_segments": [[0, 1.75, 1.0], [3.30, 15.04, 1.08]],
+  "outro": "pool.mp4",
+  "outro_len": 2.6,
+  "music": "blok-morning-soil.m4a",
+  "header": ["Billionaire's son:", "\"I started my own fund\""],
+  "captions": [
+    {"t0": 0.0,  "t1": 1.75,  "lines": [["everybody's always like", "small"]]},
+    {"t0": 1.75, "t1": 2.85,  "lines": [["awww Chad...", "small"]]},
+    {"t0": 2.85, "t1": 3.99,  "lines": [["you only have a fund", "small"]]},
+    {"t0": 3.99, "t1": 4.73,  "lines": [["because your dad", "small"]]},
+    {"t0": 4.73, "t1": 6.43,  "lines": [["paid the", "small"], ["$100k minimum", "big"]]},
+    {"t0": 6.43, "t1": 7.59,  "lines": [["but like...", "small"]]},
+    {"t0": 7.59, "t1": 8.37,  "lines": [["he only put in", "small"]]},
+    {"t0": 8.37, "t1": 9.73,  "lines": [["he only put in", "small"], ["$100k", "big"]]},
+    {"t0": 9.73, "t1": 10.77, "lines": [["who do you think put in", "small"]]},
+    {"t0": 10.77,"t1": 11.39, "lines": [["the other $10?", "small"]]},
+    {"t0": 11.39,"t1": 12.35, "lines": [["me", "big"]]},
+    {"t0": 12.35,"t1": 12.95, "lines": [["me", "big"], ["self-made", "small"]]},
+    {"t0": 12.95,"t1": 13.49, "lines": [["me", "big"], ["self-made", "small"], ["bro.", "small"]]}
+  ],
+  "outro_text": [
+    {"t0": 0.0, "t1": 2.6, "y": 1150, "lines": [["in $10 funds we trust", "white"]]},
+    {"t0": 0.0, "t1": 2.6, "y": 1780, "lines": [["@blok.capital", "small"]]}
+  ]
+}
