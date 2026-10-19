@@ -58,4 +58,4 @@ past results don't guarantee future ones. not financial advice
   - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/82a60ab5-dc29-4695-85b5-bebd9998627d.jpg
   - https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/45439183-9d56-41b4-82e1-bbc2ba72198e.jpg
 - Scheduled: Instagram Sat 17 Oct 10:00 UTC (trig_016RUQoFkTQ1v4voMz83gHZh) · X Sun 18 Oct 06:00 UTC (moved from Sat 17 Oct 06:00 UTC for the waitlist launch, 15 Oct) (trig_01V5oHbfZvacpd8epFuyvbqW)
-- Status: Instagram posted https://www.instagram.com/reel/Del2Lv1isvI/ (17 Oct 10:02 UTC, media id 18633696145009664, story 18562716097078911); X still scheduled
+- Status: Instagram posted https://www.instagram.com/reel/Del2Lv1isvI/ (17 Oct 10:02 UTC, media id 18633696145009664, story 18562716097078911); X posted 19 Oct 06:01 UTC https://x.com/blok_cap/status/2112061554355057045 (+ sources reply)
