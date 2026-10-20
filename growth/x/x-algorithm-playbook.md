@@ -68,3 +68,14 @@ After posting:
 - [ ] Stay in the replies for the first 2 hours; answer everyone with real content, mutuals first.
 - [ ] Found a typo? Edit it. Never delete and repost.
 - [ ] Don't keep pushing a post after 48 hours; it has left For You. Make a new one instead.
+
+## What our own numbers say (analytics review, 20 Oct 2026)
+
+Full review: `growth/analytics/2026-10-20-analytics-review.md`.
+- Educational posts land at 350 to 660 views however they're made; only **stance posts** (greentext, unpopular opinion)
+  and **action posts** (the waitlist launch: 4,969 views, 9 quotes) broke out. Plan one stance post a day, one action post a week.
+- Text-only greentext (1,057) beat every image post. Collage art isn't a receipt; use a real headline, letter or chart, or no image.
+- **Replies:** 263 replies in a week averaged 20 views. Replies under 10k to 500k-follower finance accounts' fresh posts got
+  180 to 386. Do ~15 a day there, early, each with a number or a question. Max one reply a day to the same small account.
+  One-liners ("yes very true", "lovely", "come and join now") are banned.
+- Pin the best action post so profile visitors have a reason to follow.
