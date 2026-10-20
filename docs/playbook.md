@@ -137,6 +137,7 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 | HeyGen video generation via Composio | Tool restricted in the Composio project | Edge-tts voice + motion reel (section 5) |
 | Figma Weave models | Figma account not linked to Weave; costs credits | Same as above |
 | Realistic talking-head avatar for free | No GPU in sandbox; lip-sync models infeasible | Motion reel; or user films |
+| Scheduled run whose Composio call needs a permission prompt | Nobody is there to approve, so the run hangs silently (10 Oct gambling carousel never posted; 19 Oct rebalancing Reel blocked) | Paste `docs/permissions-allowlist.json` into `.claude/settings.json` (section 8); the daily calendar check reports any slot that passed with nothing live |
 | Claude editing `.claude/settings.json` | Blocked as self-modification | User pastes `docs/permissions-allowlist.json` |
 | `git push --delete` a branch | 403 from the session's git proxy | User deletes branches on GitHub |
 | `rm -f $VAR/*` in Bash | Blocked by safety check | Use literal paths or `"${VAR:?}"/*` |
