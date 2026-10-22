@@ -1,0 +1,235 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800;9..144,900&family=JetBrains+Mono:wght@400;500;700&display=block" rel="stylesheet">
+<style>
+  :root { --lime:#7ED116; --sky:#7DD2FD; --ink:#0B1B2B; }
+  html,body { margin:0; width:1080px; height:1920px; overflow:hidden; background:#000; }
+  .shot { position:absolute; left:-54px; top:-96px; width:1188px; height:2112px; object-fit:cover; opacity:0; filter:contrast(1.06) saturate(.86) brightness(.92); will-change:transform; }
+  #grade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,18,40,.18),rgba(0,0,0,0) 40%,rgba(0,0,0,.38)); mix-blend-mode:multiply; }
+  #vig { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%); }
+  #edge { position:absolute; inset:0; box-shadow: inset 6px 0 10px -6px rgba(255,40,80,.35), inset -6px 0 10px -6px rgba(40,200,255,.35); }
+  #grain { position:absolute; inset:0; opacity:.13; mix-blend-mode:overlay; }
+  #flash { position:absolute; inset:0; background:#fff; opacity:0; }
+  #title { position:absolute; left:64px; top:1010px; opacity:0; font-family:Fraunces,serif; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,.6); }
+  #title .a { font-weight:800; font-size:76px; line-height:1; margin-left:30px; }
+  #title .b { font-weight:900; font-size:176px; line-height:.95; color:var(--lime); letter-spacing:-.02em; }
+  #title .c { font-weight:800; font-size:76px; line-height:1; margin-left:70px; }
+  #cap { position:absolute; left:60px; right:60px; top:1420px; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:500; font-size:50px; color:#fff; letter-spacing:.01em; text-shadow:0 2px 3px rgba(0,0,0,.9),0 0 18px rgba(0,0,0,.6); }
+  .screen { position:absolute; inset:0; opacity:0; background:#05080d; font-family:'JetBrains Mono',monospace; color:#dfe7ef; }
+  .label { position:absolute; left:70px; right:70px; bottom:110px; font-size:24px; line-height:1.45; color:#6f8193; letter-spacing:.06em; text-transform:uppercase; }
+  /* call log */
+  #calls .hdr { position:absolute; top:300px; left:80px; right:80px; font-size:32px; color:#8fa1b4; letter-spacing:.1em; text-transform:uppercase; }
+  #calls .hdr b { display:block; font-family:Fraunces,serif; font-weight:800; font-size:76px; color:#fff; letter-spacing:0; text-transform:none; margin-top:12px; }
+  #calls .rows { position:absolute; left:80px; right:80px; top:560px; }
+  .crow { display:flex; justify-content:space-between; align-items:center; font-size:44px; padding:34px 0; border-top:2px dashed #1f3044; opacity:0; }
+  .crow .st { color:#EC464D; font-weight:700; }
+  /* typing screen */
+  #typer .lines { position:absolute; left:80px; right:60px; top:520px; font-size:42px; line-height:1.55; white-space:pre-wrap; color:#9fb0c2; }
+  #typer .big { color:#fff; font-weight:700; font-size:78px; line-height:1.25; }
+  #typer .red { color:#EC464D; font-weight:700; font-size:78px; line-height:1.25; }
+  #typer .cursor { display:inline-block; width:26px; height:52px; background:#dfe7ef; vertical-align:-8px; margin-left:4px; }
+  /* source note chip over a shot */
+  .note { position:absolute; left:70px; right:70px; top:250px; padding:26px 34px; border-radius:26px; background:rgba(5,8,13,.78); border:2px solid rgba(126,209,22,.7); font-family:'JetBrains Mono',monospace; color:#fff; font-size:36px; line-height:1.4; opacity:0; }
+  .note small { display:block; color:#9fb0c2; font-size:24px; margin-top:10px; letter-spacing:.04em; }
+  /* ledger */
+  #ledger .card { position:absolute; left:70px; right:70px; top:470px; border:2px solid #23364b; border-radius:30px; padding:46px 48px; background:#08111c; }
+  #ledger .t1 { font-size:30px; color:#8fa1b4; letter-spacing:.1em; text-transform:uppercase; }
+  #ledger .t2 { font-family:Fraunces,serif; font-weight:800; font-size:70px; color:#fff; margin:14px 0 8px; }
+  #ledger .chip { display:inline-block; padding:10px 22px; border-radius:999px; border:2px solid var(--lime); color:var(--lime); font-size:28px; }
+  #ledger .row { display:flex; justify-content:space-between; font-size:32px; padding:24px 0; border-top:2px dashed #1f3044; opacity:0; }
+  #ledger .row:first-of-type { margin-top:34px; }
+  #ledger .row span:last-child { color:var(--lime); }
+  #ledger .check { margin-top:30px; font-size:36px; color:var(--sky); opacity:0; }
+  /* end card */
+  #end { background:#05080d; text-align:center; }
+  #end img { width:220px; margin-top:560px; border-radius:40px; }
+  #end .f { font-family:Fraunces,serif; font-weight:800; font-size:64px; color:#fff; margin-top:56px; }
+  #end .h { font-size:40px; color:var(--lime); margin-top:20px; }
+  #end .d { position:absolute; left:110px; right:110px; bottom:170px; font-size:25px; line-height:1.5; color:#8fa1b4; }
+</style></head><body>
+<div id="shots"></div>
+<div id="grade"></div>
+
+<div class="screen" id="typer"><div class="lines"></div>
+  <div class="label">Sources: Brady Commission report, Jan 1988; Federal Reserve History, "Stock Market Crash of 1987"</div></div>
+
+<div class="screen" id="calls">
+  <div class="hdr">Mon 19 Oct 1987<b>Calls to my broker</b></div>
+  <div class="rows">
+    <div class="crow"><span>09:41</span><span class="st">busy</span></div>
+    <div class="crow"><span>10:15</span><span class="st">busy</span></div>
+    <div class="crow"><span>11:02</span><span class="st">no answer</span></div>
+    <div class="crow"><span>12:30</span><span class="st">no answer</span></div>
+  </div>
+  <div class="label">Illustrative</div>
+</div>
+
+<div class="screen" id="ledger">
+  <div class="card">
+    <div class="t1">Public ledger</div>
+    <div class="t2">Your account</div>
+    <span class="chip">only you control it</span>
+    <div class="row"><span>mon 09:41 · holdings</span><span>visible</span></div>
+    <div class="row"><span>sat 03:12 · holdings</span><span>visible</span></div>
+    <div class="row"><span>now · every position</span><span>recorded</span></div>
+    <div class="check">✓ anyone can check it, any hour</div>
+  </div>
+  <div class="label">Illustrative</div>
+</div>
+
+<div class="screen" id="end">
+  <img src="img/logo.png">
+  <div class="f">Learn it before you need it.</div>
+  <div class="h">Follow @blok.capital</div>
+  <div class="d">Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money. AI-generated voice and visuals. Events dramatised; figures from the Brady Commission report (1988) and Federal Reserve History.</div>
+</div>
+
+<div class="note" id="noteBack">Stocks were back to their pre-crash highs in under two years.<small>Source: Federal Reserve History</small></div>
+<div class="note" id="noteRisk">Newer · prices can swing · start small<small>You can lose money. Learn first.</small></div>
+
+<div id="title"><div class="a">The day the</div><div class="b">phones</div><div class="c">stopped answering.</div></div>
+<div id="cap"></div>
+<div id="vig"></div><div id="edge"></div>
+<canvas id="grain" width="540" height="960"></canvas>
+<div id="flash"></div>
+
+<script>
+const TIMING = __TIMING__;
+const L = TIMING.lines.map(l => l.s);
+const LE = TIMING.lines.map(l => l.e);
+const END = LE[LE.length - 1];
+window.DURATION = END + 0.8 + 3.4;
+// start time of the first word in line i that starts with `w` (falls back to line start + d)
+const W = (i, w, d = 0) => { const x = TIMING.lines[i].w.find(p => p[0].toLowerCase().replace(/[^a-z0-9]/g, '').startsWith(w)); return x ? x[1] : L[i] + d; };
+const S = (i) => L[i] - 0.15;
+const SHOTS = [
+  ['A', 0, {z0:1.04,z1:1.14,x0:0,x1:-20,y0:0,y1:-20}],
+  ['B', S(1), {z0:1.04,z1:1.14,x0:20,x1:-10,y0:0,y1:0}],
+  ['A', S(2), {z0:1.45,z1:1.52,x0:-330,x1:-350,y0:420,y1:430}],
+  ['C', S(3), {z0:1.03,z1:1.10,x0:0,x1:0,y0:0,y1:-20}],
+  ['D', S(4), {z0:1.05,z1:1.18,x0:0,x1:-40,y0:0,y1:20}],
+  ['B', S(5), {z0:1.30,z1:1.40,x0:-60,x1:-80,y0:-120,y1:-150}],
+  ['G', S(6), {z0:1.04,z1:1.12,x0:0,x1:30,y0:0,y1:0}],
+  ['#typer', S(7), null],
+  ['#calls', S(9), null],
+  ['B', W(9, 'some', 2.2) - 0.1, {z0:1.18,z1:1.26,x0:40,x1:20,y0:0,y1:-30}],
+  ['F', S(10), {z0:1.03,z1:1.10,x0:0,x1:-20,y0:0,y1:-20}],
+  ['H', S(11), {z0:1.04,z1:1.10,x0:0,x1:-20,y0:0,y1:0}],
+  ['H', S(12), {z0:1.35,z1:1.42,x0:60,x1:60,y0:330,y1:350}],
+  ['K', S(13), {z0:1.03,z1:1.10,x0:0,x1:0,y0:0,y1:0}],
+  ['#ledger', W(14, 'public', 2.5) - 0.15, null],
+  ['M', W(15, 'no', 1.5) - 0.1, {z0:1.03,z1:1.10,x0:0,x1:-20,y0:0,y1:0}],
+  ['M', S(16), {z0:1.30,z1:1.36,x0:20,x1:20,y0:330,y1:350}],
+  ['S', S(17), {z0:1.04,z1:1.10,x0:0,x1:-20,y0:0,y1:0}],
+  ['N', S(18), {z0:1.03,z1:1.08,x0:0,x1:0,y0:0,y1:0}],
+  ['N', S(19), {z0:1.10,z1:1.20,x0:0,x1:0,y0:60,y1:110}],
+  ['#end', END + 0.8, null],
+];
+SHOTS.forEach((s, k) => { s.push(k + 1 < SHOTS.length ? SHOTS[k + 1][1] : window.DURATION + 1); });
+
+const holder = document.getElementById('shots');
+const imgs = {};
+for (const [k] of SHOTS) if (!k.startsWith('#') && !imgs[k]) {
+  const im = document.createElement('img'); im.src = `img/${k}.jpg`; im.className = 'shot'; holder.appendChild(im); imgs[k] = im;
+}
+const screens = ['#typer', '#calls', '#ledger', '#end'].reduce((o, id) => (o[id] = document.querySelector(id), o), {});
+
+const gc = document.getElementById('grain').getContext('2d');
+const grains = [...Array(6)].map(() => { const d = gc.createImageData(540, 960); for (let i = 0; i < d.data.length; i += 4) { const v = Math.random() * 255; d.data[i] = d.data[i+1] = d.data[i+2] = v; d.data[i+3] = 255; } return d; });
+
+const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+
+const TYPE = [
+  { at: () => L[7] + 0.05, text: 'MON 19 OCT 1987\n\ndow jones industrial average\n', cls: '' },
+  { at: () => W(7, 'twenty', 1.0), text: '−22.6%\n', cls: 'red' },
+  { at: () => W(7, 'in', 2.6), text: 'in one day (−508 points)\n\n', cls: '' },
+  { at: () => L[8] + 0.05, text: 'new york stock exchange volume\n', cls: '' },
+  { at: () => L[8] + 1.0, text: '604,000,000 shares', cls: 'big' },
+];
+const CPS = 60;
+// each segment waits for the previous one to finish typing
+const segStart = (k) => { let st = 0; for (let j = 0; j <= k; j++) st = Math.max(TYPE[j].at(), j ? st + TYPE[j - 1].text.length / CPS + 0.05 : 0); return st; };
+function drawTyper(t) {
+  let html = '', typing = false;
+  TYPE.forEach((seg, k) => {
+    const st = segStart(k); if (t < st) return;
+    const n = Math.min(seg.text.length, Math.floor((t - st) * CPS));
+    if (n < seg.text.length) typing = true;
+    const s = seg.text.slice(0, n).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    html += seg.cls ? `<span class="${seg.cls}">${s}</span>` : s;
+  });
+  const blink = typing || Math.floor(t * 2) % 2 === 0;
+  return html + (blink ? '<span class="cursor"></span>' : '');
+}
+window.typingActive = (t) => TYPE.some((seg, k) => { const st = segStart(k); return t >= st && t < st + seg.text.length / CPS; });
+
+const typerLines = document.querySelector('#typer .lines');
+const callRows = [...document.querySelectorAll('#calls .crow')];
+const ledgerRows = [...document.querySelectorAll('#ledger .row')];
+const ledgerCheck = document.querySelector('#ledger .check');
+const title = document.getElementById('title');
+const cap = document.getElementById('cap');
+const flash = document.getElementById('flash');
+const noteBack = document.getElementById('noteBack');
+const noteRisk = document.getElementById('noteRisk');
+const callT = () => { const a = L[9] + 0.1; return [a, a + 0.55, a + 1.1, a + 1.65]; };
+const ledT = () => { const a = W(14, 'public', 2.5); return [a + 0.7, a + 1.5, W(15, 'every', 0)]; };
+
+window.draw = (t) => {
+  let cur = SHOTS.findIndex(s => t >= s[1] && t < s[3]);
+  if (cur < 0) cur = SHOTS.length - 1;
+  const [key, st, kb, en] = SHOTS[cur];
+  for (const k in imgs) imgs[k].style.opacity = 0;
+  for (const k in screens) screens[k].style.opacity = 0;
+  const wx = Math.sin(t * 1.3) * 5 + Math.sin(t * 2.9 + 1) * 3;
+  const wy = Math.sin(t * 1.1 + 2) * 6 + Math.sin(t * 3.7) * 2;
+  const wr = Math.sin(t * 0.9) * 0.25;
+  if (key.startsWith('#')) {
+    const el = screens[key]; el.style.opacity = 1;
+    el.style.transform = key === '#end' ? '' : `translate(${wx * .4}px,${wy * .4}px)`;
+  } else {
+    const p = ease((t - st) / Math.max(0.1, en - st));
+    const z = lerp(kb.z0, kb.z1, p), x = lerp(kb.x0, kb.x1, p) + wx, y = lerp(kb.y0, kb.y1, p) + wy;
+    const im = imgs[key]; im.style.opacity = 1;
+    im.style.transform = `translate(${x}px,${y}px) scale(${z}) rotate(${wr}deg)`;
+  }
+  const since = t - st;
+  flash.style.opacity = cur > 0 && since < 0.12 ? (0.12 - since) * 1.2 : 0;
+
+  const ct = callT();
+  callRows.forEach((r, k) => r.style.opacity = clamp((t - ct[k]) / 0.2));
+  if (key === '#typer') typerLines.innerHTML = drawTyper(t);
+  const lt = ledT();
+  ledgerRows.forEach((r, k) => r.style.opacity = clamp((t - lt[k]) / 0.3));
+  ledgerCheck.style.opacity = clamp((t - (lt[2] + 0.9)) / 0.4);
+
+  // notes over shots
+  const nb = clamp((t - (L[11] + 0.3)) / 0.3) * (1 - clamp((t - (LE[11] + 0.5)) / 0.3));
+  noteBack.style.opacity = nb; noteBack.style.transform = `translateY(${(1 - nb) * 14}px)`;
+  const nr = clamp((t - (L[17] + 0.2)) / 0.3) * (1 - clamp((t - (LE[17] + 0.3)) / 0.3));
+  noteRisk.style.opacity = nr; noteRisk.style.transform = `translateY(${(1 - nr) * 14}px)`;
+
+  const ti = clamp((t - (L[1] - 0.2)) / 0.35) * (1 - clamp((t - (LE[2] + 0.3)) / 0.35));
+  title.style.opacity = ti;
+  title.style.transform = `translateY(${(1 - ti) * 16}px)`;
+
+  const c = TIMING.caps.find(c => t >= c.s && t < c.e);
+  cap.textContent = c && t < END + 0.8 ? c.t : '';
+  cap.style.top = key.startsWith('#') ? '1560px' : '1420px';
+
+  gc.putImageData(grains[Math.floor(t * 24) % grains.length], 0, 0);
+};
+window.CUES = () => {
+  const c = [];
+  SHOTS.forEach((s, k) => { if (k > 0) c.push({ t: s[1], k: 'cut' }); });
+  c.push({ t: 0.0, k: 'ring' }, { t: 3.2, k: 'ring' }, { t: S(5), k: 'ring' });
+  callT().forEach(d => c.push({ t: d, k: 'busy' }));
+  c.push({ t: L[1] - 0.2, k: 'hit' }, { t: W(7, 'twenty', 1.0), k: 'boom' }, { t: L[12], k: 'boom' }, { t: L[13], k: 'rise' });
+  ledT().forEach(d => c.push({ t: d, k: 'tick' }));
+  c.push({ t: ledT()[2] + 0.9, k: 'ding' }, { t: END + 0.8, k: 'chime' });
+  return { cues: c, lines: L, end: END, duration: window.DURATION, idea: L[13], tension: [L[6], L[10]] };
+};
+</script>
+</body></html>

@@ -1,0 +1,357 @@
+<title>BLOK Posting Calendar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: a planner board. Header + "next up" strip, then a week agenda (default) or a month grid; trials and shelf below. */
+:root{
+  --paper:#F6F3E8; --card:#FFFDF6; --ink:#1B2340; --muted:#5E6378; --line:#E2DccB;
+  --indigo:#004EBA; --sky:#7DD2FD; --lime:#7ED116; --coral:#EC464D; --earth:#844947;
+  --st-posted:#3E7A06; --st-posted-bg:#E6F4D2;
+  --st-sched:#004EBA; --st-sched-bg:#DDEFFC;
+  --st-hand:#B4262C; --st-hand-bg:#FBE1E1;
+  --st-need:#844947; --st-need-bg:#F2E3D8;
+  --st-open:#7A7C88; --st-open-bg:transparent;
+  --st-held:#7A7C88; --st-held-bg:#ECEAE2;
+  --ig:#004EBA; --x:#1B2340;
+  --today:#FFF3B8;
+  --f-display:"Instrument Serif", Georgia, serif;
+  --f-body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"Space Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12172A; --card:#1A2038; --ink:#ECEAE2; --muted:#A3A8BC; --line:#2C3352;
+  --st-posted:#9BE33C; --st-posted-bg:#1F3312; --st-sched:#8FD7FD; --st-sched-bg:#14304A;
+  --st-hand:#FF8A8E; --st-hand-bg:#3E1A1F; --st-need:#E3B49A; --st-need-bg:#3A2622;
+  --st-open:#8E93A8; --st-held:#8E93A8; --st-held-bg:#232A44; --ig:#8FD7FD; --x:#ECEAE2; --today:#2B3560; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12172A; --card:#1A2038; --ink:#ECEAE2; --muted:#A3A8BC; --line:#2C3352;
+  --st-posted:#9BE33C; --st-posted-bg:#1F3312; --st-sched:#8FD7FD; --st-sched-bg:#14304A;
+  --st-hand:#FF8A8E; --st-hand-bg:#3E1A1F; --st-need:#E3B49A; --st-need-bg:#3A2622;
+  --st-open:#8E93A8; --st-held:#8E93A8; --st-held-bg:#232A44; --ig:#8FD7FD; --x:#ECEAE2; --today:#2B3560; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:15px/1.5 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:28px}
+h1{font:400 clamp(34px,6vw,54px)/1 var(--f-display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 em{color:var(--indigo);font-style:italic}
+:root:not([data-theme="light"]) h1 em{color:var(--sky)}
+h2{font:400 28px/1.1 var(--f-display);margin:0}
+.sub{color:var(--muted);margin:6px 0 0;font-size:14px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+header{display:grid;gap:14px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:5px;font:600 11px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 8px;border-radius:999px;white-space:nowrap}
+.s-posted{color:var(--st-posted);background:var(--st-posted-bg)}
+.s-scheduled{color:var(--st-sched);background:var(--st-sched-bg)}
+.s-by-hand{color:var(--st-hand);background:var(--st-hand-bg)}
+.s-needs-asset{color:var(--st-need);background:var(--st-need-bg)}
+.s-open{color:var(--st-open);border:1px dashed var(--st-open)}
+.s-held{color:var(--st-held);background:var(--st-held-bg)}
+.plat{font:700 11px/1 var(--f-mono);padding:3px 5px;border-radius:4px;border:1.5px solid currentColor}
+.plat.instagram{color:var(--ig)} .plat.x{color:var(--x)}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.next .item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:6px;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.next .when{font:12px var(--f-mono);color:var(--muted)}
+.next .t{font-weight:600;line-height:1.3}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}
+.seg button{font:500 13px var(--f-body);border:0;background:transparent;color:var(--ink);padding:8px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.row:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+.weeknav{display:flex;gap:8px;align-items:center}
+.weeknav button{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:7px 11px;cursor:pointer}
+.weeklabel{font:13px var(--f-mono);color:var(--muted);min-width:0}
+/* agenda */
+.agenda{display:grid;gap:18px}
+.day{display:grid;grid-template-columns:110px 1fr;gap:16px;border-top:1px solid var(--line);padding-top:14px}
+.day.today .dlabel b{background:var(--today);padding:0 4px;border-radius:3px}
+.dlabel{display:grid;align-content:start}
+.dlabel b{font:400 26px/1 var(--f-display)}
+.dlabel span{font:12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.rows{display:grid;gap:6px;min-width:0}
+.row{display:grid;grid-template-columns:52px 34px 1fr auto;gap:10px;align-items:center;padding:8px 10px;border-radius:8px;
+  background:var(--card);border:1px solid var(--line);cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.row.is-open{background:transparent;border-style:dashed}
+.row .time{font:13px var(--f-mono)}
+.row .what{min-width:0}
+.row .what .t{font-weight:500;line-height:1.3;overflow-wrap:anywhere}
+.row .what .f{font-size:12px;color:var(--muted)}
+.row.is-open .t{color:var(--muted);font-weight:400}
+.empty{color:var(--muted);font-size:14px;padding:6px 0}
+/* month */
+.monthwrap{overflow-x:auto}
+.month{display:grid;grid-template-columns:repeat(7,minmax(108px,1fr));min-width:760px;border-left:1px solid var(--line);border-top:1px solid var(--line)}
+.month .h{font:600 11px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cell{min-height:118px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px;display:grid;align-content:start;gap:3px;background:var(--card)}
+.cell.out{background:transparent;opacity:.55}
+.cell.today{background:var(--today)}
+.cell .n{font:13px var(--f-mono);color:var(--muted)}
+.chip{display:grid;grid-template-columns:auto 1fr;gap:4px;align-items:center;font-size:11.5px;line-height:1.25;padding:2px 4px;border-radius:4px;cursor:pointer;
+  border:0;text-align:left;color:inherit;font-family:inherit;background:transparent}
+.chip .d{width:7px;height:7px;border-radius:50%}
+.chip .lbl{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.chip.c-posted .d{background:var(--st-posted)} .chip.c-scheduled .d{background:var(--st-sched)}
+.chip.c-by-hand .d{background:var(--st-hand)} .chip.c-needs-asset .d{background:var(--st-need)}
+.chip.c-open .d{border:1px dashed var(--st-open)} .chip.c-open{color:var(--muted)}
+.chip:hover,.row:hover{filter:brightness(.97)}
+/* tables */
+.twrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+section{display:grid;gap:12px}
+.note{color:var(--muted);font-size:14px;max-width:70ch;margin:0}
+/* drawer */
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:0;width:min(560px,calc(100vw - 32px));max-height:85vh}
+dialog::backdrop{background:rgba(10,14,30,.45)}
+.dlg{padding:20px;display:grid;gap:14px}
+.dlg h3{font:400 26px/1.15 var(--f-display);margin:0;text-wrap:balance}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:6px 12px;font-size:14px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.kv a{color:var(--indigo)}
+:root:not([data-theme="light"]) .kv a{color:var(--sky)}
+label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+select,input,textarea{font:14px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px}
+.actions{display:flex;gap:8px;justify-content:flex-end;align-items:center}
+.btn{font:600 14px var(--f-body);border-radius:8px;padding:9px 14px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
+.btn.primary{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.msg{font-size:13px;color:var(--muted);margin-right:auto}
+.state{padding:24px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}
+@media (max-width:640px){
+  .day{grid-template-columns:1fr;gap:8px}
+  .dlabel{grid-auto-flow:column;justify-content:start;gap:10px;align-items:baseline}
+  .row{grid-template-columns:46px 30px 1fr;}
+  .row .pill{grid-column:3}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>BLOK <em>posting</em> calendar</h1>
+      <p class="sub">Instagram @blok.capital and X @blok_cap · every time is IST · Instagram slots 10:00, 15:30, 18:52 · X slots 11:30, 17:45, 20:00</p>
+    </div>
+    <div class="legend" aria-label="Status key">
+      <span class="pill s-posted">Posted</span>
+      <span class="pill s-scheduled">Scheduled (auto)</span>
+      <span class="pill s-by-hand">Post by hand</span>
+      <span class="pill s-needs-asset">Needs asset</span>
+      <span class="pill s-open">Open slot</span>
+    </div>
+  </header>
+
+  <section aria-labelledby="nexth">
+    <h2 id="nexth">Next up</h2>
+    <div class="next" id="next"><div class="state">Loading the schedule…</div></div>
+  </section>
+
+  <section aria-labelledby="calh">
+    <div class="bar">
+      <h2 id="calh">Schedule</h2>
+      <div class="bar" style="gap:8px">
+        <div class="seg" role="group" aria-label="Platform">
+          <button id="pf-all" data-pf="all" aria-pressed="true">Both</button>
+          <button id="pf-ig" data-pf="instagram" aria-pressed="false">Instagram</button>
+          <button id="pf-x" data-pf="x" aria-pressed="false">X</button>
+        </div>
+        <div class="seg" role="group" aria-label="View">
+          <button id="v-week" data-v="week" aria-pressed="true">Week</button>
+          <button id="v-month" data-v="month" aria-pressed="false">Month</button>
+        </div>
+      </div>
+    </div>
+    <div class="bar">
+      <div class="weeknav">
+        <button id="prev" aria-label="Previous">←</button>
+        <button id="tod">Today</button>
+        <button id="nextb" aria-label="Next">→</button>
+      </div>
+      <span class="weeklabel" id="range"></span>
+    </div>
+    <div id="cal"><div class="state">Loading the schedule…</div></div>
+  </section>
+
+  <section aria-labelledby="trh">
+    <h2 id="trh">Keynes trial reels</h2>
+    <p class="note">One hook variant every two days, posted by hand in the Instagram app as a Trial (shown only to non-followers). Read each one's skip rate at 24h before the next goes up. Lowest skip rate wins and goes to the feed as a normal Reel. Tap a row to log its numbers.</p>
+    <div class="twrap"><table><thead><tr><th>#</th><th>Post</th><th>Hook</th><th>Status</th><th>Views 24h</th><th>Skip rate</th><th>Avg watch</th></tr></thead><tbody id="trials"><tr><td colspan="7" class="empty">Loading…</td></tr></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="shh">
+    <h2 id="shh">On the shelf</h2>
+    <p class="note">Finished but held back on purpose, mostly because the topic already went out this week.</p>
+    <div class="twrap"><table><thead><tr><th>Piece</th><th>Why it's held</th><th>Files</th></tr></thead><tbody id="shelf"><tr><td colspan="3" class="empty">Loading…</td></tr></tbody></table></div>
+  </section>
+</div>
+
+<dialog id="dlg" aria-labelledby="dtitle">
+  <form class="dlg" id="dform" method="dialog">
+    <div class="legend" id="dtags"></div>
+    <h3 id="dtitle"></h3>
+    <dl class="kv" id="dkv"></dl>
+    <label for="f-status">Status
+      <select id="f-status">
+        <option value="scheduled">Scheduled (auto)</option>
+        <option value="by-hand">Post by hand</option>
+        <option value="needs-asset">Needs asset</option>
+        <option value="posted">Posted</option>
+        <option value="open">Open slot</option>
+        <option value="held">Held</option>
+        <option value="skipped">Skipped</option>
+      </select>
+    </label>
+    <label for="f-link">Live link
+      <input id="f-link" type="url" placeholder="https://www.instagram.com/p/…">
+    </label>
+    <div id="trialfields" hidden style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+      <label for="f-views">Views 24h<input id="f-views" inputmode="numeric"></label>
+      <label for="f-skip">Skip rate<input id="f-skip" placeholder="e.g. 41%"></label>
+      <label for="f-watch">Avg watch<input id="f-watch" placeholder="e.g. 9.2s"></label>
+    </div>
+    <label for="f-note">Note
+      <textarea id="f-note" rows="3"></textarea>
+    </label>
+    <div class="actions">
+      <span class="msg" id="dmsg"></span>
+      <button class="btn" value="cancel" id="dclose">Close</button>
+      <button class="btn primary" type="button" id="dsave">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+const $ = s => document.querySelector(s);
+const DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const STATUS = {posted:"Posted",scheduled:"Scheduled","by-hand":"By hand","needs-asset":"Needs asset",open:"Open",held:"Held",skipped:"Skipped"};
+let posts = [], db = null, canWrite = true;
+let pf = "all", view = "week", current = null;
+
+function istNow(){ const d=new Date(); return new Date(d.getTime()+ (330+d.getTimezoneOffset())*60000); }
+function ymd(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function parse(s){ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); }
+function addDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
+let anchor = (()=>{ const t=istNow(); t.setHours(0,0,0,0); return t; })();
+const todayStr = ymd(istNow());
+
+function esc(s){ return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function visible(){ return posts.filter(p => p.date && (pf==="all" || p.platform===pf)); }
+function platTag(p){ return `<span class="plat ${p.platform}" title="${p.platform==="x"?"X":"Instagram"}">${p.platform==="x"?"X":"IG"}</span>`; }
+function pill(st){ return `<span class="pill s-${st}">${STATUS[st]||st}</span>`; }
+
+function renderNext(){
+  const now = istNow(); const key = ymd(now)+" "+String(now.getHours()).padStart(2,"0")+":"+String(now.getMinutes()).padStart(2,"0");
+  const up = posts.filter(p=>p.date && p.status!=="open" && p.status!=="posted" && (p.date+" "+p.time)>=key)
+                  .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).slice(0,4);
+  $("#next").innerHTML = up.length ? up.map(p=>`<button class="item" data-id="${esc(p.id)}">
+      <span class="legend">${platTag(p)} ${pill(p.status)}</span>
+      <span class="when mono">${DAYS[parse(p.date).getDay()]} ${parse(p.date).getDate()} ${MON[parse(p.date).getMonth()]} · ${p.time} IST</span>
+      <span class="t">${esc(p.title)}</span></button>`).join("")
+    : `<div class="state">Nothing queued after now. Open slots are waiting for new pieces.</div>`;
+}
+
+function row(p){
+  return `<button class="row ${p.status==="open"?"is-open":""}" data-id="${esc(p.id)}">
+    <span class="time">${p.time}</span>${platTag(p)}
+    <span class="what"><span class="t">${esc(p.title)}</span><br><span class="f">${esc(p.format)}${p.owner?" · "+esc(p.owner):""}</span></span>
+    ${p.status==="open"?"":pill(p.status)}</button>`;
+}
+
+function renderWeek(){
+  const start = addDays(anchor, -((anchor.getDay()+6)%7)); // Monday
+  const end = addDays(start,6);
+  $("#range").textContent = `${start.getDate()} ${MON[start.getMonth()]} – ${end.getDate()} ${MON[end.getMonth()]} ${end.getFullYear()}`;
+  const v = visible(); let html="";
+  for(let i=0;i<7;i++){
+    const d=addDays(start,i), k=ymd(d);
+    const items=v.filter(p=>p.date===k).sort((a,b)=>a.time.localeCompare(b.time));
+    html+=`<div class="day ${k===todayStr?"today":""}"><div class="dlabel"><b>${d.getDate()} ${MON[d.getMonth()]}</b><span>${DAYS[d.getDay()]}${k===todayStr?" · today":""}</span></div>
+      <div class="rows">${items.length?items.map(row).join(""):`<div class="empty">Nothing planned.</div>`}</div></div>`;
+  }
+  $("#cal").innerHTML = `<div class="agenda">${html}</div>`;
+}
+
+function renderMonth(){
+  const first=new Date(anchor.getFullYear(),anchor.getMonth(),1);
+  const start=addDays(first,-((first.getDay()+6)%7));
+  $("#range").textContent = `${["January","February","March","April","May","June","July","August","September","October","November","December"][first.getMonth()]} ${first.getFullYear()}`;
+  const v=visible();
+  let html=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(h=>`<div class="h">${h}</div>`).join("");
+  for(let i=0;i<42;i++){
+    const d=addDays(start,i), k=ymd(d);
+    if(i>=35 && d.getMonth()!==first.getMonth()) break;
+    const items=v.filter(p=>p.date===k).sort((a,b)=>a.time.localeCompare(b.time));
+    html+=`<div class="cell ${d.getMonth()!==first.getMonth()?"out":""} ${k===todayStr?"today":""}"><span class="n">${d.getDate()}</span>
+      ${items.map(p=>`<button class="chip c-${p.status}" data-id="${esc(p.id)}" title="${esc(p.time+" "+p.title)}"><span class="d"></span><span class="lbl"><span class="mono">${p.time}</span> ${p.platform==="x"?"X":"IG"} · ${esc(p.status==="open"?"open":p.title)}</span></button>`).join("")}</div>`;
+  }
+  $("#cal").innerHTML=`<div class="monthwrap"><div class="month">${html}</div></div>`;
+}
+
+function renderTrials(){
+  const t=posts.filter(p=>p.format==="Trial reel").sort((a,b)=>a.date.localeCompare(b.date));
+  $("#trials").innerHTML = t.length ? t.map((p,i)=>`<tr data-id="${esc(p.id)}" style="cursor:pointer"><td class="mono">${i+1}</td>
+    <td class="mono">${DAYS[parse(p.date).getDay()]} ${parse(p.date).getDate()} ${MON[parse(p.date).getMonth()]} ${p.time}</td>
+    <td>${esc(p.title.replace(/^Keynes trial \d\/7: /,""))}</td><td>${pill(p.status)}</td>
+    <td class="mono">${esc(p.views||"–")}</td><td class="mono">${esc(p.skip||"–")}</td><td class="mono">${esc(p.watch||"–")}</td></tr>`).join("")
+    : `<tr><td colspan="7" class="empty">No trials planned.</td></tr>`;
+  const s=posts.filter(p=>p.status==="held" && !p.date);
+  $("#shelf").innerHTML = s.length ? s.map(p=>`<tr data-id="${esc(p.id)}" style="cursor:pointer"><td>${esc(p.title)}</td><td>${esc(p.note)}</td><td class="mono" style="font-size:12px">${esc(p.source)}</td></tr>`).join("")
+    : `<tr><td colspan="3" class="empty">Nothing on the shelf.</td></tr>`;
+}
+
+function render(){
+  if(!posts.length){ return; }
+  renderNext(); (view==="week"?renderWeek:renderMonth)(); renderTrials();
+}
+
+function openItem(id){
+  const p=posts.find(x=>x.id===id); if(!p) return; current=p;
+  $("#dtags").innerHTML = platTag(p)+" "+pill(p.status)+` <span class="pill s-held">${esc(p.format)}</span>`;
+  $("#dtitle").textContent = p.title;
+  const when = p.date ? `${DAYS[parse(p.date).getDay()]} ${parse(p.date).getDate()} ${MON[parse(p.date).getMonth()]}, ${p.time} IST (${p.utc.slice(11,16)} UTC)` : "Not scheduled";
+  const kv=[["When",esc(when)],["Who posts",esc(p.owner||"–")],["Files",esc(p.source||"–")],
+    ["Live",p.link?`<a href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.link.replace(/^https:\/\/(www\.)?/,""))}</a>`:"–"]];
+  $("#dkv").innerHTML = kv.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("");
+  $("#f-status").value=p.status; $("#f-link").value=p.link||""; $("#f-note").value=p.note||"";
+  const tr=p.format==="Trial reel"; $("#trialfields").hidden=!tr;
+  $("#trialfields").style.display = tr ? "grid" : "none";
+  $("#f-views").value=p.views||""; $("#f-skip").value=p.skip||""; $("#f-watch").value=p.watch||"";
+  $("#dmsg").textContent = db && canWrite ? "" : "View only: changes can't be saved here.";
+  $("#dsave").disabled = !(db && canWrite);
+  $("#dlg").showModal();
+}
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-id]"); if(t && !t.closest("dialog")) openItem(t.dataset.id);
+  const b=e.target.closest("[data-pf]"); if(b){ pf=b.dataset.pf; document.querySelectorAll("[data-pf]").forEach(x=>x.setAttribute("aria-pressed",x===b)); render(); }
+  const v=e.target.closest("[data-v]"); if(v){ view=v.dataset.v; document.querySelectorAll("[data-v]").forEach(x=>x.setAttribute("aria-pressed",x===v)); render(); }
+});
+$("#prev").onclick=()=>{ anchor = view==="week"?addDays(anchor,-7):new Date(anchor.getFullYear(),anchor.getMonth()-1,1); render(); };
+$("#nextb").onclick=()=>{ anchor = view==="week"?addDays(anchor,7):new Date(anchor.getFullYear(),anchor.getMonth()+1,1); render(); };
+$("#tod").onclick=()=>{ anchor=istNow(); anchor.setHours(0,0,0,0); render(); };
+
+$("#dsave").onclick=async()=>{
+  if(!current||!db) return;
+  const patch={status:$("#f-status").value,link:$("#f-link").value.trim(),note:$("#f-note").value.trim(),updated_at:new Date().toISOString()};
+  if(current.format==="Trial reel"){ patch.views=$("#f-views").value.trim(); patch.skip=$("#f-skip").value.trim(); patch.watch=$("#f-watch").value.trim(); }
+  $("#dmsg").textContent="Saving…"; $("#dsave").disabled=true;
+  try{ await db.collection("posts").doc(current.id).update(patch); $("#dmsg").textContent="Saved"; setTimeout(()=>$("#dlg").close(),500); }
+  catch(err){ if(err&&err.code==="invalid_argument"){canWrite=false; $("#dmsg").textContent="You have view-only access, so this can't be saved.";}
+    else $("#dmsg").textContent="Couldn't save. Try again in a moment."; $("#dsave").disabled=false; }
+};
+
+(async()=>{
+  db = await window.claude?.use?.("db") ?? null;
+  if(!db){ const m=`<div class="state">The schedule lives in this page's shared data, which isn't available in this view. Open the page on claude.ai while signed in.</div>`;
+    $("#cal").innerHTML=m; $("#next").innerHTML=""; return; }
+  try{ const u=await window.claude.use("user"); const c=u?.can?.("data.write"); if(c===false) canWrite=false; }catch(e){}
+  db.collection("posts").limit(1000).onSnapshot(snap=>{
+    posts=snap.docs.map(d=>({id:d.id,...d.data()}));
+    if(!posts.length){ $("#cal").innerHTML=`<div class="state">No posts yet. The schedule appears here as soon as it's loaded into the page.</div>`; $("#next").innerHTML=""; return; }
+    render();
+  },err=>{ $("#cal").innerHTML=`<div class="state">The schedule couldn't load (${esc(err.code)}). Reload the page to try again.</div>`; });
+})();
+</script>

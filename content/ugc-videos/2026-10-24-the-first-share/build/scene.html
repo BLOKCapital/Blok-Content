@@ -1,0 +1,228 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800;9..144,900&family=JetBrains+Mono:wght@400;500;700&display=block" rel="stylesheet">
+<style>
+  :root { --lime:#7ED116; --sky:#7DD2FD; --ink:#0B1B2B; }
+  html,body { margin:0; width:1080px; height:1920px; overflow:hidden; background:#000; }
+  .shot { position:absolute; left:-54px; top:-96px; width:1188px; height:2112px; object-fit:cover; opacity:0; filter:contrast(1.06) saturate(.88) brightness(.9); will-change:transform; }
+  #grade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,18,40,.18),rgba(0,0,0,0) 40%,rgba(0,0,0,.35)); mix-blend-mode:multiply; }
+  #vig { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%); }
+  #edge { position:absolute; inset:0; box-shadow: inset 6px 0 10px -6px rgba(255,40,80,.35), inset -6px 0 10px -6px rgba(40,200,255,.35); }
+  #grain { position:absolute; inset:0; opacity:.13; mix-blend-mode:overlay; }
+  #flash { position:absolute; inset:0; background:#fff; opacity:0; }
+  #title { position:absolute; left:70px; top:1060px; opacity:0; font-family:Fraunces,serif; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,.55); }
+  #title .a { font-weight:800; font-size:76px; line-height:1; margin-left:40px; }
+  #title .b { font-weight:900; font-size:168px; line-height:.95; color:var(--lime); letter-spacing:-.02em; }
+  #title .c { font-weight:800; font-size:76px; line-height:1; margin-left:120px; }
+  #cap { position:absolute; left:60px; right:60px; top:1420px; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:500; font-size:50px; color:#fff; letter-spacing:.01em; text-shadow:0 2px 3px rgba(0,0,0,.9),0 0 18px rgba(0,0,0,.6); }
+  .screen { position:absolute; inset:0; opacity:0; background:#05080d; font-family:'JetBrains Mono',monospace; color:#dfe7ef; }
+  /* chain */
+  #chain .hdr { position:absolute; top:330px; left:0; right:0; text-align:center; font-size:34px; color:#9fb0c2; }
+  #chain .hdr b { display:block; color:#fff; font-family:Fraunces,serif; font-weight:800; font-size:70px; margin-bottom:10px; }
+  #chain .stack { position:absolute; left:110px; right:110px; top:560px; display:flex; flex-direction:column; gap:30px; }
+  .box { padding:30px 38px; border-radius:28px; font-size:40px; background:#121c28; border:2px solid #23364b; opacity:0; transform:translateY(20px); }
+  .box small { display:block; font-size:26px; color:#8fa1b4; margin-bottom:6px; text-transform:uppercase; letter-spacing:.08em; }
+  .box.you { background:transparent; border:2px dashed #6f8193; color:#9fb0c2; text-align:center; }
+  .label { position:absolute; left:70px; bottom:110px; font-size:24px; color:#6f8193; letter-spacing:.08em; text-transform:uppercase; }
+  /* typing screen */
+  .typer .lines { position:absolute; left:80px; right:60px; top:640px; font-size:46px; line-height:1.6; white-space:pre-wrap; }
+  .typer .big { color:#fff; font-weight:700; font-size:64px; }
+  .typer .cursor { display:inline-block; width:26px; height:52px; background:#dfe7ef; vertical-align:-8px; margin-left:4px; }
+  /* ledger */
+  #ledger .card { position:absolute; left:70px; right:70px; top:470px; border:2px solid #23364b; border-radius:30px; padding:46px 48px; background:#08111c; }
+  #ledger .t1 { font-size:30px; color:#8fa1b4; letter-spacing:.1em; text-transform:uppercase; }
+  #ledger .t2 { font-family:Fraunces,serif; font-weight:800; font-size:70px; color:#fff; margin:14px 0 8px; }
+  #ledger .chip { display:inline-block; padding:10px 22px; border-radius:999px; border:2px solid var(--lime); color:var(--lime); font-size:28px; }
+  #ledger .row { display:flex; justify-content:space-between; font-size:32px; padding:24px 0; border-top:2px dashed #1f3044; opacity:0; }
+  #ledger .row:first-of-type { margin-top:34px; }
+  #ledger .row span:last-child { color:var(--lime); }
+  #ledger .check { margin-top:30px; font-size:36px; color:var(--sky); opacity:0; }
+  /* end card */
+  #end { background:#05080d; text-align:center; }
+  #end img { width:220px; margin-top:560px; border-radius:40px; }
+  #end .f { font-family:Fraunces,serif; font-weight:800; font-size:64px; color:#fff; margin-top:56px; }
+  #end .h { font-size:40px; color:var(--lime); margin-top:20px; }
+  #end .d { position:absolute; left:110px; right:110px; bottom:180px; font-size:25px; line-height:1.5; color:#8fa1b4; }
+</style></head><body>
+<div id="shots"></div>
+<div id="grade"></div>
+
+<div class="screen" id="chain">
+  <div class="hdr"><b>Your fund units</b>who keeps the record</div>
+  <div class="stack">
+    <div class="box"><small>fund house</small>their books</div>
+    <div class="box"><small>registrar / transfer agent</small>their records</div>
+    <div class="box"><small>custodian</small>their records</div>
+    <div class="box you">you: a statement</div>
+  </div>
+  <div class="label">Illustrative · typical setup, varies by country</div>
+</div>
+
+<div class="screen typer" id="typer"><div class="lines"></div>
+  <div class="label">Source: L. Petram, The World's First Stock Exchange (2014); J. Ekama, Leiden Univ. (2018)</div></div>
+<div class="screen typer" id="typer2"><div class="lines"></div>
+  <div class="label">Source: Westfries Archief, Hoorn · found 2010 by Ruben Schalk, Utrecht Univ.</div></div>
+
+<div class="screen" id="ledger">
+  <div class="card">
+    <div class="t1">Public ledger</div>
+    <div class="t2">Your line</div>
+    <span class="chip">only you can sign it</span>
+    <div class="row"><span>who can read it</span><span>anyone</span></div>
+    <div class="row"><span>who can change it</span><span>only you</span></div>
+    <div class="row"><span>when you can check</span><span>any hour</span></div>
+    <div class="check">✓ the book is public. the pen is yours.</div>
+  </div>
+  <div class="label">Illustrative</div>
+</div>
+
+<div class="screen" id="end">
+  <img src="img/logo.png">
+  <div class="f">Learn it before you need it.</div>
+  <div class="h">Follow @blok.capital</div>
+  <div class="d">Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money. On-chain portfolios are newer and prices can swing: start small. AI-generated voice and visuals. Events dramatised; figures: Petram (2014), Westfries Archief.</div>
+</div>
+
+<div id="title"><div class="a">The first</div><div class="b">share</div><div class="c">anyone could buy.</div></div>
+<div id="cap"></div>
+<div id="vig"></div><div id="edge"></div>
+<canvas id="grain" width="540" height="960"></canvas>
+<div id="flash"></div>
+
+<script>
+const TIMING = __TIMING__;
+const L = TIMING.lines.map(l => l.s);
+const LE = TIMING.lines.map(l => l.e);
+const END = LE[LE.length - 1];
+window.DURATION = END + 0.7 + 3.3;
+
+const S = (i) => L[i] - 0.15;
+const SHOTS = [
+  ['A', 0, {z0:1.04,z1:1.14,x0:0,x1:-30,y0:0,y1:-20}],
+  ['F', S(1), {z0:1.03,z1:1.12,x0:20,x1:-10,y0:0,y1:0}],
+  ['B', S(2), {z0:1.05,z1:1.16,x0:0,x1:-20,y0:0,y1:20}],
+  ['C', S(3), {z0:1.03,z1:1.10,x0:0,x1:0,y0:0,y1:-20}],
+  ['D', S(4), {z0:1.04,z1:1.16,x0:-30,x1:20,y0:0,y1:0}],
+  ['C', S(5), {z0:1.18,z1:1.24,x0:0,x1:10,y0:120,y1:110}],
+  ['B', S(6), {z0:1.30,z1:1.38,x0:120,x1:110,y0:0,y1:-30}],
+  ['A', S(7), {z0:1.45,z1:1.52,x0:-260,x1:-280,y0:220,y1:230}],
+  ['E', S(8), {z0:1.04,z1:1.12,x0:0,x1:-30,y0:0,y1:0}],
+  ['#typer', L[8] + 2.2, null],
+  ['G', S(10), {z0:1.04,z1:1.12,x0:0,x1:20,y0:0,y1:-20}],
+  ['H', S(11), {z0:1.55,z1:1.65,x0:-150,x1:-160,y0:330,y1:310}],
+  ['#typer2', S(12), null],
+  ['I', S(13), {z0:1.03,z1:1.10,x0:0,x1:-20,y0:0,y1:0}],
+  ['#chain', S(14), null],
+  ['J', S(15), {z0:1.03,z1:1.10,x0:0,x1:0,y0:0,y1:0}],
+  ['#ledger', S(16), null],
+  ['K', S(17), {z0:1.04,z1:1.14,x0:0,x1:-20,y0:0,y1:-30}],
+  ['J', S(18), {z0:1.28,z1:1.34,x0:60,x1:60,y0:180,y1:200}],
+  ['I', S(19), {z0:1.25,z1:1.32,x0:-80,x1:-90,y0:150,y1:170}],
+  ['F', S(20), {z0:1.10,z1:1.04,x0:0,x1:0,y0:0,y1:0}],
+  ['K', S(21), {z0:1.30,z1:1.40,x0:-120,x1:-130,y0:280,y1:320}],
+  ['#end', END + 0.7, null],
+];
+SHOTS.forEach((s, k) => { s.push(k + 1 < SHOTS.length ? SHOTS[k + 1][1] : window.DURATION + 1); });
+
+const holder = document.getElementById('shots');
+const imgs = {};
+for (const [k] of SHOTS) if (!k.startsWith('#') && !imgs[k]) {
+  const im = document.createElement('img'); im.src = `img/${k}.jpg`; im.className = 'shot'; holder.appendChild(im); imgs[k] = im;
+}
+const screens = ['#typer', '#typer2', '#chain', '#ledger', '#end'].reduce((o, id) => (o[id] = document.querySelector(id), o), {});
+
+const gc = document.getElementById('grain').getContext('2d');
+const grains = [...Array(6)].map(() => { const d = gc.createImageData(540, 960); for (let i = 0; i < d.data.length; i += 4) { const v = Math.random() * 255; d.data[i] = d.data[i+1] = d.data[i+2] = v; d.data[i+3] = 255; } return d; });
+
+const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+
+const TYPES = {
+  '#typer': [
+    { at: () => L[8] + 2.3, text: 'SAT 31 AUG 1602 · AMSTERDAM\n', cls: '' },
+    { at: () => L[8] + 3.2, text: 'signed the book:\n', cls: '' },
+    { at: () => L[8] + 3.8, text: '1,143 people\n\n', cls: 'big' },
+    { at: () => L[9] + 0.1, text: 'pledged:\n', cls: '' },
+    { at: () => L[9] + 0.5, text: 'f 3,679,915', cls: 'big' },
+  ],
+  '#typer2': [
+    { at: () => L[12] - 0.1, text: '09 SEP 1606 · ENKHUIZEN\n', cls: '' },
+    { at: () => L[12] + 0.6, text: 'a city messenger\n', cls: '' },
+    { at: () => L[12] + 1.4, text: '150 guilders\n', cls: 'big' },
+    { at: () => L[12] + 2.3, text: 'paid in full\n\nno share paper.\nhis line was in their book.', cls: '' },
+  ],
+};
+const CPS = 34;
+function drawTyper(id, t) {
+  let html = '', typing = false;
+  TYPES[id].forEach((seg) => {
+    const st = seg.at(); if (t < st) return;
+    const n = Math.min(seg.text.length, Math.floor((t - st) * CPS));
+    if (n < seg.text.length) typing = true;
+    const s = seg.text.slice(0, n).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    html += seg.cls ? `<span class="${seg.cls}">${s}</span>` : s;
+  });
+  const blink = typing || Math.floor(t * 2) % 2 === 0;
+  return html + (blink ? '<span class="cursor"></span>' : '');
+}
+window.typingActive = (t) => Object.values(TYPES).flat().some(seg => { const st = seg.at(); return t >= st && t < st + seg.text.length / CPS; });
+
+const typerLines = { '#typer': document.querySelector('#typer .lines'), '#typer2': document.querySelector('#typer2 .lines') };
+const boxes = [...document.querySelectorAll('#chain .box')];
+const ledgerRows = [...document.querySelectorAll('#ledger .row')];
+const ledgerCheck = document.querySelector('#ledger .check');
+const title = document.getElementById('title');
+const cap = document.getElementById('cap');
+const flash = document.getElementById('flash');
+
+window.draw = (t) => {
+  let cur = SHOTS.findIndex(s => t >= s[1] && t < s[3]);
+  if (cur < 0) cur = SHOTS.length - 1;
+  const [key, st, kb, en] = SHOTS[cur];
+  for (const k in imgs) imgs[k].style.opacity = 0;
+  for (const k in screens) screens[k].style.opacity = 0;
+  const wx = Math.sin(t * 1.3) * 5 + Math.sin(t * 2.9 + 1) * 3;
+  const wy = Math.sin(t * 1.1 + 2) * 6 + Math.sin(t * 3.7) * 2;
+  const wr = Math.sin(t * 0.9) * 0.25;
+  if (key.startsWith('#')) {
+    const el = screens[key]; el.style.opacity = 1;
+    el.style.transform = key === '#end' ? '' : `translate(${wx * .4}px,${wy * .4}px)`;
+  } else {
+    const p = ease((t - st) / Math.max(0.1, en - st));
+    const z = lerp(kb.z0, kb.z1, p), x = lerp(kb.x0, kb.x1, p) + wx, y = lerp(kb.y0, kb.y1, p) + wy;
+    const im = imgs[key]; im.style.opacity = 1;
+    im.style.transform = `translate(${x}px,${y}px) scale(${z}) rotate(${wr}deg)`;
+  }
+  const since = t - st;
+  flash.style.opacity = cur > 0 && since < 0.12 ? (0.12 - since) * 1.2 : 0;
+
+  if (typerLines[key]) typerLines[key].innerHTML = drawTyper(key, t);
+  const bt = [L[14] + 0.1, L[14] + 0.7, L[14] + 1.3, L[14] + 2.4];
+  boxes.forEach((m, k) => { const p = clamp((t - bt[k]) / 0.25); m.style.opacity = p; m.style.transform = `translateY(${(1 - p) * 20}px)`; });
+  const lt = [L[16] + 0.3, L[16] + 0.9, L[16] + 1.5];
+  ledgerRows.forEach((r, k) => r.style.opacity = clamp((t - lt[k]) / 0.3));
+  ledgerCheck.style.opacity = clamp((t - (L[16] + 2.1)) / 0.3);
+
+  const ti = clamp((t - (L[1] - 0.2)) / 0.35) * (1 - clamp((t - (LE[2] + 0.3)) / 0.35));
+  title.style.opacity = ti;
+  title.style.transform = `translateY(${(1 - ti) * 16}px)`;
+
+  const c = TIMING.caps.find(c => t >= c.s && t < c.e);
+  cap.textContent = c && t < END + 0.7 ? c.t : '';
+  cap.style.top = key.startsWith('#') ? '1560px' : '1420px';
+
+  gc.putImageData(grains[Math.floor(t * 24) % grains.length], 0, 0);
+};
+window.CUES = () => {
+  const c = [];
+  SHOTS.forEach((s, k) => { if (k > 0) c.push({ t: s[1], k: 'cut' }); });
+  c.push({ t: 0.3, k: 'quill' }, { t: L[2] + 0.2, k: 'quill' }, { t: L[7] + 0.2, k: 'quill' }, { t: L[10] + 1.5, k: 'quill' });
+  c.push({ t: L[1] - 0.2, k: 'hit' }, { t: L[9] + 0.5, k: 'boom' }, { t: L[15], k: 'rise' });
+  [0.1, 0.7, 1.3, 2.4].forEach(d => c.push({ t: L[14] + d, k: 'pop' }));
+  [0.3, 0.9, 1.5].forEach(d => c.push({ t: L[16] + d, k: "tick" }));
+  c.push({ t: L[16] + 2.1, k: "ding" }, { t: END + 0.7, k: 'chime' });
+  return { cues: c, lines: L, end: END, duration: window.DURATION, idea: 15, tension: [8, 10] };
+};
+</script>
+</body></html>
