@@ -1,0 +1,73 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Space Mono';src:url(fonts/SpaceMono-Regular.ttf);font-weight:400}
+@font-face{font-family:'Space Mono';src:url(fonts/SpaceMono-Bold.ttf);font-weight:700}
+@font-face{font-family:'Instrument Serif';src:url(fonts/InstrumentSerif-Regular.ttf)}
+@font-face{font-family:'Instrument Serif';src:url(fonts/InstrumentSerif-Italic.ttf);font-style:italic}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F6F3E8}
+#card{width:1080px;height:1350px;background:#F6F3E8;color:#1d2a44;font-family:'Space Mono',monospace;position:relative;padding:70px 64px 0}
+h1{font-family:'Instrument Serif';font-weight:400;font-size:84px;line-height:78px;letter-spacing:-.02em;color:#004EBA}
+h1 em{font-style:italic;color:#1d2a44}
+.sub{margin-top:22px;font-size:21px;line-height:31px;color:#5a5245}
+.row{display:flex;gap:30px;margin-top:52px;margin-left:46px;position:relative}
+.col{width:294px}
+.era{font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:#844947;font-weight:700}
+.name{font-family:'Instrument Serif';font-size:40px;line-height:42px;margin:6px 0 16px;color:#1d2a44}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:15px;text-align:center;color:#7b7262;margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(24,1fr);gap:4px;height:552px;position:relative}
+.c{border-radius:3px;background:rgba(132,73,71,.09)}
+.wk{background:rgba(132,73,71,.16)}
+.total{margin-top:18px;font-family:'Instrument Serif';font-size:64px;line-height:60px}
+.total small{font-family:'Space Mono';font-size:18px;color:#5a5245;margin-left:6px}
+.note{font-size:15px;line-height:21px;color:#5a5245;margin-top:6px;min-height:42px}
+.axis{position:absolute;left:-58px;top:0;height:552px;width:50px;font-size:14px;color:#7b7262;text-align:right}
+.axis span{position:absolute;right:0;transform:translateY(-50%)}
+.tag{position:absolute;background:#F6F3E8;padding:4px 8px;border-radius:4px;text-align:right;font-size:14px;line-height:18px;color:#EC464D;font-weight:700;white-space:nowrap}
+.foot{position:absolute;left:64px;right:64px;bottom:44px;font-size:14px;line-height:21px;color:#7b7262;display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.foot b{color:#1d2a44}
+.brand{font-family:'Instrument Serif';font-size:30px;color:#004EBA;white-space:nowrap}
+</style></head><body>
+<div id="card">
+  <h1>the hours your money<br>can move, <em>per week</em></h1>
+  <div class="sub">each square is one hour. the weekend is the right-hand side.</div>
+  <div class="row" id="row"></div>
+  <div class="foot">
+    <div>new york time. nyse hours before 1952: weekdays 10am–3pm, saturdays 10am–noon (saturdays dropped 29 sep 1952).<br>nasdaq 23/5 is sec-approved and planned for 6 dec 2026: sun 9pm to fri 8pm, with a daily 1&#8209;hour break. not live yet.</div>
+    <div class="brand">blok capital</div>
+  </div>
+</div>
+<script>
+const D=['m','t','w','t','f','s','s'];
+// open(day 0=mon..6=sun, hour 0..23) -> colour or null
+const stages=[
+ {era:'until 1952',name:'stock exchange',col:'#844947',
+  open:(d,h)=> d<5 ? (h>=10&&h<15) : d===5 ? (h>=10&&h<12 ? '#EC464D' : false) : false,
+  note:'saturday went in 1952,<br>for a five-day week'},
+ {era:'planned · dec 2026',name:'nasdaq 23/5',col:'#004EBA',
+  open:(d,h)=> d===6 ? h>=21 : d<4 ? h!==20 : d===4 ? h<20 : false,
+  note:'almost round the clock,<br>but the weekend stays off'},
+ {era:'today',name:'on-chain portfolio',col:'#5FA80F',
+  open:()=>true,
+  note:'never asked for<br>a weekend'}
+];
+const row=document.getElementById('row');
+stages.forEach((s,i)=>{
+  let cells='',n=0;
+  for(let h=0;h<24;h++)for(let d=0;d<7;d++){
+    const o=s.open(d,h);
+    if(o){n++;cells+=`<div class="c" style="background:${o===true?s.col:o}"></div>`}
+    else cells+=`<div class="c${d>=5?' wk':''}"></div>`;
+  }
+  const axis=i===0?`<div class="axis">${[0,6,12,18,24].map(h=>`<span style="top:${h/24*100}%">${['12am','6am','noon','6pm','12am'][h/6]}</span>`).join('')}</div>`:'';
+  const tag=i===0?`<div class="tag" style="left:150px;top:${15.5/24*552}px">↑ saturday,<br>gone in 1952</div>`:'';
+  row.insertAdjacentHTML('beforeend',`<div class="col">
+    <div class="era">${s.era}</div><div class="name">${s.name}</div>
+    <div class="days">${D.map(x=>`<span>${x}</span>`).join('')}</div>
+    <div class="grid">${axis}${cells}${tag}</div>
+    <div class="total" style="color:${s.col}">${n}<small>hrs</small></div>
+    <div class="note">${s.note}</div></div>`);
+});
+</script>
+</body></html>
