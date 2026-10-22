@@ -1,0 +1,152 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--linen:#F6F3E8;--indigo:#004EBA;--lime:#7ED116;--sky:#7DD2FD;--coral:#EC464D;--ink:#0B1B2B}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1440px;overflow:hidden;background:#000;font-family:Inter,sans-serif}
+.slide{position:absolute;inset:0;display:none;overflow:hidden;color:#fff}
+.slide.on{display:block}
+.ph{position:absolute;inset:-2%;background-size:cover;transform-origin:50% 50%}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,24,.55) 0%,rgba(5,12,24,0) 20%,rgba(5,12,24,0) 32%,rgba(5,12,24,.8) 60%,rgba(5,12,24,.95) 100%)}
+.shade.heavy{background:linear-gradient(180deg,rgba(5,12,24,.6) 0%,rgba(5,12,24,.15) 18%,rgba(5,12,24,.55) 40%,rgba(5,12,24,.92) 62%,rgba(5,12,24,.97) 100%)}
+.inner{position:absolute;inset:0;padding:72px 80px 64px;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;font:600 26px Inter;letter-spacing:.01em;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.handle{display:flex;align-items:center;gap:14px}
+.handle i{width:16px;height:16px;border-radius:50%;background:var(--lime);display:block}
+.pg{font:500 24px Inter;opacity:.9;background:rgba(0,0,0,.35);padding:8px 16px;border-radius:999px}
+.body{margin-top:auto}
+.pill{display:inline-block;font:800 24px Inter;letter-spacing:.12em;text-transform:uppercase;background:var(--coral);padding:12px 22px;border-radius:8px;margin-bottom:34px}
+.pill.ind{background:var(--indigo)}
+.script{text-shadow:0 2px 18px rgba(0,0,0,.65);font:700 76px/1 'Dancing Script';color:var(--lime);display:block;margin-bottom:14px;transform:rotate(-2deg);transform-origin:left}
+.script.sky{color:var(--sky)}
+h1{text-shadow:0 2px 24px rgba(0,0,0,.35);font:900 80px/1.03 Inter;letter-spacing:-.035em}
+h1 em{font-style:normal;color:var(--lime)}
+h1 .s{font:700 96px/1 'Dancing Script';color:var(--lime);letter-spacing:0}
+.sub{font:500 33px/1.4 Inter;margin-top:26px;color:rgba(255,255,255,.9);max-width:900px}
+.sub b{color:#fff}
+.list{margin-top:30px;display:flex;flex-direction:column;gap:16px}
+.li{font:600 36px Inter;display:flex;align-items:baseline;gap:22px}
+.li b{font:900 40px Inter;color:var(--lime);min-width:250px;letter-spacing:-.02em}
+.li span{color:rgba(255,255,255,.9)}
+.src{font:500 21px/1.4 Inter;color:rgba(255,255,255,.62);max-width:680px}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:40px;gap:30px}
+.nx{font:700 28px Inter;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.nx .ar{display:inline-block}
+.btn{display:inline-block;background:var(--lime);color:var(--ink);font:800 36px Inter;padding:22px 38px;border-radius:999px;margin-top:34px}
+.disc{font:400 19px/1.4 Inter;color:rgba(255,255,255,.66);max-width:700px}
+.catch{margin-top:26px;font:500 30px/1.4 Inter;color:rgba(255,255,255,.9);border-left:6px solid var(--coral);padding-left:22px;max-width:900px}
+.catch b{color:#fff}
+.note{margin-top:22px;font:500 27px/1.4 Inter;color:rgba(255,255,255,.75);max-width:900px}
+</style></head>
+<body>
+
+<!-- 1. Hook -->
+<section class="slide">
+  <div class="ph" style="background-image:url(photos/s1-amsterdam-exchange.jpg);background-position:42% 50%"></div><div class="shade"></div>
+  <div class="inner">
+    <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">1/6</span></div>
+    <div class="body">
+      <span class="pill a">Amsterdam, 1774</span>
+      <h1 class="a">The first fund ever made was built for people with <em>small savings.</em></h1>
+      <span class="script a" style="margin-top:22px">Not the rich.</span>
+      <div class="foot a"><span class="src">Painting: Amsterdam's stock exchange, Job Berckheyde, c. 1670</span><span class="nx">Swipe <span class="ar">→</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. How it worked -->
+<section class="slide">
+  <div class="ph" style="background-image:url(photos/s2-amsterdam-1700s.jpg);background-position:50% 40%"></div><div class="shade"></div>
+  <div class="inner">
+    <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">2/6</span></div>
+    <div class="body">
+      <span class="script sky a">how it worked</span>
+      <h1 class="a">Pool everyone's savings. Spread them over <em>50 bonds.</em></h1>
+      <div class="sub a">If one borrower failed, it didn't sink you. A broker named Abraham van Ketwich called his fund <b>Eendragt Maakt Magt: unity is strength.</b></div>
+      <div class="foot a"><span class="src">rankiapro.com, history of the first investment fund</span><span class="nx">Next <span class="ar">→</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Today -->
+<section class="slide">
+  <div class="ph" style="background-image:url(photos/s3-dalal-street.jpg);background-position:30% 50%"></div><div class="shade"></div>
+  <div class="inner">
+    <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">3/6</span></div>
+    <div class="body">
+      <span class="pill ind a">Mumbai, 21 Oct 2026</span>
+      <h1 class="a">A new fund just opened. Minimum to get in: <em>₹10&nbsp;lakh.</em></h1>
+      <div class="sub a">It's a specialised long-short fund made for wealthier investors, so a high bar suits what it does. But look how far the door has moved since 1774.</div>
+      <div class="foot a"><span class="src">New fund offer, 21 Oct 2026. ₹10 lakh minimum per investor.</span><span class="nx">Next <span class="ar">→</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. The door -->
+<section class="slide">
+  <div class="ph" style="background-image:url(photos/s4-vault-door.jpg);background-position:50% 35%"></div><div class="shade heavy"></div>
+  <div class="inner">
+    <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">4/6</span></div>
+    <div class="body">
+      <span class="script a">and it's not just one fund</span>
+      <h1 class="a">A fund built around <em>you</em> has a door policy.</h1>
+      <div class="list">
+        <div class="li r"><b>₹10 lakh</b><span>specialised fund</span></div>
+        <div class="li r"><b>₹50 lakh</b><span>your own manager</span></div>
+        <div class="li r"><b>₹1 crore</b><span>alternative fund</span></div>
+      </div>
+      <div class="note a">Plus setup fees and the bank's introduction fee. Many of these funds are run well. It's the door that got expensive.</div>
+      <div class="foot a"><span class="src">SEBI minimums: SIF ₹10 lakh, PMS ₹50 lakh, AIF ₹1 crore</span><span class="nx">Next <span class="ar">→</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Back to the original idea -->
+<section class="slide">
+  <div class="ph" style="background-image:url(photos/s5-ten-dollar-jar.jpg);background-position:22% 50%"></div><div class="shade"></div>
+  <div class="inner">
+    <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">5/6</span></div>
+    <div class="body">
+      <span class="script a">back to 1774</span>
+      <h1 class="a">Your own fund. From <em>$10.</em></h1>
+      <div class="sub a">An on-chain portfolio is your own basket of investments, in an account only you control. The original idea, with the door open again.</div>
+      <div class="catch a"><b>The catch:</b> it's newer technology, and prices can swing. Start small, learn first.</div>
+      <div class="foot a"><span class="src"></span><span class="nx">Next <span class="ar">→</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. CTA -->
+<section class="slide">
+  <div class="ph" style="background-image:url(photos/s6-phone.jpg);background-position:20% 40%"></div><div class="shade heavy"></div>
+  <div class="inner">
+    <div class="top"><span class="handle"><i></i>@blok.capital</span><span class="pg">6/6</span></div>
+    <div class="body">
+      <h1 class="a">Funds started as a small saver's idea.</h1>
+      <span class="script a" style="font-size:90px;margin-top:18px">Let's keep it that way.</span>
+      <div class="sub a">Send this to the friend who thinks investing needs ₹10&nbsp;lakh.</div>
+      <div class="btn a">Follow @blok.capital</div>
+      <div class="sub a" style="font-size:28px;margin-top:18px">for plain-English on-chain portfolio know-how</div>
+      <div class="foot a"><span class="disc">Educational content only, not financial or investment advice. Investing involves risk and you can lose money. On-chain assets can be volatile.</span><span class="nx">Save it</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+const SLIDE=6, N=6;
+const ease=x=>1-Math.pow(1-Math.min(1,Math.max(0,x)),3);
+window.draw=function(t,staticSlide){
+  const i=staticSlide!=null?staticSlide:Math.min(N-1,Math.floor(t/SLIDE));
+  const lt=staticSlide!=null?99:t-i*SLIDE+(i===0?2:0); // slide 1 starts settled so the feed thumbnail shows the hook
+  document.querySelectorAll('.slide').forEach((s,k)=>s.classList.toggle('on',k===i));
+  const s=document.querySelectorAll('.slide')[i];
+  const z=staticSlide!=null?1.04:1.0+0.06*Math.min(1,lt/SLIDE);
+  s.querySelector('.ph').style.transform=`scale(${z})`;
+  s.querySelectorAll('.a').forEach((el,k)=>{const p=ease((lt-0.15-0.12*k)/0.6);el.style.opacity=p;el.style.translate=`0 ${(1-p)*28}px`});
+  s.querySelectorAll('.r').forEach((el,k)=>{const p=ease((lt-0.9-0.35*k)/0.45);el.style.opacity=p;el.style.translate=`${(1-p)*-24}px 0`});
+  s.querySelectorAll('.ar').forEach(el=>{el.style.translate=staticSlide!=null?'0 0':`${Math.sin(lt*4)*5}px 0`});
+};
+window.N=N; window.SLIDE=SLIDE;
+</script>
+</body></html>
