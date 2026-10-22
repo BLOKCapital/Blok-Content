@@ -141,6 +141,7 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 | `git push --delete` a branch | 403 from the session's git proxy | User deletes branches on GitHub |
 | `rm -f $VAR/*` in Bash | Blocked by safety check | Use literal paths or `"${VAR:?}"/*` |
 | Composio remote bash writing into dirs the workbench created | Permission denied (bash runs as `user`, workbench as root) | Use a fresh dir from bash (e.g. `~/kk`), or do it all in the workbench |
+| X API: quote post (`quote_tweet_id`) or reply to a post that doesn't mention @blok_cap | 403 "You can only reply to or quote posts where you are mentioned or are the author" | Post normally with the post's URL at the end; X renders it as a quote card |
 | Instagram API: library music (use video slides with our own track instead), AI label, alt text on carousel slides, link stickers, bio edits | Not supported | Tell the user to do it in the app |
 
 ## 8. Permissions (so nothing prompts)
