@@ -10,9 +10,9 @@ Real photos (public domain / CC0 / CC BY-SA, credited below), so no AI label nee
 
 ## Instagram caption
 <!-- IG START -->
-The first fund ever made was built for people with small savings. A new one just opened at ₹10 lakh.
+A new fund just opened in India. Minimum to get in: ₹10 lakh. Remember part 1 of our money history series? The first fund ever made was built for people with small savings.
 
-Amsterdam, 1774. A broker named Abraham van Ketwich pooled money from small investors and spread it over a portfolio of about 50 bonds, so one borrower failing couldn't sink anybody. He called the fund Eendragt Maakt Magt: unity is strength.
+Quick recap: Amsterdam, 1774. A broker named Abraham van Ketwich pooled money from small investors and spread it over a portfolio of about 50 bonds, so one borrower failing couldn't sink anybody. He called the fund Eendragt Maakt Magt: unity is strength.
 
 Fast forward to 21 Oct 2026. A new specialised long-short fund opened in India with a ₹10 lakh minimum. It's built for wealthier investors, and for that kind of strategy a high bar makes sense.
 
