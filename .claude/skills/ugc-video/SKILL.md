@@ -3,6 +3,7 @@ name: ugc-video
 description: Plan and write UGC-style (user-generated-content look) short videos for BLOK Capital, covering concepts, hook variants, timestamped scripts, shot lists, on-screen text, captions/SRT, creator briefs, AI-avatar/voice prompts, and post-production. Use for TikTok/Reels/Shorts UGC, creator ads, testimonial-style, POV, talking-head, green-screen or "street interview" formats.
 ---
 
+> **Topic:** start from the trend check in `growth/trend-playbook.md` (today's board in `growth/trends/`). Record `trend:` (the link) or `trend: evergreen (why now: …)` in the brief or caption file.
 > **No one to film?** Make it as an AI-voiceover motion reel with the `instagram-reel` skill (`docs/playbook.md` section 5). That's the default production route.
 
 
@@ -21,7 +22,7 @@ For BLOK it must also be **honest**: no fake customers, no fake gains, disclosed
 |---|---|---|
 | **POV / relatable skit** | Busy Grower awareness | "POV: you stopped doom-checking charts" |
 | **Talking head explainer** | Education | Creator explains one concept, phone selfie, captions |
-| **Green-screen reaction** | Contrast pillar | Creator over a screenshot (a fee schedule, an exchange collapse headline, the BLOK app) |
+| **Green-screen reaction** | Contrast pillar, trend-jacking (react to today's viral headline) | Creator over a screenshot (a fee schedule, an exchange collapse headline, the BLOK app) |
 | **"I tried it" walkthrough** | Product | Screen-record onboarding: Google sign-in → Garden → fund 10 USDC. Real flow only |
 | **Street/desk interview** | Awareness | "Who holds your crypto?" Real answers, then the reveal |
 | **Founder/BTS** | Trust, community | Team members, no script feel |

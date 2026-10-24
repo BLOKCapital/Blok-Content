@@ -47,6 +47,7 @@ Context: 9M views in the 3 months before the change. Numbers below are copied ex
 ## How we apply this (checklist for every X post or reply)
 
 Before drafting:
+- [ ] Topic comes from today's trend board (`growth/trend-playbook.md`, `growth/trends/`). Quote-jacks within 2 hours of the source post.
 - [ ] Pick the action we want: **copy-link share** first, then reply / quote / DM share. A post that only earns likes has failed.
 - [ ] Plan the posting time for when our audience is online, and block the next 2 hours to answer replies.
 

@@ -23,10 +23,16 @@ Make everything end to end without asking: script, visuals, voice, render, capti
 Then show the user the **final media + caption** and post as soon as they say yes. That single "yes" per
 post is the only approval needed. Never post anything that hasn't had it.
 
+## 1b. Picking the topic: trend first
+Every post starts with the trend check in `growth/trend-playbook.md`: read today's board in `growth/trends/`
+(written each morning by the Idea Deck refresh routine) or run `scripts/sandbox/trend-radar.py` in the Composio
+workbench. Pick a trend with a one-sentence bridge to access / low minimums, owning your fund or receipts, choose a
+remix move, keep the take spicy not toxic, and record `trend:` in the brief or caption file. ~60% of posts trend-led.
+
 ## 2. Pipeline at a glance
 
 ```
-idea ─► script/slides ─► render locally ─► show user ─► "yes" ─► git push main
+trend check ─► idea ─► script/slides ─► render locally ─► show user ─► "yes" ─► git push main
                                                             │
      Composio sandbox: curl raw.githubusercontent ◄─────────┘
         ─► md5 check ─► upload_local_file() ─► s3key ─► Instagram tool ─► verify ─► log

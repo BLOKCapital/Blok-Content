@@ -5,6 +5,9 @@ description: Write X (Twitter) posts, threads, replies and Farcaster casts in BL
 
 # X posts & threads
 
+- **Trend check first** (`growth/trend-playbook.md`): pick the post's topic from today's board in `growth/trends/`
+   (re-run the radar if it's more than ~6h old). Quote-jacks go out within 2 hours of the source post. Spicy takes
+   yes, toxic never; hot takes go to Sheetal first.
 0. **Read `growth/x/x-algorithm-playbook.md` first** and run its checklist: write for copy-link shares, replies,
    quotes and DM shares (likes barely count); no tagging strangers or clickbait; images must carry information.
 1. Load `blok-brand` context. Account: @blok_cap. X audience skews crypto-native, so less glossing, same anti-hype.
