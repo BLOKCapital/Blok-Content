@@ -3,6 +3,7 @@ name: short-form-video
 description: Write faceless / explainer / motion-graphics short-form videos (Reels, TikTok, YouTube Shorts) for BLOK Capital, including scripts, storyboards, voiceover, on-screen text, b-roll lists, and render plans (Remotion/ffmpeg). Use when the video is not creator/UGC-led.
 ---
 
+> **Topic:** start from the trend check in `growth/trend-playbook.md` (today's board in `growth/trends/`). Record `trend:` (the link) or `trend: evergreen (why now: …)` in the brief or caption file.
 > **Production route:** `instagram-reel` skill / `docs/playbook.md` section 5 (voice, timeline, scene template, renderer).
 
 

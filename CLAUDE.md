@@ -11,6 +11,10 @@ Read this file first in every session. For depth, go to `knowledge/` and `brand/
 > list of approaches that don't work. Follow it instead of rediscovering. If you learn something new, update it.
 > The only approval needed per post is the user's "yes" to the final media + caption.
 
+> **Trend first (set 24 Oct 2026):** every new post starts with the trend check in `growth/trend-playbook.md`.
+> Pick from what's hot today in money, investing, AI, on-chain finance or culture, say it our way, and record the
+> trend each post rides (or why it's an evergreen exception). Today's board: `growth/trends/YYYY-MM-DD.md`.
+
 > **Instagram rule (overrides everything below for Instagram):** @blok.capital targets people
 > who invest in **mutual funds, ETFs and traditional finance**. Content is **purely educational**:
 > why on-chain finance is good, why an on-chain portfolio is great, and why it matters. **No crypto
@@ -152,6 +156,7 @@ CLAUDE.md                 ← you are here
 brand/                    voice, visual identity, compliance, Instagram strategy, logo assets
 knowledge/                product facts, glossary, tokenomics, audiences, FAQs, sources
 ideas/                    idea backlog + one file per idea worth developing
+growth/                   trend playbook + daily trend boards, X playbook + style guide, analytics, IG lessons
 content/
   carousels/              Instagram/LinkedIn carousels (slides.json → rendered PNGs)
   ugc-videos/             UGC video briefs, scripts, shot lists, creator briefs
@@ -169,6 +174,8 @@ scripts/                  tooling: carousel renderer, Composio setup
 `content/carousels/2026-10-12-what-is-a-garden/`. One folder per multi-file piece.
 
 ### Workflow for any piece of content
+0. **Trend check** → read today's board in `growth/trends/` (or run the check in `growth/trend-playbook.md`) and pick
+   the trend the piece rides. Spicy takes yes, toxic never (the playbook's hot-take rules).
 1. **Idea** → `ideas/backlog.md` (one line) → promote to `ideas/<slug>.md` when worth developing.
 2. **Draft** in the right `content/` folder using the matching skill.
 3. **Self-check** against `brand/voice.md` and `brand/compliance.md`.
@@ -180,7 +187,7 @@ scripts/                  tooling: carousel renderer, Composio setup
 
 Project skills in `.claude/skills/` (invoke with `/skill-name`):
 - `blok-brand` — load brand context + voice + compliance before writing anything.
-- `content-ideation` — generate and score ideas by pillar and audience.
+- `content-ideation` — generate and score ideas by pillar and audience, starting from the daily trend check (`growth/trend-playbook.md`).
 - `instagram-carousel` — write + design + render on-brand carousels to PNG (1080×1350), following `brand/instagram-strategy.md`.
 - `ugc-video` — UGC briefs, hooks, scripts, shot lists, creator briefs, AI-avatar prompts.
 - `short-form-video` — faceless/explainer Reels & TikToks, captions, b-roll lists.

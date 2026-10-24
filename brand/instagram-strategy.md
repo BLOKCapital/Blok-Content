@@ -3,6 +3,11 @@
 **This file overrides general brand guidance for everything made for Instagram:
 carousels, Reels, UGC videos, Stories and captions.**
 
+## Where topics come from
+Every Reel and carousel starts from the trend check in `growth/trend-playbook.md`: money stories hot on X in the
+last 24 to 72 hours, re-cut for fund investors with the rules below, or an evergreen idea opened with a "why now"
+hook. Spicy is fine on Instagram; hot takes stay on X.
+
 ## Who we're talking to
 People who already invest the traditional way: **mutual funds, ETFs, index funds,
 SIPs, retirement accounts, brokerage portfolios.** They're sensible, long-term savers.
