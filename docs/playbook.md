@@ -60,7 +60,7 @@ Hook → Point 1 → Point 2 → Point 3 → CTA, brand colours only, and **musi
 - From a carousel cover: paste the 1080×1350 slide onto a 1080×1920 `#F6F3E8` canvas at y=285 (no new copy).
   `ffmpeg -i slide-01.png -vf "pad=1080:1920:0:285:color=0xF6F3E8" story-01.jpg`
 - Publish: `INSTAGRAM_POST_IG_USER_MEDIA` with `media_type:"STORIES"`, `image_file:{...s3key}` → publish.
-- Stories expire in 24h. Link/mention stickers can't be added via API (the user adds them in the app).
+- Stories expire in 24h. Link, mention, poll, quiz and question stickers can't be added via API. When we post stories ourselves, print the options on the frame and ask for a story reply instead (done 2026-10-24, 200-followers set).
 
 ## 5. Reel: AI voiceover + motion graphics (no filming, no paid credits)
 Folder: `content/ugc-videos/YYYY-MM-DD-slug/` (or `content/short-form/...`) with `brief.md`, `build/`.

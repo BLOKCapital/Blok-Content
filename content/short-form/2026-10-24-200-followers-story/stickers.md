@@ -21,3 +21,8 @@ Save all five to a "200 🌱" or "Community" highlight.
 **Fact check:** 1774, Abraham van Ketwich, Eendragt Maakt Magt, small investors pooled: rankiapro.com/en/insights/first-investment-fund-history/
 (same source as the 22 Oct carousel). 1924 = first US open-ended mutual fund (decoy answer). 1974 is a decoy.
 Compliance: no return claims, risk line on frame 3, no crypto words.
+
+## Posted 24 Oct 2026 (by Claude via Composio)
+Sheetal couldn't post stories herself, so the set went out through the API. The API can't add poll, quiz or question
+stickers, so frames 2, 4 and 5 were changed to printed answer options with "reply" prompts (answers arrive as story replies in DMs).
+Story media ids, in order: 18182047108427125, 18134030827667428, 18152794135554735, 18189819154407248, 18133542781742909.
