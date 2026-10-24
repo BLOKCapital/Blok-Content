@@ -1,0 +1,91 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:IS;src:url(InstrumentSerif-Regular.ttf)}
+@font-face{font-family:IS;font-style:italic;src:url(InstrumentSerif-Italic.ttf)}
+:root{--sky:#7DD2FD;--indigo:#004EBA;--lime:#7ED116;--linen:#F6F3E8;--coral:#EC464D;--earth:#844947;--ink:#0B1B2B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ccc}
+.f{width:1080px;height:1920px;position:relative;overflow:hidden;font-family:Inter,sans-serif;color:var(--ink);background:var(--linen);padding:340px 90px}
+.f.dark{background:var(--indigo);color:var(--linen)}
+.tag{font:600 30px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--earth)}
+.dark .tag{color:var(--sky)}
+.serif{font-family:IS,serif;font-weight:400;line-height:.95;letter-spacing:-.01em}
+.top{position:absolute;top:240px;left:90px;right:90px;display:flex;justify-content:space-between;align-items:center;font:600 30px Inter;color:var(--earth)}
+.dark .top{color:var(--sky)}
+.top img{width:64px;height:64px;border-radius:14px}
+.foot{position:absolute;bottom:150px;left:90px;right:90px;font:500 32px Inter;color:var(--earth)}
+.dark .foot{color:var(--sky)}
+p{font-size:44px;line-height:1.35}
+.hl{background:linear-gradient(transparent 58%,var(--lime) 58%,var(--lime) 92%,transparent 92%);padding:0 6px}
+.sprout{position:absolute}
+.zone{position:absolute;left:90px;right:90px;border:4px dashed rgba(132,73,71,.0)}
+.hint{font:600 34px Inter;color:var(--coral)}
+.dark .hint{color:var(--lime)}
+.small{font:400 26px Inter;opacity:.75;line-height:1.4}
+.pill{display:flex;align-items:center;gap:28px;border-radius:28px;padding:30px 40px;font:600 52px Inter;margin-bottom:26px}
+.pill b{display:inline-flex;width:76px;height:76px;border-radius:50%;align-items:center;justify-content:center;font-size:38px}
+</style></head><body>
+
+<!-- 1: thank you -->
+<section class="f" id="f1">
+  <div class="top"><span>@blok.capital</span><img src="logo-mark-white-bg.png"></div>
+  <div class="tag" style="margin-top:120px">A small milestone, a big thank you</div>
+  <div class="serif" style="font-size:520px;color:var(--indigo);margin-top:30px;margin-left:-14px">200</div>
+  <div class="serif" style="font-size:118px;margin-top:10px">of you showed up.<br><i style="color:var(--earth)">Thank you.</i></div>
+  <p style="margin-top:60px;max-width:860px">You read the stories, saved the posts and sent them to friends. Every one of you <span class="hl">helped this grow.</span></p>
+  <svg class="sprout" style="right:80px;top:620px" width="200" height="260" viewBox="0 0 200 260">
+    <path d="M100 250 C100 180 100 140 100 100" stroke="#844947" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M100 130 C60 130 30 100 26 54 C72 56 100 86 100 130Z" fill="#7ED116" stroke="#844947" stroke-width="6"/>
+    <path d="M100 104 C140 104 172 76 176 26 C130 28 100 58 100 104Z" fill="#7ED116" stroke="#844947" stroke-width="6"/>
+    <path d="M40 250 H160" stroke="#844947" stroke-width="8" stroke-linecap="round"/>
+  </svg>
+  <div class="foot">Tap → we brought a tiny quiz</div>
+</section>
+
+<!-- 2: quiz -->
+<section class="f dark" id="f2">
+  <div class="top"><span>Pop quiz</span><img src="logo-mark-white-bg.png"></div>
+  <div class="tag" style="margin-top:80px">Money history</div>
+  <div class="serif" style="font-size:112px;margin-top:40px">When did the world get one of its <i style="color:var(--lime)">first</i> investment funds?</div>
+  <div style="position:absolute;top:1010px;left:90px;right:90px">
+  <div class="pill" style="background:var(--linen);color:var(--indigo)"><b style="background:var(--indigo);color:var(--linen)">A</b>1774</div>
+  <div class="pill" style="background:var(--linen);color:var(--indigo)"><b style="background:var(--indigo);color:var(--linen)">B</b>1924</div>
+  <div class="pill" style="background:var(--linen);color:var(--indigo)"><b style="background:var(--indigo);color:var(--linen)">C</b>1974</div>
+  <div class="hint" style="margin-top:20px">Reply A, B or C before you tap →</div></div>
+  <div class="foot">Answer on the next story</div>
+</section>
+
+<!-- 3: reveal -->
+<section class="f" id="f3">
+  <div class="top"><span>The answer</span><img src="logo-mark-white-bg.png"></div>
+  <div class="serif" style="font-size:300px;color:var(--indigo);margin-top:40px;margin-left:-8px">1774.</div>
+  <p style="margin-top:20px;max-width:880px">An Amsterdam broker, Abraham van Ketwich, pooled money from people with small savings into one fund. He named it <i>Eendragt Maakt Magt</i>:</p>
+  <div class="serif" style="font-size:150px;margin-top:40px"><i>Unity is<br>strength.</i></div>
+  <p style="margin-top:56px;max-width:880px">Funds began as a way for regular people to invest together. Today the fancy ones ask <b>10,000 to 100,000</b> just to get in. We think everyone deserves a fund of their own. <span class="hl">Even a $10 one.</span></p>
+  <div class="foot small" style="bottom:140px">Educational only, not financial advice. Investing involves risk.</div>
+</section>
+
+<!-- 4: poll -->
+<section class="f" id="f4" style="background:var(--lime)">
+  <div class="top"><span style="color:var(--ink)">Honest question</span><img src="logo-mark-white-bg.png"></div>
+  <div class="serif" style="font-size:150px;margin-top:100px">Have you learned <i>anything</i> from us?</div>
+  <p style="margin-top:50px;max-width:820px">Be honest. A "not yet" helps us as much as a "yes".</p>
+  <div style="position:absolute;top:1080px;left:90px;right:90px">
+  <div class="pill" style="background:var(--indigo);color:var(--linen)">YES, a lot 🙌</div>
+  <div class="pill" style="background:var(--linen);color:var(--ink)">NOT YET, teach me</div>
+  <div class="hint" style="margin-top:20px;color:var(--indigo)">Reply "yes" or "not yet". One word is enough.</div></div>
+  <div class="foot" style="color:var(--ink)">We read every reply.</div>
+</section>
+
+<!-- 5: question box -->
+<section class="f dark" id="f5">
+  <div class="top"><span>Your turn</span><img src="logo-mark-white-bg.png"></div>
+  <div class="serif" style="font-size:118px;margin-top:80px">What money question should we answer <i style="color:var(--lime)">next?</i></div>
+  <p style="margin-top:44px;max-width:860px">The best ones become our next post. No question is too basic.</p>
+  <div style="position:absolute;top:1080px;left:90px;right:90px">
+  <div class="pill" style="background:rgba(246,243,232,.12);color:var(--linen);border:3px dashed var(--sky);font-weight:400;font-size:44px">Reply with your question…</div>
+  <div class="hint" style="margin-top:20px">Hit reply on this story ↓</div></div>
+  <div class="foot"><span class="serif" style="font-size:64px;color:var(--linen)"><i>Yours in the soil.</i></span><br>BLOK Capital 🌱</div>
+</section>
+</body></html>
