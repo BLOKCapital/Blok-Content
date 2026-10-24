@@ -7,3 +7,4 @@ Full review: `growth/analytics/2026-10-20-analytics-review.md`.
 4. Number the series ("money history, part 7") so viewers follow for the next one.
 5. Never post two reels within 4 hours of each other.
 6. Reply to every comment within the first hour, with a question back.
+7. (24 Oct) Every Reel ends with "Want your own fund, even a $10 one? Comment STEPS." and has its own STEPS doc. See `growth/comment-strategy.md`.
