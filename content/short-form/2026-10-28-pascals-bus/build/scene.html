@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&family=Noto+Color+Emoji&display=block" rel="stylesheet">
+<script src="timeline.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --linen:#F6F3E8; --ink:#0B1B2B; --indigo:#004EBA; --sky:#7DD2FD; --lime:#7ED116; --coral:#EC464D; --earth:#844947; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: transparent; font-family: Inter, sans-serif; color: var(--ink); }
+  .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+  .kicker { font-family: 'JetBrains Mono', monospace; font-size: 32px; letter-spacing: .14em; text-transform: uppercase; }
+  h1 { font-family: Fraunces, serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1.02; }
+  .em { font-family: 'Noto Color Emoji'; }
+  #shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,27,43,.78) 0%, rgba(11,27,43,.25) 26%, rgba(11,27,43,0) 45%, rgba(11,27,43,0) 62%, rgba(11,27,43,.55) 100%); opacity: 0; }
+
+  /* history overlay (top-left, Z-pattern) */
+  #hist { position: absolute; left: 80px; right: 80px; top: 230px; color: #fff; }
+  #histKick { color: var(--sky); }
+  #hook { font-size: 104px; margin-top: 22px; color: #fff; text-shadow: 0 6px 30px rgba(0,0,0,.35); }
+  #hook .hl { color: var(--lime); }
+  #tag { position: absolute; right: 80px; top: 230px; font-family: 'JetBrains Mono', monospace; font-size: 26px; color: #fff; opacity: .8; }
+  #rule { position: absolute; left: 80px; top: 470px; transform: rotate(-4deg); background: var(--linen); border: 8px solid var(--coral); border-radius: 20px; padding: 26px 34px; opacity: 0; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+  #rule .kicker { color: var(--coral); font-weight: 700; font-size: 28px; }
+  #rule .r { font-family: Fraunces, serif; font-weight: 800; font-size: 64px; color: var(--ink); line-height: 1.1; opacity: 0; }
+  #rule .r s { text-decoration-color: var(--coral); text-decoration-thickness: 8px; }
+
+  /* modern cards (opaque linen) */
+  #M { background: var(--linen); }
+  .card { position: absolute; left: 80px; right: 80px; border-radius: 40px; padding: 44px 50px; opacity: 0; }
+  #m1 { top: 420px; background: #fff; box-shadow: 0 20px 60px rgba(11,27,43,.10); }
+  #m1 .kicker { color: var(--earth); }
+  #m1 h1 { font-size: 76px; color: var(--indigo); margin-top: 18px; }
+  #m2 { top: 860px; background: var(--indigo); color: #fff; }
+  #m2 .kicker { color: var(--sky); }
+  #m2 .big { font-family: Fraunces, serif; font-weight: 800; font-size: 150px; letter-spacing: -0.03em; margin-top: 6px; }
+  #stamp { position: absolute; right: 60px; bottom: -40px; transform: rotate(-8deg); background: var(--coral); color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 36px; padding: 16px 26px; border-radius: 14px; opacity: 0; }
+  #mKick { position: absolute; left: 80px; top: 250px; color: var(--earth); }
+  #mTag { position: absolute; right: 80px; top: 250px; color: var(--earth); font-family: 'JetBrains Mono', monospace; font-size: 26px; }
+
+  /* same rule split */
+  #N { background: var(--linen); }
+  #nTitle { position: absolute; left: 80px; top: 250px; font-size: 130px; color: var(--indigo); }
+  #nTitle .hl { background: linear-gradient(transparent 60%, #7ED11699 60%); }
+  .half { position: absolute; top: 600px; width: 440px; height: 700px; border-radius: 36px; overflow: hidden; opacity: 0; }
+  .half img { width: 100%; height: 100%; object-fit: cover; }
+  .half .lab { position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 28px; background: rgba(11,27,43,.82); color: #fff; }
+  .half .lab .kicker { font-size: 24px; color: var(--sky); }
+  .half .lab b { display: block; font-family: Fraunces, serif; font-size: 46px; margin-top: 8px; line-height: 1.05; }
+  #h1 { left: 80px; } #h2 { right: 80px; background: var(--indigo); }
+  #h2 .fake { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 40px; color: #fff; }
+  #h2 .fake .kicker { color: var(--sky); font-size: 24px; }
+  #h2 .fake .v { font-family: Fraunces, serif; font-weight: 800; font-size: 96px; margin-top: 10px; letter-spacing: -.03em; }
+
+  /* end */
+  #E { background: var(--linen); }
+  #e1 { position: absolute; left: 80px; top: 250px; right: 80px; }
+  #e1 .kicker { color: var(--earth); }
+  #e1 h1 { font-size: 112px; color: var(--indigo); margin-top: 22px; }
+  #e1 h1 .hl { background: linear-gradient(transparent 60%, #7ED11699 60%); }
+  #e2 { position: absolute; left: 80px; top: 860px; opacity: 0; }
+  #e2 h1 { font-size: 92px; color: var(--ink); }
+  #e3 { position: absolute; left: 80px; right: 80px; top: 1130px; display: flex; align-items: center; justify-content: space-between; opacity: 0; }
+  #e3 img { height: 64px; }
+  #e3 .btn { background: var(--coral); color: #fff; font-weight: 800; font-size: 34px; padding: 22px 36px; border-radius: 999px; white-space: nowrap; }
+  #e4 { position: absolute; left: 80px; right: 80px; top: 1290px; font-size: 24px; color: var(--earth); line-height: 1.5; opacity: 0; }
+
+  #bar { position: absolute; top: 0; left: 0; height: 10px; background: var(--lime); }
+  /* captions */
+  #cap { position: absolute; left: 70px; right: 70px; top: 1440px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; font-weight: 800; font-size: 56px; line-height: 1.15; }
+  #cap span { padding: 2px 12px; border-radius: 14px; background: rgba(255,255,255,.94); color: var(--ink); }
+  #cap span.on { background: var(--lime); }
+  #cap span.future { color: #A9A49A; }
+</style>
+</head>
+<body>
+<div id="shade"></div>
+
+<div class="scene" id="H">
+  <div id="hist">
+    <div class="kicker" id="histKick">Paris · 1662</div>
+    <h1 id="hook">The first bus<br>had one rule.</h1>
+  </div>
+  <div id="rule">
+    <div class="kicker">Parlement of Paris · 1662</div>
+    <div class="r" id="r1">No soldiers.</div>
+    <div class="r" id="r2">No servants.</div>
+    <div class="r" id="r3">No labourers.</div>
+  </div>
+</div>
+
+<div class="scene" id="M">
+  <div class="kicker" id="mKick">Meanwhile, 2026</div>
+  <div id="mTag">27 OCT</div>
+  <div class="card" id="m1">
+    <div class="kicker">This week</div>
+    <h1>A big fund launches on brand-new digital rails.</h1>
+  </div>
+  <div class="card" id="m2">
+    <div class="kicker">Minimum to get in</div>
+    <div class="big">$100,000</div>
+    <div id="stamp">PROFESSIONALS ONLY</div>
+  </div>
+</div>
+
+<div class="scene" id="N">
+  <h1 id="nTitle">New ride.<br><span class="hl">Same rule.</span></h1>
+  <div class="half" id="h1"><img src="img/s4.png"><div class="lab"><div class="kicker">1662</div><b>No labourers.</b></div></div>
+  <div class="half" id="h2"><div class="fake"><div class="kicker">2026</div><div class="v">$100k</div><div style="font-size:30px;margin-top:20px;font-weight:700">minimum</div></div><div class="lab"><div class="kicker">2026</div><b>Professionals only.</b></div></div>
+</div>
+
+<div class="scene" id="E">
+  <div id="e1"><div class="kicker">What we think</div><h1>A fund of your own should start at <span class="hl">$10.</span></h1></div>
+  <div id="e2"><h1>So who gets a seat? <span class="em">👇</span></h1></div>
+  <div id="e3"><img src="../../../../brand/assets/logo-wordmark.png"><div class="btn">Follow @blok.capital</div></div>
+  <div id="e4">Educational only · Not financial advice · Investing carries risk<br>AI-generated voice and visuals · Original music</div>
+</div>
+
+<div id="cap"></div>
+<div id="bar"></div>
+
+<script>
+const TL = window.TIMELINE;
+window.DURATION = Math.ceil((TL[TL.length - 1].end + 2.2) * 10) / 10;
+const S = (i) => TL[i].start;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const win = (t, a, b, f = 0.25) => clamp(Math.min((t - a) / f, (b - t) / f));
+const pop = (el, t, at, dy = 40) => { const k = ease((t - at) / 0.35); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * dy}px)`; };
+
+// exported so the background builder uses the same cuts
+window.CUTS = { b1: S(1) - 0.2, b2: S(2) - 0.2, b3: S(3) - 0.2, b4: S(5) - 0.2, b5: S(6) - 0.2, b6: S(8) - 0.2, b7: S(9) - 0.2 };
+const C = window.CUTS;
+
+const words = [];
+TL.forEach((s, si) => {
+  if (s.words) { s.words.forEach((w) => words.push({ ...w, si })); return; }
+  const ws = s.text.split(/\s+/).filter(Boolean);
+  const total = ws.reduce((n, w) => n + w.length + 2, 0);
+  let acc = s.start;
+  ws.forEach((w) => { const d = (s.end - s.start) * (w.length + 2) / total; words.push({ w, s: acc, e: acc + d, si }); acc += d; });
+});
+function captions(t) {
+  const si = TL.findIndex((s, i) => t >= s.start - 0.15 && t < (TL[i + 1] ? TL[i + 1].start - 0.15 : s.end + 0.8));
+  if (si < 0 || t >= C.b7) { $('cap').innerHTML = ''; return; }
+  const ws = words.filter((w) => w.si === si);
+  let cur = ws.findIndex((w) => t < w.e); if (cur < 0) cur = ws.length - 1;
+  const st = Math.floor(cur / 5) * 5;
+  $('cap').innerHTML = ws.slice(st, st + 5).map((w) => `<span class="${t >= w.s && t < w.e ? 'on' : t >= w.e ? '' : 'future'}">${w.w}</span>`).join('');
+}
+
+window.draw = (t) => {
+  $('bar').style.width = `${(t / window.DURATION) * 1080}px`;
+  // history: 0 → b5 (photo background shows through)
+  const hv = win(t, -1, C.b5);
+  $('H').style.opacity = hv; $('shade').style.opacity = hv;
+  $('histKick').textContent = t < C.b1 ? 'Paris · 1662' : t < C.b3 ? 'Paris · 1662 · Pascal’s coaches' : t < C.b4 ? 'The rule' : 'A few years later';
+  $('hook').innerHTML = t < C.b1 ? 'The first bus<br>had one rule.'
+    : t < C.b2 ? 'Before: walk,<br>or be <span class="hl">rich.</span>'
+    : t < C.b3 ? 'Five sols<br>a <span class="hl">seat.</span>'
+    : t < C.b4 ? '' : 'Then the riders<br>disappeared.';
+  $('hook').style.opacity = t >= C.b3 && t < C.b4 ? 0 : 1;
+  $('rule').style.opacity = win(t, S(3) - 0.1, C.b4, 0.2);
+  $('rule').style.transform = `rotate(-4deg) scale(${1.25 - 0.25 * ease((t - S(3) + 0.1) / 0.25)})`;
+  const rw = TL[4].words || [];
+  [['r1', 1], ['r2', 3], ['r3', 5]].forEach(([id, wi]) => pop($(id), t, rw[wi] ? rw[wi].s - 0.2 : S(4) + wi * 0.5, 16));
+
+  // 2026 cards: b5 → b6
+  $('M').style.opacity = win(t, C.b5, C.b6);
+  pop($('m1'), t, S(6));
+  pop($('m2'), t, S(7));
+  const sk = ease((t - (S(7) + 1.8)) / 0.2);
+  $('stamp').style.opacity = sk; $('stamp').style.transform = `rotate(-8deg) scale(${1.5 - 0.5 * sk})`;
+
+  // same rule: b6 → b7
+  $('N').style.opacity = win(t, C.b6, C.b7);
+  pop($('h1'), t, C.b6 + 0.15); pop($('h2'), t, C.b6 + 0.5);
+
+  // end: b7 → end
+  $('E').style.opacity = win(t, C.b7, window.DURATION + 1);
+  pop($('e2'), t, S(10) - 0.1); pop($('e3'), t, S(10) + 0.5, 20); pop($('e4'), t, S(10) + 0.8, 10);
+
+  captions(t);
+};
+window.draw(0);
+</script>
+</body>
+</html>
