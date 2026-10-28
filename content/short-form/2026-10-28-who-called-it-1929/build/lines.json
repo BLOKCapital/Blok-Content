@@ -1,0 +1,47 @@
+[
+ {
+  "show": "1929. Three predictions. Which one aged best?",
+  "say": "Nineteen twenty-nine. Three predictions. Which one aged best?",
+  "gap": 0.25
+ },
+ {
+  "show": "A. Irving Fisher: \"Stock prices have reached what looks like a permanently high plateau.\"",
+  "say": "A. Irving Fisher. Stock prices have reached what looks like a permanently high plateau.",
+  "gap": 0.25
+ },
+ {
+  "show": "B. Roger Babson: \"Sooner or later a crash is coming.\"",
+  "say": "B. Roger Babson. Sooner or later, a crash is coming.",
+  "gap": 0.25
+ },
+ {
+  "show": "C. John Raskob: \"Everybody ought to be rich.\" Put $15 a month into stocks.",
+  "say": "C. John Raskob. Everybody ought to be rich. Put fifteen dollars a month into stocks.",
+  "gap": 0.25
+ },
+ {
+  "show": "Two weeks later: Black Tuesday. Fisher loses his fortune.",
+  "say": "Two weeks later: Black Tuesday. Fisher loses his fortune.",
+  "gap": 0.25
+ },
+ {
+  "show": "So B wins? Not quite.",
+  "say": "So B wins? Not quite.",
+  "gap": 0.25
+ },
+ {
+  "show": "The Raskob plan, kept up through the Depression, turned about $3,700 into almost $10,000 by 1949.",
+  "say": "The Raskob plan, kept up through the Depression, turned about thirty-seven hundred dollars into almost ten thousand, by nineteen forty-nine.",
+  "gap": 0.25
+ },
+ {
+  "show": "No forecast needed. A fund of your own should start at $10.",
+  "say": "No forecast needed. A fund of your own should start at ten dollars.",
+  "gap": 0.25
+ },
+ {
+  "show": "Who Called It, part 1. Next: Dow 36,000.",
+  "say": "Who Called It, part one. Next: Dow thirty-six thousand.",
+  "gap": 0.0
+ }
+]

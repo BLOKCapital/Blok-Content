@@ -10,6 +10,9 @@ Read this file first in every session. For depth, go to `knowledge/` and `brand/
 > the exact carousel / story / Reel pipelines, the Composio publishing route, the approved voice, and the
 > list of approaches that don't work. Follow it instead of rediscovering. If you learn something new, update it.
 > The only approval needed per post is the user's "yes" to the final media + caption.
+>
+> **QA gate (standing rule):** before showing anything for approval, run `docs/qa-checklist.md` (voice pronunciation,
+> speech-recognition check of the final file, frame-by-frame proofread, measured X lengths, sources). Tools in `scripts/qa/`.
 
 > **Instagram rule (overrides everything below for Instagram):** @blok.capital targets people
 > who invest in **mutual funds, ETFs and traditional finance**. Content is **purely educational**:
