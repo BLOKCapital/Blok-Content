@@ -11,6 +11,15 @@ Read this file first in every session. For depth, go to `knowledge/` and `brand/
 > list of approaches that don't work. Follow it instead of rediscovering. If you learn something new, update it.
 > The only approval needed per post is the user's "yes" to the final media + caption.
 
+> **Deliverables rule (Sheetal, 28 Oct 2026):** whenever Sheetal asks you to create anything (a report, review,
+> plan, analysis, strategy, brief), deliver it as a **self-contained HTML page** saved in the shared folder, not a Claude
+> Artifact and not a plain .md/doc. The page must be full of **visualizations** (charts, bars, comparisons), use
+> **standard consistent colors** (the brand palette in section 3: green = good, coral = bad, indigo/sky = neutral), and be
+> **interactive** (hover tooltips, filters/toggles, tick-off to-do lists). Keep the text **very simple**: short sentences,
+> plain words, so one quick read explains everything. Inline every library (e.g. Chart.js from `npm pack`) so the page
+> works offline; the cloud sandbox can't load CDNs. Example: `growth/analytics/2026-10-28-analytics-review.html` in the
+> shared folder. (Finished social media posts themselves are still images/videos as usual.)
+
 > **Instagram rule (overrides everything below for Instagram):** @blok.capital targets people
 > who invest in **mutual funds, ETFs and traditional finance**. Content is **purely educational**:
 > why on-chain finance is good, why an on-chain portfolio is great, and why it matters. **No crypto
