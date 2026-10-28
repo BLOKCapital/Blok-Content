@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>X Watchlist</title>
+<style>
+:root{--bg:#f7f7f8;--card:#fff;--ink:#1d1d1f;--mute:#6b6b70;--line:#e3e3e6;--blue:#2563eb;--green:#16a34a;--amber:#d97706;--red:#dc2626;--purple:#7c3aed;--teal:#0d9488}
+@media (prefers-color-scheme:dark){:root{--bg:#111113;--card:#1b1b1e;--ink:#f2f2f3;--mute:#a0a0a7;--line:#2c2c31}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:26px;margin:0 0 4px}h2{font-size:19px;margin:32px 0 10px}.sub{color:var(--mute);margin:0 0 18px}
+.rule{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:12px 14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}.stat b{font-size:24px;display:block}.stat span{color:var(--mute);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.q{border-left:4px solid var(--green)}.q.alt{border-left-color:var(--amber)}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:99px;background:var(--line);margin-right:6px}
+pre{white-space:pre-wrap;font:15px/1.5 inherit;font-family:inherit;background:var(--bg);border-radius:8px;padding:12px;margin:10px 0}
+.src{color:var(--mute);font-size:13px}a{color:var(--blue)}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer}
+button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+input{font:inherit;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);width:100%;max-width:260px}
+.bars{display:flex;flex-direction:column;gap:5px}
+.bar{display:grid;grid-template-columns:130px 1fr 52px;align-items:center;gap:8px;font-size:13px}
+.bar i{display:block;height:14px;border-radius:4px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{cursor:pointer;color:var(--mute);font-weight:600;white-space:nowrap}td.n{text-align:right;white-space:nowrap}
+.tbl{overflow-x:auto}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--mute);margin:6px 0}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}
+</style></head><body><div class="wrap">
+<h1>X watchlist for @blok_cap</h1>
+<p class="sub">Accounts in our niche to read before every post. Built 28 Oct 2026 from @blok_cap's X API data (posts from 25 to 28 Oct).</p>
+<div class="rule"><b>The rule:</b> before any X post, read these accounts' recent posts and pick the topic from them. Best option: quote one of their posts within 2 hours. Never quote anything older than 48 hours.</div>
+
+<div class="stats">
+<div class="stat"><b>35</b><span>accounts on the list</span></div>
+<div class="stat"><b>306</b><span>recent posts read</span></div>
+<div class="stat"><b>14</b><span>⭐ best to quote</span></div>
+<div class="stat"><b>2</b><span>quote posts ready now</span></div>
+</div>
+
+<h2>Ready to quote now</h2>
+<div id="quotes"></div>
+
+<h2>Who gets the most replies?</h2>
+<p class="sub">Average replies per original post, last 3 days. Replies are worth 10× a like on X, so these are the conversations worth joining.</p>
+<div class="legend" id="legend"></div>
+<div class="card"><div class="bars" id="bars"></div></div>
+
+<h2>The full list</h2>
+<div class="chips" id="chips"></div>
+<input id="search" placeholder="Search a handle or topic">
+<div class="card tbl" style="margin-top:10px"><table><thead><tr>
+<th data-k="h">Account</th><th data-k="cat">Group</th><th data-k="f" style="text-align:right">Followers</th><th data-k="p" style="text-align:right">Posts (3d)</th><th data-k="r" style="text-align:right">Replies/post</th><th>Why watch</th>
+</tr></thead><tbody id="rows"></tbody></table></div>
+</div>
+<script>
+const CATS={eco:["Arbitrum ecosystem","#2563eb"],rwa:["Tokenized funds / RWA","#16a34a"],tradfi:["TradFi meets on-chain","#d97706"],defi:["DeFi commentators","#7c3aed"],voice:["Voice models","#dc2626"]};
+const A=[
+["arbitrum","eco",1140243,11,302,1,"One-liners that pull 50 to 85 replies. Our home chain."],
+["Offchain","eco",83693,2,3,0,"Offchain Labs, builds Arbitrum"],
+["sgoldfed","eco",38437,1,4,0,"Steven Goldfeder, Offchain co-founder"],
+["ArbitrumDevs","eco",34080,4,17,0,"Developer updates"],
+["aave","eco",701166,4,132,1,"Lending milestones"],
+["pendle_fi","eco",161735,9,135,1,"Janus Henderson / Franklin Templeton funds. Never quote their APY posts"],
+["GMX_IO","eco",219827,3,19,0,"Perps. Skip leverage posts"],
+["Dolomite_io","eco",62654,2,13,0,"Lending"],
+["centrifuge","rwa",94395,7,101,1,"Launched JQQQ, first on-chain Nasdaq-100 fund"],
+["Securitize","rwa",88944,4,52,1,"BlackRock BUIDL issuer"],
+["tokenterminal","rwa",166002,49,368,1,"~7 chart posts a day. Best source of receipt numbers"],
+["RWA_xyz","rwa",46755,0,0,0,"The RWA dashboard. Quiet this week"],
+["plumenetwork","rwa",849087,3,38,0,"RWA chain"],
+["maplefinance","rwa",62427,0,0,0,"On-chain asset manager. Quiet this week"],
+["chainlink","rwa",1390547,13,329,1,"Link:NYC on 29 Oct, expect tokenization news"],
+["tomwanhh","rwa",17631,5,33,0,"Sharp Robinhood Chain and tokenization data"],
+["RobinhoodApp","tradfi",1394813,14,2172,1,"Casual voice. Robinhood Chain runs on Arbitrum tech"],
+["vladtenev","tradfi",1102629,4,763,1,"Robinhood CEO"],
+["EricBalchunas","tradfi",629508,11,180,1,"Bloomberg ETF analyst. ETF investors trust him"],
+["JSeyff","tradfi",183708,2,34,0,"Bloomberg ETF and crypto analyst"],
+["NateGeraci","tradfi",74680,4,67,0,"ETF Prime host"],
+["Matt_Hougan","tradfi",102966,3,27,0,"Bitwise CIO"],
+["BlackRock","tradfi",1081221,2,21,0,"Rarely posts"],
+["nic_carter","defi",788305,14,530,1,"Big reply sections on anything finance"],
+["DefiIgnas","defi",164051,12,538,1,"Funny and sharp"],
+["TheDeFinvestor","defi",165877,4,106,0,"DeFi updates"],
+["thedefiedge","defi",298198,3,50,0,"Research for people with a day job (our audience)"],
+["patfscott","defi",97036,16,87,0,"DefiLlama"],
+["DefiLlama","defi",370463,7,110,0,"Data"],
+["TrustlessState","defi",263620,9,129,0,"David Hoffman, Bankless"],
+["Bankless","defi",411455,11,83,0,"Media"],
+["Route2FI","defi",302347,8,253,0,"Big open questions, 75 replies"],
+["galileowilson","voice",33515,18,867,1,"48 replies/post on 34K followers"],
+["FoxyhitsW","voice",6841,9,938,1,"Our style-guide model. 104 replies/post on 7K followers"],
+["milesdeutscher","voice",681740,21,553,0,"List posts with 900+ bookmarks"]
+].map(a=>({h:a[0],cat:a[1],f:a[2],p:a[3],rt:a[4],star:a[5],why:a[6],r:a[3]?Math.round(a[4]/a[3]):0}));
+
+const Q=[
+{pick:"Top pick",acct:"pendle_fi",when:"28 Oct, 10:23 UTC",url:"https://x.com/pendle_fi/status/2115389013716836517",orig:"Janus Henderson, Franklin Templeton, Partners Group, Bitwise...with more to come soon 🫡",
+text:"the fund managers your parents trust are moving on-chain one by one\n\nreally hoping the $100k minimum doesn't make the trip",
+why:"Fresh (posted this morning). Names TradFi brands our audience knows, and our line is the access story: big funds, small minimums. Post before 16:00 UTC today."},
+{pick:"Pick 2",acct:"arbitrum",when:"27 Oct, 22:00 UTC",url:"https://x.com/arbitrum/status/2115202046035153135",orig:"DeFi is finance",
+text:"defi is finance\n\nfinance just used to ask for $100k before it said hi",
+why:"Arbitrum's most-replied post this week (85 replies, 1.1M followers). A 3-word post is the easiest kind to quote. Good until about 22:00 UTC tonight."},
+{pick:"Backup",alt:1,acct:"centrifuge",when:"27 Oct, 14:43 UTC",url:"https://x.com/centrifuge/status/2115091981328396313",orig:"Introducing Janus Henderson Nasdaq-100 Index® Fund (JQQQ), the first blockchain-native Nasdaq-100® fund...",
+text:"nasdaq-100 fund, now on-chain\n\nthe index didn't change. who gets to hold it might",
+why:"ETF investors know the Nasdaq-100. Use it if one of the two above has gone stale. Expires about 14:43 UTC tomorrow."}
+];
+const fmt=n=>n>=1e6?(n/1e6).toFixed(2)+"M":n>=1e3?Math.round(n/1e3)+"K":n;
+document.getElementById("quotes").innerHTML=Q.map((q,i)=>`<div class="card q ${q.alt?'alt':''}"><span class="tag">${q.pick}</span><span class="tag">quote @${q.acct}</span>
+<div class="src">Their post (${q.when}): "${q.orig}" · <a href="${q.url}" target="_blank">open</a></div>
+<pre id="q${i}">${q.text}</pre><button onclick="navigator.clipboard.writeText(document.getElementById('q${i}').textContent);this.textContent='Copied'">Copy text</button>
+<p class="src" style="margin-top:8px">${q.why}</p></div>`).join("");
+
+document.getElementById("legend").innerHTML=Object.values(CATS).map(c=>`<span><i style="background:${c[1]}"></i>${c[0]}</span>`).join("");
+const best=[...A].filter(a=>a.p).sort((a,b)=>b.r-a.r).slice(0,15),mx=best[0].r;
+document.getElementById("bars").innerHTML=best.map(a=>`<div class="bar"><span>@${a.h}</span><i style="width:${Math.max(2,a.r/mx*100)}%;background:${CATS[a.cat][1]}"></i><b>${a.r}</b></div>`).join("");
+
+let cat="all",sk="r",dir=-1;
+const chips=document.getElementById("chips");
+chips.innerHTML=[["all","All"],["star","⭐ Best to quote"],...Object.entries(CATS).map(([k,v])=>[k,v[0]])].map(([k,l])=>`<button data-c="${k}" class="${k=='all'?'on':''}">${l}</button>`).join("");
+chips.onclick=e=>{if(!e.target.dataset.c)return;cat=e.target.dataset.c;[...chips.children].forEach(b=>b.classList.toggle("on",b===e.target));draw()};
+document.getElementById("search").oninput=draw;
+document.querySelectorAll("th[data-k]").forEach(th=>th.onclick=()=>{const k=th.dataset.k;dir=sk==k?-dir:-1;sk=k;draw()});
+function draw(){const s=document.getElementById("search").value.toLowerCase();
+const rows=A.filter(a=>(cat=="all"||(cat=="star"?a.star:a.cat==cat))&&(a.h+" "+a.why).toLowerCase().includes(s))
+.sort((a,b)=>(a[sk]>b[sk]?1:a[sk]<b[sk]?-1:0)*dir);
+document.getElementById("rows").innerHTML=rows.map(a=>`<tr><td>${a.star?"⭐ ":""}<a href="https://x.com/${a.h}" target="_blank">@${a.h}</a></td><td><span class="tag" style="background:${CATS[a.cat][1]};color:#fff">${CATS[a.cat][0]}</span></td><td class="n">${fmt(a.f)}</td><td class="n">${a.p}</td><td class="n">${a.r}</td><td>${a.why}</td></tr>`).join("")}
+draw();
+</script></body></html>

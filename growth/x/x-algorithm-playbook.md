@@ -47,6 +47,7 @@ Context: 9M views in the 3 months before the change. Numbers below are copied ex
 ## How we apply this (checklist for every X post or reply)
 
 Before drafting:
+- [ ] **Check the watchlist first** (`growth/x/watchlist.md`, page: `growth/x/watchlist/watchlist.html` in the shared folder): read the recent posts of those accounts and pick the topic from them, ideally as a quote post of one of their fresh posts (under 2 hours old is best, never over 48 hours).
 - [ ] Pick the action we want: **copy-link share** first, then reply / quote / DM share. A post that only earns likes has failed.
 - [ ] Plan the posting time for when our audience is online, and block the next 2 hours to answer replies.
 
