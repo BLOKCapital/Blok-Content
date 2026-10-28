@@ -20,6 +20,12 @@ Read this file first in every session. For depth, go to `knowledge/` and `brand/
 > works offline; the cloud sandbox can't load CDNs. Example: `growth/analytics/2026-10-28-analytics-review.html` in the
 > shared folder. (Finished social media posts themselves are still images/videos as usual.)
 
+> **Strategy reset (Sheetal, 28 Oct 2026):** the old X and Instagram plan is dropped. Every post now starts from a check of
+> what accounts like ours and the news are doing right now, and is built to be **shared and commented on** (likes barely count).
+> **Always use US dollars, never rupees or other local currencies** (the audience is global). Rotate formats and keep testing:
+> news + one number, then vs now, famous quote card, short list with numbers, one-line rule, and 10 to 15s **meme videos**.
+> Full plan: `growth/strategy/2026-10-28-new-strategy.html` in the shared folder.
+
 > **Instagram rule (overrides everything below for Instagram):** @blok.capital targets people
 > who invest in **mutual funds, ETFs and traditional finance**. Content is **purely educational**:
 > why on-chain finance is good, why an on-chain portfolio is great, and why it matters. **No crypto
