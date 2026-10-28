@@ -16,7 +16,11 @@ fix this file in the same session.
 | Composio restricted tools | HeyGen video generation (`HEYGEN_V2_VIDEO_GENERATE`) is disabled in the Composio project |
 | GitHub repo | `BLOKCapital/Blok-Content`, **public**, default branch `main` (we work directly on `main`) |
 | Raw file URL | `https://raw.githubusercontent.com/BLOKCapital/Blok-Content/main/<path>` |
-| Approved voice | **`en-US-AndrewMultilingualNeural`** (edge-tts), rate +0%, one continuous take |
+| Approved voice | **Kokoro `af_heart`**, run locally with `scripts/qa/make_vo.py` (set 28 Oct 2026; edge-tts Andrew retired after mispronunciations) |
+
+## 0b. QA gate (standing rule, 28 Oct 2026)
+Every post on Instagram or X passes `docs/qa-checklist.md` before Sheetal sees it: phoneme check, speech-recognition
+check of the **final** file, frame-by-frame proofread, measured X character counts, sources. Tools in `scripts/qa/`.
 
 ## 1. The one approval rule
 Make everything end to end without asking: script, visuals, voice, render, caption, compliance check, commit.
@@ -67,7 +71,10 @@ Folder: `content/ugc-videos/YYYY-MM-DD-slug/` (or `content/short-form/...`) with
 
 1. **Script**: `build/script.txt`, one beat per line, written how people talk ("And then... it just waits.",
    "Honestly?"). ~25–35s. Follow `brand/instagram-strategy.md`.
-2. **Voice** (Composio sandbox; this machine can't reach the TTS service). Push `script.txt` to `main` first, then
+2. **Voice (current):** write `build/lines.json` (`show`/`say`/`gap`), then from `build/`: `python3 ../../../../scripts/qa/make_vo.py af_heart 1.1`
+   (Kokoro, runs locally; models via `bash scripts/qa/setup-models.sh`). It writes `vo.wav`, `vo.json`, `script.txt`. Then run the
+   QA checks in `docs/qa-checklist.md`. Mix music with `asetpts` after looping, or the voice can get cut (28 Oct).
+   **Old route** (edge-tts in the Composio sandbox, retired for voiceovers): Push `script.txt` to `main` first, then
    in `COMPOSIO_REMOTE_WORKBENCH` (python, runs as root, writes anywhere under /home/user):
    ```python
    import subprocess

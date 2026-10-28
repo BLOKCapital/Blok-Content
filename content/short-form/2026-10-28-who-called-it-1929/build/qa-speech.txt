@@ -1,0 +1,31 @@
+OK  0  0.25s match=1.00
+   want: Nineteen twenty-nine. Three predictions. Which one aged best?
+   heard: 1929, three predictions, which one aged best.
+OK  1  4.03s match=1.00
+   want: A. Irving Fisher. Stock prices have reached what looks like a permanently high plateau.
+   heard: A. Irving Fisher. Stock prices have reached what looks like a permanently high plateau.
+CHECK 2  9.37s match=0.90
+   want: B. Roger Babson. Sooner or later, a crash is coming.
+   heard: Be Roger Babson. Sooner or later, a crash is coming.
+   diff: [('replace', 'b', 'be')]
+OK  3 12.95s match=0.93
+   want: C. John Raskob. Everybody ought to be rich. Put fifteen dollars a month into stocks.
+   heard: See John Raskob. Everybody ought to be rich. Put $15 a month into stocks.
+   diff: [('replace', 'c', 'see')]
+OK  4 18.37s match=1.00
+   want: Two weeks later: Black Tuesday. Fisher loses his fortune.
+   heard: Two weeks later, Black Tuesday, Fisher loses his fortune.
+OK  5 22.00s match=1.00
+   want: So B wins? Not quite.
+   heard: So B wins, not quite.
+CHECK 6 23.76s match=0.88
+   want: The Raskob plan, kept up through the Depression, turned about thirty-seven hundred dollars into almost ten thousand, by nineteen forty-nine.
+   heard: The Rascob Plan, kept up through the Depression, turned about $3,700 into almost $10,000 by 1949.
+   diff: [('replace', 'raskob', 'rascob'), ('replace', 'thirty', 'three thousand')]
+OK  7 31.84s match=1.00
+   want: No forecast needed. A fund of your own should start at ten dollars.
+   heard: No forecast needed. A fund of your own should start at $10.
+OK  8 35.75s match=1.00
+   want: Who Called It, part one. Next: Dow thirty-six thousand.
+   heard: who called it part one, next Dow 36,000.
+lines to check: 2

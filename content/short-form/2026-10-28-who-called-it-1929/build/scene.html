@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&family=Noto+Color+Emoji&display=block" rel="stylesheet">
+<script src="timeline.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --linen:#F6F3E8; --ink:#0B1B2B; --indigo:#004EBA; --sky:#7DD2FD; --lime:#7ED116; --coral:#EC464D; --earth:#844947; --line:#E7E2D3; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--linen); font-family: Inter, sans-serif; color: var(--ink); }
+  .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+  .center { display: flex; flex-direction: column; align-items: center; }
+  .kicker { font-family: 'JetBrains Mono', monospace; font-size: 30px; letter-spacing: .12em; text-transform: uppercase; color: var(--earth); }
+  h1 { font-family: Fraunces, serif; font-weight: 800; color: var(--indigo); letter-spacing: -0.02em; line-height: 1.02; text-align: center; }
+  .emoji { font-family: 'Noto Color Emoji'; }
+  #bar { position: absolute; top: 0; left: 0; height: 10px; background: var(--lime); z-index: 5; }
+  #series { position: absolute; top: 200px; width: 100%; display: flex; justify-content: center; gap: 16px; z-index: 4; }
+  .pill { display: inline-block; padding: 12px 26px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 28px; letter-spacing: .08em; }
+
+  /* Quiz cards */
+  .q { position: absolute; left: 70px; width: 940px; background: #fff; border-radius: 34px; padding: 28px 34px 30px 150px; box-shadow: 0 16px 50px rgba(11,27,43,.10); opacity: 0; border: 4px solid transparent; }
+  .q .L { position: absolute; left: 30px; top: 28px; width: 92px; height: 92px; border-radius: 26px; display: flex; align-items: center; justify-content: center; font-family: Fraunces, serif; font-weight: 800; font-size: 60px; color: #fff; background: var(--indigo); }
+  .q .who { font-family: 'JetBrains Mono', monospace; font-size: 24px; letter-spacing: .06em; color: var(--earth); text-transform: uppercase; }
+  .q .quote { font-family: Fraunces, serif; font-weight: 600; font-size: 44px; line-height: 1.12; margin-top: 10px; }
+  .q .note { font-size: 28px; font-weight: 700; color: var(--indigo); margin-top: 10px; }
+  .q .verdict { position: absolute; right: 26px; top: 22px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 26px; padding: 8px 18px; border-radius: 12px; opacity: 0; }
+
+  .bigL { width: 220px; height: 220px; border-radius: 56px; background: var(--indigo); color: #fff; font-family: Fraunces, serif; font-weight: 800; font-size: 150px; display: flex; align-items: center; justify-content: center; opacity: 0; }
+  /* Chart */
+  #chartWrap { position: absolute; left: 70px; top: 430px; width: 940px; height: 820px; background: #fff; border-radius: 34px; box-shadow: 0 16px 50px rgba(11,27,43,.10); padding: 34px; }
+  #chartWrap .cap { font-family: 'JetBrains Mono', monospace; font-size: 22px; color: var(--earth); letter-spacing: .04em; }
+  #bt { position: absolute; left: 50%; top: 300px; margin-left: -200px; width: 400px; transform: rotate(-8deg); border: 8px solid var(--coral); color: var(--coral); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 40px; padding: 10px 22px; border-radius: 16px; background: rgba(255,255,255,.94); opacity: 0; line-height: 1.15; text-align: center; }
+
+  /* Reveal */
+  .bar2 { position: absolute; left: 110px; width: 860px; }
+  .bar2 .lab { font-family: 'JetBrains Mono', monospace; font-size: 26px; color: var(--earth); letter-spacing: .05em; text-transform: uppercase; }
+  .bar2 .track { height: 120px; margin-top: 12px; border-radius: 24px; background: var(--line); position: relative; overflow: hidden; }
+  .bar2 .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 24px; display: flex; align-items: center; padding-left: 30px; font-family: Fraunces, serif; font-weight: 800; font-size: 60px; white-space: nowrap; }
+  .fine { font-size: 22px; line-height: 1.45; color: var(--earth); text-align: center; }
+
+  /* Price tags */
+  .tag { position: absolute; left: 140px; width: 800px; border-radius: 34px; padding: 34px 40px; opacity: 0; }
+  .tag .t { font-family: 'JetBrains Mono', monospace; font-size: 26px; letter-spacing: .06em; text-transform: uppercase; }
+  .tag .v { font-family: Fraunces, serif; font-weight: 800; font-size: 120px; line-height: 1; margin-top: 10px; position: relative; display: inline-block; }
+  .strike { position: absolute; left: -10px; right: -10px; top: 52%; height: 12px; background: var(--coral); border-radius: 6px; transform-origin: left center; transform: scaleX(0) rotate(-4deg); }
+
+  /* Captions */
+  #cap { position: absolute; left: 70px; right: 70px; top: 1400px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; font-weight: 800; font-size: 56px; line-height: 1.15; z-index: 6; }
+  #cap span { padding: 2px 12px; border-radius: 14px; background: rgba(255,255,255,.94); color: var(--ink); }
+  #cap span.on { background: var(--lime); }
+  #cap span.future { color: #A9A49A; }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="series"><span class="pill" style="background:var(--ink);color:#fff">WHO CALLED IT?</span><span class="pill" style="background:var(--coral);color:#fff">PART 1 · 1929</span></div>
+
+<!-- Q: three predictions -->
+<div class="scene" id="Q">
+  <h1 id="hook" style="position:absolute;top:290px;left:60px;width:960px;font-size:84px">3 predictions.<br>Which one aged best?</h1>
+  <div id="abc" style="position:absolute;top:640px;width:100%;display:flex;justify-content:center;gap:40px">
+    <div class="bigL">A</div><div class="bigL">B</div><div class="bigL">C</div></div>
+  <div id="g0" class="pill" style="position:absolute;top:1000px;left:50%;transform:translateX(-50%);background:var(--lime);color:var(--ink);font-size:34px;white-space:nowrap">GUESS BEFORE THE END</div>
+  <div class="q" id="qA" style="top:520px">
+    <div class="L">A</div>
+    <div class="who">Irving Fisher · economist · Oct 1929</div>
+    <div class="quote">“Stock prices have reached what looks like a permanently high plateau.”</div>
+  </div>
+  <div class="q" id="qB" style="top:810px">
+    <div class="L">B</div>
+    <div class="who">Roger Babson · forecaster · Sep 1929</div>
+    <div class="quote">“Sooner or later a crash is coming.”</div>
+  </div>
+  <div class="q" id="qC" style="top:1040px">
+    <div class="L">C</div>
+    <div class="who">John J. Raskob · businessman · Aug 1929</div>
+    <div class="quote">“Everybody ought to be rich.”</div>
+    <div class="note">His plan: $15 a month into good stocks.</div>
+  </div>
+  <div id="guess" class="pill" style="position:absolute;top:1300px;left:0;right:0;margin:0 auto;width:fit-content;background:var(--lime);color:var(--ink);opacity:0">GUESS BEFORE THE END</div>
+</div>
+
+<!-- K: the crash -->
+<div class="scene" id="K">
+  <div id="chartWrap">
+    <div class="cap">DOW JONES INDUSTRIAL AVERAGE · SELECTED CLOSES</div>
+    <svg id="chart" width="872" height="700" viewBox="0 0 872 700" style="margin-top:10px"></svg>
+  </div>
+  <div id="bt">BLACK TUESDAY<br>29 OCT 1929</div>
+  <div id="ff" class="pill" style="font-size:26px;position:absolute;top:1290px;left:0;right:0;margin:0 auto;width:fit-content;background:var(--coral);color:#fff;opacity:0;white-space:nowrap">FISHER LOSES HIS FORTUNE</div>
+</div>
+
+<!-- W: so B wins? -->
+<div class="scene" id="W">
+  <div class="center" style="position:absolute;top:470px;width:100%">
+    <div style="width:220px;height:220px;border-radius:56px;background:var(--indigo);color:#fff;font-family:Fraunces,serif;font-weight:800;font-size:150px;display:flex;align-items:center;justify-content:center">B</div>
+    <h1 style="font-size:110px;margin-top:60px">So B wins?</h1>
+    <h1 id="nq" style="font-size:140px;margin-top:30px;color:var(--coral);opacity:0">Not quite.</h1>
+  </div>
+</div>
+
+<!-- R: reveal C -->
+<div class="scene" id="R">
+  <div class="center" style="position:absolute;top:300px;width:100%">
+    <div style="display:flex;align-items:center;gap:26px">
+      <div style="width:120px;height:120px;border-radius:32px;background:var(--lime);font-family:Fraunces,serif;font-weight:800;font-size:84px;display:flex;align-items:center;justify-content:center">C</div>
+      <h1 style="font-size:76px;text-align:left">The boring plan<br>aged best.</h1>
+    </div>
+    <div class="kicker" style="margin-top:34px">$15 a month · Aug 1929 → Dec 1949</div>
+  </div>
+  <div class="bar2" id="b1" style="top:700px"><div class="lab">Put in</div><div class="track"><div class="fill" id="f1" style="background:var(--sky)">$3,675</div></div></div>
+  <div class="bar2" id="b2" style="top:900px"><div class="lab">Worth by 1949</div><div class="track"><div class="fill" id="f2" style="background:var(--lime)">$9,952</div></div></div>
+  <div id="fineR" class="fine" style="position:absolute;top:1120px;left:110px;width:860px;opacity:0">Through the Great Depression. Raskob promised $80,000, so he was wrong too.<br>Calculation: $15 a month into the Dow, dividends reinvested, before costs<br>(Jon Petersen, Novel Investor). Past results don't predict future ones.</div>
+</div>
+
+<!-- P: price tags -->
+<div class="scene" id="P">
+  <h1 style="position:absolute;top:310px;width:100%;font-size:96px">No forecast<br>needed.</h1>
+  <div class="tag" id="t1" style="top:600px;background:#fff;box-shadow:0 16px 50px rgba(11,27,43,.10)">
+    <div class="t" style="color:var(--earth)">A fund of your own, usually</div>
+    <div class="v" style="color:var(--ink)">$10,000+<div class="strike" id="sk"></div></div>
+  </div>
+  <div class="tag" id="t2" style="top:900px;background:var(--indigo);color:#fff">
+    <div class="t" style="color:var(--sky)">What it should be</div>
+    <div class="v">$10</div>
+  </div>
+</div>
+
+<!-- E: end card -->
+<div class="scene" id="E">
+  <div class="center" style="position:absolute;top:330px;width:100%">
+    <div class="kicker">Next on Who Called It?</div>
+    <h1 style="font-size:104px;margin-top:22px">Part 2:<br>“Dow 36,000”</h1>
+    <div class="kicker" style="margin-top:18px">(a 1999 prediction)</div>
+    <div style="margin-top:56px;background:#fff;border-radius:30px;padding:28px 44px;font-family:Fraunces,serif;font-weight:800;font-size:56px;color:var(--ink);box-shadow:0 16px 50px rgba(11,27,43,.10)">Which did you pick? A, B or C? <span class="emoji">👇</span></div>
+    <img src="../../../../brand/assets/logo-wordmark.png" style="height:84px;margin-top:64px">
+    <div style="margin-top:30px;background:var(--coral);color:#fff;font-weight:800;font-size:44px;padding:24px 56px;border-radius:999px">Follow @blok.capital</div>
+    <div class="fine" style="margin-top:34px">Educational only · Not financial advice · Investing involves risk<br>AI-generated voiceover</div>
+  </div>
+</div>
+
+<div id="cap"></div>
+
+<script>
+const TL = window.TIMELINE;
+window.DURATION = Math.ceil((TL[TL.length - 1].end + 2.2) * 10) / 10;
+const S = (i) => TL[i].start;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const win = (t, a, b, f = 0.25) => clamp(Math.min((t - a) / f, (b - t) / f));
+const pop = (el, t, at, dy = 40) => { const k = ease((t - at) / 0.35); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * dy}px)`; };
+
+// --- chart: real Dow closes at selected dates (x = months since Dec 1928)
+const pts = [[0, 300.00, 'Dec 1928'], [8.1, 381.17, 'Sep 1929 peak'], [10, 230.07, 'Oct 29, 1929'], [15.5, 294.07, 'Apr 1930'], [42.25, 41.22, 'Jul 1932 low']];
+const X = (m) => 60 + m / 43 * 780, Y = (v) => 40 + (1 - v / 400) * 560;
+const svg = $('chart');
+let grid = '';
+[0, 100, 200, 300, 400].forEach((v) => { grid += `<line x1="60" x2="850" y1="${Y(v)}" y2="${Y(v)}" stroke="#E7E2D3" stroke-width="2"/><text x="48" y="${Y(v) + 8}" text-anchor="end" font-family="JetBrains Mono" font-size="20" fill="#844947">${v}</text>`; });
+[['1929', 1], ['1930', 13], ['1931', 25], ['1932', 37]].forEach(([y, m]) => { grid += `<text x="${X(m)}" y="${Y(0) + 46}" text-anchor="middle" font-family="JetBrains Mono" font-size="22" fill="#844947">${y}</text>`; });
+const d = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(' ');
+svg.innerHTML = grid +
+  `<path id="ln" d="${d}" fill="none" stroke="#004EBA" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>` +
+  pts.map((p, i) => { const pos = [[16, 38, 64, 'start'], [16, -22, -50, 'start'], [16, 38, 64, 'start'], [16, -22, -50, 'start'], [-18, 44, 44, 'end']][i];
+    const lab = i === 4 ? `${p[2]}: ${p[1].toFixed(2)}` : '';
+    return `<g class="dot" opacity="0"><circle cx="${X(p[0])}" cy="${Y(p[1])}" r="12" fill="${i === 2 ? '#EC464D' : '#004EBA'}"/>` +
+      (i === 4 ? `<text x="${X(p[0]) + pos[0]}" y="${Y(p[1]) + pos[1]}" text-anchor="end" font-family="JetBrains Mono" font-weight="700" font-size="22" fill="#0B1B2B">${lab}</text>` :
+      `<text x="${X(p[0]) + pos[0]}" y="${Y(p[1]) + pos[1]}" font-family="JetBrains Mono" font-weight="700" font-size="22" fill="#0B1B2B">${p[1].toFixed(2)}</text><text x="${X(p[0]) + pos[0]}" y="${Y(p[1]) + pos[2]}" font-family="JetBrains Mono" font-size="19" fill="#844947">${p[2]}</text>`) + '</g>'; }).join('') +
+  `<g id="fq" opacity="0"><line x1="${X(9.5)}" x2="${X(9.5)}" y1="${Y(400)}" y2="${Y(0)}" stroke="#844947" stroke-width="2" stroke-dasharray="8 8"/><text x="${X(9.5) - 10}" y="${Y(0) - 14}" text-anchor="end" font-family="JetBrains Mono" font-size="20" fill="#844947">A's quote</text></g>`;
+const ln = $('ln'); const LEN = ln.getTotalLength(); ln.style.strokeDasharray = LEN;
+const dots = [...document.querySelectorAll('.dot')];
+// length along the path at each point
+const segLen = []; { let acc = 0; segLen.push(0); for (let i = 1; i < pts.length; i++) { acc += Math.hypot(X(pts[i][0]) - X(pts[i - 1][0]), Y(pts[i][1]) - Y(pts[i - 1][1])); segLen.push(acc); } }
+
+// --- captions from word timings
+const words = [];
+TL.forEach((s, si) => (s.words || []).forEach((w) => words.push({ ...w, si })));
+function captions(t) {
+  const si = TL.findIndex((s, i) => t >= s.start - 0.15 && t < (TL[i + 1] ? TL[i + 1].start - 0.15 : s.end + 0.8));
+  if (si < 0) { $('cap').innerHTML = ''; return; }
+  const ws = words.filter((w) => w.si === si);
+  let cur = ws.findIndex((w) => t < w.e); if (cur < 0) cur = ws.length - 1;
+  const start = Math.floor(cur / 5) * 5;
+  $('cap').innerHTML = ws.slice(start, start + 5).map((w) => `<span class="${t >= w.s && t < w.e ? 'on' : t >= w.e ? '' : 'future'}">${w.w}</span>`).join('');
+}
+
+const K0 = S(4) - 0.2, W0 = S(5) - 0.15, R0 = S(6) - 0.15, P0 = S(7) - 0.15, E0 = S(8) - 0.15;
+window.draw = (t) => {
+  $('bar').style.width = `${(t / window.DURATION) * 1080}px`;
+
+  // Q: hook + cards
+  $('Q').style.opacity = win(t, -1, K0);
+  $('hook').style.transform = `scale(${1.08 - 0.08 * ease(t / 0.4)})`;
+  const hk = 1 - ease((t - S(1) + 0.35) / 0.3);
+  [...document.querySelectorAll('.bigL')].forEach((el, i) => { const k = ease((t - 0.3 - i * 0.25) / 0.3); el.style.opacity = k * hk; el.style.transform = `scale(${0.6 + 0.4 * k})`; });
+  $('g0').style.opacity = ease((t - 1.2) / 0.3) * hk;
+  pop($('qA'), t, S(1) - 0.1); pop($('qB'), t, S(2) - 0.1); pop($('qC'), t, S(3) - 0.1);
+  pop($('guess'), t, S(3) + 1.6, 20);
+  [['qA', 1], ['qB', 2], ['qC', 3]].forEach(([id, i]) => { $(id).style.borderColor = t >= S(i) && t < (i < 3 ? S(i + 1) : K0) ? 'var(--lime)' : 'transparent'; });
+
+  // K: crash chart
+  $('K').style.opacity = win(t, K0, W0);
+  const p = ease((t - S(4)) / 1.6);
+  ln.style.strokeDashoffset = LEN * (1 - p);
+  dots.forEach((el, i) => el.setAttribute('opacity', p * LEN >= segLen[i] / segLen[segLen.length - 1] * LEN - 2 ? 1 : 0));
+  $('fq').setAttribute('opacity', ease((t - S(4)) / 0.3));
+  const bt = ease((t - S(4) - 0.9) / 0.25); $('bt').style.opacity = bt; $('bt').style.transform = `rotate(-8deg) scale(${1.5 - 0.5 * bt})`;
+  pop($('ff'), t, S(4) + 1.9, 20);
+
+  // W: so B wins? not quite
+  $('W').style.opacity = win(t, W0, R0);
+  pop($('nq'), t, S(5) + 0.75, 30);
+
+  // R: reveal
+  $('R').style.opacity = win(t, R0, P0);
+  $('f1').style.width = `${ease((t - S(6) - 1.0) / 0.8) * 32}%`;
+  $('f2').style.width = `${ease((t - S(6) - 2.2) / 1.0) * 86}%`;
+  pop($('b1'), t, S(6) + 0.6, 20); pop($('b2'), t, S(6) + 1.8, 20);
+  $('fineR').style.opacity = ease((t - S(6) - 3.4) / 0.5);
+
+  // P: price tags
+  $('P').style.opacity = win(t, P0, E0);
+  pop($('t1'), t, S(7) + 0.9); $('sk').style.transform = `scaleX(${ease((t - S(7) - 2.0) / 0.35)}) rotate(-4deg)`;
+  pop($('t2'), t, S(7) + 2.1);
+
+  // E: end card
+  $('E').style.opacity = win(t, E0, window.DURATION + 1);
+  $('series').style.opacity = 1 - Math.max(win(t, E0, window.DURATION + 1), win(t, K0, W0));
+
+  captions(t);
+};
+window.draw(0);
+</script>
+</body>
+</html>
