@@ -174,6 +174,25 @@ so the main post stays clean.
 - [ ] Playbook checklist done (`growth/x/x-algorithm-playbook.md`) and compliance clear (risk line and sources in the first reply)
 - [ ] Plan to reply to every reply for the first 2 hours: the model account's reply counts only happen because they answer back
 
+## Sound like a person, not a brand (28 Oct 2026, after Sheetal said our drafts read robotic)
+
+Re-read Foxy's 19 original posts from 21 to 28 Oct. What we were missing wasn't formatting, it was voice:
+
+| What Foxy does | Example (their post, numbers from the X API) |
+|---|---|
+| **Very short.** The biggest posts are 1 to 2 lines | "saw a guy with 38 impressions making an article called how to crack the new x algo" (211 likes, 135 replies) |
+| **React, don't explain.** State the thing, add a 1 to 3 word reaction, stop | "nikita bier made $975k selling 15 minute video calls after quitting X / absolutely unreal" (250K views) |
+| **"i", not "you".** Foxy's own rule: "you" sounds generic, "almost like AI wrote it" | "i got 972 new followers in a month using this exact strategy" |
+| **Dry humour and sarcasm** at a situation, never a lecture | "looks like kimchi flexed a rented car in one of his posts lol" (quote post, 320K views) |
+| **Texting words**: im, thats, lol, rn, "ill die on this hill", "just my 2 cents", the odd ALL CAPS for emphasis | "this is the best I MEAN THE BEST followers count" |
+| **Two-line hot take**, no defence of it | "hot take: / burnout is an excuse for weak people" (83 replies) |
+
+Rules we take from this:
+- If the post explains *why* in a full sentence, cut that sentence. Let the reader fill it in, that's what the replies are for.
+- Read it out loud. If it sounds like a press release or a LinkedIn post, rewrite it like a text to a friend.
+- Quote posts: one or two lines of reaction on top of the news, not a summary of the news.
+- Never fake a personal story ("i got a breach email today") that didn't happen. "i" is for real opinions and real experiences.
+
 ## Rhythm
 
 The model account posts **~3 original posts a day** and mixes them: roughly a third relatable/community questions,
