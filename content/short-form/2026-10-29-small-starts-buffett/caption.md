@@ -22,9 +22,9 @@ And John Bogle, the man who made index funds popular: "Don't look for the needle
 
 Every great investor learned on a small first try. Buffett started with $114. A fund of your own usually asks for $10,000 or more. We think it should start at $10.
 
-How much did you start with? Tell us below.
+This is Part 1 of Small Starts. Part 2: Munger's first $100,000. Follow @blok.capital so you don't miss it.
 
-This is Part 1 of Small Starts. Part 2: Munger's first $100,000. Follow @blok.capital so you don't miss it, and send this to the friend who says they'll start "when they have more money".
+Would you have held on? Yes or no 👇
 
 Educational content only, not financial or investment advice. Investing involves risk, including loss of what you put in. Past results don't predict future ones.
 
@@ -33,4 +33,4 @@ Sources: Buffett's first purchase (Cities Service preferred, June 1942, 3 shares
 #warrenbuffett #investing #personalfinance #moneyhistory #financialliteracy
 <!-- IG END -->
 
-**First comment (pin it):** "Drop your first investment amount 👇 Part 2 (Munger's first $100,000) is next."
+**First comment (pin it):** "Would you have held on at $27? Yes or no 👇 Part 2 (Munger's first $100,000) is next."
