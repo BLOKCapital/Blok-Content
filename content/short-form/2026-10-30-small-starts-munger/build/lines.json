@@ -1,0 +1,62 @@
+[
+ {
+  "show": "Charlie Munger said one number is the hardest you'll ever hit.",
+  "say": "Charlie Mungur said one number is the hardest you'll ever hit.",
+  "gap": 0.2
+ },
+ {
+  "show": "Not a million. Not your first thousand.",
+  "say": "Not a million. Not your first thousand.",
+  "gap": 0.2
+ },
+ {
+  "show": "The first $100,000.",
+  "say": "The first hundred thousand.",
+  "gap": 0.3
+ },
+ {
+  "show": "\"The first $100,000 is a b****,",
+  "say": "The first hundred thousand is a",
+  "gap": 0.55
+ },
+ {
+  "show": "but you gotta do it.\"",
+  "say": "but you gotta do it.",
+  "gap": 0.3
+ },
+ {
+  "show": "\"After that, you can ease off the gas a little bit.\"",
+  "say": "After that, you can ease off the gas a little bit.",
+  "gap": 0.3
+ },
+ {
+  "show": "Why? At the start, every dollar comes from you.",
+  "say": "Why? At the start, every dollar comes from you.",
+  "gap": 0.15
+ },
+ {
+  "show": "Later, your money starts doing some of the work.",
+  "say": "Later, your money starts doing some of the work.",
+  "gap": 0.3
+ },
+ {
+  "show": "So the start is the hardest part. And most funds make it harder.",
+  "say": "So the start is the hardest part. And most funds make it harder.",
+  "gap": 0.15
+ },
+ {
+  "show": "Often $10,000 just to get in.",
+  "say": "Often ten thousand dollars, just to get in.",
+  "gap": 0.3
+ },
+ {
+  "show": "Your first fund should start at $10.",
+  "say": "Your first fund should start at ten dollars.",
+  "gap": 0.3
+ },
+ {
+  "show": "Small Starts, part 2. Next: the fund everyone called a folly.",
+  "say": "Small Starts, part two. Next: the fund everyone called a folly.",
+  "gap": 0.0
+ }
+]
