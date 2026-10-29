@@ -57,3 +57,27 @@ source: https://investinglive.com/stock-market-update/topix-explained-why-japan-
 
 educational, not financial advice. investing carries risk
 <!-- X3 REPLY END -->
+
+# Batch 2 (29 Oct 2026)
+
+## X4: Black Tuesday, then vs now (text) — Thu 29 Oct ~12:15 UTC
+Trend: 97th anniversary of Black Tuesday (29 Oct 1929). Dow fell about 12% on 29 Oct 1929 (and about 13% on 28 Oct).
+Ties back to X1 (the $100,000 tokenized fund).
+
+<!-- X4 START -->
+black tuesday was 97 years ago today
+
+29 oct 1929. the market lost about 12% in a day
+
+most families never owned a single share back then
+
+97 years later, a fund on brand-new rails still asks $100,000 to get in
+
+has the door actually moved?
+<!-- X4 END -->
+
+<!-- X4 REPLY START -->
+we think a fund of your own should start at $10
+
+educational, not financial advice. investing carries risk
+<!-- X4 REPLY END -->
