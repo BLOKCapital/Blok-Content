@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&family=Noto+Color+Emoji&display=block" rel="stylesheet">
+<script src="timeline.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --linen:#F6F3E8; --ink:#0B1B2B; --ink2:#12273D; --indigo:#004EBA; --sky:#7DD2FD; --lime:#7ED116; --coral:#EC464D; --earth:#844947; --dim:#8FA0B3; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); font-family: Inter, sans-serif; color: var(--linen); }
+  #world { position: absolute; inset: 0; transform-origin: 50% 45%; }
+  .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+  .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; }
+  .serif { font-family: Fraunces, serif; }
+  .emoji { font-family: 'Noto Color Emoji'; }
+  #glow { position: absolute; inset: 0; background: radial-gradient(900px 700px at 50% 40%, rgba(0,78,186,.35), transparent 70%); }
+  #grain { position: absolute; inset: 0; pointer-events: none; opacity: .07; z-index: 8; }
+  #vig { position: absolute; inset: 0; pointer-events: none; z-index: 7; background: radial-gradient(1200px 1500px at 50% 50%, transparent 55%, rgba(0,0,0,.55)); }
+  #bar { position: absolute; top: 0; left: 0; height: 10px; background: var(--lime); z-index: 9; }
+  #series { position: absolute; top: 220px; width: 100%; display: flex; justify-content: center; gap: 14px; z-index: 6; }
+  .pill { display: inline-block; padding: 12px 26px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 28px; letter-spacing: .08em; white-space: nowrap; }
+  .w { display: inline-block; opacity: 0; margin-right: .22em; }
+
+  /* hook */
+  #h1 { position: absolute; top: 560px; left: 80px; width: 920px; font-family: Fraunces, serif; font-weight: 800; font-size: 104px; line-height: 1.04; letter-spacing: -.02em; }
+  #h2 { position: absolute; top: 900px; left: 80px; font-family: Fraunces, serif; font-style: italic; font-weight: 600; font-size: 120px; color: var(--lime); opacity: 0; }
+  #qm { position: absolute; left: 640px; top: 860px; width: 300px; height: 300px; border-radius: 50%; border: 6px dashed var(--dim); display: flex; align-items: center; justify-content: center; font-family: Fraunces, serif; font-weight: 800; font-size: 200px; color: var(--dim); opacity: 0; }
+
+  /* story */
+  #year { position: absolute; top: 330px; width: 100%; text-align: center; font-family: Fraunces, serif; font-weight: 800; font-size: 150px; color: var(--sky); letter-spacing: -.02em; }
+  #age { position: absolute; top: 510px; width: 100%; text-align: center; font-size: 30px; color: var(--dim); }
+  #cert { position: absolute; left: 90px; top: 600px; width: 900px; height: 640px; border-radius: 30px; background: var(--ink2); border: 3px solid rgba(125,210,253,.35); box-shadow: 0 30px 80px rgba(0,0,0,.45); padding: 40px 50px; }
+  #cert .lab { font-size: 24px; color: var(--dim); }
+  #cert .row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px; }
+  #price { font-family: Fraunces, serif; font-weight: 800; font-size: 190px; line-height: 1; letter-spacing: -.03em; }
+  #chg { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 40px; }
+  #spark { position: absolute; left: 50px; bottom: 34px; }
+  #stamp { position: absolute; left: 560px; top: 640px; border: 10px solid var(--coral); color: var(--coral); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 84px; padding: 6px 34px; border-radius: 18px; transform: rotate(-12deg); opacity: 0; background: rgba(11,27,43,.85); z-index: 3; }
+  #ghost { position: absolute; top: 1270px; width: 100%; text-align: center; font-size: 34px; font-weight: 700; color: var(--sky); opacity: 0; }
+
+  /* reveal */
+  #kid { position: absolute; top: 640px; width: 100%; text-align: center; font-size: 44px; font-weight: 700; color: var(--dim); }
+  #name { position: absolute; top: 730px; width: 100%; text-align: center; font-family: Fraunces, serif; font-weight: 800; font-size: 150px; line-height: 1; letter-spacing: -.02em; }
+  #name span { display: inline-block; opacity: 0; }
+  #flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 6; pointer-events: none; }
+  #nsub { position: absolute; top: 1060px; width: 100%; text-align: center; font-size: 34px; color: var(--sky); opacity: 0; }
+
+  /* quotes */
+  .qmark { position: absolute; left: 70px; top: 330px; font-family: Fraunces, serif; font-weight: 800; font-size: 420px; line-height: 1; color: var(--lime); opacity: .9; }
+  .qtext { position: absolute; left: 90px; top: 640px; width: 900px; font-family: Fraunces, serif; font-weight: 600; font-size: 86px; line-height: 1.12; letter-spacing: -.01em; }
+  .qwho { position: absolute; left: 90px; top: 1290px; width: 900px; opacity: 0; }
+  .qwho .n { font-size: 46px; font-weight: 800; }
+  .qwho .r { font-size: 26px; color: var(--dim); margin-top: 10px; }
+  .qline { display: inline-block; width: 70px; height: 6px; background: var(--lime); vertical-align: middle; margin-right: 18px; border-radius: 3px; }
+  .hi { color: var(--lime); }
+
+  /* tags */
+  .tag { position: absolute; left: 110px; width: 860px; border-radius: 30px; padding: 30px 40px; opacity: 0; }
+  .tag .t { font-size: 26px; }
+  .tag .v { font-family: Fraunces, serif; font-weight: 800; font-size: 130px; line-height: 1; margin-top: 10px; position: relative; display: inline-block; }
+  .strike { position: absolute; left: -10px; right: -10px; top: 52%; height: 14px; background: var(--coral); border-radius: 7px; transform-origin: left center; transform: scaleX(0) rotate(-4deg); }
+
+  /* end */
+  #E { background: var(--linen); color: var(--ink); }
+  #E .k { font-size: 30px; color: var(--earth); }
+
+  /* captions */
+  #cap { position: absolute; left: 70px; right: 70px; top: 1400px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; font-weight: 800; font-size: 54px; line-height: 1.15; z-index: 6; }
+  #cap span { padding: 2px 12px; border-radius: 14px; background: rgba(246,243,232,.96); color: var(--ink); }
+  #cap span.on { background: var(--lime); }
+  #cap span.future { color: #A9A49A; }
+</style>
+</head>
+<body>
+<div id="world">
+<div id="glow"></div>
+
+<!-- A: hook -->
+<div class="scene" id="A">
+  <div id="h1"></div>
+  <div id="h2">Guess who.</div>
+  <div id="qm">?</div>
+</div>
+
+<!-- B: the first stock -->
+<div class="scene" id="B">
+  <div id="year">1942</div>
+  <div id="age" class="mono">An 11-year-old’s first stock</div>
+  <div id="cert">
+    <div class="lab mono">Cities Service preferred · 3 shares · $114</div>
+    <div class="row"><div id="price">$38</div><div id="chg"></div></div>
+    <div class="lab mono" id="plab" style="margin-top:6px">price per share</div>
+    <svg id="spark" width="800" height="250" viewBox="0 0 800 250"></svg>
+  </div>
+  <div id="stamp">SOLD</div>
+  <div id="ghost">His 3 shares at $40: $120. Past $200: over $600.</div>
+</div>
+
+<!-- C: reveal -->
+<div class="scene" id="C">
+  <div id="kid">That kid was</div>
+  <div id="name"></div>
+  <div id="nsub" class="mono">age 11 · first stock · sold too soon</div>
+</div>
+
+<!-- D: Munger -->
+<div class="scene" id="D">
+  <div class="qmark">“</div>
+  <div class="qtext" id="qd"></div>
+  <div class="qwho" id="wd"><div class="n"><span class="qline"></span>Charlie Munger</div><div class="r mono">Buffett’s partner at Berkshire Hathaway</div></div>
+</div>
+
+<!-- E2: Bogle -->
+<div class="scene" id="G">
+  <div class="qmark">“</div>
+  <div class="qtext" id="qg"></div>
+  <div class="qwho" id="wg"><div class="n"><span class="qline"></span>John C. Bogle</div><div class="r mono">Founder of Vanguard · <i>The Little Book of<br>Common Sense Investing</i>, 2007</div></div>
+</div>
+
+<!-- P: price tags -->
+<div class="scene" id="P">
+  <div class="tag" id="t0" style="top:380px;background:var(--ink2);border:3px solid rgba(125,210,253,.35)">
+    <div class="t mono" style="color:var(--sky)">What Buffett started with</div>
+    <div class="v">$114</div>
+  </div>
+  <div class="tag" id="t1" style="top:680px;background:var(--linen);color:var(--ink)">
+    <div class="t mono" style="color:var(--earth)">A fund of your own, usually</div>
+    <div class="v">$10,000+<div class="strike" id="sk"></div></div>
+  </div>
+  <div class="tag" id="t2" style="top:980px;background:var(--lime);color:var(--ink)">
+    <div class="t mono">What it should be</div>
+    <div class="v">$10</div>
+  </div>
+</div>
+
+<!-- E: end card -->
+<div class="scene" id="E">
+  <div style="position:absolute;top:300px;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div class="pill" style="background:var(--ink);color:#fff">SMALL STARTS · PART 1</div>
+    <div class="k mono" style="margin-top:60px">Next</div>
+    <div class="serif" style="font-weight:800;font-size:100px;line-height:1.04;color:var(--indigo);margin-top:14px;letter-spacing:-.02em">Munger’s first<br>$100,000</div>
+    <div style="margin-top:64px;background:#fff;border-radius:30px;padding:28px 44px;font-family:Fraunces,serif;font-weight:800;font-size:52px;box-shadow:0 16px 50px rgba(11,27,43,.10)">How much did you start with? <span class="emoji">👇</span></div>
+    <img src="../../../../brand/assets/logo-wordmark.png" style="height:84px;margin-top:70px">
+    <div style="margin-top:30px;background:var(--coral);color:#fff;font-weight:800;font-size:44px;padding:24px 56px;border-radius:999px">Follow @blok.capital</div>
+    <div style="margin-top:34px;font-size:23px;line-height:1.45;color:var(--earth)">Educational only · Not financial advice · Investing involves risk<br>Past results don’t predict future ones · AI-generated voiceover</div>
+  </div>
+</div>
+
+<div id="flash"></div>
+</div>
+<div id="series"><span class="pill" style="background:var(--linen);color:var(--ink)">SMALL STARTS</span><span class="pill" style="background:var(--lime);color:var(--ink)">PART 1</span></div>
+<canvas id="grain" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+<div id="vig"></div>
+<div id="bar"></div>
+<div id="cap"></div>
+
+<script>
+const TL = window.TIMELINE;
+window.DURATION = Math.ceil((TL[TL.length - 1].end + 2.4) * 10) / 10;
+const S = (i) => TL[i].start, Ee = (i) => TL[i].end;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const back = (x) => { x = clamp(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const win = (t, a, b, f = 0.25) => clamp(Math.min((t - a) / f, (b - t) / f));
+const pop = (el, t, at, dy = 40) => { const k = ease((t - at) / 0.35); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * dy}px)`; };
+
+// word-by-word text synced to the voice (line i), with optional highlighted words
+function wordsInto(el, i, hi = [], strip = 0) {
+  const ws = TL[i].words.slice(strip);
+  el.innerHTML = ws.map((w) => { const clean = w.w.replace(/^["“]|["”:]$/g, '');
+    const txt = w.w.replace(/^"/, '“').replace(/"$/, '”').replace(/!"$/, '!”');
+    return `<span class="w${hi.some((h) => clean.toLowerCase().startsWith(h)) ? ' hi' : ''}">${txt}</span>`; }).join('');
+  return ws;
+}
+function wordsAt(el, ws, t, lead = 0.08) {
+  [...el.children].forEach((sp, k) => { const q = ease((t - ws[k].s + lead) / 0.22); sp.style.opacity = q; sp.style.transform = `translateY(${(1 - q) * 24}px)`; sp.style.filter = `blur(${(1 - q) * 6}px)`; });
+}
+const wsH = wordsInto($('h1'), 0, [], 0).slice(0, 7);
+$('h1').innerHTML = [...$('h1').children].slice(0, 7).map((s) => s.outerHTML).join('');
+const wsD = wordsInto($('qd'), 6, ['waiting'], 2);
+const wsG = wordsInto($('qg'), 7, ['haystack'], 2);
+$('name').innerHTML = [...'Warren Buffett'].map((c) => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+
+// price path: 38 -> 27 -> 40 -> 202 (Cities Service preferred, 1942 and later; shape illustrative between points)
+const keys = [[0, 38], [0.18, 27], [0.36, 40], [1, 202]];
+const PX = (u) => 10 + u * 780, PY = (v) => 236 - (v - 20) / 190 * 226;
+$('spark').innerHTML = `<line x1="0" x2="800" y1="${PY(38)}" y2="${PY(38)}" stroke="#8FA0B3" stroke-width="2" stroke-dasharray="6 8"/>` +
+  `<text x="796" y="${PY(38) + 30}" text-anchor="end" font-family="JetBrains Mono" font-size="20" fill="#8FA0B3">BOUGHT AT $38</text>` +
+  `<path id="pl" d="${keys.map((k, i) => `${i ? 'L' : 'M'}${PX(k[0])},${PY(k[1])}`).join(' ')}" fill="none" stroke="#7DD2FD" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>` +
+  `<circle id="pd" r="14" fill="#7ED116"/>`;
+const pl = $('pl'), PL = pl.getTotalLength(); pl.style.strokeDasharray = PL;
+const segU = (() => { const a = [0]; let acc = 0; for (let i = 1; i < keys.length; i++) { acc += Math.hypot(PX(keys[i][0]) - PX(keys[i - 1][0]), PY(keys[i][1]) - PY(keys[i - 1][1])); a.push(acc); } return a.map((x) => x / acc); })();
+
+// film grain
+const g = $('grain').getContext('2d'); const gi = g.createImageData(540, 960);
+function grain(t) { let s = Math.floor(t * 24) * 9301 + 49297; for (let i = 0; i < gi.data.length; i += 4) { s = (s * 1103515245 + 12345) & 0x7fffffff; const v = (s >> 16) & 255; gi.data[i] = gi.data[i + 1] = gi.data[i + 2] = v; gi.data[i + 3] = 255; } g.putImageData(gi, 0, 0); }
+
+// captions (story scenes only; quotes are their own captions)
+const words = []; TL.forEach((s, si) => (s.words || []).forEach((w) => words.push({ ...w, si })));
+function captions(t, show) {
+  const si = TL.findIndex((s, i) => t >= s.start - 0.15 && t < (TL[i + 1] ? TL[i + 1].start - 0.15 : s.end + 0.8));
+  if (!show.includes(si)) { $('cap').innerHTML = ''; return; }
+  const ws = words.filter((w) => w.si === si);
+  let cur = ws.findIndex((w) => t < w.e); if (cur < 0) cur = ws.length - 1;
+  const start = Math.floor(cur / 5) * 5;
+  $('cap').innerHTML = ws.slice(start, start + 5).map((w) => `<span class="${t >= w.s && t < w.e ? 'on' : t >= w.e ? '' : 'future'}">${w.w}</span>`).join('');
+}
+
+const B0 = S(1) - 0.2, C0 = S(5) - 0.15, D0 = S(6) - 0.2, G0 = S(7) - 0.2, P0 = S(8) - 0.2, E0 = S(10) - 0.2;
+const money = (v) => '$' + Math.round(v).toLocaleString('en-US');
+window.draw = (t) => {
+  $('bar').style.width = `${(t / window.DURATION) * 1080}px`;
+  grain(t);
+  // slow push-in per scene + shake on the drop
+  const starts = [0, B0, C0, D0, G0, P0, E0]; let s0 = 0; starts.forEach((x) => { if (t >= x) s0 = x; });
+  const zoom = 1 + 0.035 * clamp((t - s0) / 6);
+  const sh = t > S(2) + 0.35 && t < S(2) + 0.75 ? Math.sin(t * 90) * 10 * (1 - (t - S(2) - 0.35) / 0.4) : 0;
+  $('world').style.transform = `translate(${sh}px, ${sh * 0.5}px) scale(${zoom})`;
+
+  // A: hook
+  $('A').style.opacity = win(t, -1, B0);
+  wordsAt($('h1'), wsH.map((w, k) => ({ s: Math.min(w.s, 0.05 + k * 0.06) })), t);
+  const k2 = back((t - TL[0].words[7].s + 0.05) / 0.4); $('h2').style.opacity = clamp(k2); $('h2').style.transform = `scale(${0.7 + 0.3 * k2})`;
+  const kq = ease((t - TL[0].words[7].s) / 0.4); $('qm').style.opacity = kq; $('qm').style.transform = `rotate(${(1 - kq) * -40 + Math.sin(t * 3) * 4}deg)`;
+
+  // B: story
+  $('B').style.opacity = win(t, B0, C0);
+  pop($('year'), t, S(1) - 0.1, 30); pop($('age'), t, S(1) + 0.5, 20); pop($('cert'), t, S(1) + 1.2, 60);
+  // price progress u along the path, timed to the voice
+  const legs = [[S(2) + 0.1, S(2) + 1.0, 0, 1], [S(3), S(3) + 0.8, 1, 2], [S(4), S(4) + 1.4, 2, 3]];
+  let u = 0, val = 38;
+  legs.forEach(([a, b, i, j]) => { if (t >= a) { const p = ease((t - a) / (b - a)); u = segU[i] + (segU[j] - segU[i]) * p; val = keys[i][1] + (keys[j][1] - keys[i][1]) * p; } });
+  pl.style.strokeDashoffset = PL * (1 - u);
+  const pt = pl.getPointAtLength(PL * u); $('pd').setAttribute('cx', pt.x); $('pd').setAttribute('cy', pt.y);
+  $('price').textContent = t >= S(4) && val >= 199.5 ? '$200+' : money(val);
+  $('price').style.color = val < 37.5 ? 'var(--coral)' : val > 41 ? 'var(--lime)' : 'var(--linen)';
+  const pct = (val / 38 - 1) * 100;
+  $('chg').textContent = t < S(2) + 0.1 || t >= S(4) ? '' : (pct >= 0 ? '+' : '') + Math.round(pct) + '%';
+  $('chg').style.color = pct < 0 ? 'var(--coral)' : 'var(--lime)';
+  const st = back((t - S(3) - 0.75) / 0.3); $('stamp').style.opacity = clamp(st * 3); $('stamp').style.transform = `rotate(-12deg) scale(${2 - st})`;
+  { const m = ease((t - S(4)) / 0.5); $('stamp').style.top = `${640 + 380 * m}px`; $('stamp').style.left = `${560 - 380 * m}px`; $('stamp').style.fontSize = `${84 - 34 * m}px`; }
+  pop($('ghost'), t, S(4) + 1.2, 20);
+
+  // C: name reveal
+  $('C').style.opacity = win(t, C0, D0, 0.15);
+  pop($('kid'), t, S(5) - 0.05, 20);
+  const nw = TL[5].words[3].s;
+  [...$('name').children].forEach((sp, i) => { const q = back((t - nw - i * 0.035) / 0.3); sp.style.opacity = clamp(q * 2); sp.style.transform = `translateY(${(1 - q) * 60}px)`; });
+  $('flash').style.opacity = 0.55 * clamp(1 - Math.abs(t - nw - 0.18) / 0.18);
+  pop($('nsub'), t, nw + 0.6, 20);
+
+  // D, G: quotes
+  $('D').style.opacity = win(t, D0, G0); wordsAt($('qd'), wsD, t); pop($('wd'), t, S(6) + 0.05, 20);
+  $('G').style.opacity = win(t, G0, P0); wordsAt($('qg'), wsG, t); pop($('wg'), t, S(7) + 0.05, 20);
+
+  // P: price tags
+  $('P').style.opacity = win(t, P0, E0);
+  pop($('t0'), t, S(8) + 0.1); pop($('t1'), t, S(8) + 2.3);
+  $('sk').style.transform = `scaleX(${ease((t - S(9) - 0.05) / 0.3)}) rotate(-4deg)`;
+  { const k = back((t - S(9) - 0.5) / 0.4); $('t2').style.opacity = clamp(k * 2); $('t2').style.transform = `scale(${0.8 + 0.2 * k})`; }
+
+  // E: end card
+  $('E').style.opacity = win(t, E0, window.DURATION + 1);
+  $('series').style.opacity = 1 - win(t, E0, window.DURATION + 1);
+  $('glow').style.opacity = 1 - win(t, E0, window.DURATION + 1);
+  $('vig').style.opacity = 1 - 0.7 * win(t, E0, window.DURATION + 1);
+
+  captions(t, [1, 2, 3, 4, 8, 9]);
+};
+window.draw(0);
+</script>
+</body>
+</html>
