@@ -1,0 +1,29 @@
+QA (29 Oct 2026), final.mp4 md5 332958dda9758766ef021422f9d9fb0c, 1080x1920, 30fps, 50.3s
+Speech-to-text (faster-whisper small.en) on the FINAL mp4:
+  0.00-  2.82  It's August, 1602, Amsterdam,
+  3.10-  7.48  and this whole line is waiting to buy into one company.
+  8.14- 10.82  This is the first public share sale in history.
+ 11.42- 12.76  And here's the wild part.
+ 13.30- 14.42  There's no minimum.
+ 14.80- 17.10  Those ships sail to Asia for spices.
+ 17.78- 18.68  If they make it back,
+ 19.10- 21.46  everyone who signed that book shares the profit.
+ 21.88- 24.56  Bakers, sailors, merchants.
+ 25.96- 28.36  But I came here for one name in this book.
+ 28.68- 29.26  That's her.
+ 29.78- 31.42  The maid who cleans this house.
+ 32.00- 32.94  A hundred guilders.
+ 33.46- 35.60  In the same company as her rich boss.
+ 36.32- 41.12  400 years later, most funds want $10,000 to $100,000
+ 41.74- 42.62  just to let you in.
+ 43.16- 45.30  In 1602, the maid got in.
+ 45.68- 48.00  Today, a fund of your own should start at $10.
+ 48.60- 50.30  Next stop, 1929.
+Result: every line matches the script.
+Fixed on the way: clip 7 take 1 said "your own fund" heard as "fun" -> regenerated with "a fund of your own";
+first render trimmed the last word ("1929" heard as "$19") -> last clip kept at full 8s.
+Loudness: -14.5 LUFS integrated, true peak -1.3 dBFS.
+Frames: 2 fps contact sheets checked; captions inside safe area, no overlaps; hook on screen from frame 1;
+cover does not reveal the maid (answer held to 0:29).
+Media: video https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/ab6fb2f1-c957-4c89-a739-45f7f414ad66.mp4
+       cover https://d2ol7oe51mr4n9.cloudfront.net/user_3JjaN2T12WzlPZ8BX48ytXRLrsA/6a39049f-7138-463c-b9a9-f6110a662451.jpg

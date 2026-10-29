@@ -97,6 +97,22 @@ Folder: `content/ugc-videos/YYYY-MM-DD-slug/` (or `content/short-form/...`) with
 Other voices that work (tested): Kokoro `af_heart` / `am_michael` (open-source; `pip install kokoro-onnx`,
 models from github.com/thewh1teagle/kokoro-onnx releases, runs in the sandbox in ~25s), edge `Ava`, `Emma`, `Brian`.
 
+## 5b. Talking presenter with a moving scene (Higgsfield + Veo 3.1, set 29 Oct 2026)
+Sheetal's preferred Reel look: an AI presenter selfie-vlogs to camera with real lip sync while the scene moves behind her
+(first one: `content/2026-10-29-the-maid-who-bought-in/`). Higgsfield connector (`mcp__Higgsfield__*`), ~230 credits per 50s Reel.
+1. Presenter still: `generate_image` model `gpt_image_2_5`, 9:16 selfie prompt. Scene stills: same model with the first
+   image's job id as `image_references` ("same woman as the reference image ...") so she stays consistent.
+2. One 8s clip per beat: `generate_video_batch`, model `veo3_1`, `duration 8`, `aspect_ratio 9:16`, still as `start_image`,
+   prompt = camera + background motion + `She says in a warm, clear, young American female voice: "<line>"` + "No music,
+   no subtitles". Keep each line under ~20 words, years spelled out. Veo allows ~4 jobs at once (429 = wait and resubmit);
+   if a preset is recommended instead, resubmit with `declined_preset_id`.
+3. Everything else runs in Higgsfield `sandbox_exec` (8 GB, ffmpeg, faster-whisper `small.en`, `image_paths` lets you SEE
+   frames): curl the clip URLs, transcribe each clip, burn ASS captions (Liberation Mono), mix music at 0.12, loudnorm -14,
+   render with `size: "xl"`, `background: true`. Keep the last clip at its full 8s so the final word isn't cut.
+4. Deliver: `media_upload` slot, then `curl -X PUT` from the sandbox, then `media_confirm`; the returned cloudfront URL is
+   the share link. This cloud session cannot download cloudfront/composio URLs, and the Composio sandbox (1 GB) is too small
+   for faster-whisper small or a 1080p caption render, so don't build there.
+
 ## 6. Publishing via Composio (the reliable route)
 This machine can't hand local files to Instagram, and the Composio sandbox can't render big videos
 (~1GB RAM; Chromium crashes at 1080×1920). So: **render here, push to GitHub, let the sandbox fetch it.**
@@ -136,7 +152,7 @@ trigger id in `content/calendar/scheduled.md`. Posts scheduled this way need the
 | Probing random public file hosts | Blocked by the safety classifier | GitHub raw route |
 | HeyGen video generation via Composio | Tool restricted in the Composio project | Edge-tts voice + motion reel (section 5) |
 | Figma Weave models | Figma account not linked to Weave; costs credits | Same as above |
-| Realistic talking-head avatar for free | No GPU in sandbox; lip-sync models infeasible | Motion reel; or user films |
+| Realistic talking-head avatar for free | No GPU in sandbox; lip-sync models infeasible | Higgsfield Veo 3.1 talking clips (section 5b), paid credits |
 | Claude editing `.claude/settings.json` | Blocked as self-modification | User pastes `docs/permissions-allowlist.json` |
 | `git push --delete` a branch | 403 from the session's git proxy | User deletes branches on GitHub |
 | `rm -f $VAR/*` in Bash | Blocked by safety check | Use literal paths or `"${VAR:?}"/*` |
