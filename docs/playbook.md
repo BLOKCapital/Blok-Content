@@ -99,7 +99,7 @@ models from github.com/thewh1teagle/kokoro-onnx releases, runs in the sandbox in
 
 ## 5b. Talking presenter with a moving scene (Higgsfield + Veo 3.1, set 29 Oct 2026)
 Sheetal's preferred Reel look: an AI presenter selfie-vlogs to camera with real lip sync while the scene moves behind her
-(first one: `content/2026-10-29-the-maid-who-bought-in/`). Higgsfield connector (`mcp__Higgsfield__*`), ~230 credits per 50s Reel.
+(first one: `content/2026-10-29-the-maid-who-bought-in/`). Higgsfield connector (`mcp__Higgsfield__*`), ~258 credits per 50s Reel on Veo 3.1, ~60 on Grok lite (see step 6).
 1. Presenter still: `generate_image` model `gpt_image_2_5`, 9:16 selfie prompt. Scene stills: same model with the first
    image's job id as `image_references` ("same woman as the reference image ...") so she stays consistent.
 2. One 8s clip per beat: `generate_video_batch`, model `veo3_1`, `duration 8`, `aspect_ratio 9:16`, still as `start_image`,
@@ -112,6 +112,13 @@ Sheetal's preferred Reel look: an AI presenter selfie-vlogs to camera with real 
 4. Deliver: `media_upload` slot, then `curl -X PUT` from the sandbox, then `media_confirm`; the returned cloudfront URL is
    the share link. This cloud session cannot download cloudfront/composio URLs, and the Composio sandbox (1 GB) is too small
    for faster-whisper small or a 1080p caption render, so don't build there.
+5. Branding (v2, Sheetal approved): BLOK logo watermark bottom-left (overlay at 60:1468) and a 3s BLOK end card
+   (logo + "Everyone deserves a Garden.", slow zoom) appended after the last clip, with the music swelling under it.
+6. Cost (tested 29 Oct 2026 on the same scene + line): `veo3_1` 32 cr/clip (best, ~258 cr per Reel);
+   `veo3_1_lite` + `generate_audio:true` 12 cr (good look, but added a stray word, so budget retries);
+   `grok_video_v15_lite` 8 cr and `seedance_2_0_mini` 8 cr both said the line word-perfect with lip sync and a moving crowd.
+   Cheap models output 720p (upscale to 1080 in ffmpeg) and the voice pitch differs per model, so keep ONE model for a
+   whole Reel. Grok lite is the default for cost (~60 cr per 7-clip Reel incl. stills).
 
 ## 6. Publishing via Composio (the reliable route)
 This machine can't hand local files to Instagram, and the Composio sandbox can't render big videos
