@@ -4,7 +4,7 @@ const [s, v, out, tArg] = process.argv.slice(2); const V = v === '1', W = V ? 10
 const { chromium } = await import('playwright');
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--allow-file-access-from-files'] }).catch(() => chromium.launch());
 const page = await browser.newPage({ viewport: { width: W, height: H } });
-await page.goto(pathToFileURL(path.resolve(path.dirname(new URL(import.meta.url).pathname), 'kit.html')).href + `?s=${s}&v=${v}`, { waitUntil: 'load' });
+await page.goto(pathToFileURL(path.resolve(path.dirname(new URL(import.meta.url).pathname), 'kit.html')).href + `?s=${s}&v=${v}${process.env.Q ? '&q=1' : ''}`, { waitUntil: 'load' });
 await page.evaluate(async () => { await document.fonts.ready; await new Promise(r => setTimeout(r, 300)); window.draw(0); });
 const grab = async (t, type = 'jpeg') => { await page.evaluate(t => window.draw(t), t); return page.locator('canvas').screenshot(type === 'png' ? { type } : { type, quality: 93 }); };
 if (out.endsWith('.png')) fs.writeFileSync(out, await grab(Number(tArg || 7.9), 'png'));
