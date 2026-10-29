@@ -11,6 +11,21 @@ Read this file first in every session. For depth, go to `knowledge/` and `brand/
 > list of approaches that don't work. Follow it instead of rediscovering. If you learn something new, update it.
 > The only approval needed per post is the user's "yes" to the final media + caption.
 
+> **Deliverables rule (Sheetal, 28 Oct 2026):** whenever Sheetal asks you to create anything (a report, review,
+> plan, analysis, strategy, brief), deliver it as a **self-contained HTML page** saved in the shared folder, not a Claude
+> Artifact and not a plain .md/doc. The page must be full of **visualizations** (charts, bars, comparisons), use
+> **standard consistent colors** (the brand palette in section 3: green = good, coral = bad, indigo/sky = neutral), and be
+> **interactive** (hover tooltips, filters/toggles, tick-off to-do lists). Keep the text **very simple**: short sentences,
+> plain words, so one quick read explains everything. Inline every library (e.g. Chart.js from `npm pack`) so the page
+> works offline; the cloud sandbox can't load CDNs. Example: `growth/analytics/2026-10-28-analytics-review.html` in the
+> shared folder. (Finished social media posts themselves are still images/videos as usual.)
+
+> **Strategy reset (Sheetal, 28 Oct 2026):** the old X and Instagram plan is dropped. Every post now starts from a check of
+> what accounts like ours and the news are doing right now, and is built to be **shared and commented on** (likes barely count).
+> **Always use US dollars, never rupees or other local currencies** (the audience is global). Rotate formats and keep testing:
+> news + one number, then vs now, famous quote card, short list with numbers, one-line rule, and 10 to 15s **meme videos**.
+> Full plan: `growth/strategy/2026-10-28-new-strategy.html` in the shared folder.
+
 > **Instagram rule (overrides everything below for Instagram):** @blok.capital targets people
 > who invest in **mutual funds, ETFs and traditional finance**. Content is **purely educational**:
 > why on-chain finance is good, why an on-chain portfolio is great, and why it matters. **No crypto
