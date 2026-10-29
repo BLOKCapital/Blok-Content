@@ -60,7 +60,7 @@ BLOK Capital Ambassador Program is open. Video creators only.
 → Early product access
 → Recognition across the community
 
-Apply: link in bio. Or comment "CREATOR" and we'll send it to you.
+Apply: link in bio.
 
 Ambassadors who are rewarded must label their posts as a paid partnership.
 Investing involves risk. Educational content, not financial advice.
