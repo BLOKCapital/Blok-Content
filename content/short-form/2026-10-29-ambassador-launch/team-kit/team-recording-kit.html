@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ambassador Launch Kit</title>
+<style>
+  :root { --bg:#F6F3E8; --card:#fff; --ink:#07111F; --muted:#5b6470; --ind:#004EBA; --lime:#7ED116; --cor:#EC464D; --line:#e3ded0; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0b0f16; --card:#141a24; --ink:#eef2f7; --muted:#9aa4b2; --line:#232b38; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 Inter, system-ui, sans-serif; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font-size: 30px; margin: 0 0 6px; } .sub { color: var(--muted); margin: 0 0 22px; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 26px; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  .step b { display: block; color: var(--ind); font-size: 13px; letter-spacing: .06em; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .tab { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 8px 14px; cursor: pointer; font: inherit; font-size: 14px; }
+  .tab.on { background: var(--ind); color: #fff; border-color: var(--ind); }
+  .panel { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+  @media (max-width: 760px) { .panel { grid-template-columns: 1fr; } }
+  .media img, .media video { width: 100%; border-radius: 12px; display: block; background: #000; }
+  .media.v img, .media.v video { max-width: 300px; margin: 0 auto; }
+  .fmt { display: flex; gap: 6px; margin: 10px 0; } .fmt button { flex: 1; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--lime); color: #07111F; margin-right: 6px; }
+  h2 { margin: 6px 0 4px; font-size: 22px; } .use { color: var(--muted); margin: 0 0 12px; }
+  .script { background: var(--bg); border-left: 4px solid var(--lime); border-radius: 8px; padding: 12px 14px; white-space: pre-wrap; }
+  .row { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+  .btn { border: 0; background: var(--ink); color: var(--bg); padding: 9px 14px; border-radius: 10px; cursor: pointer; font: inherit; font-size: 14px; }
+  .small { font-size: 13px; color: var(--muted); }
+  ul { margin: 8px 0 0; padding-left: 20px; } li { margin: 4px 0; }
+  .files a { color: var(--ind); }
+  .rules { margin-top: 26px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+  .rules h3 { margin: 0 0 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Ambassador Program launch: team recording kit</h1>
+  <p class="sub">Six backgrounds, one script each. Pick one, record yourself on your phone, drop it in. Every post should sound different: that's the whole point of the program.</p>
+
+  <div class="steps">
+    <div class="step"><b>1 · PICK</b>Choose a visual below. Use 9:16 for Reels and TikTok, 16:9 for X.</div>
+    <div class="step"><b>2 · RECORD</b>Phone at eye level, window light on your face, plain wall behind you. Say the script in your own words.</div>
+    <div class="step"><b>3 · COMBINE</b>CapCut: add the loop, add your clip as an overlay, then <i>Remove background</i> (or <i>Chroma key</i> for the green TV).</div>
+    <div class="step"><b>4 · POST</b>Use the caption, put the form link where the platform allows, and send it to Sheetal before posting.</div>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="panel">
+    <div>
+      <div class="fmt"><button class="tab on" data-f="9x16">9:16 Reel</button><button class="tab" data-f="16x9">16:9 X</button></div>
+      <div class="media v" id="media"></div>
+      <p class="small files" id="files"></p>
+    </div>
+    <div>
+      <span class="tag" id="len"></span><span class="small" id="who"></span>
+      <h2 id="title"></h2>
+      <p class="use" id="use"></p>
+      <div class="script" id="script"></div>
+      <div class="row"><button class="btn" id="copy">Copy script</button><span class="small" id="copied"></span></div>
+      <p class="small" style="margin-top:14px"><b>How to put it together</b></p>
+      <ul id="how"></ul>
+    </div>
+  </div>
+
+  <div class="rules">
+    <h3>Before you post</h3>
+    <ul>
+      <li>Say amounts in US dollars. No return promises, no "you'll make money", no price talk.</li>
+      <li>On Instagram, skip crypto words (crypto, token, DeFi, wallet). On X, they're fine.</li>
+      <li>Form link: <span class="small">docs.google.com/forms/d/e/1FAIpQLSdJ6Btnwz_7dJ8Rlrkj_5d4lgAm7oJvrOW17ZzNugqv2OZZfA/viewform</span>. On Instagram it goes in your bio or a Story link sticker, not the caption.</li>
+      <li>Finish with: "Apply via the link." End-card clips from the launch film are in <span class="small">broll/</span> if you want a punchy ending.</li>
+      <li>Send your cut to Sheetal before posting.</li>
+    </ul>
+  </div>
+</div>
+<script>
+const LINK = 'https://docs.google.com/forms/d/e/1FAIpQLSdJ6Btnwz_7dJ8Rlrkj_5d4lgAm7oJvrOW17ZzNugqv2OZZfA/viewform?usp=header';
+const K = [
+  { id: 1, slug: 'crt-greenscreen', name: 'Retro TV', len: '20s', who: 'Best for: a confident on-camera person',
+    use: 'You appear inside the TV. Feels like a late-night ad from 1994, which is why it stops the scroll.',
+    script: "Quick question for anyone who makes videos about money.\n\nWhy does every finance video look the same?\n\nSame thumbnail. Same arrow. Same shouting face.\n\nWe think the people who explain it best haven't been given the mic yet. So today we're opening the BLOK Capital Ambassador Program. Video creators only.\n\nYou get exclusive rewards, a special Discord role, early product access, and recognition across the community.\n\nApply via the link.",
+    how: ['Put the TV loop on the main track, your clip as an overlay underneath it (or above it).', 'Select the TV loop, tap Chroma key, pick the green. Your clip now plays inside the screen.', 'Scale your clip to fill the screen area. Loop the TV clip to match your length.'] },
+  { id: 2, slug: 'halftone-what-will-you-create', name: 'What will you create?', len: '15s', who: 'Best for: a calm, curious voice',
+    use: 'Opens or closes a post. Dots form the BLOK mark next to the question card.',
+    script: "Here's a question for every creator who explains money.\n\nWhat will you create, now that anyone can own a fund from ten dollars?\n\nWe're opening the BLOK Capital Ambassador Program for video creators. Rewards, early access, a special Discord role, and a community that will know your name.\n\nApply via the link.",
+    how: ['Use it full-screen for the first 2 seconds as a hook, then cut to you talking.', 'Or keep it as the background and place your cut-out (Remove background) on the left side.', 'End on it again for the last second.'] },
+  { id: 3, slug: 'collage-wanted', name: 'Wanted: people who make money make sense', len: '20s', who: 'Best for: someone who likes a story',
+    use: 'Editorial collage: a feed of copy-paste videos, a magnifier searching, a $10 tag. You stand to the side.',
+    script: "I typed 'who explains funds simply' into a search bar.\n\nEverything that came back looked exactly the same.\n\nMeanwhile, owning a fund used to take ten thousand dollars and a bank intro. Now it can start at ten dollars. Almost nobody knows that yet.\n\nSo BLOK Capital is looking for video creators who explain things their own way. That's the Ambassador Program, and it's open now.",
+    how: ['Background: the collage loop. Your clip as an overlay, Remove background.', 'Place yourself bottom-right on 9:16, right third on 16:9, so the magnifier stays visible.'] },
+  { id: 4, slug: 'strings-big-boys', name: 'Funds were built for the big boys', len: '18s', who: 'Best for: punchy delivery',
+    use: 'Red hands pull the strings, then the strings snap at 4 seconds and the headline flips to "from $10". Time your line to the snap.',
+    script: "For decades, funds were built for the big boys.\n\nTen thousand dollar minimums. Setup fees. Bank intros.\n\n(snap)\n\nNow anyone can own a fund from ten dollars. Almost nobody knows yet, and somebody has to tell them.\n\nIf you make videos, that somebody could be you. BLOK Capital's Ambassador Program is open. Apply via the link.",
+    how: ['Line up "Bank intros" with the strings snapping (about 4 seconds into the loop).', 'Your cut-out goes in the lower third; keep the headline clear.'] },
+  { id: 5, slug: 'card-apply', name: 'Here\'s what you get', len: '15s', who: 'Best for: a quick, practical read',
+    use: 'Newsletter-style card listing the four perks one by one, with a character holding an APPLY sign.',
+    script: "BLOK Capital ambassadors get four things.\n\nOne, exclusive rewards.\nTwo, a special Discord role.\nThree, early product access.\nFour, recognition across the community.\n\nWho's it for? Video creators who can make money make sense. Apply via the link.",
+    how: ['The perks light up at 0.5, 1, 1.5 and 2 seconds: say each one as it lights, or slow the clip to 50%.', 'Place yourself over the character (bottom-right) with Remove background.'] },
+  { id: 6, slug: 'newspaper-headline', name: 'Newspaper headline', len: '15s', who: 'Best for: a news-anchor style',
+    use: 'Paper texture, dated headline with a highlighter sweep, red arrow pointing at the empty space where you stand.',
+    script: "This is today's headline.\n\nBLOK Capital just opened its Ambassador Program to video creators.\n\nWhy? Because anyone can own a fund from ten dollars now, and the best explainers aren't banks. They're people with a phone and a point of view.\n\nApply via the link.",
+    how: ['Your cut-out goes where the red arrow points (bottom-right).', 'Black-and-white filter on yourself plus a white outline matches the reference style.'] },
+];
+let cur = 0, fmt = '9x16';
+const $ = id => document.getElementById(id);
+K.forEach((k, i) => { const b = document.createElement('button'); b.className = 'tab' + (i ? '' : ' on'); b.textContent = `${k.id}. ${k.name}`; b.onclick = () => { cur = i; render(); }; $('tabs').appendChild(b); });
+document.querySelectorAll('.fmt .tab').forEach(b => b.onclick = () => { fmt = b.dataset.f; document.querySelectorAll('.fmt .tab').forEach(x => x.classList.toggle('on', x === b)); render(); });
+function render() {
+  const k = K[cur], base = `${k.id}-${k.slug}-${fmt}`;
+  [...$('tabs').children].forEach((b, i) => b.classList.toggle('on', i === cur));
+  $('media').className = 'media' + (fmt === '9x16' ? ' v' : '');
+  $('media').innerHTML = `<video src="loops/${base}.mp4" poster="stills/${base}.png" autoplay muted loop playsinline controls></video>`;
+  $('files').innerHTML = `Files: <a href="loops/${base}.mp4" download>loop (mp4)</a> · <a href="stills/${base}.png" download>still (png)</a>`;
+  $('title').textContent = k.name; $('use').textContent = k.use; $('len').textContent = k.len; $('who').textContent = k.who;
+  $('script').textContent = k.script; $('how').innerHTML = k.how.map(h => `<li>${h}</li>`).join(''); $('copied').textContent = '';
+}
+$('copy').onclick = async () => { try { await navigator.clipboard.writeText(K[cur].script); $('copied').textContent = 'Copied'; } catch (e) { $('copied').textContent = 'Select the text and copy it'; } };
+render();
+</script>
+</body>
+</html>

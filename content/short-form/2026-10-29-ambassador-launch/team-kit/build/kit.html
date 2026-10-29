@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Anton; src: url(../../build/fonts/Anton.ttf); }
+  @font-face { font-family: Grotesk; src: url(../../build/fonts/SpaceGrotesk-500.ttf); font-weight: 500; }
+  @font-face { font-family: Grotesk; src: url(../../build/fonts/SpaceGrotesk-700.ttf); font-weight: 700; }
+  @font-face { font-family: Serif; src: url(../../build/fonts/InstrumentSerif.ttf); }
+  @font-face { font-family: Serif; src: url(../../build/fonts/InstrumentSerif-Italic.ttf); font-style: italic; }
+  * { margin: 0; padding: 0; } html, body { background: #000; overflow: hidden; } canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div style="position:absolute;opacity:0;font-family:Anton">a<span style="font-family:Grotesk;font-weight:700">a</span><span style="font-family:Grotesk;font-weight:500">a</span><span style="font-family:Serif;font-style:italic">a</span><span style="font-family:Serif">a</span></div>
+<script>
+// Team recording kit: six looping backgrounds in the styles Sheetal referenced. ?s=1..6 picks the style, ?v=1 is 9:16.
+const Q = new URLSearchParams(location.search), V = Q.get('v') === '1', SCN = +(Q.get('s') || 1);
+const W = V ? 1080 : 1920, H = V ? 1920 : 1080;
+const cv = document.getElementById('c'); cv.width = W; cv.height = H; const ctx = cv.getContext('2d');
+const U = Math.min(W, H) / 1080;
+window.DURATION = 8;
+const C = { sky:'#7DD2FD', ind:'#004EBA', lime:'#7ED116', lin:'#F6F3E8', cor:'#EC464D', earth:'#844947', ink:'#07111F' };
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = t => 1 - Math.pow(1 - cl(t), 3);
+const hash = (i, j = 0) => { const x = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return x - Math.floor(x); };
+const lerp = (a, b, t) => a + (b - a) * t;
+function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
+function font(px, fam = 'Inter', wt = 500, st = '') { ctx.font = `${st} ${wt} ${px}px ${fam}`; }
+function text(s, x, y, px, col, fam = 'Inter', wt = 500, align = 'center', st = '', base = 'middle') {
+  font(px, fam, wt, st); ctx.fillStyle = col; ctx.textAlign = align; ctx.textBaseline = base; ctx.fillText(s, x, y);
+}
+function wrap(s, maxW, px, fam, wt, st = '') { font(px, fam, wt, st); const out = []; let cur = '';
+  for (const w of s.split(' ')) { const n = cur ? cur + ' ' + w : w; if (ctx.measureText(n).width > maxW && cur) { out.push(cur); cur = w; } else cur = n; } out.push(cur); return out; }
+function glow(x, y, r, col, a = 1) { const g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, col); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.globalAlpha = a; ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2); ctx.globalAlpha = 1; }
+const noiseC = document.createElement('canvas'); noiseC.width = noiseC.height = 256; const nctx = noiseC.getContext('2d');
+function grain(seed, a) { const id = nctx.createImageData(256, 256); let s = seed >>> 0 || 1;
+  for (let i = 0; i < id.data.length; i += 4) { s = (s * 1664525 + 1013904223) >>> 0; const v = s >>> 24; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
+  nctx.putImageData(id, 0, 0); ctx.save(); ctx.globalAlpha = a; ctx.globalCompositeOperation = 'overlay'; ctx.fillStyle = ctx.createPattern(noiseC, 'repeat'); ctx.fillRect(0, 0, W, H); ctx.restore(); }
+const logo = new Image(); logo.src = '../../build/logo.png';
+let LOGO_PTS = null;   // luminance samples of the logo for the halftone scene
+function logoField() { if (LOGO_PTS || !logo.complete) return LOGO_PTS; const c = document.createElement('canvas'); c.width = c.height = 120; const x = c.getContext('2d'); x.drawImage(logo, 0, 0, 120, 117);
+  const d = x.getImageData(0, 0, 120, 120).data; LOGO_PTS = (u, v) => { const i = (Math.floor(cl(v, 0, .999) * 120) * 120 + Math.floor(cl(u, 0, .999) * 120)) * 4; return (d[i] + d[i + 1] + d[i + 2]) / 765; }; return LOGO_PTS; }
+function person(x, y, s, col) { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y - s * .55, s * .26, 0, 7); ctx.fill(); rr(x - s * .38, y - s * .22, s * .76, s * .62, [s * .34, s * .34, s * .08, s * .08]); ctx.fill(); }
+
+// 1 — retro CRT with a pure green screen to key your recording into
+function crt(t) {
+  const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#123a2a'); g.addColorStop(1, '#0a1f17'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  glow(W * .78, H * .25, 600 * U, 'rgba(126,209,22,.25)');
+  const posters = [[.06, .05, .16, .3, C.ind, 'EVERYONE DESERVES A GARDEN'], [.26, .03, .12, .2, C.cor, '$10 FUND'], [.62, .02, .14, .26, C.lin, 'BLOK'], [.8, .06, .15, .22, C.sky, 'YOUR KEYS, ALWAYS'], [.84, .32, .12, .2, '#f2c14e', 'MAKE IT CLICK'], [.84, .56, .1, .14, C.lime, 'NOW OPEN']];
+  posters.forEach(([x, y, w, h, c, s], i) => { if (V) { x = x * .9 + .05; y = y * .55; h *= .6; } ctx.save(); ctx.translate(x * W, y * H); ctx.rotate((hash(i) - .5) * .06); ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fillRect(8 * U, 10 * U, w * W, h * H); ctx.fillStyle = c; ctx.fillRect(0, 0, w * W, h * H);
+    const lines = wrap(s, w * W * .8, 34 * U, 'Anton', 400); lines.forEach((l, k) => text(l, w * W / 2, h * H * .55 + (k - (lines.length - 1) / 2) * 38 * U, 34 * U, c === C.lin || c === C.sky || c === '#f2c14e' || c === C.lime ? C.ink : C.lin, 'Anton', 400)); ctx.restore(); });
+  // desk
+  const dy = V ? H * .66 : H * .74; ctx.fillStyle = '#3a2a22'; ctx.fillRect(0, dy, W, H - dy); ctx.fillStyle = '#4b372c'; ctx.fillRect(0, dy, W, 14 * U);
+  // CRT body
+  const tw = V ? W * .8 : W * .46, th = tw * .78, tx = W / 2 - tw / 2, ty = dy - th - 40 * U;
+  ctx.fillStyle = '#2b1d16'; rr(tx + 18 * U, ty + 22 * U, tw, th, 40 * U); ctx.fill();
+  const bg = ctx.createLinearGradient(tx, ty, tx, ty + th); bg.addColorStop(0, '#6d4b37'); bg.addColorStop(1, '#4a3125'); ctx.fillStyle = bg; rr(tx, ty, tw, th, 40 * U); ctx.fill();
+  ctx.fillStyle = '#1b1310'; rr(tx + tw * .05, ty + th * .06, tw * .9, th * .8, 48 * U); ctx.fill();
+  // the green screen itself: flat #00FF00, no texture on top
+  ctx.fillStyle = '#00ff00'; rr(tx + tw * .075, ty + th * .09, tw * .85, th * .74, 60 * U); ctx.fill();
+  ctx.fillStyle = '#c9b9a6'; rr(tx + tw * .06, ty + th * .9, 150 * U, 26 * U, 6 * U); ctx.fill(); text('BLOK-TV', tx + tw * .06 + 75 * U, ty + th * .9 + 13 * U, 18 * U, '#3a2a22', 'JetBrains Mono', 700);
+  ctx.fillStyle = Math.floor(t * 2) % 2 ? '#ff3b30' : '#5a1512'; ctx.beginPath(); ctx.arc(tx + tw * .9, ty + th * .91, 7 * U, 0, 7); ctx.fill();
+  ctx.fillStyle = '#1b1310'; rr(W / 2 - 60 * U, ty + th, 120 * U, 40 * U, 6 * U); ctx.fill(); rr(W / 2 - 160 * U, dy - 6 * U, 320 * U, 22 * U, 10 * U); ctx.fill();
+  // keyboard, plant, mug
+  ctx.fillStyle = '#1d2621'; rr(W / 2 - tw * .4, dy + 50 * U, tw * .8, 90 * U, 14 * U); ctx.fill();
+  for (let r = 0; r < 4; r++) for (let k = 0; k < 18; k++) { ctx.fillStyle = (k + r) % 7 == 0 ? C.lime : '#3c4a42'; rr(W / 2 - tw * .38 + k * tw * .042, dy + 60 * U + r * 19 * U, tw * .036, 15 * U, 3 * U); ctx.fill(); }
+  const px = V ? W * .12 : W * .14; ctx.save(); if (V) { ctx.translate(px, dy + 150 * U); ctx.scale(.7, .7); ctx.translate(-px, -dy); } ctx.fillStyle = C.earth; rr(px - 50 * U, dy - 110 * U, 100 * U, 110 * U, 12 * U); ctx.fill();
+  for (let i = 0; i < 7; i++) { ctx.save(); ctx.translate(px, dy - 110 * U); ctx.rotate(-1.2 + i * .4 + Math.sin(t * 1.5 + i) * .04); ctx.fillStyle = i % 2 ? C.lime : '#5fa80e'; ctx.beginPath(); ctx.ellipse(0, -90 * U, 26 * U, 90 * U, 0, 0, 7); ctx.fill(); ctx.restore(); } ctx.restore();
+  const mx = V ? W * .88 : W * .84; ctx.fillStyle = C.lin; rr(mx - 45 * U, dy - 120 * U, 90 * U, 120 * U, 12 * U); ctx.fill(); text('BLOK', mx, dy - 60 * U, 26 * U, C.ind, 'Anton', 400);
+  ctx.save(); ctx.globalAlpha = .9; ctx.strokeStyle = 'rgba(255,255,255,.35)'; ctx.lineWidth = 3 * U; for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.moveTo(mx - 15 * U + i * 15 * U, dy - 140 * U); ctx.bezierCurveTo(mx - 30 * U + i * 15 * U, dy - 180 * U - Math.sin(t * 2 + i) * 10 * U, mx + i * 15 * U, dy - 210 * U, mx - 10 * U + i * 15 * U, dy - 250 * U); ctx.stroke(); } ctx.restore();
+}
+
+// 2 — halftone particles forming the BLOK mark, "What will you create?"
+function halftone(t) {
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H); const F = logoField(); if (!F) return;
+  const cx = V ? W * .5 : W * .6, cy = V ? H * .4 : H * .45, R = (V ? 460 : 400) * U, step = 9 * U;
+  for (let y = 0; y < H; y += step) for (let x = 0; x < W; x += step) {
+    const dx = (x - cx) / R, dy = (y - cy) / R, d = Math.hypot(dx, dy);
+    let v = 0;
+    if (Math.abs(dx) < .62 && Math.abs(dy) < .62) v = Math.min(1, F(dx / 1.24 + .5, dy / 1.24 + .5) * 2.4);
+    v = Math.max(v, Math.exp(-d * d * 3) * (.32 + .08 * Math.sin(t * 2)));
+    const ang = Math.atan2(dy, dx), plume = Math.exp(-Math.pow((ang + 2.3) * 1.6, 2)) * Math.exp(-Math.pow(d - 1.1, 2) * 1.5) * .7;
+    v = Math.max(v, plume * (hash(Math.floor(x / step), Math.floor(y / step) + Math.floor(t * 6)) > .45 ? 1 : 0));
+    if (hash(x, y) < .25 * (1 - v)) v *= .3;
+    if (v < .06) continue;
+    const s = step * cl(v) * .9; ctx.fillStyle = v > .8 ? '#fff' : `rgba(220,235,245,${.4 + v * .6})`; ctx.fillRect(x - s / 2, y - s / 2, s, s);
+  }
+  // card
+  const cw = 360 * U, ch = 140 * U * 1.0, x0 = V ? W / 2 - (cw + 140 * U) / 2 : 40 * U * 1.5, y0 = V ? H * .78 : H - ch - 40 * U * 1.5;
+  ctx.fillStyle = '#1a1a1a'; rr(x0, y0, cw, ch, 30 * U); ctx.fill(); rr(x0 + cw + 8 * U, y0, 130 * U, ch, 30 * U); ctx.fill();
+  ['What', 'will you', 'create?'].forEach((l, i) => text(l, x0 + 34 * U, y0 + 36 * U + i * 34 * U, 30 * U, '#fff', 'Grotesk', 500, 'left'));
+  if (logo.complete) { ctx.globalCompositeOperation = 'lighter'; ctx.drawImage(logo, x0 + cw + 8 * U + 25 * U, y0 + 30 * U, 80 * U, 78 * U); ctx.globalCompositeOperation = 'source-over'; }
+}
+
+// 3 — collage: the search for people who make money make sense
+function collage(t) {
+  ctx.fillStyle = '#f3ede2'; ctx.fillRect(0, 0, W, H);
+  const cx = W / 2 + (V ? 40 * U : 0), cy = V ? H * .42 : H * .47, K = V ? .95 : 1;
+  ctx.save(); ctx.translate(cx, cy); ctx.scale(K, K); ctx.translate(-cx, -cy);
+  ctx.fillStyle = C.cor; ctx.beginPath(); ctx.arc(cx - 40 * U, cy - 60 * U, 300 * U, 0, 7); ctx.fill();
+  // dotted halftone block
+  ctx.fillStyle = 'rgba(0,0,0,.25)'; for (let y = 0; y < 8; y++) for (let x = 0; x < 6; x++) { ctx.beginPath(); ctx.arc(cx - 560 * U + x * 16 * U, cy - 30 * U + y * 16 * U, 3 * U, 0, 7); ctx.fill(); }
+  // dark feed window: the same video, over and over
+  ctx.fillStyle = '#111'; ctx.fillRect(cx - 470 * U, cy - 290 * U, 330 * U, 290 * U); ctx.fillStyle = '#555'; for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.arc(cx - 450 * U + i * 16 * U, cy - 272 * U, 4 * U, 0, 7); ctx.fill(); }
+  for (let i = 0; i < 3; i++) { const y = cy - 230 * U + i * 75 * U; ctx.fillStyle = '#2a2a2a'; ctx.fillRect(cx - 450 * U, y, 90 * U, 55 * U); ctx.fillStyle = '#7ed116'; ctx.beginPath(); ctx.moveTo(cx - 420 * U, y + 15 * U); ctx.lineTo(cx - 395 * U, y + 28 * U); ctx.lineTo(cx - 420 * U, y + 41 * U); ctx.fill(); ctx.fillStyle = '#3a3a3a'; ctx.fillRect(cx - 345 * U, y + 10 * U, 170 * U, 12 * U); ctx.fillRect(cx - 345 * U, y + 32 * U, 120 * U, 10 * U); }
+  // search window
+  ctx.fillStyle = '#fff'; ctx.fillRect(cx - 20 * U, cy - 320 * U, 400 * U, 250 * U); ctx.strokeStyle = '#ddd'; ctx.lineWidth = 2 * U; ctx.strokeRect(cx - 20 * U, cy - 320 * U, 400 * U, 250 * U);
+  ctx.fillStyle = '#eee'; ctx.fillRect(cx - 20 * U, cy - 320 * U, 400 * U, 28 * U);
+  rr(cx + 10 * U, cy - 270 * U, 340 * U, 44 * U, 22 * U); ctx.strokeStyle = '#bbb'; ctx.stroke();
+  const q = 'who explains funds simply?', n = Math.floor(cl((t % 8) / 2.5) * q.length); text(q.slice(0, n) + (Math.floor(t * 3) % 2 ? '|' : ''), cx + 30 * U, cy - 248 * U, 20 * U, '#333', 'Inter', 500, 'left');
+  text('BLOK', cx + 170 * U, cy - 165 * U, 54 * U, C.ind, 'Anton', 400);
+  // eye cutout (halftone)
+  ctx.fillStyle = '#d8d3c8'; ctx.fillRect(cx - 520 * U, cy + 110 * U, 260 * U, 150 * U);
+  for (let y = 0; y < 150 * U; y += 7 * U) for (let x = 0; x < 260 * U; x += 7 * U) { const dx = (x - 130 * U) / (120 * U), dy = (y - 75 * U) / (55 * U); const inEye = dx * dx + dy * dy * 1.6 < 1, ir = Math.hypot(dx, dy * .5) < .38; const r = (inEye ? (ir ? 3.2 : 1.2) : 2.2) * U; ctx.fillStyle = '#222'; ctx.beginPath(); ctx.arc(cx - 520 * U + x, cy + 110 * U + y, r, 0, 7); ctx.fill(); }
+  // price tag where the padlock was
+  ctx.save(); ctx.translate(cx + 300 * U, cy + 180 * U); ctx.rotate(-.12 + Math.sin(t * 1.5) * .04); ctx.fillStyle = C.lime; ctx.beginPath(); ctx.moveTo(-60 * U, -40 * U); ctx.lineTo(60 * U, -40 * U); ctx.lineTo(90 * U, 0); ctx.lineTo(60 * U, 40 * U); ctx.lineTo(-60 * U, 40 * U); ctx.closePath(); ctx.fill(); text('$10', 0, 2 * U, 48 * U, C.ink, 'Anton', 400); ctx.restore();
+  // silhouette, thinking
+  ctx.fillStyle = '#111'; ctx.beginPath(); ctx.ellipse(cx + 60 * U, cy + 30 * U, 70 * U, 85 * U, 0, 0, 7); ctx.fill(); rr(cx - 50 * U, cy + 120 * U, 230 * U, 200 * U, [90 * U, 90 * U, 0, 0]); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(cx + 20 * U, cy + 70 * U, 22 * U, 50 * U, -.3, 0, 7); ctx.fill();
+  // magnifier sweeping
+  const mx = cx - 120 * U + Math.sin(t * .785) * 170 * U, my = cy - 120 * U + Math.cos(t * .785) * 40 * U;
+  ctx.save(); ctx.beginPath(); ctx.arc(mx, my, 120 * U, 0, 7); ctx.clip(); ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.fillRect(mx - 130 * U, my - 130 * U, 260 * U, 260 * U); ctx.restore();
+  ctx.strokeStyle = '#111'; ctx.lineWidth = 14 * U; ctx.beginPath(); ctx.arc(mx, my, 120 * U, 0, 7); ctx.stroke(); ctx.lineWidth = 26 * U; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(mx + 85 * U, my + 85 * U); ctx.lineTo(mx + 200 * U, my + 230 * U); ctx.stroke();
+  ctx.restore();
+  const hy = V ? H * .78 : H * .9; text('Wanted: people who make money make sense.', W / 2, hy, (V ? 58 : 44) * U, C.ink, 'Serif', 400, 'center', 'italic');
+  grain(Math.floor(t * 12) + 5, .18);
+}
+
+// 4 — strings: funds were built for the big boys (then the strings snap)
+function hand(x, y, flip, s) { ctx.save(); ctx.translate(x, y); ctx.scale(flip * s, s); ctx.fillStyle = '#c4161c';
+  rr(-140, -60, 260, 200, 70); ctx.fill(); for (let i = 0; i < 4; i++) { ctx.save(); ctx.translate(-110 + i * 62, 120); ctx.rotate(.15 - i * .05); rr(-24, 0, 48, 150 - i * 12, 24); ctx.fill(); ctx.restore(); } ctx.save(); ctx.translate(120, 40); ctx.rotate(-.7); rr(-22, 0, 44, 120, 22); ctx.fill(); ctx.restore();
+  ctx.fillStyle = 'rgba(0,0,0,.18)'; rr(-140, -60, 260, 60, 30); ctx.fill(); ctx.restore(); }
+function strings(t) {
+  const g = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.hypot(W, H) * .6); g.addColorStop(0, '#fafafa'); g.addColorStop(1, '#cfcfcf'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  const snap = t > 4.2, k = ease((t - 4.2) * 2), run = t * 1.4;
+  const fx = W / 2 + (snap ? k * 40 * U : 0), fy = V ? H * .62 : H * .66, s = (V ? 1.25 : 1) * U;
+  const hs = (V ? .9 : 1.1) * U, hl = [V ? W * .14 : W * .1, V ? H * .09 : H * .16], hr = [V ? W * .88 : W * .9, hl[1]];
+  hand(hl[0], hl[1] - (snap ? k * 200 * U : 0), 1, hs); hand(hr[0], hr[1] - (snap ? k * 200 * U : 0), -1, hs);
+  // figure: suit, briefcase, mid-stride
+  ctx.save(); ctx.translate(fx, fy); ctx.scale(s, s); const sw = Math.sin(run * 6) * .5;
+  ctx.strokeStyle = '#151515'; ctx.lineCap = 'round'; ctx.lineWidth = 34;
+  [[sw, 1], [-sw, -1]].forEach(([a]) => { ctx.beginPath(); ctx.moveTo(0, 120); ctx.lineTo(Math.sin(a) * 110, 120 + Math.cos(a) * 110); ctx.lineTo(Math.sin(a) * 110 - 20, 240 + Math.cos(a) * 20); ctx.stroke(); });
+  ctx.fillStyle = '#151515'; rr(-55, -40, 110, 175, 30); ctx.fill(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(-14, -38); ctx.lineTo(14, -38); ctx.lineTo(0, 20); ctx.fill(); ctx.fillStyle = C.cor; ctx.fillRect(-5, -30, 10, 50);
+  ctx.fillStyle = '#e8c9a8'; ctx.beginPath(); ctx.arc(0, -85, 42, 0, 7); ctx.fill(); ctx.fillStyle = '#151515'; ctx.beginPath(); ctx.arc(0, -98, 42, Math.PI, 0); ctx.fill();
+  ctx.lineWidth = 26; ctx.beginPath(); ctx.moveTo(-40, -10); ctx.lineTo(-100 - sw * 30, 60); ctx.stroke(); ctx.beginPath(); ctx.moveTo(40, -10); ctx.lineTo(110 + sw * 30, 30); ctx.stroke();
+  ctx.fillStyle = '#2a2a2a'; rr(-170 - sw * 30, 50, 110, 80, 10); ctx.fill(); ctx.fillStyle = C.lime; ctx.fillRect(-150 - sw * 30, 46, 40, 10);
+  ctx.restore();
+  // strings
+  const ends = [[fx - 100 * s, fy + 60 * s], [fx + 110 * s, fy + 30 * s], [fx, fy - 125 * s], [fx - 60 * s, fy + 340 * s], [fx + 60 * s, fy + 340 * s]];
+  ctx.strokeStyle = '#c4161c'; ctx.lineWidth = 3 * U;
+  ends.forEach(([x, y], i) => { const h = i % 2 ? hr : hl; const ox = h[0] + (i % 2 ? -1 : 1) * (60 + i * 25) * U, oy = h[1] + 220 * U - (snap ? k * 200 * U : 0);
+    if (!snap) { ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(x, y); ctx.stroke(); }
+    else { const m = .5; ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(lerp(ox, x, m) , lerp(oy, y, m) - k * 120 * U); ctx.stroke(); ctx.globalAlpha = 1 - k; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(lerp(x, ox, .3), lerp(y, oy, .3) + k * 200 * U); ctx.stroke(); ctx.globalAlpha = 1; } });
+  // debris
+  for (let i = 0; i < 16; i++) { const a = hash(i) * 6.28, d = (60 + hash(i, 2) * 280) * U * (snap ? 1 + k : 1); ctx.fillStyle = '#222'; ctx.globalAlpha = .6; ctx.save(); ctx.translate(fx + Math.cos(a) * d, fy + 330 * s + Math.abs(Math.sin(a)) * 40 * U); ctx.rotate(a + t); ctx.fillRect(-10 * U, -5 * U, 20 * U, 10 * U); ctx.restore(); } ctx.globalAlpha = 1;
+  // headline
+  const ty = V ? H * .3 : H * .2, big = (V ? 170 : 150) * U;
+  if (!snap || t < 4.5) { text('Funds were built for the', W / 2, ty - big * .55, big * .32, '#222', 'Grotesk', 500); text('Big Boys', W / 2, ty + big * .05, big, '#c4161c', 'Grotesk', 700); }
+  else { ctx.globalAlpha = ease((t - 4.5) * 3); text('Now anyone can own a fund', W / 2, ty - big * .55, big * .32, '#222', 'Grotesk', 500); text('from $10', W / 2, ty + big * .05, big, C.ind, 'Grotesk', 700); ctx.globalAlpha = 1; }
+}
+
+// 5 — newsletter card + illustrated creator holding a sign
+function card(t) {
+  ctx.fillStyle = '#0b3b2e'; ctx.fillRect(0, 0, W, H); glow(W * .3, H * .3, 900 * U, 'rgba(126,209,22,.18)');
+  ctx.strokeStyle = 'rgba(255,255,255,.08)'; ctx.lineWidth = 2 * U; for (let x = 0; x < W; x += 90 * U) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); } for (let y = 0; y < H; y += 90 * U) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  text('BLOK', 70 * U, 80 * U, 44 * U, '#fff', 'Anton', 400, 'left');
+  const cx = V ? W * .07 : W * .07, cy = V ? H * .14 : H * .24, cw = V ? W * .86 : W * .48;
+  ctx.fillStyle = '#fff'; ctx.fillRect(cx, cy, cw, V ? 470 * U : 400 * U);
+  ctx.fillStyle = C.cor; ctx.beginPath(); ctx.arc(cx, cy, 12 * U, 0, 7); ctx.fill();
+  text('BLOK Capital · Ambassador Program', cx + 40 * U, cy + 50 * U, 28 * U, '#333', 'Serif', 400, 'left', 'italic');
+  const hl = wrap('Turn money into videos people actually finish. Here\'s how ↓', cw - 80 * U, (V ? 66 : 60) * U, 'Grotesk', 700);
+  hl.forEach((l, i) => text(l, cx + 40 * U, cy + 120 * U + i * (V ? 72 : 66) * U, (V ? 66 : 60) * U, '#111', 'Grotesk', 700, 'left', '', 'top'));
+  const ty = cy + (V ? 520 : 450) * U; text('YOU GET:', cx, ty, 30 * U, C.lime, 'Grotesk', 700, 'left');
+  ['Exclusive rewards', 'Special Discord role', 'Early product access', 'Recognition across the community'].forEach((s, i) => { const on = t > .5 + i * .5; ctx.globalAlpha = on ? 1 : .25; ctx.fillStyle = C.lime; ctx.fillRect(cx, ty + 30 * U + i * 56 * U, 60 * U, 3 * U); text(s, cx, ty + 58 * U + i * 56 * U, 32 * U, '#fff', 'Inter', 500, 'left'); ctx.globalAlpha = 1; });
+  // illustrated creator with headphones
+  const px = V ? W * .66 : W * .78, py = V ? H * .8 : H * .55, s = (V ? .95 : 1.25) * U, b = Math.sin(t * 2) * 6;
+  ctx.save(); ctx.translate(px, py + b * U); ctx.scale(s, s);
+  ctx.fillStyle = '#e9c46a'; rr(-170, -260, 340, 420, 150); ctx.fill();
+  ctx.fillStyle = 'rgba(0,0,0,.12)'; rr(60, -240, 110, 390, 80); ctx.fill();
+  ctx.fillStyle = '#2a1f17'; rr(-180, -300, 360, 110, 60); ctx.fill();
+  ctx.fillStyle = '#111'; [-1, 1].forEach(k => { ctx.fillRect(k * 70 - 45, -150, 90, 22); ctx.beginPath(); ctx.arc(k * 70, -95, 14, 0, 7); ctx.fill(); });
+  rr(-90, -10, 180, 40, 20); ctx.fill(); ctx.fillStyle = '#c0392b'; rr(-50, 50, 100, 30, 15); ctx.fill();
+  ctx.strokeStyle = '#111'; ctx.lineWidth = 26; ctx.beginPath(); ctx.arc(0, -120, 210, Math.PI * 1.08, Math.PI * 1.92); ctx.stroke(); ctx.fillStyle = C.ind; rr(-235, -150, 60, 120, 26); ctx.fill(); rr(175, -150, 60, 120, 26); ctx.fill();
+  ctx.restore();
+  ctx.save(); ctx.translate(px - 250 * s, py + 230 * s + b * U); ctx.rotate(-.12 + Math.sin(t * 2.4) * .03);
+  ctx.fillStyle = '#e9c46a'; rr(-16 * s, 0, 32 * s, 240 * s, 16 * s); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.strokeStyle = C.cor; ctx.lineWidth = 10 * s; rr(-170 * s, -150 * s, 340 * s, 170 * s, 14 * s); ctx.fill(); ctx.stroke();
+  text('APPLY', 0, -62 * s, 100 * s, C.cor, 'Anton', 400); ctx.restore();
+  grain(Math.floor(t * 12) + 9, .12);
+}
+
+// 6 — newspaper headline with space for you
+function paper(t) {
+  ctx.fillStyle = '#ecebe6'; ctx.fillRect(0, 0, W, H);
+  for (let i = 0; i < 40; i++) { const x = hash(i, 1) * W, y = hash(i, 2) * H, a = hash(i, 3) * 6.28, L = (200 + hash(i, 4) * 600) * U; const g = ctx.createLinearGradient(x, y, x + Math.cos(a + 1.57) * 30 * U, y + Math.sin(a + 1.57) * 30 * U);
+    g.addColorStop(0, 'rgba(0,0,0,.05)'); g.addColorStop(1, 'rgba(255,255,255,.06)'); ctx.strokeStyle = g; ctx.lineWidth = 30 * U; ctx.beginPath(); ctx.moveTo(x - Math.cos(a) * L / 2, y - Math.sin(a) * L / 2); ctx.lineTo(x + Math.cos(a) * L / 2, y + Math.sin(a) * L / 2); ctx.stroke(); }
+  ctx.fillStyle = 'rgba(0,0,0,.25)'; for (let y = 30 * U; y < H; y += 60 * U) for (let x = 30 * U; x < W; x += 60 * U) { ctx.beginPath(); ctx.arc(x, y, 2 * U, 0, 7); ctx.fill(); }
+  const x0 = V ? 70 * U : 140 * U, maxW = V ? W - 140 * U : W * .62; let y = V ? 260 * U : 90 * U;
+  ctx.fillStyle = '#d9534f'; rr(x0, y, 250 * U, 64 * U, 4 * U); ctx.fill(); text('Oct 29, 2026', x0 + 125 * U, y + 33 * U, 34 * U, '#fff', 'Serif', 400);
+  y += 110 * U;
+  const hpx = (V ? 92 : 86) * U, lines = wrap('BLOK Capital Opens Its Ambassador Program to Video Creators', maxW, hpx, 'Serif', 400);
+  const hk = ease((t - .4) * 1.2);
+  lines.forEach((l, i) => { const yy = y + i * hpx * 1.08; font(hpx, 'Serif', 400); if (i >= 0 && l.length) { const w = ctx.measureText(l).width; ctx.fillStyle = 'rgba(255,230,0,.75)'; if (i > 0 || V) ctx.fillRect(x0 - 6 * U, yy + hpx * .15, (w + 12 * U) * cl(hk * lines.length - (i - (V ? 0 : 1)) ), hpx * .9); }
+    text(l, x0, yy, hpx, '#111', 'Serif', 400, 'left', '', 'top'); });
+  y += lines.length * hpx * 1.08 + 30 * U;
+  const spx = (V ? 44 : 38) * U, sub = wrap('Anyone can own a fund from $10 now. The protocol is looking for the people who can explain it.', maxW, spx, 'Serif', 400);
+  sub.forEach((l, i) => text(l, x0, y + i * spx * 1.3, spx, '#222', 'Serif', 400, 'left', '', 'top'));
+  y += sub.length * spx * 1.3 + 40 * U;
+  text('The BLOK Dispatch', x0, y, 46 * U, '#111', 'Serif', 400, 'left', 'italic', 'top'); ctx.fillStyle = '#111'; ctx.fillRect(x0 + 380 * U, y + 26 * U, 300 * U, 2 * U);
+  // red marker arrow pointing at where you stand
+  const ax = V ? W * .68 : W * .72, ay = V ? H * .62 : H * .62, k = ease((t - 1.6) * 1.5);
+  ctx.strokeStyle = '#d9534f'; ctx.lineWidth = 7 * U; ctx.lineCap = 'round'; ctx.beginPath();
+  for (let i = 0; i <= 30 * k; i++) { const u = i / 30, px = ax + Math.sin(u * 2.4) * 110 * U, py = ay + u * 140 * U; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); } ctx.stroke();
+  if (k > .98) { ctx.beginPath(); const ex = ax + Math.sin(2.4) * 110 * U, ey = ay + 140 * U; ctx.moveTo(ex - 40 * U, ey - 10 * U); ctx.lineTo(ex, ey); ctx.lineTo(ex - 8 * U, ey - 42 * U); ctx.stroke(); }
+}
+
+const SCENES = [null, crt, halftone, collage, strings, card, paper];
+window.draw = function (t) { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; SCENES[SCN](t); };
+</script>
+</body>
+</html>

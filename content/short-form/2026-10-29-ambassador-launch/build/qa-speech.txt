@@ -1,0 +1,61 @@
+OK  0  0.25s match=1.00
+   want: Every finance video looks the same.
+   heard: Every finance video looks the same.
+OK  1  2.68s match=1.00
+   want: Same thumbnail. Same arrow. Same shouting face.
+   heard: Same thumbnail, same arrow, same shouting face.
+OK  2  6.23s match=0.93
+   want: If everybody explains money the same way,
+   heard: If everybody explains money the same way, the
+   diff: [('insert', '', 'the')]
+OK  3  8.60s match=1.00
+   want: the whole feed turns to static.
+   heard: The whole feed turns to static.
+OK  4 10.96s match=0.95
+   want: Do we want a feed of copy and paste,
+   heard: Do we want a feed of copy and paste, or...
+   diff: [('insert', '', 'or')]
+OK  5 13.01s match=1.00
+   want: or people who actually make it click?
+   heard: or people who actually make it click.
+OK  6 15.52s match=1.00
+   want: Because funds were built for the big boys club.
+   heard: Because funds were built for the big boys club.
+CHECK 7 17.86s match=0.80
+   want: Ten thousand dollar minimums. Setup fees. Bank intros.
+   heard: $10,000 minimums Set up fees Bank intros
+   diff: [('replace', 'setup', 'set up')]
+OK  8 22.13s match=1.00
+   want: Now, anyone can own a fund, on chain.
+   heard: Now, anyone can own a fund on Chain.
+OK  9 24.51s match=1.00
+   want: Even a ten dollar one.
+   heard: even a $10 one.
+OK  10 26.55s match=1.00
+   want: Almost nobody knows that yet.
+   heard: Almost nobody knows that yet.
+OK  11 28.58s match=1.00
+   want: Somebody has to tell them.
+   heard: Somebody has to tell them.
+OK  12 30.76s match=1.00
+   want: Different creators explain it differently.
+   heard: Different creators explain it differently.
+OK  13 33.07s match=1.00
+   want: That's the whole point.
+   heard: That's the whole point.
+OK  14 34.85s match=1.00
+   want: Exclusive rewards. A special Discord role.
+   heard: Exclusive rewards, a special Discord role.
+OK  15 37.87s match=1.00
+   want: Early product access. Recognition across the community.
+   heard: Early product access. Recognition across the community.
+OK  16 41.93s match=1.00
+   want: The Block Capital Ambassador Program is now open.
+   heard: The Block Capital Ambassador program is now open.
+OK  17 45.15s match=1.00
+   want: Video creators only.
+   heard: Video Creators Only
+OK  18 46.99s match=1.00
+   want: Everyone deserves a Garden.
+   heard: Everyone deserves a garden.
+lines to check: 1
