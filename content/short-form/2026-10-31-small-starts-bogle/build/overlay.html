@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@600;800;900&family=JetBrains+Mono:wght@700&family=Caveat:wght@700&display=block" rel="stylesheet">
+<script src="timeline.js"></script>
+<script src="shots.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --linen:#F6F3E8; --ink:#0B1B2B; --lime:#7ED116; --coral:#EC464D; --gold:#F2D58A; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: transparent; font-family: Inter, sans-serif; color: #fff; }
+  #tag { position: absolute; top: 210px; width: 100%; display: flex; justify-content: center; gap: 12px; }
+  .pill { display: inline-block; padding: 10px 24px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 26px; letter-spacing: .08em; box-shadow: 0 4px 18px rgba(0,0,0,.35); }
+  #ask { position: absolute; top: 290px; left: 0; right: 0; margin: 0 auto; width: fit-content; background: rgba(0,0,0,.62); color: var(--gold); border: 2px solid var(--gold); font-size: 30px; }
+  #sub { position: absolute; left: 70px; right: 70px; top: 1330px; height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .cap { position: absolute; display: flex; gap: 0 18px; flex-wrap: wrap; justify-content: center; align-items: baseline; }
+  .cap span { font-weight: 800; font-size: 60px; letter-spacing: -.01em; text-shadow: 0 3px 4px rgba(0,0,0,.8), 0 0 30px rgba(0,0,0,.6); }
+  .cap span.k { color: var(--gold); font-size: 76px; font-weight: 900; }
+  #board { position: absolute; left: 545px; top: 520px; width: 500px; opacity: 0; transform: rotate(-1.5deg); }
+  .row { display: flex; align-items: baseline; justify-content: space-between; height: 190px; font-family: Caveat, cursive; color: rgba(246,243,232,.92); text-shadow: 0 0 2px rgba(246,243,232,.5); border-bottom: 3px solid rgba(246,243,232,.25); padding: 0 10px; opacity: 0; }
+  .row .l { font-size: 58px; }
+  .row .v { font-size: 104px; }
+  .row.red .v { color: #FF8A8F; }
+  .row.gold .v { color: var(--gold); }
+  #who { position: absolute; top: 1530px; width: 100%; text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 40px; color: var(--linen); text-shadow: 0 2px 10px rgba(0,0,0,.8); opacity: 0; }
+  #flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+  #E { position: absolute; inset: 0; background: #000; opacity: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  #E .s { font-family: 'Playfair Display', serif; font-style: italic; font-size: 96px; color: var(--linen); }
+  #E .c { font-weight: 900; font-size: 124px; letter-spacing: -.05em; line-height: 1; }
+</style>
+</head>
+<body>
+<div id="board">
+  <div class="row" id="r0"><span class="l">GOAL</span><span class="v">$150M</span></div>
+  <div class="row red" id="r1"><span class="l">RAISED</span><span class="v" id="v1">$11.3M</span></div>
+  <div class="row gold" id="r2"><span class="l">TODAY</span><span class="v" id="v2">$1.7T</span></div>
+</div>
+<div id="sub"></div>
+<div id="who">Jack Bogle, 1929–2019</div>
+<div id="tag"><span class="pill" style="background:var(--linen);color:var(--ink)">SMALL STARTS</span><span class="pill" style="background:var(--lime);color:var(--ink)">PART 3</span><span class="pill" id="year" style="background:var(--coral);color:#fff">1976 · TRUE STORY</span></div>
+<div id="ask" class="pill">WHO BUILT IT? NAME AT THE END</div>
+<div id="flash"></div>
+<div id="E">
+  <div class="pill" style="background:var(--linen);color:var(--ink)">SMALL STARTS · PART 3</div>
+  <div class="s" style="margin-top:70px">Next:</div>
+  <div class="s">the gift that</div>
+  <div class="s">waited</div>
+  <div class="c">200 YEARS</div>
+  <div style="margin-top:60px;font-family:'Playfair Display',serif;font-style:italic;font-size:46px;color:var(--linen)">Would you have said “hell no” too? Yes or no</div>
+  <div style="margin-top:56px;background:var(--coral);color:#fff;font-weight:800;font-size:42px;padding:22px 52px;border-radius:999px">Follow @blok.capital</div>
+  <div style="margin-top:40px;font-size:22px;line-height:1.5;color:#9AA4AE">Educational only · Not financial advice · Investing involves risk<br>AI-generated voiceover · AI-generated imagery</div>
+</div>
+<script>
+const TL = window.TIMELINE, SH = window.SHOTS;
+window.DURATION = Math.ceil((TL[TL.length - 1].end + 1.5) * 10) / 10;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const W = (li, k) => TL[li].words[k].s;
+const S = (i) => TL[i].start;
+const shotAt = (t) => { let k = 0; SH.forEach((s, i) => { if (t >= s.start) k = i; }); return k; };
+const END0 = SH[SH.length - 1].start;
+const nextCut = (t) => { const n = SH.find((s) => s.start > t + 0.01); return n ? n.start : 1e9; };
+
+// subtitles: up to 3 words, break after punctuation; money and the name in gold
+const caps = [];
+TL.forEach((l, li) => {
+  let cur = [];
+  const push = () => { if (cur.length) caps.push({ li, ws: cur }); cur = []; };
+  l.words.forEach((w) => { cur.push(w); if (/[.,?:!]$/.test(w.w) || w.w.endsWith('...') || cur.length === 3) push(); });
+  push();
+});
+caps.forEach((c, i) => {
+  const el = document.createElement('div'); el.className = 'cap';
+  c.ws.forEach((w) => { const s = document.createElement('span'); s.textContent = w.w; if (/^\$|^Bogle/.test(w.w)) s.className = 'k'; el.appendChild(s); });
+  $('sub').appendChild(el); c.el = el; c.s = i === 0 ? -1 : c.ws[0].s - 0.05;
+});
+caps.forEach((c, i) => { const n = caps[i + 1]; const lineEnd = TL[c.li].end + 0.35; c.e = Math.min(n ? Math.min(n.s, n.li === c.li ? 1e9 : lineEnd) : lineEnd, nextCut(Math.max(c.s, 0))); });
+
+const money = (x) => x >= 1e12 ? '$' + (x / 1e12).toFixed(1) + 'T' : x >= 1e9 ? '$' + Math.round(x / 1e9) + 'B' : '$' + (x / 1e6).toFixed(1) + 'M';
+window.draw = (t) => {
+  const k = shotAt(t), src = SH[k].src;
+  caps.forEach((c) => { const on = t >= c.s && t < c.e; c.el.style.display = on ? 'flex' : 'none'; if (on) { const u = ease((t - c.s) / 0.12); c.el.style.opacity = u; c.el.style.transform = `translateY(${(1 - u) * 10}px)`; } });
+  // scoreboard rows appear on the beat that says them; the money counts up
+  const onBoard = src === 'img/c11.jpg';
+  $('board').style.opacity = onBoard ? 1 : 0;
+  const r0 = ease((t - W(1, 2) + 0.1) / 0.3), r1 = ease((t - W(2, 2) + 0.1) / 0.3), r2 = ease((t - W(8, 2)) / 0.3);
+  $('r0').style.opacity = r0; $('r1').style.opacity = r1; $('r2').style.opacity = r2;
+  $('v1').textContent = money(11.3e6 * ease((t - W(2, 2) + 0.1) / 0.7) + 1);
+  const p = clamp((t - W(8, 2)) / (W(8, 7) - W(8, 2) + 0.4)); $('v2').textContent = money(Math.max(1e9, 1.7e12 * Math.pow(p, 3)));
+  if (p >= 1) $('v2').textContent = '$1.7T';
+  $('year').textContent = t < S(8) - 0.12 ? '1976 · TRUE STORY' : 'TODAY';
+  $('ask').style.opacity = 1 - clamp((t - W(9, 3) + 0.1) / 0.2);
+  $('who').style.opacity = ease((t - W(9, 4)) / 0.3) * (src === 'img/c13.jpg' ? 1 : 0);
+  $('flash').style.opacity = 0.35 * clamp(1 - Math.abs(t - W(9, 3)) / 0.1);
+  const e = ease((t - END0) / 0.3); $('E').style.opacity = e; $('tag').style.opacity = 1 - e;
+};
+window.draw(0);
+</script>
+</body>
+</html>
