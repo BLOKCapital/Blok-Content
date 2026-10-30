@@ -81,3 +81,8 @@ you don't. link one you've already made. we just want to see how you explain thi
 <!-- X END 5 -->
 
 Numbers for angle 5 are from 30 Oct, 08:10 UTC (2,922 views, 25 replies, 20 reposts, 8 quotes, 53 likes, 21 bookmarks).
+
+## Posted
+
+Angle 1 with the 16:9 video, 30 Oct 2026 13:00 UTC: https://x.com/blok_cap/status/2116153444583039042
+(verified: video 7_2116087467061227520 attached, quotes 2115776557050364050)
