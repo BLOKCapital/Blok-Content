@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Anton; src: url(fonts/Anton.ttf); }
+  @font-face { font-family: Grotesk; src: url(fonts/SpaceGrotesk-500.ttf); font-weight: 500; }
+  @font-face { font-family: Grotesk; src: url(fonts/SpaceGrotesk-700.ttf); font-weight: 700; }
+  @font-face { font-family: Serif; src: url(fonts/InstrumentSerif.ttf); }
+  @font-face { font-family: Serif; src: url(fonts/InstrumentSerif-Italic.ttf); font-style: italic; }
+  * { margin: 0; padding: 0; }
+  html, body { background: #000; overflow: hidden; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div style="position:absolute;opacity:0;font-family:Anton">a<span style="font-family:Grotesk;font-weight:700">a</span><span style="font-family:Grotesk;font-weight:500">a</span><span style="font-family:Serif;font-style:italic">a</span><span style="font-family:Serif">a</span></div>
+<script>
+// Quote-post video for the Ambassador launch (30 Oct 2026): "what you think you need / what you actually need".
+// No voiceover, so it works muted in the X feed. Cuts sit on the 120 BPM grid of music.py. ?v=1 renders 9:16.
+const V = new URLSearchParams(location.search).get('v') === '1';
+const W = V ? 1080 : 1920, H = V ? 1920 : 1080;
+const cv = document.getElementById('c'); cv.width = W; cv.height = H;
+const ctx = cv.getContext('2d');
+const U = Math.min(W, H) / 1080;
+window.DURATION = 15.5;
+
+const C = { sky:'#7DD2FD', ind:'#004EBA', lime:'#7ED116', lin:'#F6F3E8', cor:'#EC464D', earth:'#844947', ink:'#07111F' };
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = t => 1 - Math.pow(1 - cl(t), 3);
+const back = t => { t = cl(t); const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); };
+const hash = (i, j = 0) => { const x = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return x - Math.floor(x); };
+const lerp = (a, b, t) => a + (b - a) * t;
+function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
+function bg(c) { ctx.fillStyle = c; ctx.fillRect(-W, -H, W * 3, H * 3); }
+function font(px, fam = 'Inter', wt = 500, st = '') { ctx.font = `${st} ${wt} ${px}px ${fam}`; }
+function text(s, x, y, px, col, fam = 'Inter', wt = 500, align = 'center', st = '') {
+  font(px, fam, wt, st); ctx.fillStyle = col; ctx.textAlign = align; ctx.textBaseline = 'middle'; ctx.fillText(s, x, y);
+}
+function fit(s, px, maxW, fam, wt, st = '') { font(px, fam, wt, st); const w = ctx.measureText(s).width; return w > maxW ? px * maxW / w : px; }
+function cam(p, z0 = 1, z1 = 1.08, rot = 0) { const z = lerp(z0, z1, p); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.rotate(rot); ctx.translate(-W / 2, -H / 2); }
+const logo = new Image(); logo.src = 'logo.png';
+function drawLogo(x, y, s, a = 1) { if (!logo.complete) return; ctx.save(); ctx.globalAlpha = a; ctx.globalCompositeOperation = 'lighter'; ctx.drawImage(logo, x - s / 2, y - s / 2 * .976, s, s * .976); ctx.restore(); }
+function glow(x, y, r, col, a = 1) {
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, col); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.globalAlpha = a; ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2); ctx.globalAlpha = 1;
+}
+const noiseC = document.createElement('canvas'); noiseC.width = 240; noiseC.height = 240; const nctx = noiseC.getContext('2d');
+function noise(seed, a = 1, scale = 4) {
+  const id = nctx.createImageData(240, 240); let s = (seed * 9301 + 49297) >>> 0;
+  for (let i = 0; i < id.data.length; i += 4) { s = (s * 1664525 + 1013904223) >>> 0; const v = s >>> 24; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
+  nctx.putImageData(id, 0, 0);
+  ctx.save(); ctx.globalAlpha = a; ctx.imageSmoothingEnabled = false;
+  const pat = ctx.createPattern(noiseC, 'repeat'); ctx.scale(scale, scale); ctx.fillStyle = pat; ctx.fillRect(0, 0, W / scale + 1, H / scale + 1); ctx.restore();
+}
+function streaks(t, cols, n = 220, speed = 1) {
+  const cx = W / 2, cy = H / 2, R = Math.hypot(W, H) * .6; ctx.lineCap = 'round';
+  for (let i = 0; i < n; i++) {
+    const a = hash(i) * 6.283, ph = (hash(i, 3) + t * speed * (.6 + hash(i, 5))) % 1, d = Math.pow(ph, 2.2) * R, len = 40 * U + ph * 260 * U;
+    ctx.strokeStyle = cols[i % cols.length]; ctx.globalAlpha = ph * .9; ctx.lineWidth = (1 + ph * 4) * U;
+    ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * d, cy + Math.sin(a) * d); ctx.lineTo(cx + Math.cos(a) * (d + len), cy + Math.sin(a) * (d + len)); ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+function person(x, y, s, col) {
+  ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y - s * .55, s * .26, 0, 7); ctx.fill();
+  rr(x - s * .38, y - s * .22, s * .76, s * .62, [s * .34, s * .34, s * .08, s * .08]); ctx.fill();
+}
+// big slanted Anton headline, split over two lines on 9:16
+function titleCard(a, b, p, colA = '#fff', colB = '#fff') {
+  ctx.save(); ctx.translate(W / 2, H / 2); ctx.transform(1, 0, -.18, 1, 0, 0);
+  const z = 1.12 - .12 * ease(p * 3) + .04 * p; ctx.scale(z, z); ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 40 * U;
+  const pa = fit(a, (V ? 200 : 210) * U, W * .8, 'Anton', 400), pb = fit(b, (V ? 200 : 210) * U, W * .8, 'Anton', 400), q = Math.min(pa, pb);
+  text(a, 0, -q * .56, q, colA, 'Anton', 400); text(b, 0, q * .56, q, colB, 'Anton', 400); ctx.restore();
+}
+// label under an object, then (from `when`) a red stamp crossing it out
+function crossOut(label, lt, when = .18) {
+  const y = V ? H * .66 : H * .8, px = fit(label, 110 * U, W * .8, 'Anton', 400);
+  text(label, W / 2, y, px, '#fff', 'Anton', 400);
+  const k = back((lt - when) * 7); if (k <= 0) return;
+  ctx.save(); ctx.translate(W / 2, H * (V ? .47 : .45)); ctx.scale(k, k); ctx.rotate(-.05);
+  ctx.strokeStyle = C.cor; ctx.lineCap = 'round'; ctx.lineWidth = 46 * U; const r = (V ? 330 : 300) * U;
+  ctx.beginPath(); ctx.moveTo(-r, -r * .8); ctx.lineTo(r, r * .8); ctx.moveTo(r, -r * .8); ctx.lineTo(-r, r * .8); ctx.stroke(); ctx.restore();
+}
+// lime tick badge + label for the "what you actually need" shots
+function tickLabel(label, lt) {
+  const y = V ? H * .68 : H * .8, k = back(lt * 5), px = fit(label, 110 * U, W * .72, 'Anton', 400);
+  font(px, 'Anton', 400); const tw = ctx.measureText(label).width, bx = W / 2 - tw / 2 - 80 * U;
+  ctx.save(); ctx.translate(bx, y); ctx.scale(k, k); ctx.fillStyle = C.lime; ctx.beginPath(); ctx.arc(0, 0, 50 * U, 0, 7); ctx.fill();
+  ctx.strokeStyle = C.ink; ctx.lineWidth = 13 * U; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(-22 * U, 2 * U); ctx.lineTo(-6 * U, 18 * U); ctx.lineTo(24 * U, -16 * U); ctx.stroke(); ctx.restore();
+  text(label, W / 2 + 40 * U, y, px, '#fff', 'Anton', 400);
+}
+
+const shots = [];
+const at = (t0, t1, f) => shots.push({ t0, t1, f });
+const MONO = '#23272d';
+
+// ACT 1: what you think you need (monochrome, crossed out on the beat)
+at(0, 1.5, (lt, p) => { bg('#0b0d10'); streaks(lt, ['#3a3f47', '#6b717a'], 160, .6); titleCard('WHAT YOU THINK', 'YOU NEED', p, '#d6d8db', '#8c929a'); });
+at(1.5, 2.0, (lt, p) => { // studio: softbox lights + tripod camera
+  bg(MONO); cam(p, 1.06, 1.0); const cy = H * (V ? .47 : .45), s = U * (V ? 1.15 : 1);
+  for (const sx of [-1, 1]) { ctx.save(); ctx.translate(W / 2 + sx * 380 * s, cy - 40 * s); ctx.rotate(sx * -.25);
+    ctx.fillStyle = '#d6d8db'; rr(-120 * s, -150 * s, 240 * s, 200 * s, 16 * s); ctx.fill(); ctx.fillStyle = '#5b6068'; ctx.fillRect(-8 * s, 50 * s, 16 * s, 300 * s); ctx.restore(); }
+  ctx.fillStyle = '#15181c'; rr(W / 2 - 150 * s, cy - 90 * s, 300 * s, 180 * s, 20 * s); ctx.fill(); ctx.fillStyle = '#8c929a'; ctx.beginPath(); ctx.arc(W / 2, cy, 62 * s, 0, 7); ctx.fill();
+  ctx.fillStyle = '#15181c'; ctx.beginPath(); ctx.arc(W / 2, cy, 36 * s, 0, 7); ctx.fill();
+  ctx.strokeStyle = '#5b6068'; ctx.lineWidth = 12 * s; ctx.beginPath(); for (const d of [-130, 0, 130]) { ctx.moveTo(W / 2, cy + 90 * s); ctx.lineTo(W / 2 + d * s, cy + 300 * s); } ctx.stroke();
+  crossOut('A STUDIO', lt);
+});
+at(2.0, 2.5, (lt, p) => { // follower counter
+  bg('#1d2026'); cam(p, 1.0, 1.06); const n = Math.floor(lerp(12, 100000, ease(lt * 3)));
+  const px = fit(n.toLocaleString('en-US'), 300 * U, W * .8, 'Anton', 400); text(n.toLocaleString('en-US'), W / 2, H * (V ? .45 : .42), px, '#8c929a', 'Anton', 400);
+  text('followers', W / 2, H * (V ? .45 : .42) + px * .62, 60 * U, '#5b6068', 'Grotesk', 700); crossOut('100K FOLLOWERS', lt);
+});
+at(2.5, 3.0, (lt, p) => { // diploma scroll
+  bg(MONO); cam(p, 1.05, 1.0, .02); const cy = H * (V ? .47 : .45), w = 640 * U, h = 420 * U;
+  ctx.fillStyle = '#d6d8db'; rr(W / 2 - w / 2, cy - h / 2, w, h, 12 * U); ctx.fill(); ctx.strokeStyle = '#8c929a'; ctx.lineWidth = 8 * U; rr(W / 2 - w / 2 + 24 * U, cy - h / 2 + 24 * U, w - 48 * U, h - 48 * U, 6 * U); ctx.stroke();
+  text('DIPLOMA', W / 2, cy - 110 * U, 64 * U, '#5b6068', 'Serif', 400, 'center', 'italic');
+  ctx.fillStyle = '#9ea3a8'; for (let i = 0; i < 3; i++) ctx.fillRect(W / 2 - 220 * U, cy - 30 * U + i * 50 * U, i == 2 ? 260 * U : 440 * U, 16 * U);
+  ctx.fillStyle = '#7f858d'; ctx.beginPath(); ctx.arc(W / 2 + 210 * U, cy + 120 * U, 50 * U, 0, 7); ctx.fill();
+  crossOut('A FINANCE DEGREE', lt);
+});
+at(3.0, 3.5, (lt, p) => { // price tag on a big camera
+  bg('#1d2026'); cam(p, 1.0, 1.07); const cy = H * (V ? .45 : .43);
+  ctx.save(); ctx.translate(W / 2, cy); ctx.rotate(-.12); ctx.fillStyle = '#d6d8db'; rr(-330 * U, -120 * U, 660 * U, 240 * U, 40 * U); ctx.fill();
+  ctx.beginPath(); ctx.arc(-330 * U, 0, 30 * U, 0, 7); ctx.fillStyle = '#1d2026'; ctx.fill();
+  text('$5,000', 30 * U, 6 * U, 170 * U, '#23272d', 'Anton', 400); ctx.restore();
+  crossOut('A FANCY CAMERA', lt);
+});
+at(3.5, 4.75, (lt, p) => { bg('#02040a'); streaks(lt, ['#fff', C.sky, C.ind], 260, 2.2); glow(W / 2, H / 2, 380 * U * p, 'rgba(255,255,255,.7)');
+  if (lt > .25) titleCard('WHAT YOU ACTUALLY', 'NEED', (lt - .25) / 1, '#fff', C.lime); });
+
+// ACT 2: what you actually need (full brand colour)
+at(4.75, 6.25, (lt, p) => { // a phone, recording
+  bg(C.ind); cam(p, 1.08, 1.0); glow(W / 2, H * .4, 600 * U, 'rgba(125,210,253,.45)');
+  const pw = (V ? 340 : 280) * U, ph = pw * 1.95, x = W / 2 - pw / 2, y = H * (V ? .42 : .38) - ph / 2, k = back(lt * 4);
+  ctx.save(); ctx.translate(W / 2, y + ph / 2); ctx.scale(k, k); ctx.rotate(-.06 + .03 * Math.sin(lt * 3)); ctx.translate(-W / 2, -(y + ph / 2));
+  rr(x, y, pw, ph, pw * .14); ctx.fillStyle = '#0d0f12'; ctx.fill(); ctx.save(); rr(x + pw * .05, y + pw * .05, pw * .9, ph - pw * .1, pw * .1); ctx.clip();
+  ctx.fillStyle = C.lin; ctx.fillRect(x, y, pw, ph); person(W / 2, y + ph * .78, pw * .9, C.earth);
+  if (Math.floor(lt * 3) % 2 == 0) { ctx.fillStyle = C.cor; ctx.beginPath(); ctx.arc(x + pw * .2, y + pw * .22, pw * .05, 0, 7); ctx.fill(); }
+  text('REC', x + pw * .38, y + pw * .22, pw * .08, C.ink, 'Grotesk', 700); ctx.restore(); ctx.restore();
+  tickLabel('A PHONE', lt);
+});
+at(6.25, 7.75, (lt, p) => { // a point of view: speech bubble
+  bg(C.lin); cam(p, 1.0, 1.06); const cy = H * (V ? .42 : .38), k = back(lt * 4), w = (V ? 760 : 820) * U, h = 300 * U;
+  ctx.save(); ctx.translate(W / 2, cy); ctx.scale(k, k); ctx.rotate(-.04);
+  rr(-w / 2, -h / 2, w, h, 60 * U); ctx.fillStyle = '#fff'; ctx.fill(); ctx.lineWidth = 12 * U; ctx.strokeStyle = C.ink; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-w * .22, h / 2 - 6 * U); ctx.lineTo(-w * .32, h / 2 + 90 * U); ctx.lineTo(-w * .06, h / 2 - 6 * U); ctx.fillStyle = '#fff'; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-w * .22, h / 2); ctx.lineTo(-w * .32, h / 2 + 90 * U); ctx.lineTo(-w * .06, h / 2); ctx.stroke();
+  const s = 'here\'s how i see it…', n = Math.floor(cl(lt * 2.2) * s.length);
+  text(s.slice(0, n), 0, 0, fit(s, 76 * U, w * .84, 'Serif', 400, 'italic'), C.ink, 'Serif', 400, 'center', 'italic'); ctx.restore();
+  ctx.save(); ctx.fillStyle = 'rgba(7,17,31,.92)'; ctx.fillRect(-W, V ? H * .6 : H * .7, W * 3, H); ctx.restore();
+  tickLabel('A POINT OF VIEW', lt);
+});
+at(7.75, 9.25, (lt, p) => { // one clear idea: a single lit bulb in a dark grid
+  bg('#05070b'); cam(p, 1.1, 1.0); const n = V ? 5 : 9, m = V ? 7 : 4, s = (V ? 180 : 170) * U, ox = W / 2 - (n - 1) * s / 2, oy = H * (V ? .4 : .38) - (m - 1) * s / 2;
+  const on = ease((lt - .25) * 3);
+  for (let r = 0; r < m; r++) for (let c = 0; c < n; c++) { const me = c == (n >> 1) && r == (m >> 1); const x = ox + c * s, y = oy + r * s;
+    if (me) glow(x, y, 300 * U * on, 'rgba(126,209,22,.6)');
+    ctx.fillStyle = me && on > .1 ? C.lime : '#1c222c'; ctx.beginPath(); ctx.arc(x, y - 12 * U, s * .26, 0, 7); ctx.fill();
+    ctx.fillStyle = me && on > .1 ? '#cfe9a8' : '#151a22'; rr(x - s * .12, y + s * .14, s * .24, s * .14, 6 * U); ctx.fill(); }
+  ctx.fillStyle = 'rgba(5,7,11,.85)'; ctx.fillRect(-W, V ? H * .6 : H * .7, W * 3, H);
+  tickLabel('ONE CLEAR IDEA', lt);
+});
+at(9.25, 11.25, (lt, p) => { // the checklist, all ticked
+  bg('#06080c'); cam(p, V ? 1.18 : 1.4, V ? 1.12 : 1.32); glow(W * .3, H * .3, 700 * U, 'rgba(0,78,186,.35)');
+  const w = (V ? 900 : 1000) * U, h = (V ? 700 : 640) * U, x = W / 2 - w / 2, y = H / 2 - h / 2;
+  rr(x, y, w, h, 28 * U); ctx.fillStyle = '#11161f'; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.12)'; ctx.lineWidth = 2 * U; ctx.stroke();
+  text('what it takes', x + 60 * U, y + 85 * U, 50 * U, '#9aa3b1', 'Serif', 400, 'left', 'italic');
+  ['a phone', 'a point of view', 'one clear idea'].forEach((s, i) => { const yy = y + 200 * U + i * 110 * U, k = back((lt - .1 - i * .2) * 5);
+    rr(x + 60 * U, yy - 34 * U, 68 * U, 68 * U, 18 * U); ctx.fillStyle = k > .05 ? C.lime : '#1c222c'; ctx.fill();
+    if (k > .05) { ctx.save(); ctx.translate(x + 94 * U, yy); ctx.scale(k, k); ctx.strokeStyle = C.ink; ctx.lineWidth = 9 * U; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-16 * U, 0); ctx.lineTo(-4 * U, 13 * U); ctx.lineTo(18 * U, -13 * U); ctx.stroke(); ctx.restore(); }
+    text(s, x + 165 * U, yy, 54 * U, '#fff', 'Grotesk', 700, 'left'); });
+  const k = ease((lt - 1.0) * 3); ctx.globalAlpha = k; text('that\'s the whole list', x + 60 * U, y + h - 80 * U, 52 * U, C.lime, 'Anton', 400, 'left'); ctx.globalAlpha = 1;
+});
+at(11.25, 13.0, (lt, p) => { // launch line
+  bg('#000'); cam(p, 1.06, 1.0); streaks(lt + 2, ['#fff', C.sky, C.lime], 220, .8);
+  const cy = H / 2 - (V ? 160 : 120) * U; glow(W / 2, cy, 360 * U, 'rgba(125,210,253,.35)'); drawLogo(W / 2, cy, 220 * U, ease(lt * 3));
+  const k = ease((lt - .25) * 3), y = H / 2 + (V ? 90 : 90) * U;
+  ctx.globalAlpha = k; const px = fit('AMBASSADOR PROGRAM', 120 * U, W * .9, 'Anton', 400); text('AMBASSADOR PROGRAM', W / 2, y, px, '#fff', 'Anton', 400);
+  ctx.globalAlpha = ease((lt - .7) * 4); rr(W / 2 - 190 * U, y + 95 * U, 380 * U, 76 * U, 38 * U); ctx.fillStyle = C.lime; ctx.fill(); text('STILL OPEN', W / 2, y + 134 * U, 42 * U, C.ink, 'Grotesk', 700); ctx.globalAlpha = 1;
+});
+at(13.0, 15.5, (lt, p) => { // end card
+  bg('#000'); const k = ease(lt * 1.6);
+  glow(W / 2, H / 2 - 120 * U, 520 * U, 'rgba(0,78,186,.45)'); drawLogo(W / 2, H / 2 - 150 * U, 220 * U, k);
+  ctx.globalAlpha = ease((lt - .15) * 2); text('Video creators only', W / 2, H / 2 + 40 * U, 84 * U, '#fff', 'Grotesk', 700);
+  text('show us how you explain money', W / 2, H / 2 + 130 * U, 70 * U, C.sky, 'Serif', 400, 'center', 'italic');
+  ctx.globalAlpha = ease((lt - .6) * 2); rr(W / 2 - 300 * U, H / 2 + 210 * U, 600 * U, 84 * U, 42 * U); ctx.fillStyle = C.lime; ctx.fill(); text('Apply · link in quoted post', W / 2, H / 2 + 253 * U, 36 * U, C.ink, 'Grotesk', 700);
+  ctx.globalAlpha = 1; ctx.fillStyle = `rgba(0,0,0,${cl((lt - 2.1) / .4)})`; ctx.fillRect(0, 0, W, H);
+});
+
+function grade(t) {
+  const v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .35, W / 2, H / 2, Math.hypot(W, H) * .62);
+  v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.5)'); ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+  noise(Math.floor(t * 30) * 7 + 3, .05, 2);
+}
+window.draw = function (t) {
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+  const sh = shots.find(s => t >= s.t0 && t < s.t1) || shots[shots.length - 1];
+  ctx.save(); sh.f(t - sh.t0, cl((t - sh.t0) / (sh.t1 - sh.t0))); ctx.restore();
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  if (t - sh.t0 < 1 / 30 && sh.t0 > 0) { ctx.fillStyle = 'rgba(255,255,255,.12)'; ctx.fillRect(0, 0, W, H); }
+  grade(t);
+};
+</script>
+</body>
+</html>
