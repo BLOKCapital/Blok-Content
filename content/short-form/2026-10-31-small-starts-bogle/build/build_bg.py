@@ -20,7 +20,9 @@ for k, (src, l) in enumerate(SHOTS):
     if src is None:
         cmd = ['-f', 'lavfi', '-i', f'color=black:s=1080x1920:r={FPS}:d={d + 1}']
     elif src.endswith('.mp4'):
-        cmd = ['-i', src, '-vf', f'{cover},fps={FPS},tpad=stop_mode=clone:stop_duration={d}', '-an']
+        cd = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', src], capture_output=True, text=True).stdout)
+        slow = max(1.0, (d + 0.05) / cd)  # stretch a clip a little rather than freeze it
+        cmd = ['-i', src, '-vf', f'setpts={slow:.4f}*PTS,{cover},fps={FPS},tpad=stop_mode=clone:stop_duration={d}', '-an']
     elif src in STATIC:
         cmd = ['-loop', '1', '-i', src, '-vf', f'{cover},fps={FPS}']
     else:

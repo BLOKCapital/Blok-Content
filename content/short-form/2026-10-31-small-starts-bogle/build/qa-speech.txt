@@ -1,39 +1,39 @@
-OK  0  0.10s match=1.00
+OK  0  0.12s match=1.00
    want: This fund flopped so hard, the bankers wanted to give the money back.
    heard: This fund flopped so hard, the bankers wanted to give the money back.
-CHECK 1  4.17s match=0.77
+CHECK 1  5.51s match=0.77
    want: The goal? A hundred and fifty million dollars.
    heard: The goal? $150 million.
    diff: [('replace', 'a', 'one'), ('delete', 'and', '')]
-OK  2  7.33s match=1.00
+OK  2 10.28s match=1.00
    want: It raised... eleven million.
    heard: It raised 11 million.
-OK  3 10.06s match=1.00
+OK  3 14.15s match=1.00
    want: Wall Street called it a folly.
    heard: Wall Street called it a folly.
-OK  4 12.25s match=1.00
+OK  4 17.06s match=1.00
    want: Critics called it un-American.
    heard: Critics called it un-American.
-OK  5 14.17s match=1.00
+OK  5 19.97s match=1.00
    want: Its founder had two words.
    heard: Its founder had two words.
-OK  6 16.02s match=1.00
+OK  6 22.72s match=1.00
    want: Hell no.
    heard: Hell no.
-OK  7 16.95s match=1.00
+OK  7 24.42s match=1.00
    want: The first index fund for everyday investors.
    heard: the first index fund for everyday investors.
-OK  8 19.86s match=0.95
+OK  8 28.30s match=0.95
    want: And today? That same fund holds over one point seven trillion dollars.
    heard: And today, that same fund holds over $1.7 trillion.
    diff: [('delete', 'point', '')]
-OK  9 24.94s match=1.00
+OK  9 35.17s match=1.00
    want: His name was Jack Bogle.
    heard: His name was Jack Bogle.
-OK  10 27.14s match=1.00
+OK  10 38.16s match=1.00
    want: Every big fund started small. Yours can start at ten dollars.
    heard: Every big fund started small. Yours can start at $10.
-OK  11 31.50s match=1.00
+OK  11 43.93s match=1.00
    want: Small Starts, part three. Next: the gift that waited two hundred years.
-   heard: Small Starts Part 3 Next, The Gift That Waited 200 Years
+   heard: Small Starts, Part 3 Next, The Gift That Waited 200 Years
 lines to check: 1

@@ -1,7 +1,10 @@
-"""Cut the single ElevenLabs take into phrases, tighten the pauses, speed it up a touch, and write vo.wav, vo.json, script.txt.
-python3 build_vo.py [tempo]"""
+"""Cut the single ElevenLabs take into phrases and write vo.wav, vo.json, script.txt.
+python3 build_vo.py [tempo] [natural]
+natural (what Sheetal picked on 31 Oct): keep the take's own pauses (capped at 1s) and its own speed (tempo 1).
+Otherwise the pauses are tightened to the gaps in L and the take is sped up by tempo."""
 import json, sys, re, subprocess, numpy as np, soundfile as sf
 T=float(sys.argv[1]) if len(sys.argv)>1 else 1.15
+NAT='natural' in sys.argv
 segs=json.load(open('segs.json'))
 a,sr=sf.read('vo_raw.wav'); a=a.mean(1) if a.ndim>1 else a
 # lines: (show text per segment, inner gaps between segments, gap after line)
@@ -31,6 +34,7 @@ for shows,inner,gap in L:
         for q,n in zip(ws,w):
             dd=(d-0.1)*n/tot; words.append({"w":q,"s":c,"e":c+dd}); c+=dd
         g=inner[j] if j<len(inner) else gap
+        if NAT: g=min(1.0,max(0.15,(segs[k][0]-e-0.1) if k<len(segs) else 0.0))
         out+=[x,np.zeros(int(sr*g))]; t+=d+g
 sf.write('vo_cut.wav',np.concatenate(out),sr)
 subprocess.run(['ffmpeg','-v','error','-y','-i','vo_cut.wav','-af',f'atempo={T}','vo.wav'],check=True)

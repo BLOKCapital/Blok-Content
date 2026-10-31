@@ -6,7 +6,7 @@ people (no real faces), a chalkboard scoreboard that fills up, small synced capt
 Open loop: "Who built it? Name at the end." Payoff: $11.3M in 1976 → over $1.7T today, then the name, then the $10 access line.
 Part 4 teased: "the gift that waited 200 years" (Benjamin Franklin's 1790 bequest to Boston and Philadelphia).
 
-**Post:** proposed Sat 31 Oct 2026, 13:30 UTC. Cover frame 9.6s (`thumb_offset: 9600`): the scoreboard with GOAL $150M / RAISED $11.3M.
+**Post:** Sat 31 Oct 2026, ~07:15 UTC (Sheetal: "post it in insta"). Voice: the unedited ElevenLabs take, natural pace (her pick, 31 Oct). Cover frame 12.92s (`thumb_offset: 12920`): the scoreboard with GOAL $150M / RAISED $11.3M.
 
 <!-- IG START -->
 This fund flopped so hard, the bankers wanted to give the money back 😳
