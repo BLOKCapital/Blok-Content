@@ -25,9 +25,10 @@ Use this for every Instagram Reel from Small Starts Part 3 onwards. Source: the 
 - **Motion:** Higgsfield `kling3_0` (std, 5s, sound off, about 7.5 credits) from the still, prompt "static camera, subtle
   natural movement: …". Use it for 3–4 key shots and a slow 3% push on the rest. Check credits first.
 - **Voice:** ElevenLabs through Higgsfield `text2speech_v2` (variant `elevenlabs`). Narrator Brooks
-  `c2acff45-84b2-4974-892d-89fa2d4e5598`. Generate the whole script in one take (more human than line by line),
-  then cut it into phrases at the pauses, tighten pauses to 0.1–0.4s and speed it up with `atempo` 1.15–1.2.
-  See `content/short-form/2026-10-31-small-starts-bogle/build/build_vo.py`.
+  `c2acff45-84b2-4974-892d-89fa2d4e5598`. Generate the whole script in one take (more human than line by line).
+  **Keep the take's own pace and pauses** (cap pauses at 1s). Do not speed it up or tighten pauses: Sheetal
+  heard the 1.18× version as "AI-ish" and picked the unedited take (31 Oct). Re-record only a slurred phrase.
+  See `build_vo.py 1.0 natural` in `content/short-form/2026-10-31-small-starts-bogle/build/`.
 - **Brand layer:** Linen/lime/coral pills top-centre (series name, part, year), Inter subtitles, scoreboard in Earth Brown
   wood with Linen chalk, gold for the key number, linen-on-black end card with the follow CTA, yes/no question
   and risk line. Original piano bed with booms on the hook and the payoff.
