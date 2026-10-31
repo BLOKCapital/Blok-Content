@@ -1,0 +1,39 @@
+CHECK 0  0.25s match=0.91
+   want: Charlie Mungur said one number is the hardest you'll ever hit.
+   heard: Charlie Munger said one number is the hardest you'll ever hit.
+   diff: [('replace', 'mungur', 'munger')]
+OK  1  3.63s match=1.00
+   want: Not a million. Not your first thousand.
+   heard: Not a million, not your first thousand.
+OK  2  5.90s match=1.00
+   want: The first hundred thousand.
+   heard: The first hundred thousand.
+OK  3  7.57s match=0.92
+   want: The first hundred thousand is a
+   heard: The first 100,000 is A.
+   diff: [('insert', '', 'one')]
+OK  4  9.75s match=1.00
+   want: but you gotta do it.
+   heard: But you gotta do it.
+OK  5 11.11s match=1.00
+   want: After that, you can ease off the gas a little bit.
+   heard: After that, you can ease off the gas a little bit.
+OK  6 13.75s match=1.00
+   want: Why? At the start, every dollar comes from you.
+   heard: Why, at the start, every dollar comes from you?
+OK  7 16.34s match=1.00
+   want: Later, your money starts doing some of the work.
+   heard: Later, your money starts doing some of the work.
+OK  8 18.85s match=1.00
+   want: So the start is the hardest part. And most funds make it harder.
+   heard: So the start is the hardest part, and most funds make it harder.
+OK  9 22.32s match=1.00
+   want: Often ten thousand dollars, just to get in.
+   heard: often $10,000 just to get in.
+OK  10 24.92s match=1.00
+   want: Your first fund should start at ten dollars.
+   heard: Your first fund should start at $10.
+OK  11 27.23s match=1.00
+   want: Small Starts, part two. Next: the fund everyone called a folly.
+   heard: Small Starts Part 2. Next, the fund everyone called a folly.
+lines to check: 1

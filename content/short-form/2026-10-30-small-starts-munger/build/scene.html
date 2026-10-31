@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500&family=Inter:wght@500;800;900&family=JetBrains+Mono:wght@500;700&display=block" rel="stylesheet">
+<script src="timeline.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --linen:#F6F3E8; --ink:#0B1B2B; --lime:#7ED116; --sky:#7DD2FD; --coral:#EC464D; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; font-family: Inter, sans-serif; color: #fff; }
+  .shot { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+  .shot img { position: absolute; left: 50%; top: 50%; width: 1080px; height: 1920px; object-fit: cover; transform-origin: 50% 50%; }
+  .shot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.05) 30%, rgba(0,0,0,.15) 60%, rgba(0,0,0,.55)); }
+  #grain { position: absolute; inset: 0; pointer-events: none; opacity: .06; z-index: 8; }
+  #vig { position: absolute; inset: 0; pointer-events: none; z-index: 7; background: radial-gradient(1100px 1500px at 50% 50%, transparent 55%, rgba(0,0,0,.6)); }
+  #bars { position: absolute; inset: 0; z-index: 7; pointer-events: none; }
+  #type { position: absolute; left: 60px; right: 60px; top: 760px; height: 600px; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .chunk { position: absolute; left: 0; right: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0 30px; line-height: .92; }
+  .t { display: inline-block; opacity: 0; will-change: transform, opacity, filter; text-shadow: 0 6px 40px rgba(0,0,0,.55); }
+  .s { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 118px; letter-spacing: -.01em; color: #F6F3E8; }
+  .c { font-weight: 900; font-size: 150px; letter-spacing: -.055em; text-transform: uppercase; color: #fff; }
+  .i { font-weight: 900; font-size: 210px; letter-spacing: -.06em; text-transform: uppercase; background-image: linear-gradient(175deg, #FFF6DC 0%, #F2D58A 45%, #C9963E 70%, #F6E7B8 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 8px 30px rgba(0,0,0,.5)); }
+  .br { flex-basis: 100%; height: 0; }
+  #tag { position: absolute; top: 210px; width: 100%; display: flex; justify-content: center; gap: 12px; z-index: 6; }
+  .pill { display: inline-block; padding: 10px 24px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 26px; letter-spacing: .08em; }
+  #E { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 9; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  #E .s { font-size: 96px; }
+  #E .c { font-size: 120px; }
+  #flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 8; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="shots"></div>
+<div id="flash"></div>
+<div id="bars"></div>
+<div id="type"></div>
+<div id="guess" class="pill" style="position:absolute;top:290px;left:0;right:0;margin:0 auto;width:fit-content;z-index:6;background:rgba(0,0,0,.55);color:#F2D58A;border:2px solid #F2D58A">GUESS THE NUMBER</div>
+<div id="tag"><span class="pill" style="background:var(--linen);color:var(--ink)">SMALL STARTS</span><span class="pill" style="background:var(--lime);color:var(--ink)">PART 2</span></div>
+<canvas id="grain" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+<div id="vig"></div>
+<div id="E">
+  <div class="pill" style="background:var(--linen);color:var(--ink)">SMALL STARTS · PART 2</div>
+  <div class="s" style="margin-top:70px;opacity:1">Next:</div>
+  <div class="s" style="opacity:1">the fund everyone</div>
+  <div class="s" style="opacity:1">called a</div>
+  <div class="c" style="opacity:1;line-height:1">FOLLY</div>
+  <div style="margin-top:60px;font-family:'Playfair Display',serif;font-style:italic;font-size:46px;color:#F6F3E8">Would you have kept going? Yes or no</div>
+  <div style="margin-top:56px;background:var(--coral);color:#fff;font-weight:800;font-size:42px;padding:22px 52px;border-radius:999px">Follow @blok.capital</div>
+  <div style="margin-top:40px;font-size:22px;line-height:1.5;color:#9AA4AE">Educational only · Not financial advice · Investing involves risk<br>AI-generated voiceover · AI-generated imagery</div>
+</div>
+
+<script>
+const TL = window.TIMELINE;
+window.DURATION = Math.ceil((TL[TL.length - 1].end + 2.6) * 10) / 10;
+const S = (i) => TL[i].start;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const back = (x) => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+
+// chunks per line: * script, ^ caps, # image-filled caps, / line break
+const CH = [
+  ['*Charlie ^Munger', '*said one #number', '*is the ^hardest', "*you'll ever ^hit."],
+  ['*Not a ^million.', '*Not your first ^thousand.'],
+  ['*The first / #$100,000.'],
+  ['*“The first / ^$100,000', '*is a / ^b****,'],
+  ['*but you / ^gotta ^do ^it.”'],
+  ['*“After that,', '*you can / ^ease ^off', '*the ^gas', '*a little ^bit.”'],
+  ['^why?', '*At the ^start,', '*every / ^dollar', '*comes from / #you.'],
+  ['*Later,', '*your / #money', '*starts / ^doing', '*some of the / ^work.'],
+  ['*So the / ^start', '*is the hardest / ^part.', '*And most / ^funds', '*make it / ^harder.'],
+  ['*Often / #$10,000', '*just to / ^get ^in.'],
+  ['*Your first / ^fund', '*should start at', '#$10.'],
+  ['*Small / ^starts,', '*part ^2.', '*Next:', '*the fund everyone / *called a ^folly.'],
+];
+// shot (image) per line and the image used to fill # words
+const SHOT = [0, 7, 7, 1, 1, 4, 2, 3, 5, 5, 6, null];
+const FILL = [4, 4, 4, 6, 6, 6, 4, 6, 4, 4, 4, 4];
+const shotsEl = $('shots');
+const used = [...new Set(SHOT.filter((x) => x !== null))];
+used.forEach((k) => { shotsEl.insertAdjacentHTML('beforeend', `<div class="shot" id="sh${k}"><img src="img/b${k}.jpg"></div>`); });
+
+// build chunk DOM, mapping tokens to word timings
+const chunks = [];
+CH.forEach((list, li) => {
+  const ws = TL[li].words; let wi = 0;
+  list.forEach((c, ci) => {
+    const el = document.createElement('div'); el.className = 'chunk';
+    const toks = [];
+    let prev = '*';
+    c.split(' ').forEach((tok) => {
+      if (tok === '/') { el.insertAdjacentHTML('beforeend', '<span class="br"></span>'); return; }
+      const marked = '*^#'.includes(tok[0]); const m = marked ? tok[0] : prev; const txt = marked ? tok.slice(1) : tok; prev = m;
+      const cls = m === '*' ? 's' : m === '^' ? 'c' : 'i';
+      const sp = document.createElement('span'); sp.className = `t ${cls}`; sp.textContent = txt;
+      el.appendChild(sp); toks.push({ sp, w: ws[wi], cls }); wi++;
+    });
+    $('type').appendChild(el);
+    chunks.push({ el, toks, li, ci, start: toks[0].w.s, last: toks[toks.length - 1].w.e });
+  });
+  if (wi !== ws.length) console.error('word count mismatch on line', li, wi, ws.length);
+});
+chunks.forEach((c, k) => { const nx = chunks[k + 1]; c.end = nx ? nx.start - 0.04 : TL[TL.length - 1].end + 0.6; });
+
+// grain
+const g = $('grain').getContext('2d'); const gi = g.createImageData(540, 960);
+function grain(t) { let s = Math.floor(t * 24) * 9301 + 49297; for (let i = 0; i < gi.data.length; i += 4) { s = (s * 1103515245 + 12345) & 0x7fffffff; const v = (s >> 16) & 255; gi.data[i] = gi.data[i + 1] = gi.data[i + 2] = v; gi.data[i + 3] = 255; } g.putImageData(gi, 0, 0); }
+
+const E0 = TL[11].end + 0.25;
+window.draw = (t) => {
+  grain(t);
+  // shots: hard cut at each line start, slow push + drift, small punch-in on cut
+  let li = 0; TL.forEach((l, i) => { if (t >= l.start - 0.12) li = i; });
+  const cur = SHOT[li];
+  // shot start = first line using this shot in its run
+  let s0 = li; while (s0 > 0 && SHOT[s0 - 1] === cur) s0--;
+  const st = s0 === 0 ? 0 : TL[s0].start - 0.12;
+  used.forEach((k) => {
+    const el = $('sh' + k); const on = k === cur;
+    el.style.opacity = on ? 1 : 0;
+    if (on) { const u = t - st; const punch = 1 + 0.06 * (1 - ease(u / 0.35));
+      const z = (1.14 + 0.05 * u / 6) * punch; const dx = Math.sin(k + u * 0.25) * 18;
+      el.firstChild.style.transform = `translate(-50%, -50%) translate(${dx}px, ${-u * 6}px) scale(${z})`; }
+  });
+  $('flash').style.opacity = 0.35 * clamp(1 - Math.abs(t - S(2) + 0.05) / 0.12);
+
+  // kinetic type
+  chunks.forEach((c) => {
+    const vis = t >= c.start - 0.15 && t < c.end;
+    c.el.style.display = vis ? 'flex' : 'none';
+    if (!vis) return;
+    c.toks.forEach(({ sp, w, cls }, k) => {
+      const a = w.s - 0.06; const q = cls === 's' ? ease((t - a) / 0.28) : back((t - a) / 0.3);
+      sp.style.opacity = clamp(q * 1.5);
+      if (cls === 's') { sp.style.transform = `translateY(${(1 - q) * 30}px)`; sp.style.filter = `blur(${(1 - clamp(q)) * 8}px)`; }
+      else { sp.style.transform = `scale(${0.6 + 0.4 * q})`; sp.style.letterSpacing = `${-0.055 + 0.08 * (1 - clamp(q))}em`; }
+    });
+    // whole chunk drifts slightly
+    c.el.style.transform = `scale(${1 + 0.03 * clamp((t - c.start) / 1.5)})`;
+  });
+
+  // end card
+  const e = ease((t - E0) / 0.35); $('E').style.opacity = e;
+  $('tag').style.opacity = 1 - e;
+  $('guess').style.opacity = clamp((t - 0.1) / 0.3) * (1 - clamp((t - S(2) + 0.1) / 0.2));
+};
+window.draw(0);
+</script>
+</body>
+</html>
