@@ -1,0 +1,39 @@
+OK  0  0.25s match=1.00
+   want: He sold his first stock too early. Guess who.
+   heard: He sold his first stock too early. Guess who?
+CHECK 1  2.98s match=0.90
+   want: Nineteen forty-two. An eleven-year-old buys three shares for a hundred and fourteen dollars.
+   heard: 1942, an 11-year-old buys three shares for $114.
+   diff: [('replace', 'a', 'one'), ('delete', 'and', '')]
+OK  2  8.05s match=1.00
+   want: They drop to twenty-seven. He holds.
+   heard: They drop to 27. He holds.
+OK  3 10.16s match=1.00
+   want: Back at forty, he sells.
+   heard: Back at 40 he sells.
+OK  4 11.55s match=1.00
+   want: Then they climb past two hundred.
+   heard: Then they climb past 200.
+OK  5 13.35s match=1.00
+   want: That kid was Warren Buffett.
+   heard: That kid was Warren Buffett.
+OK  6 15.10s match=0.94
+   want: Charlie Mungur. The big money is not in the buying and the selling, but in the waiting.
+   heard: Charlie Munger. The big money is not in the buying and the selling, but in the waiting.
+   diff: [('replace', 'mungur', 'munger')]
+OK  7 19.74s match=0.93
+   want: John Boagle. Don't look for the needle in the haystack. Just buy the haystack!
+   heard: John Bogle, don't look for the needle in the haystack. Just buy the haystack.
+   diff: [('replace', 'boagle', 'bogle')]
+CHECK 8 24.07s match=0.91
+   want: Buffett started with a hundred and fourteen dollars. A fund of your own? Usually ten thousand or more.
+   heard: Buffett started with $114. A fund of your own, usually $10,000 or more.
+   diff: [('replace', 'a', 'one'), ('delete', 'and', '')]
+OK  9 29.58s match=1.00
+   want: It should start at ten dollars.
+   heard: It should start at $10.
+CHECK 10 31.38s match=0.84
+   want: Small Starts, part one. Next: Mungur's first hundred thousand.
+   heard: Small Starts Part 1. Next, Munger's first 100,000.
+   diff: [('replace', "mungur's", "munger's"), ('insert', '', 'one')]
+lines to check: 3

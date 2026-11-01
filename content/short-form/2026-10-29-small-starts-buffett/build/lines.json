@@ -1,0 +1,57 @@
+[
+ {
+  "show": "He sold his first stock too early. Guess who.",
+  "say": "He sold his first stock too early. Guess who.",
+  "gap": 0.3
+ },
+ {
+  "show": "1942. An 11-year-old buys three shares for $114.",
+  "say": "Nineteen forty-two. An eleven-year-old buys three shares for a hundred and fourteen dollars.",
+  "gap": 0.15
+ },
+ {
+  "show": "They drop to $27. He holds.",
+  "say": "They drop to twenty-seven. He holds.",
+  "gap": 0.15
+ },
+ {
+  "show": "Back at $40, he sells.",
+  "say": "Back at forty, he sells.",
+  "gap": 0.15
+ },
+ {
+  "show": "Then they climb past $200.",
+  "say": "Then they climb past two hundred.",
+  "gap": 0.35
+ },
+ {
+  "show": "That kid was Warren Buffett.",
+  "say": "That kid was Warren Buffett.",
+  "gap": 0.35
+ },
+ {
+  "show": "Charlie Munger: \"The big money is not in the buying and the selling, but in the waiting.\"",
+  "say": "Charlie Mungur. The big money is not in the buying and the selling, but in the waiting.",
+  "gap": 0.3
+ },
+ {
+  "show": "John Bogle: \"Don't look for the needle in the haystack. Just buy the haystack!\"",
+  "say": "John Boagle. Don't look for the needle in the haystack. Just buy the haystack!",
+  "gap": 0.3
+ },
+ {
+  "show": "Buffett started with $114. A fund of your own? Usually $10,000 or more.",
+  "say": "Buffett started with a hundred and fourteen dollars. A fund of your own? Usually ten thousand or more.",
+  "gap": 0.2
+ },
+ {
+  "show": "It should start at $10.",
+  "say": "It should start at ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "Small Starts, part 1. Next: Munger's first $100,000.",
+  "say": "Small Starts, part one. Next: Mungur's first hundred thousand.",
+  "gap": 0.0
+ }
+]
