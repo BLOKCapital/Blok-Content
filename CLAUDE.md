@@ -187,6 +187,7 @@ Project skills in `.claude/skills/` (invoke with `/skill-name`):
 - `instagram-reel` — finished Reels with AI voiceover + motion graphics, no filming (playbook section 5).
 - `x-thread` — X posts and threads in BLOK voice. Always follows `growth/x/x-algorithm-playbook.md` (how X ranks posts).
 - `composio-publish` — publish/schedule via Composio (Instagram, X, LinkedIn, etc.).
+- `hooks` — **always use it to write the hook (opening line / first 3 seconds) of any tweet, caption or script** (Sheetal, 2 Nov 2026). Follow `.claude/skills/hooks/SKILL.md` incl. its two review gates; then write the rest per `growth/x/tweet-style-guide.md`.
 
 Recommended marketplace plugins (install from the Claude plugin directory):
 **Social Media Skills**, **Remotion** (programmatic video rendering), **Marketing** (Anthropic).
