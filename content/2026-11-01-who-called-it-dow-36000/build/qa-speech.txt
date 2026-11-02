@@ -1,0 +1,39 @@
+OK  0  0.25s match=1.00
+   want: In nineteen ninety-nine, two authors bet their names on one number. Dow thirty-six thousand.
+   heard: In 1999, two authors bet their names on one number, Dow 36,000.
+OK  1  6.30s match=1.00
+   want: Their call? The Dow more than triples... in three to five years.
+   heard: Their call? The Dow more than triples in three to five years.
+OK  2 10.88s match=1.00
+   want: So, did it happen? Yes or no. Guess before the end.
+   heard: So, did it happen? Yes or no? Guess before the end.
+OK  3 15.67s match=1.00
+   want: Three years later, the Dow had crashed, to about seven thousand three hundred.
+   heard: Three years later, the Dow had crashed to about 7,300.
+OK  4 20.23s match=1.00
+   want: The book got called the most spectacularly wrong investing book ever.
+   heard: The book got called the most spectacularly wrong investing book ever.
+CHECK 5 24.84s match=0.77
+   want: So the answer's no? Not quite.
+   heard: So the answer is no, not quite.
+   diff: [('replace', "answer's", 'answer is')]
+CHECK 6 27.50s match=0.80
+   want: November second, twenty twenty-one. The Dow closes above thirty-six thousand.
+   heard: November 2, 2021. The Dow closes above 36,000.
+   diff: [('replace', 'second twenty', 'two two thousand')]
+OK  7 32.45s match=1.00
+   want: Right number. Wrong date. About seventeen years late.
+   heard: Right number, wrong date, about 17 years late.
+OK  8 36.16s match=1.00
+   want: One of the authors later put it best. Never associate a date with a number.
+   heard: One of the authors later put it best, "Never associate a date with a number."
+OK  9 41.18s match=1.00
+   want: The people who got there didn't time it. They just stayed in.
+   heard: The people who got there didn't time it. They just stayed in.
+OK  10 44.43s match=1.00
+   want: A fund of your own should start at ten dollars, not ten thousand.
+   heard: A fund of your own should start at $10, not $10,000.
+OK  11 48.16s match=1.00
+   want: Who Called It, part two. Next: The Death of Equities, nineteen seventy-nine.
+   heard: Who Called It, Part 2. Next, The Death of Equities, 1979.
+lines to check: 2
