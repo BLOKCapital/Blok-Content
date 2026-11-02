@@ -16,6 +16,12 @@ found by search. We copy the **thinking, structure and formatting**, never their
 - Best post of the week: **394K impressions, 197 bookmarks, 45 quotes** (a scandal plus a screenshot as proof).
 - Our own last original posts: 7 replies on 18 likes at best. The gap is the writing, not the topics.
 
+## Hooks: always use the `hooks` skill (Sheetal, 2 Nov 2026)
+
+For every tweet, caption or script, write the opening line with the `hooks` skill (`.claude/skills/hooks/`): name the one person and the feeling,
+pick a format from `parker-system/creative-strategy-context/hooks.md`, run the two review gates, then write the rest of the post with the rules below.
+First use: the Ambassador deadline tweet (POV hook, `content/2026-11-02-ambassador-deadline/` in the shared folder).
+
 ## Rule 0: sound like a person talking to one person (Sheetal, 2 Nov 2026)
 
 This beats every formatting rule below. Our drafts kept coming out stiff, like slogans stacked on lines.
