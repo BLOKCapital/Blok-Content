@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=block" rel="stylesheet">
+<script src="timeline.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --linen:#F6F3E8; --ink:#0B1B2B; --indigo:#004EBA; --sky:#7DD2FD; --lime:#7ED116; --coral:#EC464D; --earth:#844947; --line:#E7E2D3; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #111; font-family: Inter, sans-serif; color: var(--ink); }
+  .shot { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+  .cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 960px; will-change: transform; }
+  .cam img.bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+  .vig { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 62%, rgba(0,0,0,.6) 100%); pointer-events: none; }
+  .linen { background: var(--linen); }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .serif { font-family: Fraunces, serif; }
+  #series { position: absolute; top: 210px; width: 100%; display: flex; justify-content: center; gap: 14px; z-index: 20; }
+  .pill { display: inline-block; padding: 12px 24px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 27px; letter-spacing: .08em; }
+  #promise { position: absolute; top: 290px; width: 100%; text-align: center; z-index: 20; }
+  #promise span { display: inline-block; background: var(--lime); color: var(--ink); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 30px; letter-spacing: .06em; padding: 12px 26px; border-radius: 14px; }
+  #bar { position: absolute; top: 0; left: 0; height: 10px; background: var(--lime); z-index: 30; }
+  /* overlays */
+  .ov { position: absolute; opacity: 0; }
+  .card { background: rgba(246,243,232,.96); border-radius: 30px; padding: 26px 34px; box-shadow: 0 18px 50px rgba(0,0,0,.25); }
+  .big { font-family: Fraunces, serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+  .lab { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 26px; letter-spacing: .08em; text-transform: uppercase; color: var(--earth); }
+  .stamp { border: 9px solid var(--coral); color: var(--coral); font-family: 'JetBrains Mono', monospace; font-weight: 700; border-radius: 18px; padding: 10px 26px; background: rgba(255,255,255,.95); text-align: center; }
+  /* yes/no */
+  .yn { position: absolute; top: 760px; width: 400px; height: 300px; border-radius: 48px; display: flex; align-items: center; justify-content: center; font-family: Fraunces, serif; font-weight: 800; font-size: 140px; color: #fff; }
+  /* subtitles */
+  #sub { position: absolute; left: 60px; right: 60px; top: 1440px; text-align: center; z-index: 25; font-weight: 800; font-size: 58px; line-height: 1.15; color: #fff; text-shadow: 0 3px 14px rgba(0,0,0,.85), 0 0 3px rgba(0,0,0,.9); }
+  #sub b { color: var(--lime); font-weight: 800; }
+  #sub.dark { color: var(--ink); text-shadow: none; }
+  #sub.dark b { color: var(--indigo); }
+  .fine { font-size: 22px; line-height: 1.45; color: var(--earth); text-align: center; }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="series"><span class="pill" style="background:var(--ink);color:#fff">WHO CALLED IT?</span><span class="pill" style="background:var(--coral);color:#fff">PART 2 · 1999</span></div>
+<div id="promise"><span>DID IT HAPPEN? ANSWER AT THE END</span></div>
+
+<!-- A: bookstore -->
+<div class="shot" id="A"><div class="cam"><img class="bg" src="s1-bookstore.jpg">
+  <div style="position:absolute;left:452px;top:812px;width:160px;height:200px;transform:rotate(-1deg);display:flex;flex-direction:column;align-items:center;justify-content:center;">
+    <div class="serif" style="font-weight:800;font-size:40px;color:#0B1B2B;line-height:1">DOW</div>
+    <div class="serif" style="font-weight:800;font-size:40px;color:#EC464D;line-height:1.05">36,000</div>
+  </div></div><div class="vig"></div>
+  <div class="ov card" id="A1" style="left:90px;top:1130px;width:900px;text-align:center"><div class="lab">The book · Oct 1999</div><div class="big" style="font-size:110px;color:var(--indigo);margin-top:8px">Dow 36,000</div></div>
+</div>
+
+<!-- B: trading floor -->
+<div class="shot" id="B"><div class="cam"><img class="bg" src="s2-floor.jpg"></div><div class="vig"></div>
+  <div class="ov card" id="B1" style="left:110px;top:1080px;width:860px;text-align:center">
+    <div class="lab">The call</div>
+    <div class="big" style="font-size:96px;margin-top:8px"><span style="color:var(--earth)">~10,000</span> <span style="color:var(--ink)">→</span> <span id="Bn" style="color:var(--indigo)">36,000</span></div>
+    <div class="lab" style="margin-top:10px;color:var(--coral)">within 3 to 5 years</div>
+  </div>
+</div>
+
+<!-- C: yes/no -->
+<div class="shot linen" id="C"><div class="cam">
+  <div class="big" style="position:absolute;top:520px;width:100%;text-align:center;font-size:96px;color:var(--indigo)">Did it happen?</div>
+  <div class="yn" id="Cy" style="left:90px;background:var(--lime);color:var(--ink)">YES</div>
+  <div class="yn" id="Cn" style="left:590px;background:var(--coral)">NO</div>
+  <div class="mono" id="Cg" style="position:absolute;top:1120px;width:100%;text-align:center;font-weight:700;font-size:34px;letter-spacing:.08em;color:var(--earth)">GUESS BEFORE THE END 👇</div>
+</div></div>
+
+<!-- D: crash -->
+<div class="shot" id="D"><div class="cam"><img class="bg" src="s3-crash.jpg" style="filter:saturate(.7)"></div><div class="vig"></div>
+  <div class="ov card" id="D1" style="left:140px;top:1080px;width:800px;text-align:center">
+    <div class="lab">Dow Jones · Oct 2002</div>
+    <div class="big" id="Dn" style="font-size:150px;color:var(--coral);margin-top:6px">7,286</div>
+  </div>
+</div>
+
+<!-- E: bargain bin -->
+<div class="shot" id="E"><div class="cam"><img class="bg" src="s4-bin.jpg">
+  <div style="position:absolute;left:445px;top:712px;width:260px;height:150px;background:#FBF8EF;border-radius:6px;transform:rotate(-3deg);box-shadow:0 4px 10px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center">
+    <div class="serif" style="font-weight:800;font-size:92px;color:var(--coral)">1¢</div></div>
+</div><div class="vig"></div>
+  <div class="ov card" id="E1" style="left:80px;top:1040px;width:920px;text-align:center">
+    <div class="serif" style="font-weight:800;font-size:58px;line-height:1.1;color:var(--ink)">“the most spectacularly wrong investing book ever”</div>
+    <div class="lab" style="margin-top:14px">The Washington Post</div>
+  </div>
+</div>
+
+<!-- F: yes/no twist -->
+<div class="shot linen" id="F"><div class="cam">
+  <div class="big" style="position:absolute;top:520px;width:100%;text-align:center;font-size:96px;color:var(--indigo)">So it's a no?</div>
+  <div class="yn" id="Fy" style="left:90px;background:var(--lime);color:var(--ink)">YES</div>
+  <div class="yn" id="Fn" style="left:590px;background:var(--coral)">NO</div>
+  <div class="stamp ov" id="Fs" style="left:240px;top:1130px;width:600px;font-size:76px;transform:rotate(-7deg)">NOT QUITE.</div>
+</div></div>
+
+<!-- G: chart -->
+<div class="shot linen" id="G"><div class="cam" id="Gc">
+  <svg id="chart" width="1080" height="1920" viewBox="0 0 1080 1920" style="position:absolute;left:0;top:0">
+    <g id="Gg"></g>
+  </svg>
+</div>
+  <div class="ov card" id="G1" style="left:150px;top:1215px;width:780px;text-align:center;background:var(--indigo)">
+    <div class="lab" style="color:var(--sky)">Nov 2, 2021 · close</div>
+    <div class="big" style="font-size:110px;color:#fff;margin-top:6px">36,053</div>
+  </div>
+</div>
+
+<!-- H: 2021 kitchen -->
+<div class="shot" id="H"><div class="cam"><img class="bg" src="s5-2021.jpg"></div><div class="vig"></div>
+  <div class="ov card" id="H1" style="left:90px;top:900px;width:560px"><div class="big" style="font-size:62px;color:var(--ink)">Right number <span style="color:var(--lime)">✓</span></div></div>
+  <div class="ov card" id="H2" style="left:430px;top:1040px;width:560px"><div class="big" style="font-size:62px;color:var(--ink)">Wrong date <span style="color:var(--coral)">✗</span></div></div>
+  <div class="ov stamp" id="H3" style="left:300px;top:1190px;width:480px;font-size:60px;transform:rotate(-5deg)">+17 YEARS</div>
+</div>
+
+<!-- I: quote -->
+<div class="shot" id="I"><div class="cam"><img class="bg" src="s1-bookstore.jpg" style="filter:blur(14px) brightness(.45) saturate(.6);transform:scale(1.15)"></div>
+  <div class="ov" id="I1" style="left:90px;top:640px;width:900px;text-align:center">
+    <div class="lab" style="color:var(--sky)">One of the authors, later</div>
+    <div class="serif" style="font-weight:800;font-size:96px;line-height:1.05;color:#fff;margin-top:24px">“Never associate a date with a number.”</div>
+    <div class="lab" style="margin-top:24px;color:#ddd">James Glassman</div>
+  </div>
+</div>
+
+<!-- J: patient man -->
+<div class="shot" id="J"><div class="cam"><img class="bg" src="s6-patient.jpg"></div><div class="vig"></div>
+  <div class="ov card" id="J1" style="left:170px;top:1100px;width:740px;text-align:center"><div class="big" style="font-size:76px;color:var(--indigo)">No forecast needed.</div></div>
+</div>
+
+<!-- K: price tags -->
+<div class="shot linen" id="K"><div class="cam">
+  <div class="ov card" id="K1" style="left:140px;top:560px;width:800px;background:#fff">
+    <div class="lab">A fund of your own, usually</div>
+    <div class="big" style="font-size:130px;color:var(--ink);margin-top:10px;position:relative;display:inline-block">$10,000+<div id="Kx" style="position:absolute;left:-10px;right:-10px;top:52%;height:14px;background:var(--coral);border-radius:7px;transform-origin:left center;transform:scaleX(0) rotate(-4deg)"></div></div>
+  </div>
+  <div class="ov card" id="K2" style="left:140px;top:880px;width:800px;background:var(--indigo)">
+    <div class="lab" style="color:var(--sky)">What it should be</div>
+    <div class="big" style="font-size:190px;color:#fff;margin-top:10px">$10</div>
+  </div>
+</div></div>
+
+<!-- L: end card -->
+<div class="shot linen" id="L"><div class="cam">
+  <div class="mono" style="position:absolute;top:430px;width:100%;text-align:center;font-weight:700;font-size:28px;letter-spacing:.1em;color:var(--earth)">NEXT ON WHO CALLED IT?</div>
+  <div class="big" style="position:absolute;top:490px;width:100%;text-align:center;font-size:110px;color:var(--indigo)">Part 3:<br>“The Death<br>of Equities”</div>
+  <div class="mono" style="position:absolute;top:880px;width:100%;text-align:center;font-weight:700;font-size:28px;color:var(--earth)">(A 1979 MAGAZINE COVER)</div>
+  <div class="card" style="position:absolute;left:90px;top:940px;width:900px;text-align:center;background:#fff"><div style="font-weight:800;font-size:44px">Did you guess right? Yes or no 👇</div></div>
+  <img src="logo-wordmark.png" style="position:absolute;left:345px;top:1085px;width:390px">
+  <div style="position:absolute;top:1180px;width:100%;text-align:center"><span class="pill" style="background:var(--coral);color:#fff;font-size:30px">Follow @blok.capital</span></div>
+  <div class="fine" style="position:absolute;top:1262px;left:140px;width:800px">Educational only · not financial advice · investing involves risk · past results don't predict future ones<br>AI-generated voiceover and imagery · scenes are dramatised</div>
+</div></div>
+
+<div id="sub"></div>
+
+<script>
+const T = window.TIMELINE;
+const S = i => T[i].start, E = i => T[i].end;
+const W = (i, k) => T[i].words[k].s; // word start
+window.DURATION = E(11) + 2.6;
+const clamp = (x, a=0, b=1) => Math.max(a, Math.min(b, x));
+const ease = x => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
+const outE = x => 1 - Math.pow(1 - clamp(x), 3);
+const lerp = (a, b, k) => a + (b - a) * k;
+const $ = id => document.getElementById(id);
+// focus: centre point (px,py) at scale s, clamped so the frame stays covered
+function focus(px, py, s) {
+  let x = -s * (px - 540), y = -s * (py - 960);
+  const mx = (s - 1) * 540, my = (s - 1) * 960;
+  return { s, x: clamp(x, -mx, mx), y: clamp(y, -my, my) };
+}
+function setCam(el, t, t0, t1, a, b, fn = ease) {
+  const k = fn((t - t0) / (t1 - t0));
+  const s = lerp(a.s, b.s, k), x = lerp(a.x, b.x, k), y = lerp(a.y, b.y, k), r = lerp(a.r || 0, b.r || 0, k);
+  el.querySelector('.cam').style.transform = `translate(${x}px,${y}px) scale(${s}) rotate(${r}deg)`;
+}
+function pop(id, t, t0, dur = .35, from = 40) {
+  const k = outE((t - t0) / dur), el = $(id);
+  el.style.opacity = k; el.style.transform = (el.dataset.base || '') + ` translateY(${(1 - k) * from}px) scale(${lerp(.92, 1, k)})`;
+}
+function stampIn(id, t, t0, rot) {
+  const k = clamp((t - t0) / .22), el = $(id);
+  el.style.opacity = k > 0 ? 1 : 0;
+  el.style.transform = `rotate(${rot}deg) scale(${lerp(2.2, 1, outE(k))})`;
+}
+// shots: [id, tIn, tOut]
+let shots;
+function buildShots() {
+  shots = [
+    ['A', 0, S(1)], ['B', S(1), S(2)], ['C', S(2), S(3)], ['D', S(3), S(4)], ['E', S(4), S(5)], ['F', S(5), S(6)],
+    ['G', S(6), S(7)], ['H', S(7), S(8)], ['I', S(8), S(9)], ['J', S(9), S(10)], ['K', S(10), S(11)], ['L', S(11), 999]
+  ];
+}
+// chart data (approximate path; labelled points are sourced)
+const pts = [[1999.75,10300],[2000.04,11723],[2001.7,8235],[2002.77,7286],[2004.0,10450],[2006.0,11000],[2007.78,14165],[2009.18,6547],[2011.3,12800],[2013.5,15000],[2015.4,18000],[2016.1,16000],[2017.8,23000],[2018.75,26800],[2019.9,28500],[2020.22,18592],[2020.99,30600],[2021.84,36053]];
+const X = yr => 120 + (yr - 1999.5) * 38, Y = v => 1080 - (v - 5000) * 0.01677;
+function buildChart() {
+  const g = $('Gg'); let h = '';
+  // target line
+  h += `<line x1="80" x2="1000" y1="${Y(36000)}" y2="${Y(36000)}" stroke="#EC464D" stroke-width="5" stroke-dasharray="18 14"/>`;
+  h += `<text x="96" y="${Y(36000) - 22}" font-family="JetBrains Mono" font-weight="700" font-size="26" fill="#EC464D">THE CALL: 36,000</text>`;
+  // deadline 2004
+  h += `<line id="dl" x1="${X(2004)}" x2="${X(2004)}" y1="${Y(34800)}" y2="${Y(5000)}" stroke="#844947" stroke-width="4" stroke-dasharray="8 10" opacity="0"/>`;
+  h += `<text id="dlt" x="${X(2004) + 12}" y="${Y(33500)}" font-family="JetBrains Mono" font-weight="700" font-size="24" fill="#844947" opacity="0">DEADLINE 2004</text>`;
+  // axis years
+  for (const yr of [2000, 2005, 2010, 2015, 2020]) h += `<text x="${X(yr) - 30}" y="${Y(5000) + 50}" font-family="JetBrains Mono" font-size="24" fill="#844947">${yr}</text>`;
+  h += `<line x1="80" x2="1000" y1="${Y(5000)}" y2="${Y(5000)}" stroke="#E7E2D3" stroke-width="3"/>`;
+  const d = pts.map((p, i) => (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1)).join(' ');
+  h += `<path id="gp" d="${d}" fill="none" stroke="#004EBA" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>`;
+  h += `<circle id="gdot" r="16" fill="#004EBA" stroke="#fff" stroke-width="5"/>`;
+  h += `<text id="g02" x="${X(2002.77) - 40}" y="${Y(7286) + 56}" font-family="JetBrains Mono" font-weight="700" font-size="26" fill="#EC464D" opacity="0">7,286 · 2002</text>`;
+  h += `<text id="gfoot" opacity="0" x="80" y="${Y(5000) + 84}" font-family="JetBrains Mono" font-size="20" fill="#844947">Dow Jones Industrial Average, approximate path</text>`;
+  g.innerHTML = h;
+  const p = $('gp'); window.GL = p.getTotalLength(); p.style.strokeDasharray = GL; p.style.strokeDashoffset = GL;
+}
+function subtitles(t) {
+  let li = -1; for (let i = 0; i < T.length; i++) if (t >= T[i].start - .05 && t <= T[i].end + .25) li = i;
+  const el = $('sub'); if (li < 0) { el.innerHTML = ''; return; }
+  const ws = T[li].words; let wi = 0; for (let k = 0; k < ws.length; k++) if (t >= ws[k].s) wi = k;
+  const c0 = Math.floor(wi / 3) * 3, chunk = ws.slice(c0, c0 + 3);
+  el.innerHTML = chunk.map((w, k) => (c0 + k === wi ? `<b>${w.w}</b>` : w.w)).join(' ');
+  const cur = shots.find(s => t >= s[1] && t < s[2]); el.className = cur && 'CFGKL'.includes(cur[0]) ? 'dark' : '';
+}
+window.draw = function (t) {
+  if (!shots) { buildShots(); buildChart(); }
+  $('bar').style.width = (t / DURATION * 1080) + 'px';
+  $('promise').style.opacity = t < S(11) ? 1 : 0;
+  $('series').style.opacity = 1;
+  for (const [id, a, b] of shots) {
+    const el = $(id); const fi = clamp((t - a + .12) / .24), fo = clamp((b + .12 - t) / .24);
+    el.style.opacity = Math.min(fi, fo);
+    el.style.display = (t > a - .2 && t < b + .2) ? 'block' : 'none';
+  }
+  // A: start tight on the book, pull out
+  setCam($('A'), t, 0, S(1), { ...focus(535, 905, 2.0), r: -3 }, { s: 1.08, x: 0, y: -40, r: 0 });
+  pop('A1', t, W(0, 9));
+  // B: low push-in + tilt up, number counts up
+  setCam($('B'), t, S(1) - .2, S(2), { s: 1.05, x: 0, y: 60, r: 1.5 }, { s: 1.4, x: 0, y: 260, r: -1 });
+  pop('B1', t, S(1) + .3);
+  { const k = outE((t - S(1) - .5) / 1.6); $('Bn').textContent = Math.round(lerp(10000, 36000, k)).toLocaleString('en-US'); }
+  // C: zoom punch, YES/NO
+  { const k = outE((t - S(2)) / .45); setCam($('C'), t, S(2), S(3), { s: 1.35 - .3 * k, x: 0, y: 0 }, { s: 1.05, x: 0, y: -10 }, () => 0);
+    $('C').querySelector('.cam').style.transform = `scale(${lerp(1.35, 1, k) + .04 * clamp((t - S(2) - .45) / 3)})`;
+    const yk = outE((t - W(2, 4)) / .3), nk = outE((t - W(2, 6)) / .3);
+    $('Cy').style.transform = `scale(${lerp(.6, 1, yk)})`; $('Cy').style.opacity = yk;
+    $('Cn').style.transform = `scale(${lerp(.6, 1, nk)})`; $('Cn').style.opacity = nk; }
+  // D: dutch angle, slow pan down, count down
+  setCam($('D'), t, S(3) - .2, S(4), { s: 1.3, x: 40, y: 220, r: 5 }, { s: 1.12, x: -20, y: -60, r: 2 });
+  pop('D1', t, S(3) + .6);
+  { const k = outE((t - S(3) - .7) / 2.2); $('Dn').textContent = Math.round(lerp(11723, 7286, k)).toLocaleString('en-US'); }
+  // E: top-down zoom into the bargain bin card
+  setCam($('E'), t, S(4) - .2, S(5), { ...focus(575, 790, 1.22), r: 0 }, { ...focus(575, 790, 1.7), r: -2 });
+  pop('E1', t, S(4) + .3);
+  // F: NO lights up, then NOT QUITE stamp + shake
+  { const nk = W(5, 4); const sh = t > nk && t < nk + .35 ? Math.sin((t - nk) * 90) * 14 * (1 - (t - nk) / .35) : 0;
+    const k = outE((t - S(5)) / .4);
+    $('F').querySelector('.cam').style.transform = `translate(${sh}px,0) scale(${lerp(1.25, 1.0, k) + (t > nk ? .06 * outE((t - nk) / .3) : 0)})`;
+    $('Fy').style.opacity = t < nk ? .35 : 1; $('Fn').style.opacity = t < nk ? 1 : .35;
+    $('Fn').style.transform = `scale(${t < nk ? 1.08 : .95})`; $('Fy').style.transform = `scale(${t < nk ? .95 : 1.08})`;
+    stampIn('Fs', t, nk, -7); }
+  // G: chart; camera rides the line, then pulls out at the crossing
+  { const a = S(6) - .1, b = S(7); const prog = clamp((t - a) / ((b - a) * .78));
+    const p = $('gp'); p.style.strokeDashoffset = GL * (1 - prog); const pt = p.getPointAtLength(GL * prog);
+    $('gdot').setAttribute('cx', pt.x); $('gdot').setAttribute('cy', pt.y);
+    $('dl').setAttribute('opacity', clamp((prog - .12) / .05)); $('dlt').setAttribute('opacity', clamp((prog - .12) / .05));
+    $('g02').setAttribute('opacity', clamp((prog - .1) / .05));
+    const follow = 1.35 - .35 * ease((prog - .6) / .4);
+    const f = focus(pt.x, 820, follow); $('gfoot').setAttribute('opacity', clamp((prog - .9) / .1));
+    $('G').querySelector('.cam').style.transform = `translate(${f.x}px,${f.y}px) scale(${follow})`;
+    pop('G1', t, a + (b - a) * .8); }
+  // H: lateral pan + overlays on words
+  setCam($('H'), t, S(7) - .2, S(8), { s: 1.3, x: 160, y: 0 }, { s: 1.22, x: -150, y: -30 }, x => x);
+  pop('H1', t, W(7, 0), .3, 0); $('H1').style.transform += ` translateX(${(1 - outE((t - W(7, 0)) / .3)) * -80}px)`;
+  pop('H2', t, W(7, 2), .3, 0); $('H2').style.transform += ` translateX(${(1 - outE((t - W(7, 2)) / .3)) * 80}px)`;
+  stampIn('H3', t, W(7, 5), -5);
+  // I: quote, slow zoom with slight roll
+  setCam($('I'), t, S(8) - .2, S(9), { s: 1.0, x: 0, y: 0, r: 1 }, { s: 1.12, x: 0, y: 0, r: -1 });
+  pop('I1', t, W(8, 7), .5, 30);
+  // J: push in on the patient man
+  setCam($('J'), t, S(9) - .2, S(10), { ...focus(700, 700, 1.05) }, { ...focus(760, 640, 1.38) });
+  pop('J1', t, W(9, 8));
+  // K: price tags, zoom punch on $10
+  { const k2 = W(10, 8);
+    pop('K1', t, S(10) + .1); $('Kx').style.transform = `scaleX(${outE((t - k2 + .2) / .3)}) rotate(-4deg)`;
+    pop('K2', t, k2, .3, 60);
+    const z = t > k2 ? lerp(1.12, 1.0, outE((t - k2) / .4)) : lerp(1.0, 1.06, clamp((t - S(10)) / 2));
+    $('K').querySelector('.cam').style.transform = `scale(${z})`; }
+  // L: end card, slow pull back
+  setCam($('L'), t, S(11) - .2, DURATION, { s: 1.12, x: 0, y: 0 }, { s: 1.0, x: 0, y: 0 });
+  subtitles(t);
+};
+</script>
+</body>
+</html>

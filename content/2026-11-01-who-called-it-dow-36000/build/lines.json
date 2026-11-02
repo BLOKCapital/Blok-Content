@@ -1,0 +1,14 @@
+[
+ {"show": "In 1999, two authors bet their names on one number: \"Dow 36,000.\"", "say": "In nineteen ninety-nine, two authors bet their names on one number. Dow thirty-six thousand.", "gap": 0.3},
+ {"show": "Their call: the Dow more than triples, in 3 to 5 years.", "say": "Their call? The Dow more than triples... in three to five years.", "gap": 0.3},
+ {"show": "So, did it happen? Yes or no. Guess before the end.", "say": "So, did it happen? Yes or no. Guess before the end.", "gap": 0.4},
+ {"show": "Three years later, the Dow had crashed to about 7,300.", "say": "Three years later, the Dow had crashed, to about seven thousand three hundred.", "gap": 0.3},
+ {"show": "The book got called \"the most spectacularly wrong investing book ever.\"", "say": "The book got called the most spectacularly wrong investing book ever.", "gap": 0.4},
+ {"show": "So the answer's no? Not quite.", "say": "So the answer's no? Not quite.", "gap": 0.5},
+ {"show": "November 2, 2021. The Dow closes above 36,000.", "say": "November second, twenty twenty-one. The Dow closes above thirty-six thousand.", "gap": 0.3},
+ {"show": "Right number. Wrong date. About 17 years late.", "say": "Right number. Wrong date. About seventeen years late.", "gap": 0.4},
+ {"show": "One of the authors later put it best: \"Never associate a date with a number.\"", "say": "One of the authors later put it best. Never associate a date with a number.", "gap": 0.4},
+ {"show": "The people who got there didn't time it. They just stayed in.", "say": "The people who got there didn't time it. They just stayed in.", "gap": 0.3},
+ {"show": "A fund of your own should start at $10, not $10,000.", "say": "A fund of your own should start at ten dollars, not ten thousand.", "gap": 0.4},
+ {"show": "Who Called It, part 2. Next: \"The Death of Equities,\" 1979.", "say": "Who Called It, part two. Next: The Death of Equities, nineteen seventy-nine.", "gap": 0.0}
+]

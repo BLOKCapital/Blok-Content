@@ -63,6 +63,7 @@ Hook → Point 1 → Point 2 → Point 3 → CTA, brand colours only, and **musi
 - Stories expire in 24h. Link/mention stickers can't be added via API (the user adds them in the app).
 
 ## 5. Reel: AI voiceover + motion graphics (no filming, no paid credits)
+> **Voice (2 Nov 2026):** use the Brooks Chatterbox clone in `brand/voice/brooks-chatterbox/` (free, local, Sheetal-approved). It replaces the TTS step below.
 Folder: `content/ugc-videos/YYYY-MM-DD-slug/` (or `content/short-form/...`) with `brief.md`, `build/`.
 
 1. **Script**: `build/script.txt`, one beat per line, written how people talk ("And then... it just waits.",
