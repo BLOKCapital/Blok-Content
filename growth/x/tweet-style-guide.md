@@ -25,6 +25,7 @@ Write the way Sheetal talks: free-flowing, conversational, as if you're telling 
 - Say "you" and mean one person. React to what they're probably thinking right now ("still going 'should i apply or not'?").
 - Plain spoken words: "cuz", "so", "honestly", "just". No polished copywriter lines, no clever-for-clever's-sake contrasts.
 - Read it out loud. If it sounds like an ad or a poster, rewrite it until it sounds like a voice note to a friend.
+- **No quotation marks in tweets** (Sheetal, 2 Nov 2026: she's seen they don't work). Don't quote what the reader is thinking ("my videos aren't good enough"); say it to them directly: you think your videos aren't good enough yet.
 
 Her original (the model to match):
 ```
