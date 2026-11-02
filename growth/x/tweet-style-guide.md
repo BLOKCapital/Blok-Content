@@ -16,6 +16,42 @@ found by search. We copy the **thinking, structure and formatting**, never their
 - Best post of the week: **394K impressions, 197 bookmarks, 45 quotes** (a scandal plus a screenshot as proof).
 - Our own last original posts: 7 replies on 18 likes at best. The gap is the writing, not the topics.
 
+## Rule 0: sound like a person talking to one person (Sheetal, 2 Nov 2026)
+
+This beats every formatting rule below. Our drafts kept coming out stiff, like slogans stacked on lines.
+Write the way Sheetal talks: free-flowing, conversational, as if you're telling it to one specific person across the table.
+
+- Each line carries on from the last one ("so if you're...", "cuz...", "honestly, don't"). It reads as one train of thought, not a list of taglines.
+- Say "you" and mean one person. React to what they're probably thinking right now ("still going 'should i apply or not'?").
+- Plain spoken words: "cuz", "so", "honestly", "just". No polished copywriter lines, no clever-for-clever's-sake contrasts.
+- Read it out loud. If it sounds like an ad or a poster, rewrite it until it sounds like a voice note to a friend.
+
+Her original (the model to match):
+```
+your chance to become a better content creator
+closes on 5th November (Thursday)
+so if you are still waiting and thinking whether to apply or not
+then just dont
+cuz we want people who will execute instead of thinking
+we believe in failing rather than not trying at all
+so, don't think just apply
+link in the comments
+```
+
+Stiff (what we wrote first, don't do this):
+```
+people who get in: "i'll figure it out as i go"
+people who don't: "i'll apply once my videos are better"
+```
+
+Conversational (what she wanted):
+```
+ambassador applications close thursday, 5 nov
+so if you're still going "should i apply or not"
+honestly, don't
+we want people who just do it, not people who think about it for weeks
+```
+
 ## The 10 rules
 
 ### Formatting (how it looks)
