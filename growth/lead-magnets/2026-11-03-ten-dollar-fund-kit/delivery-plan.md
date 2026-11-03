@@ -27,7 +27,10 @@ Composio can't send the first private reply, so it needs ManyChat (or similar) c
 5. DM 3 (same day): "If you liked it, follow @blok.capital for one forgotten money story a day." Never follow-gate.
 
 ## Hosting
-Upload the single file to blokcapital.io/fund-kit (or GitHub Pages / Netlify Drop). Add `?src=ig` / `?src=x` to links.
+Never send the HTML file itself in a DM: send a link.
+- Live now (test link, free, served from the public repo): https://rawcdn.githack.com/BLOKCapital/Blok-Content/d3bd644755520ef5bad65f0ee8cc64b659dd72e3/growth/lead-magnets/2026-11-03-ten-dollar-fund-kit/fund-kit.html
+- Before launch: put the same file on our own domain, blokcapital.io/fund-kit (most trusted, short, easy to say in a video).
+- Add `?src=ig` / `?src=x` to links.
 
 ## Measure (first 7 days)
 Comments with FUND per Reel, DM button tap rate (target 60%+), factsheet tags/reshares, follows from DM.
