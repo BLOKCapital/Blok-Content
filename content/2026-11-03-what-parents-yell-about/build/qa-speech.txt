@@ -1,0 +1,37 @@
+OK  0  0.25s match=1.00
+   want: Get in the house! It's getting dark!
+   heard: Get in the house. It's getting dark.
+OK  1  2.49s match=1.00
+   want: Every few years, parents find a brand new thing to yell about.
+   heard: Every few years, parents find a brand new thing to yell about.
+CHECK 2  5.91s match=0.88
+   want: In the twenty tens: turn off the TV. You'll ruin your eyes.
+   heard: In the 2010s, turn off the TV, you'll ruin your eyes.
+   diff: [('replace', 'twenty', 'two thousand')]
+CHECK 3  9.96s match=0.82
+   want: Twenty twenty-two: put the controller down. Now.
+   heard: 2022, put the controller down. Now...
+   diff: [('replace', 'twenty', 'two thousand')]
+CHECK 4 13.93s match=0.90
+   want: And now, twenty twenty-six: get off Discord. And stop talking to that AI.
+   heard: And now, 2026, get off Discord and stop talking to that AI.
+   diff: [('replace', 'twenty', 'two thousand')]
+OK  5 20.02s match=1.00
+   want: But look closer at the kid from two thousand five.
+   heard: but look closer at the kid from 2005.
+OK  6 22.93s match=1.00
+   want: That kid is the one yelling now.
+   heard: That kid is the one yelling now.
+OK  7 25.16s match=1.00
+   want: Every generation gets yelled at, then grows up and does the yelling.
+   heard: Every generation gets yelled at, then grows up and does the yelling.
+CHECK 8 29.21s match=0.87
+   want: So what will today's kids yell about in twenty forty-five?
+   heard: So what will today's kids yell about in 2045?
+   diff: [('replace', 'twenty', 'two thousand')]
+OK  9 32.94s match=1.00
+   want: Tell me in the comments. Best guess gets pinned.
+   heard: Tell me in the comments. Best guess gets pinned.
+lines to check: 4
+    I:         -15.7 LUFS
+    Peak:       -1.5 dBFS
