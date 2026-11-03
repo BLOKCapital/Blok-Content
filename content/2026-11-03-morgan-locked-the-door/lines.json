@@ -1,0 +1,47 @@
+[
+ {
+  "show": "Tonight, in 1907, America's most powerful banker locked fifty bankers in his library.",
+  "say": "Tonight, in nineteen oh seven, America's most powerful banker locked fifty bankers in his library.",
+  "gap": 0.3
+ },
+ {
+  "show": "J.P. Morgan. A panic was eating Wall Street alive.",
+  "say": "J. P. Morgan. A panic was eating Wall Street alive.",
+  "gap": 0.3
+ },
+ {
+  "show": "Nobody could leave until they found $25 million.",
+  "say": "Nobody could leave... until they found twenty-five million dollars.",
+  "gap": 0.4
+ },
+ {
+  "show": "Before dawn, they signed.",
+  "say": "Before dawn, they signed.",
+  "gap": 0.5
+ },
+ {
+  "show": "But here's the part nobody tells you.",
+  "say": "But here's the part nobody tells you.",
+  "gap": 0.3
+ },
+ {
+  "show": "Rooms like that were never open to people like us.",
+  "say": "Rooms like that were never open to people like us.",
+  "gap": 0.3
+ },
+ {
+  "show": "Even today, the top private banks often want about $10 million before they'll even meet you.",
+  "say": "Even today, the top private banks often want about ten million dollars before they'll even meet you.",
+  "gap": 0.4
+ },
+ {
+  "show": "So I turned their first meeting into 7 prompts you can paste into ChatGPT.",
+  "say": "So I turned their first meeting into seven prompts you can paste into ChatGPT.",
+  "gap": 0.3
+ },
+ {
+  "show": "By the end, you have the one-page rulebook rich families keep for their money.",
+  "say": "By the end, you have the one-page rulebook rich families keep for their money.",
+  "gap": 0.0
+ }
+]

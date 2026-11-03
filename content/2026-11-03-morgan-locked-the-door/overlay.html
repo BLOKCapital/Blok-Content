@@ -1,0 +1,121 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"ISerif";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/InstrumentSerif-Regular.ttf)}
+@font-face{font-family:"ISerif";font-style:italic;src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/InstrumentSerif-Italic.ttf)}
+@font-face{font-family:"SMono";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/SpaceMono-Bold.ttf)}
+html,body{margin:0;width:1080px;height:1920px;background:transparent;overflow:hidden}
+body{font-family:Inter,sans-serif;color:#fff}
+.layer{position:absolute;inset:0;opacity:0}
+.pill{position:absolute;left:50%;transform:translateX(-50%);top:250px;font:700 30px SMono,monospace;letter-spacing:3px;padding:14px 26px;border-radius:999px;background:#F6F3E8;color:#1d1b16;white-space:nowrap}
+.sub{position:absolute;left:70px;right:70px;top:1360px;text-align:center;font:700 70px/1.12 Inter,sans-serif;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.85),0 0 3px rgba(0,0,0,.9)}
+.sub .k{color:#F2C45A}
+.sub.ink{color:#1d1b16;text-shadow:none}
+.sub.ink .k{color:#004EBA}
+.note{position:absolute;left:70px;top:1590px;font:700 22px SMono,monospace;letter-spacing:1px;color:rgba(246,243,232,.75)}
+.hook{position:absolute;left:0;right:0;top:880px;padding:40px 70px 60px;background:linear-gradient(transparent,rgba(0,0,0,.7) 25%,rgba(0,0,0,.7) 75%,transparent);font:400 96px/1.0 ISerif,serif;color:#F6F3E8;text-shadow:0 4px 24px rgba(0,0,0,.9)}
+.hook em{color:#F2C45A}
+/* counter */
+#cnt{position:absolute;left:0;right:0;top:230px;text-align:center}
+#cnt .lbl{font:700 30px SMono,monospace;letter-spacing:4px;color:#EC464D}
+#cnt .num{font:400 150px/1 ISerif,serif;color:#F2C45A;margin-top:18px}
+#cnt .lock{font-size:80px;margin-bottom:10px}
+/* pledge */
+#pledge{background:#EFE6CF}
+#pledge .paper{position:absolute;left:110px;right:110px;top:360px;height:900px;background:#F7F0DC;box-shadow:0 20px 60px rgba(60,40,10,.35);padding:70px;box-sizing:border-box;color:#3a2a1a}
+#pledge h2{font:400 84px ISerif,serif;margin:0 0 6px}
+#pledge .sm{font:700 24px SMono,monospace;letter-spacing:2px;color:#844947}
+#pledge svg{position:absolute;left:70px;top:330px}
+/* black text */
+#tell{background:#000}
+#tell .big{position:absolute;left:90px;right:90px;top:700px;font:400 112px/1.02 ISerif,serif;color:#F6F3E8}
+#tell .big em{color:#F2C45A}
+/* ten million */
+#ten{background:#F6F3E8;color:#1d1b16}
+#ten .pill{background:#004EBA;color:#fff}
+#ten .lab{position:absolute;left:80px;right:80px;top:470px;font:700 34px SMono,monospace;letter-spacing:2px;color:#844947;text-align:center}
+#ten .num{position:absolute;left:0;right:0;top:560px;text-align:center;font:400 190px/1 ISerif,serif;color:#004EBA}
+#ten .cap{position:absolute;left:100px;right:100px;top:800px;text-align:center;font:400 62px/1.1 ISerif,serif}
+#ten .door{position:absolute;left:50%;top:980px;transform:translateX(-50%);width:300px;height:330px}
+#ten .fine{position:absolute;left:0;right:0;top:1610px;text-align:center;font:700 20px SMono,monospace;color:#8a8370}
+/* docs */
+#docs{background:#004EBA}
+#docs .pill{background:#7ED116;color:#13230a}
+.page{position:absolute;width:620px;border-radius:14px;box-shadow:0 30px 70px rgba(0,0,0,.45);background:#fff}
+#docs .t{position:absolute;left:70px;right:70px;top:340px;text-align:center;font:400 88px/1 ISerif,serif;color:#fff}
+#docs .chips{position:absolute;left:0;right:0;top:1250px;text-align:center}
+#docs .chips span{display:inline-block;margin:0 8px;padding:10px 20px;border-radius:999px;border:2px solid #7DD2FD;color:#7DD2FD;font:700 26px SMono,monospace}
+/* ips */
+#ips{background:#F6F3E8}
+#ips .crop{position:absolute;left:80px;right:80px;top:330px;height:960px;overflow:hidden;border-radius:16px;box-shadow:0 20px 60px rgba(60,40,10,.25);background:#fff}
+#ips .crop img{position:absolute;width:1300px;left:-120px}
+#ips .hl{position:absolute;border:6px solid #EC464D;border-radius:12px}
+/* end */
+#end{background:#F6F3E8;color:#1d1b16}
+#end .cover{position:absolute;left:280px;top:320px;width:520px;transform:rotate(-4deg)}
+#end .cta{position:absolute;left:60px;right:60px;top:1100px;text-align:center}
+#end .cta .a{font:400 78px/1 ISerif,serif}
+#end .cta .kw{display:inline-block;margin-top:18px;font:700 120px/1 Inter,sans-serif;letter-spacing:2px;background:#EC464D;color:#fff;padding:18px 40px;border-radius:24px}
+#end .cta .b{font:400 52px/1.1 ISerif,serif;margin-top:22px;color:#004EBA}
+#end .arrow{position:absolute;left:50%;top:1490px;transform:translateX(-50%);font-size:90px;color:#EC464D}
+#end .fine{position:absolute;left:60px;right:60px;top:1590px;text-align:center;font:700 19px/1.5 SMono,monospace;color:#6b665a}
+#end .logo{position:absolute;left:50%;top:225px;transform:translateX(-50%);height:46px}
+</style></head>
+<body>
+<div class="layer" id="hist"><div class="pill">ON THIS NIGHT · NOV 3, 1907</div></div>
+<div class="layer" id="hookL"><div class="hook">50 bankers.<br>One locked door.<br><em>Then this.</em></div></div>
+<div class="layer" id="cntL"><div id="cnt"><div class="lock">🔒</div><div class="lbl">NOBODY LEAVES UNTIL</div><div class="num" id="cntNum">$0</div></div></div>
+<div class="layer" id="noteL"><div class="note" id="noteT"></div></div>
+<div class="layer" id="pledge"><div class="paper"><div class="sm">NEW YORK · BEFORE DAWN</div><h2>We, the undersigned, pledge…</h2>
+<svg width="800" height="520" viewBox="0 0 800 520"><g fill="none" stroke="#2a1d10" stroke-width="5" stroke-linecap="round" id="sigs"></g><g stroke="#c9b98f" stroke-width="2" id="rules"></g></svg></div></div>
+<div class="layer" id="tell"><div class="big">But here's the part<br><em>nobody tells you.</em></div></div>
+<div class="layer" id="ten"><div class="pill">TODAY</div><div class="lab">TO GET A SEAT AT THE TOP PRIVATE BANKS</div><div class="num" id="tenNum">$0</div><div class="cap">often, before they'll<br>even meet you.</div>
+<svg class="door" viewBox="0 0 300 330"><rect x="20" y="10" width="260" height="310" rx="6" fill="#1d1b16"/><rect x="34" y="24" width="232" height="296" fill="#844947"/><circle cx="240" cy="180" r="9" fill="#F2C45A"/><rect x="118" y="120" width="64" height="80" rx="10" fill="#F2C45A"/><rect x="132" y="96" width="36" height="40" rx="18" fill="none" stroke="#F2C45A" stroke-width="10"/></svg>
+<div class="fine">Typical minimums. Vary by bank and country.</div></div>
+<div class="layer" id="docs"><div class="pill">FREE · 7 PROMPTS</div><img class="page" id="p1" src="assets/doc-2.png"><img class="page" id="p2" src="assets/doc-3.png"><img class="page" id="p0" src="assets/doc-1.png"><div class="t">Their first meeting,<br>in 7 prompts</div><div class="chips"><span>ChatGPT</span><span>Claude</span><span>Gemini</span></div></div>
+<div class="layer" id="ips"><div class="pill" style="background:#004EBA;color:#fff">THE RULEBOOK</div><div class="crop"><img id="ipsImg" src="assets/doc-4.png"></div></div>
+<div class="layer" id="end"><img class="logo" src="assets/logo-wordmark.png"><img class="page cover" src="assets/doc-1.png"><div class="cta"><div class="a">Comment</div><div class="kw">BANKER</div><div class="b">and we'll DM you the 7 prompts</div></div><div class="arrow" id="arr">↓</div>
+<div class="fine">Educational only, not financial advice. Investing involves risk.<br>Archive film: Library of Congress. AI-generated voices.</div></div>
+<div class="sub" id="sub"></div>
+<script src="build/timeline.js"></script>
+<script>
+const TL=window.TIMELINE.slice();
+TL.push({text:"Comment BANKER below, to receive this.",start:37.2,end:39.3,words:[{w:"Comment",s:37.22,e:37.7},{w:"BANKER",s:37.7,e:38.2},{w:"below,",s:38.2,e:38.6},{w:"to",s:38.65,e:38.75},{w:"receive",s:38.75,e:39.05},{w:"this.",s:39.05,e:39.3}]});
+window.DURATION=41.5;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const show=(id,a,b,fade=.25,t)=>{const o=Math.min(clamp((t-a)/fade),clamp((b-t)/fade));$(id).style.opacity=o;return o};
+// chunk words into groups of up to 3 (break on punctuation)
+const CH=[];TL.forEach(l=>{let g=[];l.words.forEach((w,i)=>{g.push(w);const end=/[.,?!]$/.test(w.w)||g.length>=3||i===l.words.length-1;if(end){CH.push(g);g=[]}})});
+const KEY=/^(1907|fifty|\$25|million|\$10|ten|seven|7|BANKER|J\.P\.|Morgan|dawn|never|one-page)/i;
+// signatures
+const sig=$("sigs"),rules=$("rules");const S=[];
+for(let r=0;r<5;r++){const y=70+r*95;rules.innerHTML+=`<line x1="0" x2="660" y1="${y+20}" y2="${y+20}"/>`;
+ let d=`M ${20+r*13} ${y}`;for(let k=0;k<7;k++){const x=40+r*13+k*(60+r*6);d+=` q ${18} ${-36-(k%3)*10} ${36} ${0} t ${30} ${10+(k%2)*14}`;}
+ const p=document.createElementNS("http://www.w3.org/2000/svg","path");p.setAttribute("d",d);sig.appendChild(p);S.push(p)}
+S.forEach(p=>{const L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p._L=L});
+window.draw=function(t){
+  show("hist",-1,10.45,.2,t); show("hookL",-1,3.6,.3,t);
+  show("cntL",10.45,14.75,.2,t);
+  const c=ease((t-10.9)/3.2);$("cntNum").textContent="$"+Math.round(c*25000000).toLocaleString("en-US");
+  // note
+  let note="";if(t>=6.3&&t<14.8)note="ARCHIVE FILM · NEW YORK, 1903–05";if(t>=0&&t<6.3)note="J.P. MORGAN, 1902";if(t>=19.2&&t<21.9)note="ARCHIVE FILM · NEW YORK, 1906";
+  $("noteT").textContent=note;$("noteL").style.opacity=note&&t>3.7||note&&t>=6.3?1:0;
+  show("pledge",14.8,16.85,.15,t);S.forEach((p,i)=>{const k=clamp((t-14.85-i*.32)/.5);p.style.strokeDashoffset=p._L*(1-k)});
+  show("tell",16.85,19.2,.15,t);
+  show("ten",21.9,27.45,.2,t);const tn=ease((t-22.4)/3.2);$("tenNum").textContent="$"+Math.round(tn*10000000).toLocaleString("en-US");
+  show("docs",27.45,32.55,.2,t);
+  [["p0",27.6,0],["p1",28.6,1],["p2",29.6,2]].forEach(([id,s,i])=>{const k=ease((t-s)/.6);const el=$(id);const rot=[-6,5,-1][i],x=[110,330,215][i],y=[620,660,700][i];el.style.left=x+"px";el.style.top=(y+ (1-k)*1400)+"px";el.style.transform=`rotate(${rot}deg) scale(.74)`;el.style.transformOrigin="top left"});
+  show("ips",32.55,37.05,.2,t);const z=ease((t-32.6)/3.8);const img=$("ipsImg");img.style.top=(-120 - z*170)+"px";
+  show("end",37.05,99,.25,t);$("arr").style.transform=`translateX(-50%) translateY(${Math.abs(Math.sin(t*4))*24}px)`;
+  // subtitles
+  let txt="";for(const g of CH){if(t>=g[0].s-0.05&&t<=g[g.length-1].e+0.25){txt=g.map(w=>KEY.test(w.w)?`<span class="k">${w.w}</span>`:w.w).join(" ")}}
+  const sub=$("sub");
+  const hide=(t>=16.85&&t<19.2)||(t>=37.05);
+  sub.innerHTML=hide?"":txt;
+  sub.className="sub"+((t>=14.8&&t<16.85)||(t>=21.9&&t<27.45)||(t>=32.55&&t<37.05)?" ink":"");
+};
+draw(0);
+</script>
+</body></html>
