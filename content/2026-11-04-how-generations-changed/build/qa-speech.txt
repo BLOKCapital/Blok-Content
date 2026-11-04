@@ -1,0 +1,45 @@
+CHECK 0  0.25s match=0.90
+   want: Two thousand five. The streetlights came on, and every kid knew what was coming.
+   heard: 2005. The street lights came on and every kid knew what was coming.
+   diff: [('replace', 'streetlights', 'street lights')]
+OK  1  6.28s match=1.00
+   want: Get in the house! It's getting dark!
+   heard: Get in the house. It's getting dark.
+OK  2  9.15s match=1.00
+   want: Ten years later, the kids had moved indoors. And the warning moved with them.
+   heard: Ten years later, the kids had moved indoors and the warning moved with them.
+OK  3 14.57s match=1.00
+   want: Turn off the TV. You'll ruin your eyes.
+   heard: Turn off the TV, you'll ruin your eyes.
+CHECK 4 17.78s match=0.87
+   want: By twenty twenty-two, the TV had turned into a game.
+   heard: By 2022, the TV had turned into a game.
+   diff: [('replace', 'twenty', 'two thousand')]
+OK  5 21.30s match=1.00
+   want: Put the controller down. Now.
+   heard: Put the controller down. Now.
+CHECK 6 23.89s match=0.87
+   want: And today, in twenty twenty-six, the warning sounds like this.
+   heard: And today, in 2026, the warning sounds like this.
+   diff: [('replace', 'twenty', 'two thousand')]
+OK  7 27.89s match=1.00
+   want: Get off Discord. And stop talking to that AI.
+   heard: get off Discord, and stop talking to that AI.
+OK  8 31.66s match=1.00
+   want: And the kid who got called in from the street in two thousand five... he's the one yelling it now.
+   heard: and the kid who got called in from the street in 2005, he's the one yelling it now.
+OK  9 37.45s match=1.00
+   want: Same kid, every time. Only the world kept changing.
+   heard: Same kid, every time. Only the world kept changing.
+OK  10 42.12s match=1.00
+   want: And now his son is growing up somewhere he's never been.
+   heard: And now his son is growing up somewhere he's never been.
+OK  11 46.21s match=1.00
+   want: Every one of those warnings meant the same thing. I'm worried, and I don't know your world.
+   heard: Every one of those warnings meant the same thing. I'm worried and I don't know your world.
+OK  12 52.32s match=1.00
+   want: So before you call them in, sit down next to them. Ask them to show you their world.
+   heard: So before you call them in, sit down next to them. Ask them to show you their world.
+lines to check: 3
+    I:         -15.8 LUFS
+    Peak:       -1.4 dBFS

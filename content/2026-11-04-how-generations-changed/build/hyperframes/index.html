@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="timeline.js"></script>
+    <style>
+      @font-face { font-family: "ISerif"; src: url("assets/fonts/InstrumentSerif-Regular.ttf"); }
+      @font-face { font-family: "ISerif"; font-style: italic; src: url("assets/fonts/InstrumentSerif-Italic.ttf"); }
+      :root { --ground: #f6f3e8; --ink: #1d1b16; --muted: #6b6457; --rule: #d9d2bd; --indigo: #004eba; --coral: #ec464d; --lime: #7ed116; --sky: #7dd2fd; --earth: #844947; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); font-family: Inter, sans-serif; color: var(--ink); }
+      .abs { position: absolute; }
+      .serif { font-family: "ISerif", serif; font-weight: 400; }
+      #world { left: 0; top: 0; width: 7680px; height: 1080px; transform-origin: 0 0; }
+      .room { position: absolute; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+      .room svg.bg { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .fig { position: absolute; }
+      .bubble { position: absolute; padding: 26px 40px 34px; background: var(--coral); color: var(--ground); border-radius: 36px; max-width: 660px; }
+      .bubble .who { font: 600 26px Inter, sans-serif; opacity: .85; margin-bottom: 4px; }
+      .bubble .say { font-size: 70px; line-height: 1.02; }
+      .bubble .say .w { display: inline-block; }
+      .bubble .tail { position: absolute; bottom: -22px; width: 52px; height: 52px; background: var(--coral); transform: rotate(45deg); border-radius: 6px; }
+      .year { position: absolute; top: 110px; font-size: 150px; line-height: 1; color: var(--indigo); }
+      .tag { position: absolute; left: 0; right: 0; top: 1110px; text-align: center; font-size: 210px; color: var(--ink); }
+      #rail { left: 600px; top: 30px; width: 720px; height: 70px; }
+      #rail .line { position: absolute; left: 0; right: 0; top: 11px; height: 3px; background: var(--rule); }
+      #rail .fill { position: absolute; left: 0; top: 11px; height: 3px; width: 720px; background: var(--ink); transform-origin: left center; transform: scaleX(0); }
+      #rail .node { position: absolute; top: 0; width: 26px; height: 26px; margin-left: -13px; border-radius: 50%; background: var(--ground); border: 3px solid var(--rule); }
+      #rail .dot { position: absolute; inset: 4px; border-radius: 50%; background: var(--coral); transform: scale(0); }
+      #rail .lab { position: absolute; top: 32px; width: 140px; margin-left: -70px; text-align: center; font: 700 28px Inter, sans-serif; color: var(--muted); }
+      #subs { left: 160px; right: 160px; top: 948px; height: 80px; }
+      .sub { position: absolute; left: 0; right: 0; top: 0; text-align: center; font: 600 46px/1.15 Inter, sans-serif; color: var(--ink); opacity: 0; }
+      #wideTitle { left: 0; right: 0; top: 150px; text-align: center; font-size: 96px; line-height: 1; opacity: 0; }
+      #wideTitle em { color: var(--coral); font-style: italic; }
+      #final { left: 0; right: 0; top: 120px; text-align: center; font-size: 104px; line-height: 1.02; opacity: 0; }
+      #final em { color: var(--indigo); font-style: italic; }
+      #fade { left: 0; top: 0; width: 1920px; height: 1080px; background: var(--ground); opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="62.43" data-width="1920" data-height="1080">
+      <div id="world" class="abs">
+        <!-- 2005: the street at dusk -->
+        <div class="room" id="r0" style="left:0">
+          <svg class="bg" viewBox="0 0 1920 1080">
+            <rect width="1920" height="1080" fill="#F7DDBF"/>
+            <circle cx="1440" cy="860" r="120" fill="#F2A541"/>
+            <rect x="0" y="860" width="1920" height="220" fill="#8CCB3A"/>
+            <rect x="0" y="860" width="1920" height="10" fill="#6aa82a"/>
+            <!-- house -->
+            <rect x="120" y="470" width="560" height="390" fill="#E9C79F"/>
+            <path d="M90 480 L400 270 L710 480 Z" fill="#844947"/>
+            <rect x="330" y="640" width="150" height="220" rx="6" fill="#FFE7A3" id="door"/>
+            <rect x="170" y="560" width="110" height="100" rx="6" fill="#FFE7A3"/><rect x="540" y="560" width="110" height="100" rx="6" fill="#FFE7A3"/>
+            <!-- streetlight -->
+            <rect x="1600" y="420" width="16" height="440" fill="#3a3630"/>
+            <path d="M1608 430 Q1608 400 1660 400 L1700 400" stroke="#3a3630" stroke-width="14" fill="none"/>
+            <rect x="1680" y="398" width="60" height="22" rx="6" fill="#3a3630"/>
+            <circle id="lampGlow" cx="1710" cy="440" r="120" fill="#FFE7A3" opacity="0"/>
+            <circle id="lampBulb" cx="1710" cy="428" r="16" fill="#8a8173"/>
+          </svg>
+          <div class="year serif" style="left:1380px;top:120px;color:#844947">2005</div>
+        </div>
+        <!-- 2015: the living room -->
+        <div class="room" id="r1" style="left:1920px">
+          <svg class="bg" viewBox="0 0 1920 1080">
+            <rect width="1920" height="1080" fill="#F6F3E8"/>
+            <g opacity=".5"><rect x="0" y="0" width="1920" height="860" fill="#EFE8D2"/>
+            <rect x="200" y="0" width="12" height="860" fill="#E6DcC0"/><rect x="600" y="0" width="12" height="860" fill="#E6DcC0"/><rect x="1000" y="0" width="12" height="860" fill="#E6DcC0"/><rect x="1400" y="0" width="12" height="860" fill="#E6DcC0"/><rect x="1800" y="0" width="12" height="860" fill="#E6DcC0"/></g>
+            <rect x="0" y="860" width="1920" height="220" fill="#E2D6BC"/>
+            <rect x="220" y="540" width="460" height="330" rx="36" fill="#844947"/>
+            <rect x="255" y="575" width="320" height="250" rx="44" fill="#7DD2FD" id="tvScreen"/>
+            <g id="scan"><rect x="255" y="620" width="320" height="12" fill="#fff" opacity=".55"/><rect x="255" y="720" width="320" height="12" fill="#fff" opacity=".4"/></g>
+            <circle cx="625" cy="620" r="16" fill="#f6f3e8"/><circle cx="625" cy="680" r="16" fill="#f6f3e8"/>
+            <path d="M330 540 L270 450 M570 540 L630 450" stroke="#1d1b16" stroke-width="8" stroke-linecap="round"/>
+            <rect x="1200" y="660" width="560" height="200" rx="40" fill="#C9A27E"/><rect x="1170" y="600" width="80" height="260" rx="34" fill="#B88F6A"/><rect x="1710" y="600" width="80" height="260" rx="34" fill="#B88F6A"/>
+          </svg>
+          <div class="year serif" style="left:1380px">2015</div>
+        </div>
+        <!-- 2022: the game room -->
+        <div class="room" id="r2" style="left:3840px">
+          <svg class="bg" viewBox="0 0 1920 1080">
+            <rect width="1920" height="1080" fill="#ECE7F0"/>
+            <rect x="0" y="860" width="1920" height="220" fill="#DCD5E2"/>
+            <rect x="200" y="470" width="600" height="360" rx="22" fill="#1d1b16"/>
+            <g id="pix"><rect x="280" y="720" width="56" height="56" fill="#7ED116"/><rect x="336" y="720" width="56" height="56" fill="#7ED116"/><rect x="392" y="664" width="56" height="56" fill="#7ED116"/><rect x="520" y="560" width="56" height="56" fill="#EC464D"/><rect x="660" y="620" width="56" height="56" fill="#7DD2FD"/><rect x="460" y="720" width="250" height="56" fill="#7ED116"/></g>
+            <rect x="470" y="830" width="60" height="40" fill="#1d1b16"/>
+            <rect x="1350" y="380" width="380" height="260" rx="10" fill="#fffdf6" stroke="#d9d2bd" stroke-width="6"/>
+            <path d="M1380 600 L1480 500 L1560 570 L1620 520 L1700 600 Z" fill="#7ED116" opacity=".6"/>
+          </svg>
+          <div class="year serif" style="left:1380px;top:110px">2022</div>
+        </div>
+        <!-- 2026: the desk -->
+        <div class="room" id="r3" style="left:5760px">
+          <svg class="bg" viewBox="0 0 1920 1080">
+            <rect width="1920" height="1080" fill="#E7EEF2"/>
+            <rect x="0" y="860" width="1920" height="220" fill="#D6E0E6"/>
+            <g transform="translate(300,0)">
+            <defs><radialGradient id="glowG"><stop offset="0" stop-color="#7DD2FD" stop-opacity=".9"/><stop offset="1" stop-color="#7DD2FD" stop-opacity="0"/></radialGradient></defs><circle id="screenGlow" cx="480" cy="560" r="360" fill="url(#glowG)" opacity="0"/>
+            <rect x="140" y="690" width="760" height="26" rx="10" fill="#844947"/>
+            <rect x="180" y="716" width="22" height="144" fill="#5d3331"/><rect x="840" y="716" width="22" height="144" fill="#5d3331"/>
+            <rect x="250" y="440" width="460" height="250" rx="18" fill="#1d1b16"/>
+            <rect x="268" y="458" width="424" height="214" rx="8" fill="#fffdf6" id="lapScreen"/>
+            <g id="lchat"><rect x="290" y="480" width="220" height="36" rx="16" fill="#7DD2FD"/><rect x="290" y="528" width="280" height="36" rx="16" fill="#7DD2FD"/><rect x="430" y="576" width="240" height="36" rx="16" fill="#004EBA"/><rect x="290" y="624" width="180" height="32" rx="14" fill="#7ED116"/></g>
+            <rect x="220" y="676" width="520" height="16" rx="6" fill="#3a3630"/>
+          </g>
+          </svg>
+          <div class="year serif" style="left:140px">2026</div>
+        </div>
+        <div class="tag serif" style="left:0;width:1920px">the street</div>
+        <div class="tag serif" style="left:1920px;width:1920px">the screen</div>
+        <div class="tag serif" style="left:3840px;width:1920px">the game</div>
+        <div class="tag serif" style="left:5760px;width:1920px">the AI</div>
+      </div>
+
+      <div id="rail" class="abs"><div class="line"></div><div class="fill"></div></div>
+      <div id="wideTitle" class="abs serif">Same kid. <em>A different world.</em></div>
+      <div id="final" class="abs serif">Ask them to show you<br/><em>their world.</em></div>
+      <div id="subs" class="abs"></div>
+      <div id="fade" class="abs"></div>
+    </div>
+
+    <script>
+      const T = window.TIMELINE;
+      const S = (i) => T[i].start, E = (i) => T[i].end;
+      const W = (i, j) => T[i].words[j < 0 ? T[i].words.length + j : j];
+      const WF = (i, re) => T[i].words.find((w) => re.test(w.w));
+      const VO_END = T[T.length - 1].end;
+      const tl = gsap.timeline({ paused: true });
+      const IN = "power3.out", OUT = "power2.in", PAN = "power2.inOut";
+      const world = document.getElementById("world");
+
+      // ---------- figures ----------
+      function kidSVG(shirt, extra) {
+        return '<svg viewBox="0 0 200 420" width="200" height="420"><rect x="58" y="300" width="30" height="110" rx="14" fill="#1d1b16"/><rect x="112" y="300" width="30" height="110" rx="14" fill="#1d1b16"/><rect x="40" y="140" width="120" height="180" rx="44" fill="' + shirt + '"/><rect x="14" y="160" width="30" height="120" rx="15" fill="' + shirt + '"/><rect x="156" y="160" width="30" height="120" rx="15" fill="' + shirt + '"/><circle cx="100" cy="80" r="62" fill="#E8B48A"/><path d="M40 72 Q46 14 100 16 Q156 14 162 70 Q132 44 100 50 Q66 44 40 72 Z" fill="#1d1b16"/><circle cx="80" cy="88" r="7" fill="#1d1b16"/><circle cx="122" cy="88" r="7" fill="#1d1b16"/><path d="M86 116 Q100 126 114 116" fill="none" stroke="#1d1b16" stroke-width="5" stroke-linecap="round"/>' + (extra || "") + "</svg>";
+      }
+      const PAD = '<g><rect x="44" y="230" width="112" height="56" rx="26" fill="#3a3630"/><circle cx="72" cy="258" r="9" fill="#7ED116"/><circle cx="128" cy="258" r="9" fill="#EC464D"/></g>';
+      const HEADSET = '<path d="M38 80 Q38 6 100 6 Q162 6 162 80" fill="none" stroke="#3a3630" stroke-width="10"/><rect x="26" y="66" width="24" height="44" rx="10" fill="#3a3630"/><rect x="150" y="66" width="24" height="44" rx="10" fill="#3a3630"/>';
+      function adultSVG() {
+        return '<svg viewBox="0 0 240 520" width="240" height="520"><rect x="72" y="360" width="38" height="150" rx="18" fill="#1d1b16"/><rect x="130" y="360" width="38" height="150" rx="18" fill="#1d1b16"/><rect x="46" y="160" width="148" height="230" rx="52" fill="#844947"/><rect x="18" y="180" width="36" height="150" rx="18" fill="#844947"/><rect x="186" y="180" width="36" height="150" rx="18" fill="#844947"/><circle cx="120" cy="90" r="66" fill="#E8B48A"/><path d="M56 82 Q60 20 120 22 Q182 20 186 80 Q154 52 120 58 Q84 52 56 82 Z" fill="#1d1b16"/><circle cx="98" cy="98" r="7" fill="#1d1b16"/><circle cx="142" cy="98" r="7" fill="#1d1b16"/><g class="brows"><path d="M82 76 L108 82 M158 76 L132 82" stroke="#1d1b16" stroke-width="6" stroke-linecap="round"/></g><rect x="88" y="124" width="64" height="8" rx="4" fill="#5d3331" opacity=".5"/><path class="frown" d="M100 146 Q120 134 140 146" fill="none" stroke="#5d3331" stroke-width="6" stroke-linecap="round"/><path class="smile" d="M100 140 Q120 156 140 140" fill="none" stroke="#5d3331" stroke-width="6" stroke-linecap="round" opacity="0"/></svg>';
+      }
+      function addFig(id, room, x, y, html, scale) {
+        const d = document.createElement("div"); d.id = id; d.className = "fig"; d.innerHTML = html;
+        d.style.left = room * 1920 + x + "px"; d.style.top = y + "px";
+        if (scale) { d.style.transform = "scale(" + scale + ")"; d.style.transformOrigin = "50% 100%"; }
+        world.appendChild(d); return d;
+      }
+      addFig("k0", 0, 980, 450, kidSVG("#004EBA"));
+      addFig("ball", 0, 1260, 770, '<svg width="110" height="110" viewBox="0 0 110 110"><circle cx="55" cy="55" r="50" fill="#fff" stroke="#1d1b16" stroke-width="5"/><path d="M8 55 Q55 14 102 55" fill="none" stroke="#EC464D" stroke-width="9"/></svg>');
+      addFig("k1", 1, 820, 450, kidSVG("#004EBA"));
+      addFig("k2", 2, 920, 450, kidSVG("#004EBA", PAD));
+      addFig("son", 3, 1060, 450, kidSVG("#7DD2FD", HEADSET));
+      addFig("dad", 3, 1650, 350, adultSVG());
+      addFig("ghost", 3, 1430, 450, kidSVG("#004EBA"));
+
+      // ---------- bubbles ----------
+      function bubble(room, x, y, who, text, tailX) {
+        const d = document.createElement("div"); d.className = "bubble";
+        d.style.left = room * 1920 + x + "px"; d.style.top = y + "px";
+        d.innerHTML = '<div class="who">' + who + '</div><div class="say serif">' + text.split(" ").map((w) => '<span class="w">' + w + "</span>").join(" ") + '</div><div class="tail" style="left:' + tailX + 'px"></div>';
+        world.appendChild(d); gsap.set(d, { opacity: 0 }); return d;
+      }
+      const B = [
+        { line: 1, el: bubble(0, 120, 120, "Mom", "Get in the house! It's getting dark!", 260) },
+        { line: 3, el: bubble(1, 640, 150, "Dad", "Turn off the TV. You'll ruin your eyes.", 120) },
+        { line: 5, el: bubble(2, 560, 150, "Mom", "Put the controller down. Now.", 120) },
+        { line: 7, el: bubble(3, 900, 110, "Dad", "Get off Discord. And stop talking to that AI.", 640) },
+      ];
+      B.forEach((b) => {
+        const ws = b.el.querySelectorAll(".w"), n = ws.length, t0 = S(b.line) - 0.25;
+        tl.fromTo(b.el, { opacity: 0, scale: 0.85, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(1.3)" }, t0);
+        ws.forEach((w, j) => { const ww = W(b.line, -(n - j)); tl.fromTo(w, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18 }, Math.max(t0 + 0.2, ww.s - 0.05)); });
+      });
+
+      // ---------- rail ----------
+      const rail = document.getElementById("rail"), rfill = rail.querySelector(".fill");
+      const nodes = ["2005", "2015", "2022", "2026"].map((y, i) => {
+        const x = i * 240, n = document.createElement("div"); n.className = "node"; n.style.left = x + "px"; n.innerHTML = '<div class="dot"></div>';
+        const l = document.createElement("div"); l.className = "lab"; l.style.left = x + "px"; l.textContent = y;
+        rail.appendChild(n); rail.appendChild(l); return { dot: n.querySelector(".dot"), l };
+      });
+      function lightNode(i, t) {
+        tl.fromTo(nodes[i].dot, { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(1.6)", immediateRender: false }, t);
+        tl.fromTo(nodes[i].l, { color: "#6b6457" }, { color: "#1d1b16", duration: 0.3, immediateRender: false }, t);
+        if (i > 0) tl.fromTo(rfill, { scaleX: (i - 1) / 3 }, { scaleX: i / 3, duration: 1.4, ease: PAN, immediateRender: false }, t - 1.0);
+      }
+      tl.set(nodes[0].dot, { scale: 1 }, 0); tl.set(nodes[0].l, { color: "#1d1b16" }, 0);
+
+      // ---------- camera ----------
+      // f0: the street, slow push-in for the whole scene
+      tl.fromTo(world, { x: -40, y: -20, scale: 1.04 }, { x: 0, y: 0, scale: 1, duration: S(2), ease: "sine.inOut" }, 0);
+      const pans = [[2, 1], [4, 2], [6, 3]];
+      pans.forEach(([line, room]) => {
+        const t = S(line) - 0.6;
+        tl.to(world, { x: -room * 1920, y: 0, scale: 1, duration: 1.8, ease: PAN }, t);
+        lightNode(room, t + 1.0);
+      });
+      // bubbles leave as the camera starts to move
+      tl.to(B[0].el, { opacity: 0, duration: 0.4, ease: OUT }, S(2) - 0.6);
+      tl.to(B[1].el, { opacity: 0, duration: 0.4, ease: OUT }, S(4) - 0.6);
+      tl.to(B[2].el, { opacity: 0, duration: 0.4, ease: OUT }, S(6) - 0.6);
+
+      // ---------- era details ----------
+      tl.fromTo("#lampGlow", { opacity: 0 }, { opacity: 0.7, duration: 0.8, ease: "sine.out" }, WF(0, /^came/).s);
+      tl.fromTo("#lampBulb", { fill: "#8a8173" }, { fill: "#FFE7A3", duration: 0.3 }, WF(0, /^came/).s);
+      for (let i = 0; i * 0.7 < S(1) - 0.2; i++) {
+        tl.fromTo("#ball", { y: 0 }, { y: -120, duration: 0.35, ease: "power2.out", immediateRender: false }, i * 0.7);
+        tl.fromTo("#ball", { y: -120 }, { y: 0, duration: 0.35, ease: "power2.in", immediateRender: false }, i * 0.7 + 0.35);
+      }
+      // Sam stops, then walks home to the door
+      tl.fromTo("#k0", { x: 0 }, { x: -540, duration: 1.6, ease: "power1.inOut" }, E(1) + 0.1);
+      tl.fromTo("#k0", { y: 0 }, { y: -10, duration: 0.2, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, E(1) + 0.1);
+      tl.fromTo("#scan", { y: 0 }, { y: 140, duration: S(4) - S(2), ease: "none" }, S(2));
+      tl.fromTo("#pix", { y: 0 }, { y: -40, duration: 0.3, yoyo: true, repeat: Math.floor((S(6) - S(4)) / 0.6), ease: "sine.inOut" }, S(4));
+      tl.fromTo("#lchat rect", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.4, ease: IN }, S(6) + 0.6);
+      // gentle breathing on every kid
+      ["#k1", "#k2", "#son"].forEach((k, i) => tl.fromTo(k, { y: 0 }, { y: -6, duration: 1.2, yoyo: true, repeat: 30, ease: "sine.inOut" }, i * 0.4));
+
+      // ---------- the dad (line 7) and the reveal (line 8) ----------
+      gsap.set(["#dad", "#ghost"], { opacity: 0 });
+      tl.fromTo("#dad", { opacity: 0, x: 220 }, { opacity: 1, x: 0, duration: 1.0, ease: IN }, S(7) - 0.7);
+      tl.to(B[3].el, { opacity: 0, duration: 0.4, ease: OUT }, S(8) - 0.2);
+      const g0 = WF(8, /^kid/).s;
+      tl.fromTo("#ghost", { opacity: 0, y: 30 }, { opacity: 0.55, y: 0, duration: 0.8, ease: IN }, g0);
+      tl.to("#ghost", { x: 260, scale: 1.2, opacity: 0, duration: 1.2, ease: PAN, transformOrigin: "50% 100%" }, WF(8, /^yelling/).s - 0.6);
+
+      // ---------- the pull-back (line 9) ----------
+      const s = 0.235, wx = (1920 - 7680 * s) / 2, wy = 360;
+      const tW = S(9) - 0.3;
+      tl.to("#rail", { opacity: 0, duration: 0.4 }, tW);
+      tl.to(world, { x: wx, y: wy, scale: s, duration: 2.2, ease: PAN }, tW);
+      tl.fromTo("#wideTitle", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: IN }, WF(9, /^Only/).s - 0.2);
+      gsap.set(".tag", { opacity: 0 });
+      gsap.utils.toArray(".tag").forEach((t, i) => tl.fromTo(t, { opacity: 0 }, { opacity: 1, duration: 0.5 }, tW + 1.4 + i * 0.25));
+      // the past dims, the present stays lit
+      tl.to(["#r0", "#r1", "#r2"], { opacity: 0.45, duration: 0.8 }, E(9) + 0.1);
+      tl.to("#wideTitle", { opacity: 0, duration: 0.4, ease: OUT }, S(10) + 0.4);
+      // back into the son's room (line 10)
+      tl.to(world, { x: -3 * 1920, y: 0, scale: 1, duration: 2.0, ease: PAN }, S(10) + 0.2);
+      tl.to(".tag", { opacity: 0, duration: 0.5 }, S(10) + 0.1);
+      tl.to("#r3 .year", { opacity: 0, duration: 0.6 }, S(10) + 1.0);
+      tl.set(["#r0", "#r1", "#r2"], { opacity: 1 }, S(10) + 2.4);
+      tl.fromTo("#screenGlow", { opacity: 0 }, { opacity: 0.35, duration: 1.2, ease: "sine.inOut" }, S(10) + 1.4);
+
+      // ---------- line 11: what the warning meant ----------
+      const bSoft = bubble(3, 1330, 250, "Dad", "I'm worried.", 300);
+      tl.fromTo(bSoft, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.3)" }, WF(11, /^worried/).s - 0.25);
+      tl.to("#dad .brows", { opacity: 0, duration: 0.4 }, WF(11, /^worried/).s);
+      tl.to("#dad .frown", { opacity: 0, duration: 0.4 }, WF(11, /^worried/).s);
+      tl.to("#dad .smile", { opacity: 1, duration: 0.4 }, WF(11, /^world/).s);
+      tl.to(bSoft, { opacity: 0, duration: 0.4, ease: OUT }, S(12) - 0.2);
+
+      // ---------- line 12: he sits down next to his son ----------
+      const sit = WF(12, /^sit/).s;
+      tl.to("#dad", { x: -360, duration: 1.6, ease: "power1.inOut" }, sit - 0.4);
+      tl.to("#dad", { y: 70, scale: 0.92, duration: 0.6, ease: "power2.inOut", transformOrigin: "50% 100%" }, sit + 1.2);
+      tl.to("#son", { rotation: 4, duration: 0.6, ease: "sine.inOut", transformOrigin: "50% 100%" }, WF(12, /^show/).s);
+      tl.to("#screenGlow", { opacity: 0.6, duration: 1.0, ease: "sine.inOut" }, WF(12, /^show/).s);
+      tl.to(world, { x: -5760 * 1.08 - 76.8, y: -43.2, scale: 1.08, duration: E(12) - S(12) + 3, ease: "sine.inOut" }, S(12));
+      tl.fromTo("#final", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1.0, ease: IN }, VO_END + 0.4);
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: "sine.inOut" }, VO_END + 4.0);
+
+      // ---------- subtitles: narrator only, phrase by phrase ----------
+      const subs = document.getElementById("subs");
+      const quotes = new Set([1, 3, 5, 7]);
+      T.forEach((L, i) => {
+        if (quotes.has(i)) return;
+        const chunks = []; let cur = [];
+        L.words.forEach((w) => { cur.push(w); if (cur.length >= 7 || /[.,:!?]$/.test(w.w) && cur.length >= 3) { chunks.push(cur); cur = []; } });
+        if (cur.length) { if (chunks.length && cur.length < 3) chunks[chunks.length - 1].push(...cur); else chunks.push(cur); }
+        chunks.forEach((ch, k) => {
+          const d = document.createElement("div"); d.className = "sub"; d.textContent = ch.map((w) => w.w).join(" "); subs.appendChild(d);
+          const t0 = ch[0].s - 0.08, t1 = k < chunks.length - 1 ? chunks[k + 1][0].s - 0.08 : L.end + 0.25;
+          tl.fromTo(d, { opacity: 0 }, { opacity: 1, duration: 0.12 }, t0);
+          tl.to(d, { opacity: 0, duration: 0.1 }, t1 - 0.1);
+        });
+      });
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
