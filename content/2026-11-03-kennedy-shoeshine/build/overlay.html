@@ -29,13 +29,14 @@ body{font-family:Inter,sans-serif;color:#fff}
 #cls .cards span{display:inline-block;margin:0 10px;padding:14px 24px;border-radius:999px;border:3px solid #7ED116;color:#2d4a08;font:700 28px SMono,monospace;background:#fff}
 #end{background:#F6F3E8;color:#1d1b16}
 #end .logo{position:absolute;left:50%;top:225px;transform:translateX(-50%);height:46px}
-#end .t{position:absolute;left:80px;right:80px;top:420px;text-align:center;font:400 92px/1 ISerif,serif;color:#004EBA}
+#end .t{position:absolute;left:80px;right:80px;top:380px;text-align:center;font:400 92px/1 ISerif,serif;color:#004EBA}
 #end .t2{position:absolute;left:80px;right:80px;top:640px;text-align:center;font:700 30px SMono,monospace;letter-spacing:3px;color:#844947}
-#end .cta{position:absolute;left:60px;right:60px;top:900px;text-align:center}
+#end .cta{position:absolute;left:60px;right:60px;top:1010px;text-align:center}
+#end .doc{position:absolute;left:50%;top:560px;width:300px;transform:translateX(-50%) rotate(-4deg);border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
 #end .cta .a{font:400 84px/1 ISerif,serif}
 #end .cta .kw{display:inline-block;margin-top:18px;font:700 140px/1 Inter,sans-serif;letter-spacing:2px;background:#EC464D;color:#fff;padding:18px 46px;border-radius:24px}
 #end .cta .b{font:400 58px/1.1 ISerif,serif;margin-top:26px;color:#004EBA}
-#end .arrow{position:absolute;left:50%;top:1380px;transform:translateX(-50%);font-size:96px;color:#EC464D}
+#end .arrow{position:absolute;left:50%;top:1420px;transform:translateX(-50%);font-size:96px;color:#EC464D}
 #end .fine{position:absolute;left:60px;right:60px;top:1590px;text-align:center;font:700 19px/1.5 SMono,monospace;color:#6b665a}
 </style></head>
 <body>
@@ -45,13 +46,13 @@ body{font-family:Inter,sans-serif;color:#fff}
 <div class="layer" id="noteL"><div class="note" id="noteT"></div></div>
 <div class="layer" id="tell"><div class="big"><s>Better tips.</s><br><em>Rules.</em></div></div>
 <div class="layer" id="cls"><div class="pill">FREE · LIVE · EVERY WEEK</div><div class="t">Rules,<br><em>not tips.</em></div><div class="d">A 45-minute live class on<br>running your own fund</div><div class="cards"><span>THE RULES</span><span>THE RISKS</span><span>LIVE Q&amp;A</span></div></div>
-<div class="layer" id="end"><img class="logo" src="assets/logo-wordmark.png"><div class="t">Rules, not tips.</div><div class="t2">FREE LIVE CLASS · EVERY WEEK</div><div class="cta"><div class="a">Comment</div><div class="kw" id="kw">FUND</div><div class="b" id="kwb">and we'll save you a seat</div></div><div class="arrow" id="arr">↓</div>
-<div class="fine">Educational only, not financial advice. Investing involves risk.<br>The Kennedy shoeshine story is a well-known anecdote.<br>Archive: Library of Congress, Manhatta (1921), Prelinger Archives.<br>AI-generated voices.</div></div>
+<div class="layer" id="end"><img class="logo" src="assets/logo-wordmark.png"><div class="t">Rules, not tips.</div><img class="doc" src="assets/doc-1.png"><div class="cta"><div class="a">Comment</div><div class="kw" id="kw">FUND</div><div class="b" id="kwb">and we'll save you a seat</div></div><div class="arrow" id="arr">↓</div>
+<div class="fine">Educational only, not financial advice. Investing involves risk.<br>The Kennedy shoeshine story is a well-known anecdote.<br>Archive: Library of Congress, Manhatta (1921), Prelinger Archives.<br>AI-generated voiceover.</div></div>
 <div class="sub" id="sub"></div>
 <script src="build/timeline.js"></script>
 <script src="build/end.js"></script>
 <script>
-const L=window.TIMELINE; const TL=L.slice(); TL.push(window.ENDLINE);
+const L=window.TIMELINE.slice(0,6); const TL=L.slice(); TL.push(window.ENDLINE);
 const E0=window.ENDLINE.start; window.DURATION=window.ENDLINE.end+1.6;
 const $=id=>document.getElementById(id);
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
@@ -59,7 +60,7 @@ const show=(id,a,b,fade=.25,t)=>{const o=Math.min(clamp((t-a)/fade),clamp((b-t)/
 const CH=[];TL.forEach(l=>{let g=[];l.words.forEach((w,i)=>{g.push(w);const end=/[.,?!:]$/.test(w.w)||g.length>=3||i===l.words.length-1;if(end){CH.push(g);g=[]}})});
 const KEY=/^(1929|nineteen|twenty-nine|shoeshine|Kennedy|everything|crashed|fortune|rules|FUND|BANKER|free|everyone's)/i;
 const S=i=>L[i].start;
-$("kw").textContent=window.ENDKW; $("kwb").textContent=window.ENDKW==="FUND"?"and we'll save you a seat":"and we'll DM it to you";
+$("kw").textContent=window.ENDKW; $("kwb").textContent="and we'll DM you the rulebook";
 window.draw=function(t){
   show("hist",-1,S(1)-0.1,.2,t); show("hookL",-1,S(1)-0.1,.3,t);
   const stamp=show("stampL",S(3)+0.15,S(4)-0.05,.12,t); $("stamp").style.transform=`translateX(-50%) rotate(-8deg) scale(${1+0.6*clamp(1-(t-S(3)-0.15)/0.18)})`;
@@ -72,12 +73,12 @@ window.draw=function(t){
   else if(t<S(5)) note="ARCHIVE FILM · MANHATTA, 1921";
   $("noteT").textContent=note; $("noteL").style.opacity=(t>S(1)-0.1&&t<S(5))||(t>3.0&&t<S(1))?1:0;
   const r1=L[5].words.find(w=>/^He$/.test(w.w))||L[5].words[L[5].words.length-3];
-  show("tell",S(5)-0.05,S(6)+0.4,.15,t);
-  show("cls",S(6)-0.05,E0+0.4,.2,t);
+  show("tell",S(5)-0.05,E0+0.4,.15,t);
+  
   show("end",E0-0.05,99,.25,t);$("arr").style.transform=`translateX(-50%) translateY(${Math.abs(Math.sin(t*4))*24}px)`;
   let txt="";for(const g of CH){if(t>=g[0].s-0.05&&t<=g[g.length-1].e+0.25){txt=g.map(w=>KEY.test(w.w)?`<span class="k">${w.w}</span>`:w.w).join(" ")}}
-  const sub=$("sub"); const hide=(t>=S(5)-0.05&&t<S(6)-0.05)||t>=E0-0.05||t<S(1)-0.1;
-  sub.innerHTML=hide?"":txt; sub.className="sub"+(t>=S(6)-0.05?" ink":"");
+  const sub=$("sub"); const hide=(t>=S(5)-0.05&&t<E0)||t>=E0-0.05||t<S(1)-0.1;
+  sub.innerHTML=hide?"":txt; sub.className="sub";
   sub.style.top=(t<S(1))?"1360px":"1360px";
 };
 draw(0);

@@ -4,11 +4,11 @@ His thinking: if the shoeshine boy has tips, everyone is already in. Soon after,
 
 He didn't have better tips. He had rules.
 
-Every week we run a free live class on those rules: how to run your own fund, the honest risks, and live Q&A.
+Want to write your own? We turned the first meeting top private banks give their clients into 7 copy-paste prompts for ChatGPT, Claude or Gemini. You finish with your own one-page rulebook for your money.
 
-Comment FUND and we'll save you a seat 👇
+Comment FUND and we'll DM it to you 👇
 
-Educational content only, not financial or investment advice. Investing involves risk, including loss of what you put in.
+Educational content only, not financial or investment advice. Investing involves risk, including loss of what you put in. AI tools can make mistakes.
 
 The Kennedy shoeshine story is a widely told anecdote, retold by Kennedy's biographers; the details vary. Archive: Library of Congress (Lewis Hine, 1910; Harris & Ewing, 1934; Wall Street crowd, Oct 1929), Manhatta (1921) and Prelinger Archives, public domain. AI-generated voiceover. Original music.
 
