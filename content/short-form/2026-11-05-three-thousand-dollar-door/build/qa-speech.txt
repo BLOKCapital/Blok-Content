@@ -1,0 +1,11 @@
+0 1.00 | In 1982, NASA sold rides to space for $3,000.
+1 1.00 | Not for you, for a can.
+2 1.00 | They called it the Getaway Special, basically a can that rode in the shuttle's cargo bay.
+3 1.00 | and almost anyone could book one. Universities, companies, even high school kids.
+4 0.82 | about 170 flew in 20 years.
+5 1.00 | So, space, the most exclusive club there is, and the door was $3,000.
+6 1.00 | Now guess what plenty of private funds and wealth managers still ask, just to let you in.
+7 0.86 | $10,000. Some want $100,000.
+8 1.00 | Space got a small door 44 years ago. Today, your own fund can start at $10.
+9 1.00 | I wrote down the seven questions private banks ask their clients on day one. Comment, fund, and I'll send them over.
+10/10 lines >=0.80

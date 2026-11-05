@@ -1,0 +1,95 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"ISerif";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/InstrumentSerif-Regular.ttf)}
+@font-face{font-family:"ISerif";font-style:italic;src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/InstrumentSerif-Italic.ttf)}
+@font-face{font-family:"SMono";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/SpaceMono-Bold.ttf)}
+html,body{margin:0;width:1080px;height:1920px;background:transparent;overflow:hidden}
+body{font-family:Inter,sans-serif;color:#fff}
+.layer{position:absolute;inset:0;opacity:0}
+.pill{position:absolute;left:50%;transform:translateX(-50%);top:250px;font:700 30px SMono,monospace;letter-spacing:3px;padding:14px 26px;border-radius:999px;background:#F6F3E8;color:#1d1b16;white-space:nowrap}
+.sub{position:absolute;left:70px;right:70px;top:1360px;text-align:center;font:700 70px/1.12 Inter,sans-serif;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.85),0 0 3px rgba(0,0,0,.9)}
+.sub .k{color:#F2C45A}
+.sub.ink{color:#1d1b16;text-shadow:none}.sub.ink .k{color:#004EBA}
+.note{position:absolute;left:70px;right:70px;top:1590px;font:700 22px SMono,monospace;letter-spacing:1px;color:rgba(246,243,232,.85);text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.hook{position:absolute;left:0;right:0;top:860px;padding:40px 70px 60px;background:linear-gradient(transparent,rgba(0,0,0,.72) 25%,rgba(0,0,0,.72) 75%,transparent);font:400 128px/0.98 ISerif,serif;color:#F6F3E8;text-shadow:0 4px 24px rgba(0,0,0,.9)}
+.hook em{color:#F2C45A;font-style:normal}
+.hook small{display:block;font:700 34px SMono,monospace;letter-spacing:3px;color:#7DD2FD;margin-bottom:18px}
+#stamp{position:absolute;left:50%;top:600px;transform:translateX(-50%) rotate(-8deg);border:10px solid #EC464D;color:#EC464D;font:700 110px/1 SMono,monospace;padding:24px 40px;letter-spacing:4px;background:rgba(246,243,232,.94);white-space:nowrap}
+#stamp small{display:block;font-size:34px;letter-spacing:6px;margin-top:10px;text-align:center}
+#count{position:absolute;left:190px;right:190px;top:480px;padding:40px 0 50px;border-radius:40px;background:rgba(11,13,18,.82);text-align:center;font:400 300px/1 ISerif,serif;color:#F6F3E8;text-shadow:0 6px 30px rgba(0,0,0,.9)}
+#count small{display:block;font:700 34px SMono,monospace;letter-spacing:4px;color:#F2C45A;margin-top:10px}
+#ask{background:#0b0d12}
+#ask .q{position:absolute;left:90px;right:90px;top:430px;font:400 104px/1.02 ISerif,serif;color:#F6F3E8}
+#ask .q em{color:#F2C45A}
+#ask .tag{position:absolute;left:50%;top:1000px;transform:translateX(-50%) rotate(-4deg);font:700 150px/1 SMono,monospace;color:#0b0d12;background:#F6F3E8;padding:30px 56px;border-radius:18px;white-space:nowrap}
+#ask .tag:before{content:"";position:absolute;left:-34px;top:50%;width:34px;height:34px;margin-top:-17px;border-radius:50%;background:#0b0d12;border:8px solid #F6F3E8;box-sizing:border-box}
+#cmp{background:#F6F3E8;color:#1d1b16}
+#cmp .pill{background:#004EBA;color:#fff}
+#cmp .row{position:absolute;left:90px;right:90px;font:400 76px/1.05 ISerif,serif}
+#cmp .row b{display:block;font:700 30px SMono,monospace;letter-spacing:3px;color:#844947;margin-bottom:10px}
+#cmp .row span{font:400 150px/1 ISerif,serif;color:#004EBA}
+#cmp .row.r2 span{color:#2d6a00}
+#cmp .line{position:absolute;left:90px;right:90px;top:820px;height:4px;background:#844947;opacity:.4}
+#end{background:#F6F3E8;color:#1d1b16}
+#end .logo{position:absolute;left:50%;top:225px;transform:translateX(-50%);height:46px}
+#end .t{position:absolute;left:80px;right:80px;top:340px;text-align:center;font:400 80px/1.02 ISerif,serif;color:#004EBA}
+#end .doc{position:absolute;left:50%;top:560px;width:300px;transform:translateX(-50%) rotate(-4deg);border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+#end .cta{position:absolute;left:60px;right:60px;top:1010px;text-align:center}
+#end .cta .a{font:400 84px/1 ISerif,serif}
+#end .cta .kw{display:inline-block;margin-top:18px;font:700 140px/1 Inter,sans-serif;letter-spacing:2px;background:#EC464D;color:#fff;padding:18px 46px;border-radius:24px}
+#end .cta .b{font:400 54px/1.1 ISerif,serif;margin-top:26px;color:#004EBA}
+#end .arrow{position:absolute;left:50%;top:1430px;transform:translateX(-50%);font-size:96px;color:#EC464D}
+#end .fine{position:absolute;left:60px;right:60px;top:1580px;text-align:center;font:700 19px/1.5 SMono,monospace;color:#6b665a}
+</style></head>
+<body>
+<div class="layer" id="pill1"><div class="pill" id="pillT">NASA · 1982</div></div>
+<div class="layer" id="hookL"><div class="hook"><small>NASA SOLD RIDES TO SPACE</small>Space.<br><em>$3,000.</em></div></div>
+<div class="layer" id="noteL"><div class="note" id="noteT"></div></div>
+<div class="layer" id="countL"><div id="count"><span id="cn">0</span><small>CANS FLEW · 1982 TO 2003</small></div></div>
+<div class="layer" id="stampL"><div id="stamp">$3,000<small>THE DOOR TO SPACE</small></div></div>
+<div class="layer" id="ask"><div class="q">What do private funds and wealth managers <em>still ask</em>, just to let you in?</div><div class="tag" id="tagT">$?</div></div>
+<div class="layer" id="cmp"><div class="pill">THEN AND NOW</div>
+ <div class="row" style="top:440px"><b>1982 · A RIDE TO SPACE</b><span>$3,000</span></div>
+ <div class="line"></div>
+ <div class="row r2" style="top:880px" id="r2"><b>TODAY · YOUR OWN FUND</b><span>from $10</span></div></div>
+<div class="layer" id="end"><img class="logo" src="assets/logo-wordmark.png"><div class="t">7 questions private banks<br>ask on day one</div><img class="doc" src="assets/doc-1.png"><div class="cta"><div class="a">Comment</div><div class="kw">FUND</div><div class="b">and we'll DM you all seven</div></div><div class="arrow" id="arr">↓</div>
+<div class="fine">Educational only, not financial advice. Investing involves risk,<br>including loss of what you put in. Minimums vary by provider.<br>Photos: NASA (public domain). AI-generated voiceover.</div></div>
+<div class="sub" id="sub"></div>
+<script src="timeline.js"></script>
+<script>
+const L=window.TIMELINE; const N=L.length;
+window.DURATION=L[N-1].end+1.6;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const show=(id,a,b,fade=.25,t)=>{const o=Math.min(clamp((t-a)/fade),clamp((b-t)/fade));$(id).style.opacity=o;return o};
+const CH=[];L.forEach(l=>{let g=[];l.words.forEach((w,i)=>{g.push(w);const end=/[.,?!:]$/.test(w.w)||g.length>=3||i===l.words.length-1;if(end){CH.push(g);g=[]}})});
+const KEY=/^(1982|nineteen|eighty-two|NASA|\$?3,000|three|thousand|can\.?|Getaway|Special|170|hundred|seventy|exclusive|door|\$10,000|\$100,000|ten|\$10|FUND|seven|private)/i;
+const S=i=>L[i].start, E=i=>L[i].end;
+const NOTES=["NASA · STS-4 LAUNCH, JUNE 1982","NASA · A GETAWAY SPECIAL CAN WITH STUDENT EXPERIMENTS","NASA · GETAWAY SPECIAL CANS IN THE CARGO BAY","NASA · STUDENT EXPERIMENT CANS, STS-102","NASA · EARTH FROM STS-4, 1982","NASA · SHUTTLE ENDEAVOUR CARGO BAY, 1994"];
+window.draw=function(t){
+  show("hookL",-1,S(1)-0.1,.3,t);
+  show("pill1",-1,S(6)-0.05,.2,t);
+  let ni=0;for(let i=0;i<6;i++) if(t>=S(i)-0.05) ni=i;
+  $("noteT").textContent=NOTES[ni]; show("noteL",0.0,S(6)-0.05,.2,t);
+  // count up on line 4
+  const c=show("countL",S(4)-0.05,S(5)-0.05,.15,t); $("cn").textContent=Math.round(170*clamp((t-S(4))/1.4));
+  // stamp on "door" in line 5
+  const dw=L[5].words.find(w=>/^door/i.test(w.w))||L[5].words[L[5].words.length-1];
+  const ds=dw.s-0.1; show("stampL",ds,S(6)-0.05,.1,t); $("stamp").style.transform=`translateX(-50%) rotate(-8deg) scale(${1+0.6*clamp(1-(t-ds)/0.18)})`;
+  // ask + price tag reveal on line 7
+  show("ask",S(6)-0.05,S(8)-0.05,.2,t);
+  const sw=L[7].words.find(w=>/^Some/i.test(w.w))||L[7].words[2];
+  $("tagT").textContent=t<S(7)?"$?":(t<sw.s?"$10,000":"$100,000");
+  const ts=t<S(7)?S(6):(t<sw.s?S(7):sw.s); $("tagT").style.transform=`translateX(-50%) rotate(-4deg) scale(${1+0.25*clamp(1-(t-ts)/0.2)})`;
+  // compare card on line 8, second row on "Today"
+  show("cmp",S(8)-0.05,S(9)-0.05,.2,t);
+  const tw=L[8].words.find(w=>/^Today/i.test(w.w))||L[8].words[6]; $("r2").style.opacity=clamp((t-tw.s+0.1)/0.25);
+  show("end",S(9)-0.05,99,.25,t); $("arr").style.transform=`translateX(-50%) translateY(${Math.abs(Math.sin(t*4))*24}px)`;
+  let txt="";for(const g of CH){if(t>=g[0].s-0.05&&t<=g[g.length-1].e+0.25){txt=g.map(w=>KEY.test(w.w)?`<span class="k">${w.w}</span>`:w.w).join(" ")}}
+  const sub=$("sub"); const onCard=t>=S(8)-0.05&&t<S(9)-0.05; const hide=t<S(1)-0.1||t>=S(9)-0.05||(t>=S(6)-0.05&&t<S(8)-0.05);
+  sub.innerHTML=hide?"":txt; sub.className=onCard?"sub ink":"sub";
+};
+draw(0);
+</script>
+</body></html>
