@@ -97,6 +97,8 @@ Folder: `content/ugc-videos/YYYY-MM-DD-slug/` (or `content/short-form/...`) with
 Other voices that work (tested): Kokoro `af_heart` / `am_michael` (open-source; `pip install kokoro-onnx`,
 models from github.com/thewh1teagle/kokoro-onnx releases, runs in the sandbox in ~25s), edge `Ava`, `Emma`, `Brian`.
 
+**Music, SFX, stock images, HyperFrames renders:** see `docs/hyperframes.md` (skills in `.claude/skills/`).
+
 ## 6. Publishing via Composio (the reliable route)
 This machine can't hand local files to Instagram, and the Composio sandbox can't render big videos
 (~1GB RAM; Chromium crashes at 1080×1920). So: **render here, push to GitHub, let the sandbox fetch it.**
