@@ -35,7 +35,8 @@ npx hyperframes auth login --device    # headless: prints a link + code
 
 Post the link and code to Sheetal, she approves it in her browser (her HyperFrames account is her HeyGen
 account), then continue. Do not sign in with an API key: that bills HeyGen API credits and has no HyperFrames plan.
-Without sign-in, fall back to the bundled/Openverse SFX and our own stills, and say so.
+The catalog also needs the `heygen` CLI (installer: https://static.heygen.ai/cli/install.sh). On 5 Nov the cloud
+session's safety check blocked running that installer, so ask Sheetal before trying it again. Without sign-in, fall back to the bundled/Openverse SFX and our own stills, and say so.
 
 Pro (paid) adds `/reverse-any-video` and the generative models (generated music, images, video shots, avatars).
 Never spend credits without Sheetal's ok.
