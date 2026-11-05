@@ -187,6 +187,7 @@ Project skills in `.claude/skills/` (invoke with `/skill-name`):
 - `instagram-reel` — finished Reels with AI voiceover + motion graphics, no filming (playbook section 5).
 - `x-thread` — X posts and threads in BLOK voice. Always follows `growth/x/x-algorithm-playbook.md` (how X ranks posts).
 - `composio-publish` — publish/schedule via Composio (Instagram, X, LinkedIn, etc.).
+- HyperFrames video skills (`hyperframes`, `hyperframes-cli`, `hyperframes-registry`, `media-use`, `reverse-any-video`) — HTML-to-video, plus free music/SFX/stock images after HeyGen sign-in. Read `docs/hyperframes.md` first (voiceover stays the Chatterbox Brooks clone).
 
 Recommended marketplace plugins (install from the Claude plugin directory):
 **Social Media Skills**, **Remotion** (programmatic video rendering), **Marketing** (Anthropic).
