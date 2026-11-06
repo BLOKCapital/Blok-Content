@@ -1,0 +1,52 @@
+[
+ {
+  "show": "You took the first step. Most people never do.",
+  "say": "You took the first step. Most people never do.",
+  "gap": 0.5
+ },
+ {
+  "show": "Remember the guy who quit one swing away from the diamonds?",
+  "say": "Remember the guy who quit one swing away from the diamonds?",
+  "gap": 0.35
+ },
+ {
+  "show": "You didn't quit. You applied.",
+  "say": "You didn't quit. You applied.",
+  "gap": 0.6
+ },
+ {
+  "show": "So, applications for the Ambassador Program are closed now, and we're going through every single one.",
+  "say": "So, applications for the Ambassador Program are closed now, and we're going through every single one.",
+  "gap": 0.5
+ },
+ {
+  "show": "And yeah, from down here, the stairs look really long.",
+  "say": "And yeah, from down here, the stairs look really long.",
+  "gap": 0.4
+ },
+ {
+  "show": "Every step is just another video you make, and you'll learn something from each one.",
+  "say": "Every step is just another video you make, and you'll learn something from each one.",
+  "gap": 0.4
+ },
+ {
+  "show": "Some of them are gonna be hard, but honestly, most of them are gonna be exciting.",
+  "say": "Some of them are gonna be hard, but honestly, most of them are gonna be exciting.",
+  "gap": 0.6
+ },
+ {
+  "show": "And the whole way up, you'll keep wondering what's waiting at the top.",
+  "say": "And the whole way up, you'll keep wondering what's waiting at the top.",
+  "gap": 0.8
+ },
+ {
+  "show": "Us. Holding the door open, so you can grow with us.",
+  "say": "Us. Holding the door open, so you can grow with us.",
+  "gap": 0.6
+ },
+ {
+  "show": "We'll let you know who made it very soon. See you at the top.",
+  "say": "We'll let you know who made it very soon. See you at the top.",
+  "gap": 0
+ }
+]

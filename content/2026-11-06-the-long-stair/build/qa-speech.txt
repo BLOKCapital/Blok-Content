@@ -1,0 +1,32 @@
+OK  0  0.25s match=1.00
+   want: You took the first step. Most people never do.
+   heard: You took the first step. Most people never do.
+OK  1  3.90s match=1.00
+   want: Remember the guy who quit one swing away from the diamonds?
+   heard: Remember the guy who quit one swing away from the diamonds?
+OK  2  6.70s match=1.00
+   want: You didn't quit. You applied.
+   heard: You didn't quit. You applied.
+OK  3  9.55s match=1.00
+   want: So, applications for the Ambassador Program are closed now, and we're going through every single one.
+   heard: So, applications for the Ambassador Program are closed now and we're going through every single one.
+OK  4 15.85s match=1.00
+   want: And yeah, from down here, the stairs look really long.
+   heard: And yeah, from down here, the stairs look really long.
+OK  5 19.26s match=1.00
+   want: Every step is just another video you make, and you'll learn something from each one.
+   heard: Every step is just another video you make and you'll learn something from each one.
+CHECK 6 24.17s match=0.82
+   want: Some of them are gonna be hard, but honestly, most of them are gonna be exciting.
+   heard: Some of them are going to be hard, but honestly, most of them are going to be exciting.
+   diff: [('replace', 'gonna', 'going to'), ('replace', 'gonna', 'going to')]
+OK  7 28.64s match=1.00
+   want: And the whole way up, you'll keep wondering what's waiting at the top.
+   heard: and the whole way up you'll keep wondering what's waiting at the top.
+OK  8 32.46s match=1.00
+   want: Us. Holding the door open, so you can grow with us.
+   heard: Us. Holding the door open so you can grow with us.
+OK  9 36.46s match=1.00
+   want: We'll let you know who made it very soon. See you at the top.
+   heard: We'll let you know who made it very soon. See you at the top.
+lines to check: 1
