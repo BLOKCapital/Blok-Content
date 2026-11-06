@@ -1,0 +1,29 @@
+OK  0  0.25s match=1.00
+   want: In nineteen fifty-four, a New York bank put its vault in the front window.
+   heard: In 1954, a New York bank put its vault in the front window.
+CHECK 1  4.66s match=0.90
+   want: Thirty tons of steel, behind glass, right on Fifth Avenue.
+   heard: 30 tons of steel behind glass right on 5th Avenue.
+   diff: [('replace', 'fifth', 'fiveth')]
+OK  2  8.65s match=1.00
+   want: Sounds nuts, showing robbers where the money is. But seeing a vault and opening it are two different things.
+   heard: Sounds nuts showing robbers where the money is, but seeing a vault and opening it are two different things.
+OK  3 15.03s match=1.00
+   want: Money on-chain works the same way. Every balance is on a public ledger. Anyone can look in. Nobody can reach in.
+   heard: Money on chain works the same way. Every balance is on a public ledger. Anyone can look in. Nobody can reach in.
+OK  4 21.88s match=1.00
+   want: To move your money, someone needs your private key. A secret code that should never leave your hands.
+   heard: To move your money, someone needs your private key. A secret code that should never leave your hands.
+OK  5 27.65s match=1.00
+   want: So thieves don't crack the vault. They trick you into handing over the key, or approving a transfer yourself.
+   heard: So thieves don't crack the vault. They trick you into handing over the key or approving a transfer yourself.
+OK  6 33.74s match=1.00
+   want: Okay, three rules. Never share your recovery phrase, your secret backup words. Keep it on paper, offline. And keep your account address away from your real name.
+   heard: Okay, three rules. Never share your recovery phrase, your secret backup words. Keep it on paper, offline. And keep your account address away from your real name.
+OK  7 44.06s match=1.00
+   want: The vault can be glass. The key stays with you. That's how even a ten-dollar fund stays in your control.
+   heard: The vault can be glass. The key stays with you. That's how even a $10 fund stays in your control.
+OK  8 50.46s match=1.00
+   want: I wrote down the seven questions private banks ask clients on day one. Comment FUND, and I'll send them over.
+   heard: I wrote down the seven questions private banks ask clients on day one. Comment, fund, and I'll send them over.
+lines to check: 1

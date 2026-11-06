@@ -1,0 +1,47 @@
+[
+ {
+  "show": "In 1954, a New York bank put its vault in the front window.",
+  "say": "In nineteen fifty-four, a New York bank put its vault in the front window.",
+  "gap": 0.4
+ },
+ {
+  "show": "Thirty tons of steel, behind glass, right on Fifth Avenue.",
+  "say": "Thirty tons of steel, behind glass, right on Fifth Avenue.",
+  "gap": 0.4
+ },
+ {
+  "show": "Sounds nuts, showing robbers where the money is. But seeing a vault and opening it are two different things.",
+  "say": "Sounds nuts, showing robbers where the money is. But seeing a vault and opening it are two different things.",
+  "gap": 0.5
+ },
+ {
+  "show": "Money on-chain works the same way. Every balance is on a public ledger. Anyone can look in. Nobody can reach in.",
+  "say": "Money on-chain works the same way. Every balance is on a public ledger. Anyone can look in. Nobody can reach in.",
+  "gap": 0.4
+ },
+ {
+  "show": "To move your money, someone needs your private key: a secret code that should never leave your hands.",
+  "say": "To move your money, someone needs your private key. A secret code that should never leave your hands.",
+  "gap": 0.45
+ },
+ {
+  "show": "So thieves don't crack the vault. They trick you into handing over the key, or approving a transfer yourself.",
+  "say": "So thieves don't crack the vault. They trick you into handing over the key, or approving a transfer yourself.",
+  "gap": 0.45
+ },
+ {
+  "show": "Okay, three rules. Never share your recovery phrase, your secret backup words. Keep it on paper, offline. And keep your account address away from your real name.",
+  "say": "Okay, three rules. Never share your recovery phrase, your secret backup words. Keep it on paper, offline. And keep your account address away from your real name.",
+  "gap": 0.45
+ },
+ {
+  "show": "The vault can be glass. The key stays with you. That's how even a $10 fund stays in your control.",
+  "say": "The vault can be glass. The key stays with you. That's how even a ten-dollar fund stays in your control.",
+  "gap": 0.5
+ },
+ {
+  "show": "I wrote down the seven questions private banks ask clients on day one. Comment FUND and I'll send them over.",
+  "say": "I wrote down the seven questions private banks ask clients on day one. Comment FUND, and I'll send them over.",
+  "gap": 0
+ }
+]

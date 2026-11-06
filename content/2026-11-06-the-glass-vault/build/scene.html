@@ -1,0 +1,184 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"ISerif";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/InstrumentSerif-Regular.ttf)}
+@font-face{font-family:"ISerif";font-style:italic;src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/InstrumentSerif-Italic.ttf)}
+@font-face{font-family:"SMono";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/SpaceMono-Bold.ttf)}
+html,body{margin:0;width:1080px;height:1920px;background:#0b0d12;overflow:hidden}
+body{font-family:Inter,sans-serif;color:#fff}
+canvas{position:absolute;inset:0}
+.layer{position:absolute;inset:0;opacity:0}
+.pill{position:absolute;left:50%;transform:translateX(-50%);top:250px;font:700 30px SMono,monospace;letter-spacing:3px;padding:14px 26px;border-radius:999px;background:#F6F3E8;color:#1d1b16;white-space:nowrap}
+.pill.lime{background:#7ED116;color:#10210a}
+.sub{position:absolute;left:70px;right:70px;top:1380px;text-align:center;font:700 68px/1.12 Inter,sans-serif;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.85),0 0 3px rgba(0,0,0,.9)}
+.sub .k{color:#F2C45A}
+.sub.ink{color:#1d1b16;text-shadow:none}.sub.ink .k{color:#004EBA}
+.note{position:absolute;left:70px;right:70px;top:1590px;font:700 22px SMono,monospace;letter-spacing:1px;color:rgba(246,243,232,.85);text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.note.ink{color:#6b665a;text-shadow:none}
+.hook{position:absolute;left:0;right:0;top:330px;padding:30px 0 40px;background:linear-gradient(transparent,rgba(5,7,12,.78) 18%,rgba(5,7,12,.78) 82%,transparent);text-align:center;font:400 120px/0.98 ISerif,serif;color:#F6F3E8;text-shadow:0 4px 24px rgba(0,0,0,.9)}
+.hook em{color:#F2C45A;font-style:normal}
+.hook small{display:block;font:700 34px SMono,monospace;letter-spacing:4px;color:#7DD2FD;margin-top:24px}
+#stamp{position:absolute;left:50%;top:560px;transform:translateX(-50%) rotate(-8deg);border:10px solid #EC464D;color:#EC464D;font:700 120px/1 SMono,monospace;padding:24px 40px;letter-spacing:4px;background:rgba(246,243,232,.94);white-space:nowrap}
+#stamp small{display:block;font-size:30px;letter-spacing:6px;margin-top:10px;text-align:center}
+.badge{position:absolute;left:110px;right:110px;padding:30px 40px;border-radius:28px;font:400 84px/1 ISerif,serif;display:flex;justify-content:space-between;align-items:center}
+.badge b{font:700 34px SMono,monospace;letter-spacing:3px}
+.b-yes{background:rgba(246,243,232,.95);color:#1d1b16}.b-yes b{color:#2d6a00}
+.b-no{background:#EC464D;color:#fff}.b-no b{color:#fff}
+#ledger{background:#F6F3E8;color:#1d1b16}
+#ledger .pill{background:#004EBA;color:#fff}
+#ledger .tbl{position:absolute;left:90px;right:90px;top:400px;border-top:4px solid #844947}
+#ledger .r{display:flex;justify-content:space-between;font:700 40px SMono,monospace;padding:26px 6px;border-bottom:2px solid rgba(132,73,71,.35);opacity:0}
+#ledger .r span:last-child{color:#004EBA}
+#ledger .r.me{background:#e9f6d6}
+#ledger .glass{position:absolute;left:70px;right:70px;top:380px;height:760px;border-radius:24px;background:linear-gradient(120deg,rgba(125,210,253,.28),rgba(125,210,253,.08) 40%,rgba(255,255,255,.35) 46%,rgba(125,210,253,.08) 52%);border:4px solid rgba(0,78,186,.45);opacity:0}
+#key{background:transparent}
+#key .lbl{position:absolute;left:80px;right:80px;top:960px;text-align:center;font:400 84px/1 ISerif,serif;color:#F6F3E8}
+#key .lbl small{display:block;font:700 30px SMono,monospace;letter-spacing:4px;color:#7DD2FD;margin-top:24px}
+#phone{background:#F6F3E8}
+#phone .ph{position:absolute;left:190px;top:330px;width:700px;height:1000px;border-radius:70px;background:#1d1b16;padding:30px;box-sizing:border-box}
+#phone .scr{width:100%;height:100%;border-radius:46px;background:#eef1f6;position:relative;overflow:hidden}
+#phone .msg{position:absolute;left:30px;right:30px;border-radius:26px;background:#fff;padding:26px 30px;font:500 34px/1.25 Inter,sans-serif;color:#1d1b16;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:0}
+#phone .msg b{display:block;font:700 24px SMono,monospace;color:#6b665a;margin-bottom:8px;letter-spacing:1px}
+#phone .msg .btn{display:inline-block;margin-top:14px;background:#004EBA;color:#fff;border-radius:14px;padding:10px 20px;font:700 28px Inter}
+#phone .fake{position:absolute;right:-10px;top:-24px;transform:rotate(8deg);border:6px solid #EC464D;color:#EC464D;background:#fff;font:700 34px SMono,monospace;padding:4px 14px;letter-spacing:3px;opacity:0}
+#board{background:#0b0d12}
+#board .wood{position:absolute;left:70px;right:70px;top:330px;height:1000px;border-radius:26px;background:#844947;padding:34px;box-sizing:border-box;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+#board .chalk{width:100%;height:100%;border-radius:12px;background:radial-gradient(ellipse at 40% 30%,#2f3b33,#1e2722);position:relative}
+#board .ttl{position:absolute;left:50px;right:50px;top:46px;font:400 76px/1 ISerif,serif;color:#F6F3E8;border-bottom:3px solid rgba(246,243,232,.35);padding-bottom:26px}
+#board .row{position:absolute;left:50px;right:50px;font:400 60px/1.08 ISerif,serif;color:#F6F3E8;opacity:0;display:flex;gap:30px}
+#board .row i{font-style:normal;color:#F2C45A;font:700 56px SMono,monospace;min-width:60px}
+#end{background:#F6F3E8;color:#1d1b16}
+#end .logo{position:absolute;left:50%;top:225px;transform:translateX(-50%);height:46px}
+#end .t{position:absolute;left:80px;right:80px;top:330px;text-align:center;font:400 78px/1.02 ISerif,serif;color:#004EBA}
+#end .doc{position:absolute;left:50%;top:540px;width:280px;transform:translateX(-50%) rotate(-4deg);border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+#end .cta{position:absolute;left:60px;right:60px;top:960px;text-align:center}
+#end .cta .a{font:400 80px/1 ISerif,serif}
+#end .cta .kw{display:inline-block;margin-top:16px;font:700 136px/1 Inter,sans-serif;letter-spacing:2px;background:#EC464D;color:#fff;padding:16px 46px;border-radius:24px}
+#end .cta .b{font:400 52px/1.1 ISerif,serif;margin-top:22px;color:#004EBA}
+#end .q{position:absolute;left:70px;right:70px;top:1330px;text-align:center;font:700 34px/1.3 Inter,sans-serif;color:#1d1b16}
+#end .q span{display:block;font:700 22px SMono,monospace;color:#844947;letter-spacing:2px;margin-top:8px}
+#end .fine{position:absolute;left:60px;right:60px;top:1450px;text-align:center;font:700 19px/1.5 SMono,monospace;color:#6b665a}
+</style></head>
+<body>
+<canvas id="cv" width="1080" height="1920"></canvas>
+<div class="layer" id="pill1"><div class="pill" id="pillT">NEW YORK · 1954</div></div>
+<div class="layer" id="hookL"><div class="hook">Can they<br><em>take it?</em><small>ANSWER AT THE END</small></div></div>
+<div class="layer" id="noteL"><div class="note" id="noteT"></div></div>
+<div class="layer" id="stampL"><div id="stamp">30 TONS<small>OF STEEL, IN THE WINDOW</small></div></div>
+<div class="layer" id="seeL"><div class="badge b-yes" style="top:420px" id="bSee"><span>Seeing it</span><b>ANYONE ✓</b></div>
+ <div class="badge b-no" style="top:600px" id="bOpen"><span>Opening it</span><b>KEY ONLY ✕</b></div></div>
+<div class="layer" id="ledger"><div class="pill">A PUBLIC LEDGER</div>
+ <div class="tbl" id="tbl"></div><div class="glass" id="glass"></div></div>
+<div class="layer" id="key"><div class="pill lime">YOUR PRIVATE KEY</div><div class="lbl">A secret code<br>that never leaves<br>your hands<small>NOT YOUR ADDRESS. NOT YOUR BALANCE.</small></div></div>
+<div class="layer" id="phone"><div class="pill" style="background:#EC464D;color:#fff">WHAT THIEVES ACTUALLY TRY</div>
+ <div class="ph"><div class="scr">
+  <div class="msg" id="m0" style="top:70px"><b>SUPPORT TEAM · NOW</b>Your account is locked. Send us your backup words to restore it.<div class="fake" id="f0">FAKE</div></div>
+  <div class="msg" id="m1" style="top:380px"><b>SECURE-L0GIN-HELP.COM</b>Verify your account to keep it open.<br><span class="btn">Verify now</span><div class="fake" id="f1">FAKE</div></div>
+  <div class="msg" id="m2" style="top:670px"><b>APPROVE THIS TRANSFER?</b>$2,400 to an account you don't know.<br><span class="btn" style="background:#2d6a00">Approve</span><div class="fake" id="f2">FAKE</div></div>
+ </div></div></div>
+<div class="layer" id="board"><div class="pill lime">3 RULES</div><div class="wood"><div class="chalk"><div class="ttl">Keep the key yours</div>
+ <div class="row" id="r0" style="top:240px"><i>1</i><span>Never share your recovery phrase. Not with “support”, not with anyone.</span></div>
+ <div class="row" id="r1" style="top:470px"><i>2</i><span>Write it on paper. Keep it offline. No screenshots.</span></div>
+ <div class="row" id="r2" style="top:690px"><i>3</i><span>Keep your account address away from your real name.</span></div>
+</div></div></div>
+<div class="layer" id="end"><img class="logo" src="assets/logo-wordmark.png"><div class="t">7 questions private banks<br>ask on day one</div><img class="doc" src="assets/doc-1.png"><div class="cta"><div class="a">Comment</div><div class="kw">FUND</div><div class="b">and we'll DM you all seven</div></div>
+<div class="q">Would you put your vault in the window? Yes or no?<span>FOLLOW @BLOK.CAPITAL FOR ONE FORGOTTEN MONEY STORY A DAY</span></div>
+<div class="fine">Educational content only, not financial or investment advice.<br>On-chain assets can be volatile and you can lose money.<br>AI-generated voiceover and illustrations. Vault photo (2013):<br>Beyond My Ken, CC BY-SA 4.0, via Wikimedia Commons.</div></div>
+<div class="sub" id="sub"></div>
+<img id="photo" src="assets/vault-crop.jpg" style="display:none">
+<script src="timeline.js"></script>
+<script>
+const L=window.TIMELINE; const N=L.length;
+window.DURATION=L[N-1].end+2.2;
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const show=(id,a,b,fade=.25,t)=>{const o=Math.min(clamp((t-a)/fade),clamp((b-t)/fade));$(id).style.opacity=o;return o};
+const S=i=>L[i].start, E=i=>L[i].end;
+const W=(i,rx,n=0)=>{const ws=L[i].words.filter(w=>rx.test(w.w));const w=ws[n];return w?w.s:S(i)};
+const CH=[];L.forEach(l=>{let g=[];l.words.forEach((w,i)=>{g.push(w);const end=/[.,?!:]$/.test(w.w)||g.length>=3||i===l.words.length-1;if(end){CH.push(g);g=[]}})});
+const KEY=/^(1954|vault|window|Thirty|tons|glass|seeing|opening|nuts|public|look|reach|private|key|trick|approving|never|paper|offline|name|\$10|control|FUND|seven)/i;
+// ledger rows
+const ROWS=[["Account ••4821","$1,240.18"],["Account ••0937","$86.02"],["Account ••5510","$12,900.00"],["Account ••7264","$10.00"],["Account ••3318","$472.55"],["Account ••9042","$3,015.70"]];
+$("tbl").innerHTML=ROWS.map((r,i)=>`<div class="r${i==3?' me':''}" id="lr${i}"><span>${r[0]}</span><span>${r[1]}</span></div>`).join("");
+const cv=$("cv"),c=cv.getContext("2d"); const photo=$("photo");
+// walkers
+const WALK=[{x0:-120,v:70,s:1.0,col:"#05070c"},{x0:1250,v:-55,s:.9,col:"#0a0d16"},{x0:300,v:40,s:1.1,col:"#04060a"},{x0:900,v:-80,s:.95,col:"#070a12"}];
+function person(x,y,s,col,ph){c.save();c.translate(x,y);c.scale(s,s);c.fillStyle=col;
+ const sw=Math.sin(ph)*18; c.beginPath();c.arc(0,-250,30,0,7);c.fill();
+ c.beginPath();c.roundRect(-38,-215,76,140,30);c.fill();
+ c.lineWidth=24;c.lineCap="round";c.strokeStyle=col;c.beginPath();c.moveTo(-14,-85);c.lineTo(-14+sw,0);c.moveTo(14,-85);c.lineTo(14-sw,0);c.stroke();
+ c.beginPath();c.ellipse(0,-282,46,10,0,0,7);c.fill();c.fillRect(-26,-312,52,30);c.restore();}
+function vaultDoor(cx,cy,r,t,glow){
+ c.save();
+ const g=c.createRadialGradient(cx-r*.3,cy-r*.3,r*.1,cx,cy,r);g.addColorStop(0,"#eef2f5");g.addColorStop(.6,"#a9b3bb");g.addColorStop(1,"#5d666e");
+ c.fillStyle=g;c.beginPath();c.arc(cx,cy,r,0,7);c.fill();
+ c.strokeStyle="rgba(40,46,52,.55)";for(const k of [.92,.8,.62,.45]){c.lineWidth=k==.92?8:4;c.beginPath();c.arc(cx,cy,r*k,0,7);c.stroke();}
+ for(let i=0;i<16;i++){const a=i/16*Math.PI*2+t*.05;c.fillStyle="#7d868e";c.beginPath();c.arc(cx+Math.cos(a)*r*.86,cy+Math.sin(a)*r*.86,r*.035,0,7);c.fill();}
+ c.strokeStyle="#4c545b";c.lineWidth=r*.04;for(let i=0;i<6;i++){const a=i/6*Math.PI*2+t*.15;c.beginPath();c.moveTo(cx,cy);c.lineTo(cx+Math.cos(a)*r*.3,cy+Math.sin(a)*r*.3);c.stroke();}
+ c.fillStyle="#3c4349";c.beginPath();c.arc(cx,cy,r*.08,0,7);c.fill();
+ c.fillStyle="#6d767e";c.fillRect(cx-r-40,cy-r*.55,50,r*.3);c.fillRect(cx-r-40,cy+r*.25,50,r*.3);
+ if(glow){c.strokeStyle=`rgba(242,196,90,${glow})`;c.lineWidth=14;c.beginPath();c.arc(cx,cy,r+18,0,7);c.stroke();}
+ c.restore();}
+function street(t,zoom,glow){
+ c.save(); const z=zoom; c.translate(540,1000);c.scale(z,z);c.translate(-540,-1000);
+ const sky=c.createLinearGradient(0,0,0,1920);sky.addColorStop(0,"#070b1c");sky.addColorStop(.5,"#16234a");sky.addColorStop(1,"#0b0d12");c.fillStyle=sky;c.fillRect(-200,-200,1480,2320);
+ // building
+ c.fillStyle="#1b2236";c.fillRect(40,180,1000,1440);
+ for(let y=200;y<700;y+=90)for(let x=60;x<1020;x+=120){c.fillStyle=((x*7+y*3)%5<2)?"#6d6446":"#222a44";c.fillRect(x,y,100,70);}
+ c.fillStyle="#0f1424";c.fillRect(40,720,1000,30);
+ // big glass ground floor
+ const gl=c.createLinearGradient(0,760,0,1560);gl.addColorStop(0,"#fff2c9");gl.addColorStop(1,"#e8c87a");c.fillStyle=gl;c.fillRect(70,760,940,800);
+ c.fillStyle="rgba(255,255,255,.55)";for(let i=0;i<8;i++){c.fillRect(70+i*134,760,2,800)}
+ c.fillStyle="#cdb37a";c.fillRect(70,1420,940,140);
+ vaultDoor(540,1060,230,t,glow);
+ // glass reflection
+ c.fillStyle="rgba(255,255,255,.18)";c.beginPath();c.moveTo(200,760);c.lineTo(340,760);c.lineTo(160,1560);c.lineTo(20,1560);c.fill();
+ c.fillStyle="#0c0f18";c.fillRect(-200,1560,1480,600);
+ c.fillStyle="#141a2b";c.fillRect(-200,1560,1480,16);
+ const sh=c.createLinearGradient(0,1280,0,1620);sh.addColorStop(0,'rgba(5,7,12,0)');sh.addColorStop(.35,'rgba(5,7,12,.62)');sh.addColorStop(1,'rgba(5,7,12,.85)');c.fillStyle=sh;c.fillRect(-200,1280,1480,340);
+ for(const w of WALK){let x=w.x0+w.v*t; x=((x+300)%1680+1680)%1680-300; person(x,1700,w.s,w.col,t*6+w.x0);}
+ c.restore();}
+function keyArt(t){
+ c.fillStyle="#0b1530";c.fillRect(0,0,1080,1920);
+ const a=Math.sin(t*1.2)*.06; c.save();c.translate(540,700);c.rotate(-0.35+a);
+ const g=c.createLinearGradient(-300,0,300,0);g.addColorStop(0,"#b8892a");g.addColorStop(.5,"#F2C45A");g.addColorStop(1,"#a97a20");
+ c.fillStyle=g;c.strokeStyle="#7a5714";c.lineWidth=8;
+ c.beginPath();c.arc(-200,0,130,0,7);c.fill();c.stroke();c.fillStyle="#0b1530";c.beginPath();c.arc(-200,0,55,0,7);c.fill();
+ c.fillStyle=g;c.fillRect(-80,-30,420,60);c.strokeRect(-80,-30,420,60);
+ c.fillRect(250,30,40,70);c.fillRect(310,30,30,50);c.fillRect(190,30,30,50);c.restore();
+ c.fillStyle="rgba(125,210,253,.12)";for(let i=0;i<40;i++){const x=(i*233)%1080,y=(i*397+t*30)%1920;c.fillRect(x,y,3,3);}
+}
+const NOTES=["ILLUSTRATION · 510 FIFTH AVENUE, NEW YORK, OPENED 1954","THE REAL DOOR, STILL BEHIND THE GLASS · PHOTO 2013, BEYOND MY KEN, CC BY-SA 4.0",""];
+window.draw=function(t){
+ c.clearRect(0,0,1080,1920);
+ const s3=S(3)-0.05,s4=S(4)-0.05,s5=S(5)-0.05,s6=S(6)-0.05,s7=S(7)-0.05,s8=S(8)-0.05;
+ if(t<S(1)-0.05){street(t,1.0+0.03*t/S(1),0)}
+ else if(t<S(2)-0.05){const k=(t-S(1))/(S(2)-S(1));const z=1.04+0.06*k;c.save();c.translate(540,960);c.scale(z,z);c.drawImage(photo,-540,-960,1080,1920);c.restore();
+   const v=c.createLinearGradient(0,1200,0,1920);v.addColorStop(0,"rgba(0,0,0,0)");v.addColorStop(1,"rgba(0,0,0,.75)");c.fillStyle=v;c.fillRect(0,0,1080,1920);}
+ else if(t<s3){street(t,1.12,0)}
+ else if(t>=s7&&t<s8){street(t,1.0+0.04*(t-s7)/(s8-s7),0.5+0.5*Math.sin(t*3))}
+ else if(t>=s4-0.3&&t<s5+0.3){keyArt(t)}
+ // hook
+ show("hookL",-1,S(1)-0.1,.3,t); show("pill1",-1,S(3)-0.05,.2,t);
+ $("pillT").textContent= t<s3?"NEW YORK · 1954":"";
+ const ni=t<S(1)-0.05?0:(t<S(2)-0.05?1:2); $("noteT").textContent=NOTES[ni]; show("noteL",0,S(2)-0.05,.2,t);
+ const ds=W(1,/^tons/i)-0.15; show("stampL",ds,S(2)-0.05,.1,t); $("stamp").style.transform=`translateX(-50%) rotate(-8deg) scale(${1+0.6*clamp(1-(t-ds)/0.18)})`;
+ // seeing vs opening
+ const bs=W(2,/^Seeing/i); show("seeL",bs-0.1,s3,.2,t); $("bSee").style.opacity=clamp((t-W(2,/^seeing/i)+0.1)/.2); $("bOpen").style.opacity=clamp((t-W(2,/^opening/i)+0.1)/.2);
+ // ledger
+ show("ledger",s3,s4,.2,t); ROWS.forEach((r,i)=>{$("lr"+i).style.opacity=clamp((t-s3-0.25-i*0.22)/0.2)});
+ const ri=W(3,/^reach/i); $("glass").style.opacity=clamp((t-W(3,/^Anyone/i))/0.4)*0.9;
+ $("glass").style.transform=`translateY(${t>ri?-8*Math.sin(clamp((t-ri)/0.5)*Math.PI*3)*(1-clamp((t-ri)/0.8)):0}px)`;
+ show("key",s4,s5,.2,t);
+ show("phone",s5,s6,.2,t); const ph=[S(5)+0.2,W(5,/^handing/i),W(5,/^approving/i)];
+ ph.forEach((p,i)=>{$("m"+i).style.opacity=clamp((t-p+0.3)/0.2);$("m"+i).style.transform=`translateY(${30*(1-ease((t-p+0.3)/0.3))}px)`;$("f"+i).style.opacity=clamp((t-E(5)+0.2-i*0.12)/0.1)});
+ show("board",s6,s7,.2,t); const rw=[W(6,/^Never/i),W(6,/^Keep/i),W(6,/^Keep/i,1)]; rw.forEach((p,i)=>$("r"+i).style.opacity=clamp((t-p+0.1)/0.25));
+ show("end",s8,999,.25,t);
+ let txt="";for(const g of CH){if(t>=g[0].s-0.05&&t<=g[g.length-1].e+0.25){txt=g.map(w=>KEY.test(w.w)?`<span class="k">${w.w}</span>`:w.w).join(" ")}}
+ const sub=$("sub"); const onLinen=(t>=s3&&t<s4)||(t>=s5&&t<s6); const hide=t<S(1)-0.1||t>=s8||(t>=s6&&t<s7);
+ sub.innerHTML=hide?"":txt; sub.className=onLinen?"sub ink":"sub";
+};
+draw(0);
+</script>
+</body></html>
