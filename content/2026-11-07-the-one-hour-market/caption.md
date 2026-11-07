@@ -17,3 +17,7 @@ Educational content only, not financial or investment advice. Investing carries 
 Sources: Business Today, "Muhurat trading 2026: NSE, BSE announce Diwali timings", 19 Oct 2026 (timings); Wikipedia, "Muhurat trading" (token orders, shares bought for children); Outlook Business, "The Significance And Trends Of Muhurat Trading At BSE, NSE On Diwali" (BSE since 1957). AI-generated voiceover and illustrations. Original music.
 
 #diwali #muhurattrading #moneyhistory #investing #financialliteracy
+
+## Posted
+- Instagram Reel: 7 Nov 2026, 14:51 UTC, https://www.instagram.com/reel/Dfcb6sghRpq/ (media id 17973973197173612)
+- X (16:9): 7 Nov 2026, 12:56 UTC, https://x.com/blok_cap/status/2119051465863885105
