@@ -1,0 +1,20 @@
+# usage: python3 mix.py -> mix.m4a (VO + our track + synth boom/thud/whoosh)
+import json, subprocess
+T=json.loads(open('timeline.js').read().split('=',1)[1].rstrip(';\n'))
+S=lambda i:T[i]['start']; E=lambda i:T[i]['end']
+D=E(len(T)-1)+2.2
+def word(i,rx):
+    import re
+    for w in T[i]['words']:
+        if re.match(rx,w['w'],re.I): return w['s']
+    return S(i)
+ev=[('sfx/boom.wav',0.05,.8),('sfx/thud.wav',word(1,'1957')-0.1,.9),('sfx/whoosh.wav',S(2)-0.4,.4),('sfx/whoosh.wav',S(3)-0.45,.5),('sfx/thud.wav',word(3,'never')-0.1,.6),('sfx/boom.wav',word(4,'start'),.6),('sfx/whoosh.wav',S(5)-0.45,.5),('sfx/thud.wav',word(6,r'\$10\.'),.6),('sfx/whoosh.wav',S(7)-0.45,.4)]
+cmd=['ffmpeg','-y','-v','error','-i','vo.wav','-stream_loop','3','-i','/home/user/Blok-Content/assets/music/blok-morning-soil.m4a']
+for f,_,_ in ev: cmd+=['-i',f]
+fc=f"[0:a]apad=pad_dur=2.5,aresample=44100,aformat=channel_layouts=stereo,asplit[v][sc];[1:a]aresample=44100,atrim=0:{D},afade=t=in:d=1,afade=t=out:st={D-2}:d=2,volume=0.2[m0];[m0][sc]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=400[m];"
+ins='[v][m]'
+for j,(f,t,g) in enumerate(ev):
+    ms=max(0,int(t*1000)); fc+=f"[{j+2}:a]aresample=44100,volume={g},adelay={ms}|{ms}[e{j}];"; ins+=f"[e{j}]"
+fc+=f"{ins}amix=inputs={len(ev)+2}:duration=longest:normalize=0,atrim=0:{D},loudnorm=I=-15:TP=-2:LRA=11,alimiter=limit=0.8:level=false[out]"
+cmd+=['-filter_complex',fc,'-map','[out]','-ar','44100','-c:a','aac','-b:a','192k','mix.m4a']
+subprocess.run(cmd,check=True); print('dur',round(D,2))

@@ -1,0 +1,170 @@
+{
+ "takes/l00_t0.wav": {
+  "line": 0,
+  "ratio": 1.0,
+  "heard": "Tomorrow, India's stock market opens on a Sunday for about an hour.",
+  "dur": 4.46,
+  "maxpause": 0
+ },
+ "takes/l00_t1.wav": {
+  "line": 0,
+  "ratio": 1.0,
+  "heard": "Tomorrow, India's stock market opens on a Sunday for about an hour.",
+  "dur": 4.38,
+  "maxpause": 0
+ },
+ "takes/l00_t2.wav": {
+  "line": 0,
+  "ratio": 1.0,
+  "heard": "Tomorrow, India's stock market opens on a Sunday for about an hour.",
+  "dur": 4.46,
+  "maxpause": 0.396333
+ },
+ "takes/l01_t0.wav": {
+  "line": 1,
+  "ratio": 1.0,
+  "heard": "It's Diwali and traders have done this since 1957.",
+  "dur": 3.58,
+  "maxpause": 0.359292
+ },
+ "takes/l01_t1.wav": {
+  "line": 1,
+  "ratio": 1.0,
+  "heard": "It's Diwali, and traders have done this since 1957.",
+  "dur": 3.66,
+  "maxpause": 0.529917
+ },
+ "takes/l01_t2.wav": {
+  "line": 1,
+  "ratio": 1.0,
+  "heard": "It's Diwali, and traders have done this since 1957.",
+  "dur": 4.82,
+  "maxpause": 0.465708
+ },
+ "takes/l02_t0.wav": {
+  "line": 2,
+  "ratio": 1.0,
+  "heard": "Here's the odd part. Most people aren't there to trade big.",
+  "dur": 3.26,
+  "maxpause": 0.4375
+ },
+ "takes/l02_t1.wav": {
+  "line": 2,
+  "ratio": 1.0,
+  "heard": "Here's the odd part. Most people aren't there to trade big.",
+  "dur": 3.82,
+  "maxpause": 0.66225
+ },
+ "takes/l02_t2.wav": {
+  "line": 2,
+  "ratio": 1.0,
+  "heard": "Here's the odd part. Most people aren't there to trade big.",
+  "dur": 3.5,
+  "maxpause": 0.368
+ },
+ "takes/l03_t0.wav": {
+  "line": 3,
+  "ratio": 1.0,
+  "heard": "Families place tiny token orders. Parents buy shares for their kids. Some never sell them.",
+  "dur": 6.18,
+  "maxpause": 0.487333
+ },
+ "takes/l03_t1.wav": {
+  "line": 3,
+  "ratio": 1.0,
+  "heard": "Families place tiny token orders. Parents buy shares for their kids. Some never sell them.",
+  "dur": 6.1,
+  "maxpause": 0.367167
+ },
+ "takes/l03_t2.wav": {
+  "line": 3,
+  "ratio": 1.0,
+  "heard": "Families place tiny token orders. Parents buy shares for their kids. Some never sell them.",
+  "dur": 6.42,
+  "maxpause": 0.578708
+ },
+ "takes/l04_t0.wav": {
+  "line": 4,
+  "ratio": 1.0,
+  "heard": "Because that hour isn't about the amount, it's about the start.",
+  "dur": 3.82,
+  "maxpause": 0.503917
+ },
+ "takes/l04_t1.wav": {
+  "line": 4,
+  "ratio": 1.0,
+  "heard": "Because that hour isn't about the amount. It's about the start.",
+  "dur": 4.26,
+  "maxpause": 0.585375
+ },
+ "takes/l04_t2.wav": {
+  "line": 4,
+  "ratio": 1.0,
+  "heard": "Because that hour isn't about the amount, it's about the start.",
+  "dur": 4.02,
+  "maxpause": 0.424917
+ },
+ "takes/l05_t0.wav": {
+  "line": 5,
+  "ratio": 1.0,
+  "heard": "Yet most funds still want $10,000 or more before you can start.",
+  "dur": 4.38,
+  "maxpause": 0.420375
+ },
+ "takes/l05_t1.wav": {
+  "line": 5,
+  "ratio": 1.0,
+  "heard": "Yet most funds still want $10,000 or more before you can start.",
+  "dur": 4.42,
+  "maxpause": 0.359417
+ },
+ "takes/l05_t2.wav": {
+  "line": 5,
+  "ratio": 1.0,
+  "heard": "Yet most funds still want $10,000 or more before you can start.",
+  "dur": 4.38,
+  "maxpause": 0.468625
+ },
+ "takes/l06_t0.wav": {
+  "line": 6,
+  "ratio": 1.0,
+  "heard": "Your start can be $10. With Block, anyone can have their own fund.",
+  "dur": 4.94,
+  "maxpause": 0.398042
+ },
+ "takes/l06_t1.wav": {
+  "line": 6,
+  "ratio": 0.9230769230769231,
+  "heard": "Your stock can be $10. With Block, anyone can have their own fund.",
+  "dur": 4.38,
+  "maxpause": 0.404083
+ },
+ "takes/l06_t2.wav": {
+  "line": 6,
+  "ratio": 0.9230769230769231,
+  "heard": "Your star can be $10. With Block, anyone can have their own fund.",
+  "dur": 4.58,
+  "maxpause": 0.591292
+ },
+ "takes/l07_t0.wav": {
+  "line": 7,
+  "ratio": 1.0,
+  "heard": "I wrote down the seven questions private banks ask on day one. Comment, fund, and I'll send them over.",
+  "dur": 6.98,
+  "maxpause": 0.679833
+ },
+ "takes/l07_t1.wav": {
+  "line": 7,
+  "ratio": 1.0,
+  "heard": "I wrote down the seven questions private banks ask on day one. Comment, fund, and I'll send them over.",
+  "dur": 6.9,
+  "maxpause": 0.554917
+ },
+ "takes/l07_t2.wav": {
+  "line": 7,
+  "ratio": 1.0,
+  "heard": "I wrote down the seven questions private banks ask on day one. Comment, fund, and I'll send them over.",
+  "dur": 7.98,
+  "maxpause": 0.825292
+ }
+}
