@@ -15,3 +15,6 @@ cuz that hour was never about the amount, it's about starting
 
 so who bought you your first share? 👇
 <!-- X END 0 -->
+
+## Posted
+7 Nov 2026, 12:56 UTC: https://x.com/blok_cap/status/2119051465863885105 (304 characters, so X stores it as a long post and the last line sits behind Show more)
