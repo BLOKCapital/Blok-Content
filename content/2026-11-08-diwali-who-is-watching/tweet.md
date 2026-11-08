@@ -14,3 +14,7 @@ so this diwali, who's watching your money while you celebrate?
 <!-- X START 1 (first reply, sources) -->
 sources: fbi + cisa advisory on holiday and weekend attacks (31 aug 2021) cisa.gov/news-events/alerts/2021/08/31/fbi-cisa-advisory-ransomware-awareness-holidays-and-weekends · bangladesh bank heist timeline en.wikipedia.org/wiki/Bangladesh_Bank_robbery
 <!-- X END 1 -->
+
+## Posted
+- Instagram Reel (9:16): 8 Nov 2026, 10:55 UTC, https://www.instagram.com/reel/DfelvKkBQYl/ (media id 18376903789245747)
+- X (16:9): 8 Nov 2026, 10:56 UTC, https://x.com/blok_cap/status/2119383456803172525 (sources reply 2119383467569872943)

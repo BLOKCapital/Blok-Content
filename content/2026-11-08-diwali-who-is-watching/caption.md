@@ -21,3 +21,7 @@ Educational content only, not financial or investment advice. Investing carries 
 Sources: Wikipedia, "Bangladesh Bank robbery" (Feb 2016, $81 million to the Philippines, weekend and Lunar New Year timing); FBI and CISA joint advisory "Ransomware Awareness for Holidays and Weekends", 31 Aug 2021 (cisa.gov). AI-generated voiceover. 3D animation made in Blender. Original music.
 
 #diwali #moneysafety #fraudawareness #investing #financialliteracy
+
+## Posted
+- Instagram Reel (9:16): 8 Nov 2026, 10:55 UTC, https://www.instagram.com/reel/DfelvKkBQYl/ (media id 18376903789245747)
+- X (16:9): 8 Nov 2026, 10:56 UTC, https://x.com/blok_cap/status/2119383456803172525 (sources reply 2119383467569872943)
