@@ -1,0 +1,62 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cap,Inter SemiBold,66,&H00FFFFFF,&H00FFFFFF,&H00180E06,&H90000000,0,0,0,0,100,100,0,0,1,4,2,2,60,60,520,1
+Style: Pill,Inter Display Bold,44,&H00241A10,&H00FFFFFF,&H0016D17E,&H00000000,0,0,0,0,100,100,1,0,3,14,0,8,60,60,250,1
+Style: Small,Inter Medium,30,&H00E8F3F6,&H00FFFFFF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,0,2,60,60,390,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:00.00,0:00:15.04,Pill,,0,0,0,,WHY THAT DAY?
+Dialogue: 1,0:00:26.92,0:00:37.11,Pill,,0,0,0,,WHO'S WATCHING YOURS?
+Dialogue: 0,0:00:00.26,0:00:01.41,Cap,,0,0,0,,In 2016,
+Dialogue: 0,0:00:01.41,0:00:03.96,Cap,,0,0,0,,hackers stole $81 million
+Dialogue: 0,0:00:03.96,0:00:05.24,Cap,,0,0,0,,from a central bank.
+Dialogue: 0,0:00:05.37,0:00:06.06,Cap,,0,0,0,,And they picked the
+Dialogue: 0,0:00:06.06,0:00:07.24,Cap,,0,0,0,,day on purpose.
+Dialogue: 0,0:00:07.41,0:00:08.29,Cap,,0,0,0,,They struck just as
+Dialogue: 0,0:00:08.29,0:00:09.19,Cap,,0,0,0,,the bank closed for
+Dialogue: 0,0:00:09.19,0:00:10.27,Cap,,0,0,0,,the weekend.
+Dialogue: 0,0:00:10.27,0:00:11.96,Cap,,0,0,0,,New York was off next.
+Dialogue: 0,0:00:11.96,0:00:13.10,Cap,,0,0,0,,Then the country the
+Dialogue: 0,0:00:13.10,0:00:13.94,Cap,,0,0,0,,money went to shut
+Dialogue: 0,0:00:13.94,0:00:14.96,Cap,,0,0,0,,for a holiday.
+Dialogue: 0,0:00:15.16,0:00:16.12,Cap,,0,0,0,,By the time everyone
+Dialogue: 0,0:00:16.12,0:00:17.44,Cap,,0,0,0,,was back at their desks,
+Dialogue: 0,0:00:17.44,0:00:19.06,Cap,,0,0,0,,the money was gone.
+Dialogue: 0,0:00:19.45,0:00:20.84,Cap,,0,0,0,,It still works.
+Dialogue: 0,0:00:20.84,0:00:22.44,Cap,,0,0,0,,The FBI has seen
+Dialogue: 0,0:00:22.44,0:00:23.44,Cap,,0,0,0,,more big attacks on
+Dialogue: 0,0:00:23.44,0:00:24.98,Cap,,0,0,0,,holidays and weekends,
+Dialogue: 0,0:00:24.98,0:00:25.94,Cap,,0,0,0,,when fewer people are
+Dialogue: 0,0:00:25.94,0:00:26.80,Cap,,0,0,0,,on watch.
+Dialogue: 0,0:00:27.05,0:00:28.37,Cap,,0,0,0,,And this Diwali,
+Dialogue: 0,0:00:28.37,0:00:29.36,Cap,,0,0,0,,millions of us will
+Dialogue: 0,0:00:29.36,0:00:30.26,Cap,,0,0,0,,be shopping,
+Dialogue: 0,0:00:30.26,0:00:31.94,Cap,,0,0,0,,gifting and sending money
+Dialogue: 0,0:00:31.94,0:00:33.55,Cap,,0,0,0,,while offices close.
+Dialogue: 0,0:00:33.87,0:00:34.85,Cap,,0,0,0,,So who's watching your
+Dialogue: 0,0:00:34.85,0:00:36.77,Cap,,0,0,0,,money while everyone celebrates?
+Dialogue: 0,0:00:37.23,0:00:37.85,Cap,,0,0,0,,With BLOK,
+Dialogue: 0,0:00:37.85,0:00:38.62,Cap,,0,0,0,,your fund sits in
+Dialogue: 0,0:00:38.62,0:00:40.64,Cap,,0,0,0,,an account only you control.
+Dialogue: 0,0:00:40.64,0:00:41.32,Cap,,0,0,0,,No bank,
+Dialogue: 0,0:00:41.32,0:00:42.09,Cap,,0,0,0,,no broker,
+Dialogue: 0,0:00:42.09,0:00:42.83,Cap,,0,0,0,,not even us can
+Dialogue: 0,0:00:42.83,0:00:43.69,Cap,,0,0,0,,move it out.
+Dialogue: 0,0:00:43.92,0:00:44.68,Cap,,0,0,0,,Every move is on
+Dialogue: 0,0:00:44.68,0:00:45.50,Cap,,0,0,0,,a public record you
+Dialogue: 0,0:00:45.50,0:00:46.39,Cap,,0,0,0,,can check,
+Dialogue: 0,0:00:46.39,0:00:47.33,Cap,,0,0,0,,any hour,
+Dialogue: 0,0:00:47.33,0:00:48.35,Cap,,0,0,0,,any holiday.
+Dialogue: 0,0:00:48.60,0:00:50.43,Cap,,0,0,0,,And anyone can start one,
+Dialogue: 0,0:00:50.43,0:00:51.52,Cap,,0,0,0,,from just $10.
+Dialogue: 0,0:00:52.37,0:00:53.58,Cap,,0,0,0,,So go celebrate.
+Dialogue: 0,0:00:53.58,0:00:55.30,Cap,,0,0,0,,Your money stays yours.
+Dialogue: 0,0:00:55.30,0:00:57.02,Cap,,0,0,0,,Happy Diwali from BLOK.
+Dialogue: 0,0:00:57.00,0:00:59.20,Small,,0,0,0,,Educational only, not financial advice. Investing carries risk. AI-generated voiceover and 3D.

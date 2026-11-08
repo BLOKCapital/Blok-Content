@@ -1,0 +1,34 @@
+OK   0  0.25s match=1.00
+   want: In twenty sixteen, hackers stole eighty-one million dollars from a central bank.
+   heard: In 2016, hackers stole $81 million from a central bank.
+OK   1  5.38s match=1.00
+   want: And they picked the day on purpose.
+   heard: and they picked the day on purpose.
+OK   2  7.44s match=1.00
+   want: They struck just as the bank closed for the weekend. New York was off next. Then the country the money went to shut for a holiday.
+   heard: They struck just as the bank closed for the weekend. New York was off next. Then the country, the money went to shut for a holiday.
+OK   3 15.19s match=1.00
+   want: By the time everyone was back at their desks, the money was gone.
+   heard: By the time everyone was back at their desks, the money was gone.
+OK   4 19.46s match=1.00
+   want: It still works. The F B I has seen more big attacks on holidays and weekends, when fewer people are on watch.
+   heard: It still works. The FBI has seen more big attacks on holidays and weekends when fewer people are on watch.
+OK   5 27.02s match=1.00
+   want: And this Diwali, millions of us will be shopping, gifting and sending money while offices close.
+   heard: And this Diwali, millions of us will be shopping, gifting, and sending money while offices close.
+OK   6 33.85s match=1.00
+   want: So who's watching your money while everyone celebrates?
+   heard: So who's watching your money while everyone celebrates?
+OK   7 37.26s match=1.00
+   want: With Block, your fund sits in an account only you control. No bank, no broker, not even us can move it out.
+   heard: With Block, your fund sits in an account only you control. No bank, no broker, not even us can move it out.
+OK   8 43.91s match=1.00
+   want: Every move is on a public record you can check, any hour, any holiday.
+   heard: Every move is on a public record you can check. Any hour, any holiday.
+OK   9 48.57s match=1.00
+   want: And anyone can start one, from just ten dollars.
+   heard: and anyone can start one from just $10.
+OK  10 52.34s match=1.00
+   want: So go celebrate. Your money stays yours. Happy Diwali from Block.
+   heard: So go celebrate. Your money stays yours. Happy Diwali from Block.
+lines to check: 0
