@@ -1,0 +1,52 @@
+[
+ {
+  "show": "Sunday. Wall Street is closed. Yet the world's most valuable chip stock is already down about 3.5%.",
+  "say": "Sunday. Wall Street is closed. Yet the world's most valuable chip stock is already down about three and a half percent.",
+  "gap": 0.4
+ },
+ {
+  "show": "One weekend headline about its CEO, and the price moved before any opening bell.",
+  "say": "One weekend headline about its C E O, and the price moved before any opening bell.",
+  "gap": 0.45
+ },
+ {
+  "show": "That's not supposed to happen. And the reason goes back to 1850.",
+  "say": "That's not supposed to happen. And the reason goes back to eighteen fifty.",
+  "gap": 0.4
+ },
+ {
+  "show": "A news man sent stock prices by carrier pigeon, because the birds beat the train.",
+  "say": "A news man sent stock prices by carrier pigeon, because the birds beat the train.",
+  "gap": 0.4
+ },
+ {
+  "show": "His name was Reuter. Yes, that Reuters.",
+  "say": "His name was Royter. Yes, that Royters.",
+  "gap": 0.5
+ },
+ {
+  "show": "For most of the 175 years since, one thing held. News breaks on a Sunday, your shares wait for the opening bell.",
+  "say": "For most of the hundred and seventy-five years since, one thing held. News breaks on a Sunday, your shares wait for the opening bell.",
+  "gap": 0.45
+ },
+ {
+  "show": "Not this time. An on-chain version that tracks that share trades around the clock.",
+  "say": "Not this time. An on chain version that tracks that share trades around the clock.",
+  "gap": 0.4
+ },
+ {
+  "show": "And it was already down while Wall Street slept.",
+  "say": "And it was already down while Wall Street slept.",
+  "gap": 0.5
+ },
+ {
+  "show": "And no, that's not a reason to trade more. You just don't get stuck waiting for Monday.",
+  "say": "And no, that's not a reason to trade more. You just don't get stuck waiting for Monday anymore.",
+  "gap": 0.45
+ },
+ {
+  "show": "That's why we're building BLOK. So you can have your own fund, starting at $10.",
+  "say": "That's why we're building Block. So you can have your own fund, starting at ten dollars.",
+  "gap": 0.5
+ }
+]

@@ -1,0 +1,234 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"ISerif";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/InstrumentSerif-Regular.ttf)}
+@font-face{font-family:"ISerifI";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/InstrumentSerif-Italic.ttf)}
+@font-face{font-family:"SMono";src:url(/mnt/project-files/content/2026-10-14-investing-for-dummies/build/fonts/SpaceMono-Bold.ttf)}
+html,body{margin:0;background:#0b0d12;overflow:hidden}
+canvas{position:absolute;left:0;top:0}
+</style></head>
+<body>
+<canvas id="cv"></canvas>
+<img id="logo" src="logo-wordmark.png" style="display:none">
+<img id="doc" src="doc-1.png" style="display:none">
+<script src="timeline.js"></script>
+<script>
+// MODE: #v = Instagram 1080x1920 with comment-to-get ending; #h = X 1920x1080, no CTA (last line dropped)
+const MODE=location.hash.includes('h')?'h':'v';
+const W=MODE=='v'?1080:1920, H=MODE=='v'?1920:1080;
+let L=window.TIMELINE; if(MODE=='h') L=L.slice(0,10);
+const N=L.length;
+const cv=document.getElementById('cv'); cv.width=W; cv.height=H; document.body.style.width=W+'px'; document.body.style.height=H+'px';
+const c=cv.getContext('2d');
+// content box: a 1080x1080 square in box units
+const BOX=MODE=='v'?{x:0,y:330,s:1}:{x:(1920-1080*0.84)/2,y:30,s:0.84};
+const SUBY=MODE=='v'?1470:1000, SUBSIZE=MODE=='v'?66:50, PILLY=MODE=='v'?255:0;
+const S=i=>L[i].start, E=i=>L[i].end;
+const END=E(N-1)+0.6;
+window.DURATION=END+(MODE=='v'?2.6:3.4);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const Wd=(i,rx,n=0)=>{const ws=L[i].words.filter(w=>rx.test(w.w));const w=ws[n];return w?w.s:S(i)};
+function rnd(i){const x=Math.sin(i*91.7)*43758.5;return x-Math.floor(x)}
+const C={linen:'#F6F3E8',indigo:'#004EBA',lime:'#7ED116',coral:'#EC464D',brown:'#844947',sky:'#7DD2FD',ink:'#1d1b16',gold:'#F2C45A',night:'#0e1424',sepia:'#e9dcc0'};
+function txt(s,x,y,font,col,align='center',alpha=1){c.save();c.globalAlpha*=alpha;c.font=font;c.fillStyle=col;c.textAlign=align;c.textBaseline='middle';c.fillText(s,x,y);c.restore()}
+function rr(x,y,w,h,r,col){c.beginPath();c.roundRect(x,y,w,h,r);c.fillStyle=col;c.fill()}
+function inBox(f){c.save();c.translate(BOX.x,BOX.y);c.scale(BOX.s,BOX.s);f();c.restore()}
+function pill(s,bg,fg,y,alpha=1){c.save();c.globalAlpha*=alpha;c.font='700 30px SMono';const w=c.measureText(s).width+56;rr(W/2-w/2,y,w,60,30,bg);txt(s,W/2,y+31,'700 30px SMono',fg);c.restore()}
+
+// ---------- scenes (draw in full-canvas bg + box units) ----------
+function exchange(t,lit){ // night, closed exchange
+  const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0a1020');g.addColorStop(1,'#1a2238');c.fillStyle=g;c.fillRect(0,0,W,H);
+  for(let i=0;i<90;i++){c.globalAlpha=0.3+0.5*rnd(i+5)*(0.6+0.4*Math.sin(t*2+i));c.fillStyle='#fff';c.fillRect(rnd(i+3)*W,rnd(i+7)*H*0.45,2,2)}c.globalAlpha=1;
+  // moon
+  c.fillStyle='#f3ecd2';c.beginPath();c.arc(W*0.82,H*0.12,MODE=='v'?60:50,0,7);c.fill();c.fillStyle='#0b1121';c.beginPath();c.arc(W*0.82+22,H*0.12-10,MODE=='v'?56:46,0,7);c.fill();
+  inBox(()=>{
+    // building
+    c.fillStyle='#2a3350';c.fillRect(90,170,900,820);
+    c.fillStyle='#343e60';c.beginPath();c.moveTo(60,190);c.lineTo(540,40);c.lineTo(1020,190);c.closePath();c.fill();
+    c.fillStyle='#3d4870';c.fillRect(60,180,960,30);
+    for(let i=0;i<6;i++){const x=150+i*150;c.fillStyle='#46527c';c.fillRect(x,230,60,620);c.fillStyle='#525e8a';c.fillRect(x-8,220,76,20);c.fillRect(x-8,846,76,20)}
+    c.fillStyle='#3d4870';for(let i=0;i<4;i++)c.fillRect(40-i*14,870+i*30,1000+i*28,30);
+    // ticker board
+    rr(250,250,580,120,12,'#05070c');c.strokeStyle='#525e8a';c.lineWidth=6;c.strokeRect(250,250,580,120);
+    if(lit>0){const blink=0.75+0.25*Math.sin(t*10);
+      txt('ON-CHAIN PRICE',290,290,'700 22px SMono','#9fb0d8','left',lit);
+      txt('▼ 3.5%',790,310,'700 66px SMono',C.coral,'right',lit*blink);
+      txt('$180.42',290,335,'700 30px SMono','#e8ecf5','left',lit);}
+    else txt('— —',540,310,'700 50px SMono','#36405e');
+    // doors + sign
+    c.fillStyle='#151b2e';c.fillRect(420,560,240,290);c.strokeStyle='#525e8a';c.lineWidth=4;c.strokeRect(420,560,240,290);c.beginPath();c.moveTo(540,560);c.lineTo(540,850);c.stroke();
+    c.save();c.translate(540,660);c.rotate(-0.05+0.02*Math.sin(t*1.5));rr(-150,-48,300,96,10,C.linen);txt('CLOSED',0,-12,'700 44px SMono',C.coral);txt('BACK MONDAY 9:30 AM',0,26,'700 18px SMono',C.ink);c.restore();
+  });
+}
+function hookOverlay(a){ if(a<=0)return; c.save();c.globalAlpha=a;
+  const y0=MODE=='v'?190:650, h=MODE=='v'?360:300;
+  const g=c.createLinearGradient(0,y0,0,y0+h);g.addColorStop(0,'rgba(5,7,12,0)');g.addColorStop(.18,'rgba(5,7,12,.8)');g.addColorStop(.82,'rgba(5,7,12,.8)');g.addColorStop(1,'rgba(5,7,12,0)');c.fillStyle=g;c.fillRect(0,y0,W,h);
+  const fs=MODE=='v'?112:100;
+  txt('Market closed.',W/2,y0+h*0.3,`${fs}px ISerif`,C.linen);
+  txt('So who sold?',W/2,y0+h*0.3+fs*0.95,`${fs}px ISerif`,C.gold);
+  txt('ANSWER AT THE END',W/2,y0+h*0.3+fs*1.75,'700 32px SMono',C.sky);
+  c.restore()}
+function notif(a,t){ if(a<=0)return; inBox(()=>{c.save();c.globalAlpha=a;const y=980-40*ease(a);
+  rr(130,y-10,820,120,24,'rgba(246,243,232,.96)');
+  rr(160,y+18,64,64,14,C.coral);txt('!',192,y+52,'700 44px Inter',C.linen);
+  txt('WEEKEND HEADLINE',250,y+30,'700 22px SMono',C.brown,'left');
+  txt("About the chip giant's CEO",250,y+72,'600 38px Inter',C.ink,'left');c.restore()})}
+function sepiaBg(){const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#efe3c8');g.addColorStop(1,'#d9c49c');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.globalAlpha=.08;for(let i=0;i<500;i++){c.fillStyle=rnd(i)>.5?'#5a3b22':'#fff';c.fillRect(rnd(i+1)*W,rnd(i+2)*H,2,2)}c.globalAlpha=1}
+function rewind(t,a0){ sepiaBg(); inBox(()=>{const p=ease((t-a0)/0.5);
+  // clock spinning backwards
+  c.save();c.translate(540,420);c.strokeStyle=C.brown;c.lineWidth=14;c.beginPath();c.arc(0,0,190,0,7);c.stroke();
+  for(let i=0;i<12;i++){c.save();c.rotate(i*Math.PI/6);c.fillStyle=C.brown;c.fillRect(-4,-175,8,26);c.restore()}
+  const r=-(t-a0)*9;c.save();c.rotate(r);c.fillStyle=C.ink;c.fillRect(-6,-150,12,150);c.restore();c.save();c.rotate(r/12);c.fillStyle=C.ink;c.fillRect(-8,-105,16,105);c.restore();c.restore();
+  c.save();c.translate(540,800);c.rotate(-0.07);c.scale(0.6+0.4*p,0.6+0.4*p);c.globalAlpha=p;
+  c.strokeStyle=C.coral;c.lineWidth=10;c.strokeRect(-230,-95,460,190);txt('1850',0,6,'700 150px SMono',C.coral);c.restore();
+})}
+function pigeon(x,y,s,t,ph){c.save();c.translate(x,y);c.scale(s,s);const f=Math.sin(t*14+ph);
+  c.fillStyle='#5b6070';c.beginPath();c.ellipse(0,0,34,16,0,0,7);c.fill();c.beginPath();c.arc(30,-8,11,0,7);c.fill();
+  c.fillStyle='#e0a030';c.beginPath();c.moveTo(40,-8);c.lineTo(52,-4);c.lineTo(40,-2);c.fill();
+  c.fillStyle='#474b59';c.beginPath();c.moveTo(-6,-4);c.lineTo(-20,-4-40*f);c.lineTo(14,-6);c.fill();
+  c.beginPath();c.moveTo(-30,0);c.lineTo(-52,-8);c.lineTo(-52,10);c.fill();
+  c.fillStyle=C.linen;c.fillRect(-10,6,16,10);c.restore()}
+function race(t,a0,dur){ sepiaBg(); inBox(()=>{const p=clamp((t-a0)/dur);
+  // towns
+  const town=(x,name)=>{c.fillStyle='#8a6a4a';[[0,90],[50,130],[100,70],[140,110]].forEach(([dx,h])=>c.fillRect(x+dx-90,700-h,46,h));c.beginPath();c.moveTo(x-40,570);c.lineTo(x-17,520);c.lineTo(x+6,570);c.fill();txt(name,x,745,'700 34px SMono',C.ink)};
+  town(160,'AACHEN');town(920,'BRUSSELS');
+  // telegraph poles with a gap
+  c.strokeStyle=C.brown;c.lineWidth=4;
+  for(const x of [60,180,860,980]){c.fillStyle=C.brown;c.fillRect(x-4,300,8,140);c.fillRect(x-22,305,44,6)}
+  c.beginPath();c.moveTo(60,310);c.quadraticCurveTo(120,330,180,310);c.moveTo(860,310);c.quadraticCurveTo(920,330,980,310);c.stroke();
+  c.setLineDash([12,14]);c.strokeStyle=C.coral;c.beginPath();c.moveTo(200,320);c.lineTo(840,320);c.stroke();c.setLineDash([]);
+  txt('TELEGRAPH GAP',520,280,'700 26px SMono',C.coral);
+  // rails + train (slow)
+  c.fillStyle='#6b5038';c.fillRect(40,880,1000,8);c.fillRect(40,910,1000,8);for(let i=0;i<40;i++)c.fillRect(50+i*25,872,8,52);
+  const tx=200+430*ease(p*0.9);c.save();c.translate(tx,860);c.fillStyle='#3a2b20';c.fillRect(-90,-70,140,70);c.fillRect(20,-120,40,50);c.fillRect(-120,-40,40,40);
+  c.fillStyle='#222';[-70,-20,30].forEach(x=>{c.beginPath();c.arc(x,0,18,0,7);c.fill()});
+  for(let k=0;k<4;k++){c.globalAlpha=.35-.08*k;c.fillStyle='#fff';c.beginPath();c.arc(40-k*40-((t*60)%40),-140-k*18,22+k*8,0,7);c.fill()}c.restore();c.globalAlpha=1;
+  txt('TRAIN',tx-20,960,'700 24px SMono',C.ink);
+  // pigeons (fast)
+  const px=210+690*ease(p*1.25);
+  for(let k=0;k<3;k++)pigeon(px-k*70,430+k*36+8*Math.sin(t*3+k),1-k*0.15,t,k*2);
+  txt('PIGEONS',px-40,540,'700 24px SMono',C.ink);
+  if(p>0.82){const q=ease((p-0.82)/0.1);c.save();c.globalAlpha=q;c.translate(900,180);c.rotate(-0.08);rr(-150,-40,300,80,12,C.lime);txt('FIRST IN',0,4,'700 40px SMono','#10210a');c.restore()}
+})}
+function nameCard(t,a0,tS){ c.fillStyle=C.linen;c.fillRect(0,0,W,H); inBox(()=>{
+  const p=ease((t-a0)/0.4), q=ease((t-tS)/0.3);
+  c.save();c.globalAlpha=p;c.font='240px ISerif';const w1=c.measureText('Reuter').width,ws=c.measureText('s').width;
+  const x0=540-(w1+ws*q)/2;txt('Reuter',x0,470,'240px ISerif',C.indigo,'left');
+  if(q>0){c.save();c.translate(x0+w1+ws/2,470);c.scale(q,q);txt('s',0,0,'240px ISerif',C.lime);c.restore()}
+  c.restore();
+  txt('1850 · PIGEON POST',540,250,'700 30px SMono',C.brown,'center',p);
+  if(q>0){c.save();c.globalAlpha=q;c.translate(540,720);c.rotate(-0.06);rr(-260,-50,520,100,14,C.coral);txt('YES, THAT ONE',0,4,'700 46px SMono',C.linen);c.restore();
+   txt('THE NEWS AGENCY, STILL RUNNING',540,850,'700 26px SMono',C.ink,'center',q)}
+})}
+function calendar(t,a0,tMon){ c.fillStyle=C.indigo;c.fillRect(0,0,W,H); inBox(()=>{
+  const days=['FRI','SAT','SUN','MON'];const p=ease((t-a0)/0.5), m=ease((t-tMon)/0.4);
+  days.forEach((d,i)=>{const x=110+i*225, y=380;c.save();c.globalAlpha=p;rr(x,y,200,240,18,i==2||i==3?C.linen:'rgba(246,243,232,.35)');
+   txt(d,x+100,y+60,'700 40px SMono',i==2?C.coral:C.ink);
+   txt(['6','7','8','9'][i],x+100,y+150,'120px ISerif',C.ink);c.restore()});
+  c.save();c.globalAlpha=p;c.translate(110+2*225+100,330);rr(-110,-40,220,70,35,C.coral);txt('NEWS',0,-4,'700 34px SMono',C.linen);c.restore();
+  if(m>0){c.save();c.globalAlpha=m;c.strokeStyle=C.lime;c.lineWidth=10;c.beginPath();c.ellipse(110+3*225+100,500,128,148,0,0,7*m);c.stroke();
+   c.translate(110+3*225+100,700);rr(-140,-40,280,70,35,C.lime);txt('SHARES MOVE',0,-4,'700 30px SMono','#10210a');c.restore();
+   c.strokeStyle=C.linen;c.lineWidth=6;c.setLineDash([10,10]);c.beginPath();c.moveTo(560,330);c.quadraticCurveTo(650,250,780,330);c.stroke();c.setLineDash([])}
+  txt('THE OLD RULE',540,860,'700 34px SMono',C.sky,'center',p);
+})}
+function answer(t,a0,a1){ // split: closed exchange vs live on-chain chart
+  c.fillStyle='#0b0f1c';c.fillRect(0,0,W,H);
+  inBox(()=>{const p=ease((t-a0)/0.5);
+  // left/top panel: closed
+  const vert=MODE=='v';
+  const P1=vert?{x:60,y:0,w:960,h:330}:{x:0,y:40,w:400,h:900}, P2=vert?{x:60,y:370,w:960,h:640}:{x:430,y:40,w:650,h:900};
+  c.save();c.globalAlpha=p;rr(P1.x,P1.y,P1.w,P1.h,22,'#1a2238');
+  txt('WALL STREET',P1.x+P1.w/2,P1.y+(vert?70:120),'700 34px SMono','#9fb0d8');
+  c.save();c.translate(P1.x+P1.w/2,P1.y+P1.h*(vert?.52:.45));c.rotate(-0.05);rr(-150,-45,300,90,10,C.linen);txt('CLOSED',0,4,'700 52px SMono',C.coral);c.restore();
+  for(let k=0;k<3;k++){const z=((t*0.6+k/3)%1);txt('z',P1.x+P1.w/2+120+z*60,P1.y+P1.h*(vert?.4:.32)-z*90,`${30+z*30}px ISerif`,'#9fb0d8','center',1-z)}
+  txt('ASLEEP TILL 9:30 AM',P1.x+P1.w/2,P1.y+P1.h-(vert?50:90),'700 24px SMono','#9fb0d8');
+  // right/bottom panel: on-chain chart
+  rr(P2.x,P2.y,P2.w,P2.h,22,C.linen);
+  const dot=0.5+0.5*Math.sin(t*6);c.fillStyle=C.lime;c.beginPath();c.arc(P2.x+46,P2.y+56,12,0,7);c.globalAlpha=p*(0.5+0.5*dot);c.fill();c.globalAlpha=p;
+  txt('ON-CHAIN · OPEN ON SUNDAY',P2.x+70,P2.y+58,'700 30px SMono',C.ink,'left');
+  txt('TRACKS THE SAME SHARE · SUNDAY 8 NOV',P2.x+40,P2.y+108,'700 20px SMono',C.brown,'left');
+  // chart
+  const gx=P2.x+50,gy=P2.y+190,gw=P2.w-100,gh=P2.h-330;
+  const k=ease((t-a0-0.3)/((a1-a0)*0.7));
+  c.strokeStyle='rgba(29,27,22,.15)';c.lineWidth=2;for(let i=0;i<=4;i++){c.beginPath();c.moveTo(gx,gy+i*gh/4);c.lineTo(gx+gw,gy+i*gh/4);c.stroke()}
+  const pts=[];for(let i=0;i<=60;i++){const x=i/60;let v=x<0.3?0.06*Math.sin(x*40)*0.5:(x<0.45?-(x-0.3)/0.15*0.75:-0.75+0.04*Math.sin(x*30)-0.15*(x-0.45));pts.push([gx+x*gw,gy+gh*0.2-v*gh*0.9])}
+  c.save();c.beginPath();c.rect(gx-10,gy-20,gw*k+20,gh+60);c.clip();
+  c.strokeStyle=C.coral;c.lineWidth=8;c.lineJoin='round';c.beginPath();pts.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke();c.restore();
+  txt('$186.64',gx,gy-6,'700 26px SMono',C.ink,'left');txt('FRIDAY CLOSE',gx,gy+24,'700 18px SMono',C.brown,'left');
+  if(k>0.85){const q=ease((k-0.85)/0.15);txt('$180.42',gx+gw,gy+gh+20,'700 30px SMono',C.ink,'right',q);
+    c.save();c.globalAlpha=q;c.translate(gx+gw-110,gy+gh*0.35);rr(-120,-48,240,96,16,C.coral);txt('▼ 3.5%',0,4,'700 50px SMono',C.linen);c.restore()}
+  txt('SOURCE: COINDESK, 8 NOV 2026',P2.x+40,P2.y+P2.h-40,'700 18px SMono',C.brown,'left');
+  c.restore();})
+  if(t>a1-0.2){} }
+function honest(t,a0,tB){ c.fillStyle=C.linen;c.fillRect(0,0,W,H); inBox(()=>{const p=ease((t-a0)/0.4),q=ease((t-tB)/0.4);
+  txt('THE HONEST PART',540,230,'700 30px SMono',C.brown,'center',p);
+  txt('around the clock',540,400,'120px ISerif',C.indigo,'center',p);
+  txt('≠ trade more',540,560,'110px ISerif',C.ink,'center',p);
+  if(p>0.5){c.fillStyle=C.coral;c.fillRect(250,560,580*ease((t-a0-0.5)/0.4),12)}
+  txt('= no waiting for Monday',540,760,'96px ISerif','#3f7a00','center',q);
+})}
+function fund(t,a0){ c.fillStyle=C.night;c.fillRect(0,0,W,H); inBox(()=>{const p=ease((t-a0)/0.5);
+  const lg=document.getElementById('logo');
+  c.save();c.globalAlpha=p;c.fillStyle=C.linen;rr(240,180,600,110,55,C.linen);if(lg.complete&&lg.naturalWidth){const h=54,w=lg.naturalWidth*h/lg.naturalHeight;c.drawImage(lg,540-w/2,235-h/2,w,h)}c.restore();
+  txt('your own fund',540,430,'110px ISerif',C.linen,'center',p);
+  const s=0.7+0.3*ease((t-a0-0.4)/0.5);c.save();c.translate(540,660);c.scale(s,s);txt('$10',0,0,'700 240px Inter',C.lime,'center',ease((t-a0-0.3)/0.4));c.restore();
+  txt('NOT $10,000. TEN DOLLARS.',540,860,'700 30px SMono',C.sky,'center',ease((t-a0-0.8)/0.4));
+})}
+function endIG(t,a0){ c.fillStyle=C.linen;c.fillRect(0,0,W,H);const p=ease((t-a0)/0.4);c.save();c.globalAlpha=p;
+  const lg=document.getElementById('logo'),dc=document.getElementById('doc');
+  if(lg.naturalWidth){const h=46,w=lg.naturalWidth*h/lg.naturalHeight;c.drawImage(lg,540-w/2,225,w,h)}
+  txt('7 questions private banks',540,350,'76px ISerif',C.indigo);txt('ask on day one',540,428,'76px ISerif',C.indigo);
+  if(dc.naturalWidth){c.save();c.translate(540,640);c.rotate(-0.07);const w=230,h=dc.naturalHeight*w/dc.naturalWidth;c.shadowColor='rgba(0,0,0,.25)';c.shadowBlur=40;c.drawImage(dc,-w/2,-h/2,w,h);c.restore()}
+  txt('Comment',540,880,'76px ISerif',C.ink);
+  rr(540-190,930,380,150,24,C.coral);txt('FUND',540,1007,'700 124px Inter','#fff');
+  txt("and we'll DM you all seven",540,1135,'50px ISerif',C.indigo);
+  txt('Should stock markets ever close? Yes or no?',540,1215,'700 34px Inter',C.ink);
+  txt('FOLLOW @BLOK.CAPITAL FOR PART 2 OF BEFORE THE BELL',540,1262,'700 21px SMono',C.brown);
+  ['Educational content only, not financial or investment advice.','On-chain assets can be volatile and you can lose money.','AI-generated voiceover. Prices: CoinDesk, 8 Nov 2026.'].forEach((s,i)=>txt(s,540,1318+i*30,'700 19px SMono','#6b665a'));
+  c.restore()}
+function endX(t,a0){ c.fillStyle=C.linen;c.fillRect(0,0,W,H);const p=ease((t-a0)/0.4);c.save();c.globalAlpha=p;
+  const lg=document.getElementById('logo');if(lg.naturalWidth){const h=50,w=lg.naturalWidth*h/lg.naturalHeight;c.drawImage(lg,960-w/2,170,w,h)}
+  txt('Should stock markets',960,380,'110px ISerif',C.indigo);txt('ever close?',960,500,'110px ISerif',C.indigo);
+  rr(960-260,580,240,100,50,C.lime);txt('YES',960-140,632,'700 50px SMono','#10210a');
+  rr(960+20,580,240,100,50,C.coral);txt('NO',960+140,632,'700 50px SMono','#fff');
+  txt('BEFORE THE BELL · PART 2 SOON',960,770,'700 28px SMono',C.brown);
+  ['Educational content only, not financial or investment advice. On-chain assets can be volatile and you can lose money.','AI-generated voiceover. Prices: CoinDesk, 8 Nov 2026.'].forEach((s,i)=>txt(s,960,900+i*34,'700 20px SMono','#6b665a'));
+  c.restore()}
+
+// ---------- subtitles ----------
+const CH=[];L.forEach(l=>{let g=[];l.words.forEach((w,i)=>{g.push(w);const end=/[.,?!:]$/.test(w.w)||g.length>=3||i===l.words.length-1;if(end){CH.push(g);g=[]}})});
+const KEY=/^(Sunday|closed|3\.5%|CEO|before|1850|pigeon|train|Reuters?|Sunday|Monday|on-chain|never|slept|wait|BLOK|\$10|FUND|seven)/i;
+function subs(t,inkBg){const ch=CH.find(g=>t>=g[0].s-0.05&&t<g[g.length-1].e+0.12);if(!ch)return;
+  c.save();c.font=`700 ${SUBSIZE}px Inter`;c.textAlign='left';c.textBaseline='middle';
+  const parts=ch.map(w=>w.w);const sp=c.measureText(' ').width;const tw=parts.reduce((a,s)=>a+c.measureText(s).width,0)+sp*(parts.length-1);
+  let x=W/2-tw/2;parts.forEach(s=>{const k=KEY.test(s);c.fillStyle=inkBg?(k?C.indigo:C.ink):(k?C.gold:'#fff');
+   if(!inkBg){c.shadowColor='rgba(0,0,0,.85)';c.shadowBlur=18;c.shadowOffsetY=4}c.fillText(s,x,SUBY);x+=c.measureText(s).width+sp});c.restore()}
+
+// ---------- master ----------
+function draw(t){c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,W,H);c.globalAlpha=1;
+  const s2=S(2)-0.2,s3=S(3)-0.15,s4=S(4)-0.15,s5=S(5)-0.15,s6=S(6)-0.15,s8=S(8)-0.15,s9=S(9)-0.15;
+  const sEnd=MODE=='v'?S(10)-0.15:END;
+  let ink=false;
+  if(t<s2){exchange(t,clamp((t-Wd(0,/^down/))/0.25));hookOverlay(t<E(0)?1:clamp(1-(t-E(0))/0.3));notif(clamp((t-S(1)+0.1)/0.35),t)}
+  else if(t<s3)rewind(t,s2);
+  else if(t<s4)race(t,s3,s4-s3);
+  else if(t<s5){nameCard(t,s4,Wd(4,/Reuters/));ink=true}
+  else if(t<s6)calendar(t,s5,Wd(5,/Monday/));
+  else if(t<s8)answer(t,s6,s8);
+  else if(t<s9){honest(t,s8,Wd(8,/never/));ink=true}
+  else if(t<sEnd)fund(t,s9);
+  else if(MODE=='v'){endIG(t,sEnd);ink=true}
+  else {endX(t,sEnd);ink=true}
+  // series pill (not over the hook)
+  if(t>=E(0)&&t<sEnd&&PILLY>0)pill('BEFORE THE BELL · PART 1',C.linen,C.ink,PILLY,clamp((t-E(0))/0.3));
+  if(MODE=='h'&&t>=E(0)&&t<sEnd){c.save();c.font='700 22px SMono';const s='BEFORE THE BELL · PART 1',w=c.measureText(s).width+40;rr(40,36,w,48,24,C.linen);txt(s,40+w/2,61,'700 22px SMono',C.ink);c.restore()}
+  // flash cut
+  const cuts=[s2,s3,s4,s5,s6,s8,s9,sEnd];cuts.forEach(x=>{const d=t-x;if(d>=0&&d<0.18){c.fillStyle=`rgba(255,255,255,${0.35*(1-d/0.18)})`;c.fillRect(0,0,W,H)}});
+  if(t<sEnd+(MODE=='v'?99:0)) subs(t,ink);
+}
+window.draw=draw;
+draw(0.5);
+</script>
+</body></html>

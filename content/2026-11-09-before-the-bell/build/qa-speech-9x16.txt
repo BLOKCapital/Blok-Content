@@ -1,0 +1,34 @@
+CHECK  0  0.25s match=0.87
+   want: Sunday. Wall Street is closed. Yet the world's most valuable chip stock is already down about three and a half percent.
+   heard: Sunday, Wall Street is closed, yet the world's most valuable chip stock is already down about 3.5%.
+CHECK  1  7.96s match=0.87
+   want: One weekend headline about its C E O, and the price moved before any opening bell.
+   heard: One weekend headline about its CEO and the price moved before any opening bell.
+OK   2 13.67s match=1.00
+   want: That's not supposed to happen. And the reason goes back to eighteen fifty.
+   heard: That's not supposed to happen. And the reason goes back to 1850.
+CHECK  3 17.62s match=0.90
+   want: A news man sent stock prices by carrier pigeon, because the birds beat the train.
+   heard: A newsman sent stock prices by carrier pigeon because the birds beat the train.
+CHECK  4 22.29s match=0.71
+   want: His name was Royter. Yes, that Royters.
+   heard: His name was Reuter. Yes, that Reuter's.
+OK   5 25.93s match=0.96
+   want: For most of the hundred and seventy-five years since, one thing held. News breaks on a Sunday, your shares wait for the opening bell.
+   heard: For most of the 175 years since, one thing held. News breaks on a Sunday. Your shares wait for the opening bell.
+OK   6 33.96s match=1.00
+   want: Not this time. An on chain version that tracks that share trades around the clock.
+   heard: Not this time. An on-chain version that tracks that share trades around the clock.
+OK   7 39.28s match=1.00
+   want: And it was already down while Wall Street slept.
+   heard: and it was already down while Wall Street slept.
+OK   8 42.37s match=1.00
+   want: And no, that's not a reason to trade more. You just don't get stuck waiting for Monday anymore.
+   heard: And no, that's not a reason to trade more. You just don't get stuck waiting for Monday anymore.
+OK   9 47.79s match=1.00
+   want: That's why we're building Block. So you can have your own fund, starting at ten dollars.
+   heard: That's why we're building Block. So you can have your own fund starting at $10.
+OK  10 52.98s match=0.97
+   want: I wrote down the seven questions private banks ask on day one. Comment FUND, and I'll send them over.
+   heard: I wrote down the 7 questions private banks ask on day 1. Comment, fund and I'll send them over.
+lines to check: 4
