@@ -22,3 +22,7 @@ reuter's pigeons flew prices from aachen to brussels in 1850. a year later he op
 
 not advice. on-chain assets can be volatile, you can lose money
 <!-- X END 1 -->
+
+## Posted
+- Instagram Reel (9:16): 9 Nov 2026, 13:30 UTC, https://www.instagram.com/reel/DfhcUtwR8Ke/ (media id 18136072100505871)
+- X (16:9): 9 Nov 2026, 13:31 UTC, https://x.com/blok_cap/status/2119784722188370119 (sources reply 2119784859539316845)

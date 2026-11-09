@@ -7,7 +7,7 @@ Wall Street was closed all Sunday. So how was the world's most valuable chip sto
 
 This weekend a headline about the company's CEO hit every feed. The exchange was shut until Monday morning, but an on-chain version that tracks the same share kept trading, and it slid from $186.64 (Friday's close) to about $180.42 before the opening bell.
 
-It's a story that starts in 1850. In 1850, a news man named Reuter sent stock prices between Aachen and Brussels by carrier pigeon, because the birds beat the train. Whoever heard first, moved first. Yes, that Reuters.
+It's a story that starts in 1850, when a news man named Reuter sent stock prices between Aachen and Brussels by carrier pigeon, because the birds beat the train. Whoever heard first, moved first. Yes, that Reuters.
 
 For most of the time since, weekend news has had to wait for Monday. On-chain markets don't keep office hours.
 
@@ -27,3 +27,7 @@ Sources: CoinDesk markets report, 8 Nov 2026 (on-chain tracker down 3.55% to $18
 
 #investing #stockmarket #moneyhistory #financialliteracy #beforethebell
 <!-- IG CAPTION END -->
+
+## Posted
+- Instagram Reel (9:16): 9 Nov 2026, 13:30 UTC, https://www.instagram.com/reel/DfhcUtwR8Ke/ (media id 18136072100505871)
+- X (16:9): 9 Nov 2026, 13:31 UTC, https://x.com/blok_cap/status/2119784722188370119 (sources reply 2119784859539316845)
