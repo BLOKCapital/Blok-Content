@@ -14,14 +14,16 @@ canvas{position:absolute;left:0;top:0}
 <script src="timeline.js"></script>
 <script>
 // Instagram 1080x1920, comment-to-get ending. Content lives in a 1080x1080 box (y 330..1410), subtitles at 1470.
-const W=1080,H=1920;
-const L=window.TIMELINE, N=L.length;
+const MODE=location.hash.includes('h')?'h':'v';
+const W=MODE=='v'?1080:1920,H=MODE=='v'?1920:1080;
+let L=window.TIMELINE; if(MODE=='h') L=L.slice(0,10);
+const N=L.length;
 const cv=document.getElementById('cv'); cv.width=W; cv.height=H; document.body.style.width=W+'px'; document.body.style.height=H+'px';
 const c=cv.getContext('2d');
-const BOX={x:0,y:330,s:1}, SUBY=1480, SUBSIZE=64, PILLY=255;
+const BOX=MODE=='v'?{x:0,y:330,s:1}:{x:(1920-1080*0.84)/2,y:20,s:0.84}, SUBY=MODE=='v'?1480:1010, SUBSIZE=MODE=='v'?64:50, PILLY=MODE=='v'?255:0;
 const S=i=>L[i].start, E=i=>L[i].end;
 const END=E(N-1)+0.6;
-window.DURATION=END+2.6;
+window.DURATION=END+(MODE=='v'?2.6:3.4);
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=x=>1-Math.pow(1-clamp(x),3);
 const Wd=(i,rx,n=0)=>{const ws=L[i].words.filter(w=>rx.test(w.w));const w=ws[n];return w?w.s:S(i)};
@@ -61,7 +63,7 @@ function bank(t){ sepiaBg(); c.fillStyle='rgba(40,30,60,.35)';c.fillRect(0,0,W,H
   });
 }
 function hookOverlay(a){ if(a<=0)return; c.save();c.globalAlpha=a;
-  const y0=170,h=380;
+  const y0=MODE=='v'?170:540,h=MODE=='v'?380:330;
   const g=c.createLinearGradient(0,y0,0,y0+h);g.addColorStop(0,'rgba(5,7,12,0)');g.addColorStop(.15,'rgba(5,7,12,.82)');g.addColorStop(.85,'rgba(5,7,12,.82)');g.addColorStop(1,'rgba(5,7,12,0)');c.fillStyle=g;c.fillRect(0,y0,W,h);
   txt('Locked out of',W/2,y0+110,'112px ISerif',C.linen);
   txt('his own money.',W/2,y0+215,'112px ISerif',C.gold);
@@ -189,10 +191,19 @@ function endIG(t,a0){ c.fillStyle=C.linen;c.fillRect(0,0,W,H);const p=ease((t-a0
   ['Educational content only, not financial or investment advice.','Investing carries risk and you can lose money.','AI-generated voiceover. Sources in the caption.'].forEach((s,i)=>txt(s,540,1318+i*30,'700 19px SMono','#6b665a'));
   c.restore()}
 
+function endX(t,a0){ c.fillStyle=C.linen;c.fillRect(0,0,W,H);const p=ease((t-a0)/0.4);c.save();c.globalAlpha=p;
+  const lg=document.getElementById('logo');if(lg.naturalWidth){const h=50,w=lg.naturalWidth*h/lg.naturalHeight;c.drawImage(lg,960-w/2,150,w,h)}
+  txt('Should your fund keep',960,350,'110px ISerif',C.indigo);txt('bankers\u2019 hours?',960,470,'110px ISerif',C.indigo);
+  rr(960-260,560,240,100,50,C.lime);txt('YES',960-140,612,'700 50px SMono','#10210a');
+  rr(960+20,560,240,100,50,C.coral);txt('NO',960+140,612,'700 50px SMono','#fff');
+  txt('BEFORE THE BELL · PART 3 SOON',960,750,'700 28px SMono',C.brown);
+  ['Educational content only, not financial or investment advice. Investing carries risk and you can lose money.','AI-generated voiceover. Sources: Payments Canada (9 Nov 2026), Wikipedia (J. Shepherd-Barron), SEC Rule 22c-1.'].forEach((s,i)=>txt(s,960,880+i*34,'700 20px SMono','#6b665a'));
+  c.restore()}
+
 // ---------- subtitles ----------
 const CH=[];L.forEach(l=>{let g=[];l.words.forEach((w,i)=>{g.push(w);const end=/[.,?!:]$/.test(w.w)||g.length>=3||i===l.words.length-1;if(end){CH.push(g);g=[]}})});
 const KEY=/^(closing|locked|money|bath|chocolate|cash|1967|Enfield|Canada|seconds|nights|doesn't|once|4|tomorrow's|\$10,000|miss|bell|clock|BLOK|\$10|FUND|seven)/i;
-function subs(t,inkBg){const ch=CH.find(g=>t>=g[0].s-0.05&&t<g[g.length-1].e+0.12);if(!ch)return;
+function subs(t,inkBg){if(MODE=='h'&&t>=END)return;const ch=CH.find(g=>t>=g[0].s-0.05&&t<g[g.length-1].e+0.12);if(!ch)return;
   c.save();c.font=`700 ${SUBSIZE}px Inter`;c.textAlign='left';c.textBaseline='middle';
   const parts=ch.map(w=>w.w);const sp=c.measureText(' ').width;const tw=parts.reduce((a,s)=>a+c.measureText(s).width,0)+sp*(parts.length-1);
   let x=W/2-tw/2;parts.forEach(s=>{const k=KEY.test(s);c.fillStyle=inkBg?(k?C.indigo:C.ink):(k?C.gold:'#fff');
@@ -201,7 +212,7 @@ function subs(t,inkBg){const ch=CH.find(g=>t>=g[0].s-0.05&&t<g[g.length-1].e+0.1
 // ---------- master ----------
 function draw(t){c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,W,H);c.globalAlpha=1;
   const sc=i=>S(i)-0.15;
-  const sEnd=sc(10);
+  const sEnd=MODE=='v'?sc(10):END;
   let ink=false;
   if(t<sc(1)){bank(t);hookOverlay(t<E(0)?1:clamp(1-(t-E(0))/0.3))}
   else if(t<sc(2)){bath(t,sc(1),Wd(1,/^cash/));ink=true}
@@ -212,9 +223,11 @@ function draw(t){c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,W,H);c.globalAlpha=
   else if(t<sc(7))door(t,sc(6));
   else if(t<sc(9)){ledger(t,sc(7),sc(8));ink=true}
   else if(t<sEnd)fund(t,sc(9));
-  else {endIG(t,sEnd);ink=true}
-  if(t>=E(0)&&t<sEnd)pill('BEFORE THE BELL · PART 2',ink?C.ink:C.linen,ink?C.linen:C.ink,PILLY,clamp((t-E(0))/0.3));
-  [1,2,3,4,5,6,7,9,10].map(sc).forEach(x=>{const d=t-x;if(d>=0&&d<0.18){c.fillStyle=`rgba(255,255,255,${0.35*(1-d/0.18)})`;c.fillRect(0,0,W,H)}});
+  else if(MODE=='v'){endIG(t,sEnd);ink=true}
+  else {endX(t,sEnd);ink=true}
+  if(MODE=='h'&&t>=E(0)&&t<sEnd){c.save();const s='BEFORE THE BELL · PART 2';c.font='700 22px SMono';const w=c.measureText(s).width+40;rr(40,36,w,48,24,ink?C.ink:C.linen);txt(s,40+w/2,61,'700 22px SMono',ink?C.linen:C.ink);c.restore()}
+  if(MODE=='v'&&t>=E(0)&&t<sEnd)pill('BEFORE THE BELL · PART 2',ink?C.ink:C.linen,ink?C.linen:C.ink,PILLY,clamp((t-E(0))/0.3));
+  [1,2,3,4,5,6,7,9].map(sc).concat([sEnd]).forEach(x=>{const d=t-x;if(d>=0&&d<0.18){c.fillStyle=`rgba(255,255,255,${0.35*(1-d/0.18)})`;c.fillRect(0,0,W,H)}});
   subs(t,ink);
 }
 window.draw=draw;
