@@ -47,3 +47,7 @@ the receipts: payments canada launched real-time rail on 9 nov 2026. the cash ma
 
 not advice. investing carries risk, you can lose money
 ```
+
+## Posted
+- Instagram Reel (9:16): 10 Nov 2026, 17:07 UTC, https://www.instagram.com/reel/DfkZ4CGPlG8/ (media id 17897323785654599)
+- X: not posted, API returned 402 credits depleted. Post manually with x-image-16x9.png, then the first reply.
