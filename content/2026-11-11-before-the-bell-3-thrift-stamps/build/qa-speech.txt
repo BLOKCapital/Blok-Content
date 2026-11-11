@@ -1,0 +1,31 @@
+CHECK 0  0.25s match=0.84
+   want: In nineteen seventeen, one U S war savings stamp cost four dollars and twelve cents. Too much, all at once, for a lot of people.
+   heard: In 1917, one US war saving stamp cost $4.12. Too much, all at once, for a lot of people.
+   diff: [('replace', 'u s', 'us'), ('replace', 'savings', 'saving'), ('delete', 'and', ''), ('delete', 'cents', '')]
+OK  1  9.16s match=1.00
+   want: So the Treasury also sold a twenty-five cent stamp.
+   heard: So, the Treasury also sold a 25-cent stamp.
+CHECK 2 12.92s match=0.88
+   want: Fill a card with sixteen, add a few cents, and you'd trade it for a stamp worth five dollars by nineteen twenty-three.
+   heard: Fill a card with 16, add a few cents, and you traded for a stamp worth $5 by 1923.
+   diff: [('replace', "you'd trade it", 'you traded')]
+CHECK 3 19.70s match=0.84
+   want: Right now, a giant A I company is reportedly weighing an I P O with fifteen to twenty percent of its shares set aside for regular people.
+   heard: Right now, a giant AI company is reportedly weighing an IPO with 15 to 20% of its shares set aside for regular people.
+   diff: [('replace', 'a i', 'ai'), ('replace', 'i p o', 'ipo'), ('delete', 'percent', '')]
+OK  4 27.86s match=1.00
+   want: Regular people. Maybe. Getting a slice. Big investors get the rest.
+   heard: Regular people, maybe, getting a slice. Big investors get the rest.
+OK  5 32.37s match=1.00
+   want: Same with funds. If you want one of your own, run just for you, it often starts at ten thousand dollars or more.
+   heard: Same with funds. If you want one of your own, run just for you. It often starts at $10,000 or more.
+OK  6 39.72s match=1.00
+   want: In nineteen seventeen, the fix was a twenty-five cent stamp. Today, it's a fund on a public ledger.
+   heard: In 1917, the fix was a 25 cent stamp. Today it's a fund on a public ledger.
+OK  7 46.45s match=1.00
+   want: That's why we're building Block, so anyone can have their own fund, from ten dollars.
+   heard: That's why we're building block, so anyone can have their own fund from $10.
+OK  8 51.29s match=1.00
+   want: I wrote down the seven questions private banks ask on day one. Comment FUND, and I'll send them over.
+   heard: I wrote down the 7 questions private banks ask on day 1. Comment, Fund, and I'll send them over.
+lines to check: 3

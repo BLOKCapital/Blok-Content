@@ -1,0 +1,196 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"ISerif";src:url(fonts/InstrumentSerif-Regular.ttf)}
+@font-face{font-family:"ISerifI";src:url(fonts/InstrumentSerif-Italic.ttf)}
+@font-face{font-family:"SMono";src:url(fonts/SpaceMono-Bold.ttf)}
+html,body{margin:0;background:#0b0d12;overflow:hidden}
+canvas{position:absolute;left:0;top:0}
+</style></head>
+<body>
+<canvas id="cv"></canvas>
+<img id="logo" src="logo-wordmark.png" style="display:none">
+<img id="doc" src="doc-1.png" style="display:none">
+<script src="timeline.js"></script>
+<script>
+// Instagram 1080x1920. Content box y 330..1410, subtitles at 1480. Before the Bell, Part 3.
+const W=1080,H=1920;
+const L=window.TIMELINE, N=L.length;
+const cv=document.getElementById('cv'); cv.width=W; cv.height=H; document.body.style.width=W+'px'; document.body.style.height=H+'px';
+const c=cv.getContext('2d');
+const BOX={x:0,y:330}, SUBY=1480, SUBSIZE=64, PILLY=255;
+const S=i=>L[i].start, E=i=>L[i].end;
+const END=E(N-1)+0.6;
+window.DURATION=END+2.6;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const k=1.7;return 1+(k+1)*Math.pow(x-1,3)+k*Math.pow(x-1,2)};
+const Wd=(i,rx,n=0)=>{const ws=L[i].words.filter(w=>rx.test(w.w));const w=ws[n];return w?w.s:S(i)};
+function rnd(i){const x=Math.sin(i*91.7)*43758.5;return x-Math.floor(x)}
+const C={linen:'#F6F3E8',indigo:'#004EBA',lime:'#7ED116',coral:'#EC464D',brown:'#844947',sky:'#7DD2FD',ink:'#1d1b16',gold:'#F2C45A',night:'#0e1424',sepia:'#6d4f33'};
+function txt(s,x,y,font,col,align='center',alpha=1){c.save();c.globalAlpha*=alpha;c.font=font;c.fillStyle=col;c.textAlign=align;c.textBaseline='middle';c.fillText(s,x,y);c.restore()}
+function rr(x,y,w,h,r,col){c.beginPath();c.roundRect(x,y,w,h,r);c.fillStyle=col;c.fill()}
+function inBox(f){c.save();c.translate(BOX.x,BOX.y);f();c.restore()}
+function pill(s,bg,fg,y,alpha=1){c.save();c.globalAlpha*=alpha;c.font='700 30px SMono';const w=c.measureText(s).width+56;rr(W/2-w/2,y,w,60,30,bg);txt(s,W/2,y+31,'700 30px SMono',fg);c.restore()}
+function sepiaBg(){const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#efe3c8');g.addColorStop(1,'#d9c49c');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.globalAlpha=.08;for(let i=0;i<500;i++){c.fillStyle=rnd(i)>.5?'#5a3b22':'#fff';c.fillRect(rnd(i+1)*W,rnd(i+2)*H,2,2)}c.globalAlpha=1}
+function person(x,y,s,col,lean=0,hat=true){c.save();c.translate(x,y);c.scale(s,s);c.rotate(lean);c.fillStyle=col;
+  c.beginPath();c.arc(0,-210,34,0,7);c.fill();
+  c.beginPath();c.moveTo(-26,-176);c.lineTo(-42,-60);c.lineTo(42,-60);c.lineTo(26,-176);c.fill();c.fillRect(-46,-180,92,30);
+  c.fillRect(-36,-62,28,72);c.fillRect(8,-62,28,72);
+  if(hat){c.fillRect(-58,-250,116,14);c.fillRect(-32,-282,64,34)}
+  c.restore()}
+// perforated stamp
+function stamp(x,y,w,h,rot,face,ink,big,small,alpha=1){c.save();c.globalAlpha*=alpha;c.translate(x,y);c.rotate(rot);
+  c.shadowColor='rgba(0,0,0,.25)';c.shadowBlur=24;c.shadowOffsetY=8;
+  c.fillStyle='#fbf6ea';c.fillRect(-w/2,-h/2,w,h);c.shadowColor='transparent';
+  const r=Math.max(5,w/34),n=Math.round(w/(r*3.2)),m=Math.round(h/(r*3.2));c.fillStyle='#d9c49c';
+  for(let i=0;i<=n;i++){const px=-w/2+i*w/n;c.beginPath();c.arc(px,-h/2,r,0,7);c.arc(px,h/2,r,0,7);c.fill()}
+  for(let j=0;j<=m;j++){const py=-h/2+j*h/m;c.beginPath();c.arc(-w/2,py,r,0,7);c.arc(w/2,py,r,0,7);c.fill()}
+  const p=w*0.09;c.fillStyle=face;c.fillRect(-w/2+p,-h/2+p,w-2*p,h-2*p);
+  c.strokeStyle=ink;c.lineWidth=Math.max(2,w/80);c.strokeRect(-w/2+p*1.5,-h/2+p*1.5,w-3*p,h-3*p);
+  if(small)txt(small,0,-h/2+p*2.6,`700 ${Math.round(w*0.07)}px SMono`,ink);
+  txt(big,0,h*0.06,`${Math.round(w*0.36)}px ISerif`,ink);
+  c.restore()}
+
+// L0 hook: 1917 post office counter, $4.12 tag, a saver with a few coins
+function counter(t){ sepiaBg(); inBox(()=>{
+  c.fillStyle='#8a6a48';c.fillRect(0,640,1080,440);c.fillStyle='#6f5338';c.fillRect(0,620,1080,40);
+  for(let x=60;x<1080;x+=200){c.strokeStyle='rgba(60,40,20,.35)';c.lineWidth=4;c.strokeRect(x,690,160,330)}
+  // teller window bars
+  c.fillStyle='#5a4a3c';c.fillRect(560,120,420,500);c.fillStyle='#e9dcc0';c.fillRect(590,150,360,440);
+  c.strokeStyle='#4a3a2c';c.lineWidth=8;for(let x=620;x<950;x+=55){c.beginPath();c.moveTo(x,150);c.lineTo(x,590);c.stroke()}
+  txt('U.S. WAR SAVINGS',770,95,'700 30px SMono',C.sepia);
+  // big stamp + price tag
+  const k=back((t-0.15)/0.5);
+  stamp(770,370,240+40*k,300+50*k,0.04,'#c9d6e8','#28406e','$5','WAR SAVINGS');
+  c.save();c.translate(770,560);c.rotate(-0.05);c.globalAlpha=ease((t-0.4)/0.4);rr(-130,-50,260,100,14,C.coral);txt('$4.12',0,4,'700 70px Inter','#fff');c.restore();
+  // saver with a few coins
+  person(250+6*Math.sin(t*0.9),1000,1.25,'#3a2a1c',0.02);
+  for(let i=0;i<3;i++){c.fillStyle=C.gold;c.beginPath();c.ellipse(380+i*46,636,22,9,0,0,7);c.fill();c.strokeStyle='#a07a20';c.lineWidth=3;c.stroke()}
+}) }
+function hookOverlay(a){ if(a<=0)return; c.save();c.globalAlpha=a;
+  const y0=170,h=400;
+  const g=c.createLinearGradient(0,y0,0,y0+h);g.addColorStop(0,'rgba(5,7,12,0)');g.addColorStop(.15,'rgba(5,7,12,.84)');g.addColorStop(.85,'rgba(5,7,12,.84)');g.addColorStop(1,'rgba(5,7,12,0)');c.fillStyle=g;c.fillRect(0,y0,W,h);
+  txt('In 1917 you could',W/2,y0+110,'104px ISerif',C.linen);
+  txt('get in for 25¢.',W/2,y0+215,'112px ISerif',C.gold);
+  txt('TODAY’S 25¢ VERSION: AT THE END',W/2,y0+305,'700 30px SMono',C.sky);
+  c.restore()}
+// L1: the 25 cent thrift stamp lands
+function thrift(t,a0){ sepiaBg(); inBox(()=>{
+  const k=clamp((t-a0-0.15)/0.35),s=1.6-0.6*ease(k);
+  c.save();c.globalAlpha=k;c.translate(540,470);c.scale(s,s);stamp(0,0,460,560,-0.05,'#d8ead0','#2f6b1e','25¢','THRIFT STAMP');c.restore();
+  txt('one quarter at a time',540,880,'84px ISerifI',C.sepia,'center',ease((t-a0-0.7)/0.4));
+  txt('U.S. TREASURY · 1917',540,980,'700 32px SMono',C.ink,'center',ease((t-a0-0.9)/0.4));
+}) }
+// L2: card of 16 fills, $4.00, trade for a $5 stamp by 1923
+function card(t,a0,tTrade){ sepiaBg(); inBox(()=>{
+  const p=ease((t-a0)/0.3);c.save();c.globalAlpha=p;c.translate(-60,40);c.scale(0.9,0.9);
+  rr(110,60,620,760,18,'#fbf6ea');c.strokeStyle=C.sepia;c.lineWidth=5;c.strokeRect(130,80,580,720);
+  txt('THRIFT CARD',420,130,'700 34px SMono',C.sepia);
+  const filled=Math.floor(clamp((t-a0-0.2)/(tTrade-a0-0.5))*16+0.0001);
+  for(let i=0;i<16;i++){const x=185+(i%4)*120+52,y=200+Math.floor(i/4)*140+60;
+    c.strokeStyle='rgba(109,79,51,.35)';c.lineWidth=3;c.setLineDash([8,6]);c.strokeRect(x-48,y-58,96,116);c.setLineDash([]);
+    if(i<filled)stamp(x,y,88,108,(rnd(i)-.5)*0.12,'#d8ead0','#2f6b1e','25¢','')}
+  rr(250,740,340,56,28,C.sepia);txt('$'+(filled*0.25).toFixed(2),420,769,'700 34px SMono','#fff');
+  c.restore();
+  const q=ease((t-tTrade)/0.5);
+  if(q>0){c.save();c.globalAlpha=q;txt('+ a few cents',850,250,'50px ISerifI',C.ink);
+    c.strokeStyle=C.coral;c.lineWidth=10;c.lineCap='round';c.beginPath();c.moveTo(740,330);c.lineTo(960,330);c.moveTo(930,305);c.lineTo(960,330);c.lineTo(930,355);c.stroke();c.restore();
+    stamp(850,560,200+40*back((t-tTrade-0.1)/0.5),250+50*back((t-tTrade-0.1)/0.5),0.05,'#c9d6e8','#28406e','$5','WAR SAVINGS',q);
+    txt('WORTH $5 BY 1923',850,800,'700 30px SMono',C.indigo,'center',ease((t-tTrade-0.5)/0.4))}
+}) }
+// L3: today, a big listing, 15-20% set aside
+function pie(t,a0,tSlice){ c.fillStyle=C.night;c.fillRect(0,0,W,H); inBox(()=>{
+  const p=ease((t-a0)/0.4),q=ease((t-tSlice)/0.5);
+  c.save();c.globalAlpha=p;rr(190,30,700,110,55,'#16203a');txt('BIG AI LISTING · REPORTED PLAN',540,86,'700 32px SMono',C.sky);c.restore();
+  const cx=540,cy=500,R=290;const a=-Math.PI/2,sl=0.175*2*Math.PI;
+  c.save();c.globalAlpha=p;c.fillStyle='#2a3557';c.beginPath();c.moveTo(cx,cy);c.arc(cx,cy,R,a+sl*q,a+2*Math.PI);c.closePath();c.fill();
+  txt('SHARES',cx-30,cy+40,'700 40px SMono','#9fb0d8');c.restore();
+  if(q>0){const off=30*q;c.save();c.translate(Math.cos(a+sl/2)*off,Math.sin(a+sl/2)*off);c.fillStyle=C.lime;c.beginPath();c.moveTo(cx,cy);c.arc(cx,cy,R,a,a+sl*q);c.closePath();c.fill();c.restore();
+    c.save();c.globalAlpha=q;txt('15–20%',540,880,'700 100px Inter',C.lime);txt('of shares, for regular people',540,960,'48px ISerifI',C.linen);c.restore()}
+  txt('STILL BEING DISCUSSED',540,1040,'700 28px SMono','#9fb0d8','center',p);
+}) }
+// L4: lots of people share the slice; big investors get the rest
+function crowd(t,a0,tBig){ c.fillStyle=C.night;c.fillRect(0,0,W,H); inBox(()=>{
+  const p=ease((t-a0)/0.4),q=ease((t-tBig)/0.5);
+  // the slice as a thin wedge
+  c.save();c.globalAlpha=p;c.fillStyle=C.lime;c.beginPath();c.moveTo(540,110);c.lineTo(440,420);c.lineTo(640,420);c.closePath();c.fill();
+  txt('MAYBE',540,330,'700 34px SMono','#10210a');c.restore();
+  for(let i=0;i<40;i++){const x=90+(i%10)*100,y=640+Math.floor(i/10)*110,k=ease((t-a0-0.15-i*0.015)/0.3);
+    c.save();c.globalAlpha=k*(1-0.55*q);person(x,y+10*(1-k),0.32,i%3?C.sky:C.linen,0,false);c.restore()}
+  if(q>0){c.save();c.globalAlpha=q;rr(160,470,760,96,48,C.coral);txt('BIG INVESTORS GET THE REST',540,519,'700 36px SMono','#fff');c.restore()}
+}) }
+// L5: the $10,000 door
+function door(t,a0){ c.fillStyle='#1b1712';c.fillRect(0,0,W,H); inBox(()=>{const p=ease((t-a0)/0.5);
+  c.fillStyle='#3a2e22';c.fillRect(250,120,580,860);c.strokeStyle=C.gold;c.lineWidth=12;c.strokeRect(250,120,580,860);
+  for(let i=0;i<2;i++)for(let j=0;j<3;j++){c.strokeStyle='rgba(242,196,90,.35)';c.lineWidth=5;c.strokeRect(300+i*250,170+j*270,230,240)}
+  c.save();c.translate(540,560);c.scale(0.6+0.4*p,0.6+0.4*p);c.globalAlpha=p;rr(-240,-90,480,180,20,C.linen);txt('OFTEN FROM',0,-42,'700 30px SMono',C.brown);txt('$10,000',0,26,'700 96px Inter',C.ink);c.restore();
+  c.save();c.translate(760,700);c.globalAlpha=p;c.strokeStyle=C.gold;c.lineWidth=14;c.beginPath();c.arc(0,-30,34,Math.PI,0);c.stroke();rr(-50,-30,100,80,12,C.gold);c.restore();
+  txt('A FUND OF YOUR OWN',540,1030,'700 30px SMono',C.gold,'center',p);
+}) }
+// L6: 1917 stamp -> today, a public ledger
+function thenNow(t,a0,tB){ c.fillStyle=C.linen;c.fillRect(0,0,W,H); inBox(()=>{const p=ease((t-a0)/0.4),q=ease((t-tB)/0.4);
+  txt('1917',270,90,'700 44px SMono',C.sepia,'center',p);txt('TODAY',810,90,'700 44px SMono',C.indigo,'center',q);
+  c.save();c.globalAlpha=p;rr(50,140,440,620,26,'#efe3c8');c.restore();
+  stamp(270,420,240,300,-0.05,'#d8ead0','#2f6b1e','25¢','THRIFT STAMP',p);
+  txt('a stamp',270,680,'64px ISerifI',C.sepia,'center',p);
+  c.save();c.globalAlpha=q;rr(590,140,440,620,26,'#fff');c.strokeStyle='#e3dccb';c.lineWidth=3;c.strokeRect(590,140,440,620);
+  txt('PUBLIC LEDGER',810,200,'700 26px SMono',C.brown);
+  const rows=['$10 in','bought','rebalanced','checked','recorded'];
+  for(let i=0;i<5;i++){const y=250+i*76,k=clamp((t-tB)*2.4-i*0.6);c.globalAlpha=q*k;
+    txt(rows[i],630,y+20,'700 28px SMono',C.ink,'left');txt('✓',990,y+20,'700 32px SMono','#3f7a00','right');c.fillStyle='#ece6d6';c.fillRect(630,y+52,360,3)}
+  c.globalAlpha=q;txt('a fund',810,680,'64px ISerifI',C.indigo);c.restore();
+  // arrow
+  c.save();c.globalAlpha=q;c.strokeStyle=C.coral;c.lineWidth=10;c.lineCap='round';c.beginPath();c.moveTo(500,450);c.lineTo(580,450);c.moveTo(556,428);c.lineTo(580,450);c.lineTo(556,472);c.stroke();c.restore();
+  txt('the 25¢ stamp, today',540,900,'90px ISerif',C.ink,'center',ease((t-tB-0.6)/0.4));
+}) }
+// L7: BLOK, your own fund from $10
+function fund(t,a0){ c.fillStyle=C.night;c.fillRect(0,0,W,H); inBox(()=>{const p=ease((t-a0)/0.5);
+  const lg=document.getElementById('logo');
+  c.save();c.globalAlpha=p;rr(240,180,600,110,55,C.linen);if(lg.complete&&lg.naturalWidth){const h=54,w=lg.naturalWidth*h/lg.naturalHeight;c.drawImage(lg,540-w/2,235-h/2,w,h)}c.restore();
+  txt('your own fund',540,430,'110px ISerif',C.linen,'center',p);
+  const s=0.7+0.3*ease((t-a0-0.4)/0.5);c.save();c.translate(540,660);c.scale(s,s);txt('$10',0,0,'700 240px Inter',C.lime,'center',ease((t-a0-0.3)/0.4));c.restore();
+  txt('START SMALL. LIKE A STAMP CARD.',540,860,'700 30px SMono',C.sky,'center',ease((t-a0-0.8)/0.4));
+}) }
+function endIG(t,a0){ c.fillStyle=C.linen;c.fillRect(0,0,W,H);const p=ease((t-a0)/0.4);c.save();c.globalAlpha=p;
+  const lg=document.getElementById('logo'),dc=document.getElementById('doc');
+  if(lg.naturalWidth){const h=46,w=lg.naturalWidth*h/lg.naturalHeight;c.drawImage(lg,540-w/2,225,w,h)}
+  txt('7 questions private banks',540,350,'76px ISerif',C.indigo);txt('ask on day one',540,428,'76px ISerif',C.indigo);
+  if(dc.naturalWidth){c.save();c.translate(540,640);c.rotate(-0.07);const w=230,h=dc.naturalHeight*w/dc.naturalWidth;c.shadowColor='rgba(0,0,0,.25)';c.shadowBlur=40;c.drawImage(dc,-w/2,-h/2,w,h);c.restore()}
+  txt('Comment',540,880,'76px ISerif',C.ink);
+  rr(540-190,930,380,150,24,C.coral);txt('FUND',540,1007,'700 124px Inter','#fff');
+  txt("and I'll DM you all seven",540,1135,'50px ISerif',C.indigo);
+  txt('Should owning a fund start at $10? Yes or no?',540,1215,'700 32px Inter',C.ink);
+  txt('FOLLOW @BLOK.CAPITAL FOR PART 4 OF BEFORE THE BELL',540,1262,'700 21px SMono',C.brown);
+  ['Educational content only, not financial or investment advice.','Investing carries risk and you can lose money.','AI-generated voiceover. Sources in the caption.'].forEach((s,i)=>txt(s,540,1318+i*30,'700 19px SMono','#6b665a'));
+  c.restore()}
+
+// subtitles
+const CH=[];L.forEach(l=>{let g=[];l.words.forEach((w,i)=>{g.push(w);const end=/[.,?!:]$/.test(w.w)||g.length>=3||i===l.words.length-1;if(end){CH.push(g);g=[]}})});
+const KEY=/^(1917|\$4\.12|25|16|\$5|1923|AI|IPO|15|20%|regular|Maybe|Big|\$10,000|stamp|ledger|BLOK|\$10|FUND|seven|cents)/i;
+function subs(t,inkBg){if(t>=END)return;const ch=CH.find(g=>t>=g[0].s-0.05&&t<g[g.length-1].e+0.12);if(!ch)return;
+  c.save();c.font=`700 ${SUBSIZE}px Inter`;c.textAlign='left';c.textBaseline='middle';
+  const parts=ch.map(w=>w.w);const sp=c.measureText(' ').width;const tw=parts.reduce((a,s)=>a+c.measureText(s).width,0)+sp*(parts.length-1);
+  let x=W/2-tw/2;parts.forEach(s=>{const k=KEY.test(s);c.fillStyle=inkBg?(k?C.indigo:C.ink):(k?C.gold:'#fff');
+   if(!inkBg){c.shadowColor='rgba(0,0,0,.85)';c.shadowBlur=18;c.shadowOffsetY=4}c.fillText(s,x,SUBY);x+=c.measureText(s).width+sp});c.restore()}
+
+function draw(t){c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,W,H);c.globalAlpha=1;
+  const sc=i=>S(i)-0.15, sEnd=sc(8);
+  let ink=false;
+  if(t<sc(1)){counter(t);hookOverlay(t<E(0)?1:clamp(1-(t-E(0))/0.3));ink=true}
+  else if(t<sc(2)){thrift(t,sc(1));ink=true}
+  else if(t<sc(3)){card(t,sc(2),Wd(2,/^trade/));ink=true}
+  else if(t<sc(4))pie(t,sc(3),Wd(3,/^weighing/));
+  else if(t<sc(5))crowd(t,sc(4),Wd(4,/^Big/));
+  else if(t<sc(6))door(t,sc(5));
+  else if(t<sc(7)){thenNow(t,sc(6),Wd(6,/^Today/));ink=true}
+  else if(t<sEnd)fund(t,sc(7));
+  else {endIG(t,sEnd);ink=true}
+  if(t>=E(0)&&t<sEnd)pill('BEFORE THE BELL · PART 3',ink?C.ink:C.linen,ink?C.linen:C.ink,PILLY,clamp((t-E(0))/0.3));
+  [1,2,3,4,5,6,7].map(sc).concat([sEnd]).forEach(x=>{const d=t-x;if(d>=0&&d<0.18){c.fillStyle=`rgba(255,255,255,${0.35*(1-d/0.18)})`;c.fillRect(0,0,W,H)}});
+  subs(t,ink);
+}
+window.draw=draw;
+</script>
+</body></html>
