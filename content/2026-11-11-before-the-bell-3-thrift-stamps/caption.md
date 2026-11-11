@@ -25,3 +25,6 @@ Sources: Wikipedia, "War savings stamps of the United States" (25 cent Thrift st
 
 #investing #mutualfunds #moneyhistory #financialliteracy #beforethebell
 <!-- IG END -->
+
+## Posted
+- Instagram Reel (9:16): 11 Nov 2026, 15:55 UTC, https://www.instagram.com/reel/Dfm2e-LB5TB/ (media id 17906232972671695)
