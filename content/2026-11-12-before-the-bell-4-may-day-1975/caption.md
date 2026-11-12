@@ -25,3 +25,6 @@ Sources: Wikipedia, "1975 Stock Brokerage Commission Deregulation" (fixed commis
 
 #investing #mutualfunds #moneyhistory #financialliteracy #beforethebell
 <!-- IG END -->
+
+## Posted
+- Instagram Reel (9:16): 12 Nov 2026, 07:29 UTC, https://www.instagram.com/reel/DfohVgTNIaw/ (media id 17886205389628438)
