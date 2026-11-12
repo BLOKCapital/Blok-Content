@@ -1,0 +1,193 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"ISerif";src:url(fonts/InstrumentSerif-Regular.ttf)}
+@font-face{font-family:"ISerifI";src:url(fonts/InstrumentSerif-Italic.ttf)}
+@font-face{font-family:"SMono";src:url(fonts/SpaceMono-Bold.ttf)}
+html,body{margin:0;background:#0b0d12;overflow:hidden}
+canvas{position:absolute;left:0;top:0}
+</style></head>
+<body>
+<canvas id="cv"></canvas>
+<img id="logo" src="logo-wordmark.png" style="display:none">
+<img id="doc" src="doc-1.png" style="display:none">
+<script src="timeline.js"></script>
+<script>
+// Instagram 1080x1920. Content box y 330..1410, subtitles at 1480. Before the Bell, Part 4.
+const W=1080,H=1920;
+const L=window.TIMELINE, N=L.length;
+const cv=document.getElementById('cv'); cv.width=W; cv.height=H; document.body.style.width=W+'px'; document.body.style.height=H+'px';
+const c=cv.getContext('2d');
+const BOX={x:0,y:330}, SUBY=1480, SUBSIZE=64, PILLY=255;
+const S=i=>L[i].start, E=i=>L[i].end;
+const END=E(N-1)+0.6;
+window.DURATION=END+2.6;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const k=1.7;return 1+(k+1)*Math.pow(x-1,3)+k*Math.pow(x-1,2)};
+const Wd=(i,rx,n=0)=>{const ws=L[i].words.filter(w=>rx.test(w.w));const w=ws[n];return w?w.s:S(i)};
+function rnd(i){const x=Math.sin(i*91.7)*43758.5;return x-Math.floor(x)}
+const C={linen:'#F6F3E8',indigo:'#004EBA',lime:'#7ED116',coral:'#EC464D',brown:'#844947',sky:'#7DD2FD',ink:'#1d1b16',gold:'#F2C45A',night:'#0e1424',sepia:'#6d4f33'};
+function txt(s,x,y,font,col,align='center',alpha=1){c.save();c.globalAlpha*=alpha;c.font=font;c.fillStyle=col;c.textAlign=align;c.textBaseline='middle';c.fillText(s,x,y);c.restore()}
+function rr(x,y,w,h,r,col){c.beginPath();c.roundRect(x,y,w,h,r);c.fillStyle=col;c.fill()}
+function inBox(f){c.save();c.translate(BOX.x,BOX.y);f();c.restore()}
+function pill(s,bg,fg,y,alpha=1){c.save();c.globalAlpha*=alpha;c.font='700 30px SMono';const w=c.measureText(s).width+56;rr(W/2-w/2,y,w,60,30,bg);txt(s,W/2,y+31,'700 30px SMono',fg);c.restore()}
+function sepiaBg(){const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#efe3c8');g.addColorStop(1,'#d9c49c');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.globalAlpha=.08;for(let i=0;i<500;i++){c.fillStyle=rnd(i)>.5?'#5a3b22':'#fff';c.fillRect(rnd(i+1)*W,rnd(i+2)*H,2,2)}c.globalAlpha=1}
+function person(x,y,s,col,lean=0,hat=true){c.save();c.translate(x,y);c.scale(s,s);c.rotate(lean);c.fillStyle=col;
+  c.beginPath();c.arc(0,-210,34,0,7);c.fill();
+  c.beginPath();c.moveTo(-26,-176);c.lineTo(-42,-60);c.lineTo(42,-60);c.lineTo(26,-176);c.fill();c.fillRect(-46,-180,92,30);
+  c.fillRect(-36,-62,28,72);c.fillRect(8,-62,28,72);
+  if(hat){c.fillRect(-58,-250,116,14);c.fillRect(-32,-282,64,34)}
+  c.restore()}
+// perforated stamp
+function stamp(x,y,w,h,rot,face,ink,big,small,alpha=1){c.save();c.globalAlpha*=alpha;c.translate(x,y);c.rotate(rot);
+  c.shadowColor='rgba(0,0,0,.25)';c.shadowBlur=24;c.shadowOffsetY=8;
+  c.fillStyle='#fbf6ea';c.fillRect(-w/2,-h/2,w,h);c.shadowColor='transparent';
+  const r=Math.max(5,w/34),n=Math.round(w/(r*3.2)),m=Math.round(h/(r*3.2));c.fillStyle='#d9c49c';
+  for(let i=0;i<=n;i++){const px=-w/2+i*w/n;c.beginPath();c.arc(px,-h/2,r,0,7);c.arc(px,h/2,r,0,7);c.fill()}
+  for(let j=0;j<=m;j++){const py=-h/2+j*h/m;c.beginPath();c.arc(-w/2,py,r,0,7);c.arc(w/2,py,r,0,7);c.fill()}
+  const p=w*0.09;c.fillStyle=face;c.fillRect(-w/2+p,-h/2+p,w-2*p,h-2*p);
+  c.strokeStyle=ink;c.lineWidth=Math.max(2,w/80);c.strokeRect(-w/2+p*1.5,-h/2+p*1.5,w-3*p,h-3*p);
+  if(small)txt(small,0,-h/2+p*2.6,`700 ${Math.round(w*0.07)}px SMono`,ink);
+  txt(big,0,h*0.06,`${Math.round(w*0.36)}px ISerif`,ink);
+  c.restore()}
+
+
+function floorBg(){const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#2b2418');g.addColorStop(1,'#14110c');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.globalAlpha=.06;for(let i=0;i<500;i++){c.fillStyle=rnd(i)>.5?'#000':'#fff';c.fillRect(rnd(i+1)*W,rnd(i+2)*H,2,2)}c.globalAlpha=1}
+// board of ticker tape
+function tape(t,y){c.save();c.fillStyle='#0a0a08';c.fillRect(0,y,W,70);const s='IBM 51¼  GM 47⅞  XON 84½  KO 39¾  GE 50⅝  T 47⅛  ';
+  c.font='700 36px SMono';c.fillStyle='#F2C45A';c.textBaseline='middle';const w=c.measureText(s).width;let x=-((t*120)%w);while(x<W){c.fillText(s,x,y+36);x+=w}c.restore()}
+// L0 hook: 1975 trading floor, crowd of brokers, headline
+function floor(t){ floorBg(); inBox(()=>{
+  tape(t,40);
+  c.fillStyle='#3a2f20';c.fillRect(0,820,1080,300);
+  for(let i=0;i<9;i++){const x=80+i*115,y=820+((i%2)*30);person(x+6*Math.sin(t*2+i),y,0.9,i%2?'#1c1712':'#2a2218',0.04*Math.sin(t*3+i))}
+  const k=back((t-0.1)/0.5);
+  c.save();c.translate(540,450);c.rotate(-0.04);c.scale(0.8+0.2*k,0.8+0.2*k);rr(-330,-200,660,400,8,'#efe6d0');
+  txt('THE DAILY',0,-150,'700 30px SMono','#3a2f20');c.fillStyle='#3a2f20';c.fillRect(-300,-120,600,4);
+  txt('MAY 1, 1975',0,-70,'700 40px SMono','#3a2f20');txt('DISASTER?',0,40,'130px ISerif',C.coral);
+  for(let j=0;j<3;j++){c.fillStyle='rgba(58,47,32,.35)';c.fillRect(-280,120+j*24,560,10)}
+  c.restore();
+}) }
+function hookOverlay(a){ if(a<=0)return; c.save();c.globalAlpha=a;
+  const y0=170,h=400;
+  const g=c.createLinearGradient(0,y0,0,y0+h);g.addColorStop(0,'rgba(5,7,12,0)');g.addColorStop(.15,'rgba(5,7,12,.86)');g.addColorStop(.85,'rgba(5,7,12,.86)');g.addColorStop(1,'rgba(5,7,12,0)');c.fillStyle=g;c.fillRect(0,y0,W,h);
+  txt('1975: Wall Street said',W/2,y0+110,'86px ISerif',C.linen);
+  txt('this would be a disaster.',W/2,y0+215,'86px ISerif',C.gold);
+  txt('WHAT REALLY HAPPENED: AT THE END',W/2,y0+305,'700 30px SMono',C.sky);
+  c.restore()}
+// L1: same fee everywhere since 1792; small investor at the back
+function sameFee(t,a0,tSmall){ floorBg(); inBox(()=>{
+  const p=ease((t-a0)/0.4);
+  c.save();c.globalAlpha=p;rr(190,20,700,110,55,'#3a2f20');txt('SINCE 1792',540,76,'700 44px SMono',C.gold);c.restore();
+  for(let i=0;i<4;i++){const x=150+i*260,k=ease((t-a0-0.15-i*0.12)/0.35);c.save();c.globalAlpha=k;
+    rr(x-110,200,220,300,14,'#4a3c28');c.fillStyle='#2b2418';c.fillRect(x-90,230,180,140);
+    txt('BROKER',x,265,'700 22px SMono','#c9b994');rr(x-80,300,160,60,10,C.linen);txt('SET FEE',x,331,'700 24px SMono',C.ink);
+    person(x,640,0.7,'#1c1712');c.restore()}
+  const q=ease((t-tSmall)/0.5);
+  c.save();c.globalAlpha=q*0.9;person(540+80*(1-q),960,0.55,C.sky,0,false);c.restore();
+  txt('small investors: discouraged',540,1050,'52px ISerifI',C.sky,'center',q);
+}) }
+// L2: rule ended; up to 200 firms could fail
+function ended(t,a0,tFail){ floorBg(); inBox(()=>{
+  const p=ease((t-a0)/0.35);
+  c.save();c.globalAlpha=p;rr(140,40,800,400,20,C.linen);txt('FIXED FEE RULE',540,110,'700 52px SMono',C.ink);txt('1792 – 1975',540,195,'90px ISerif',C.brown);
+  const s=back((t-a0-0.3)/0.4);c.translate(540,345);c.rotate(-0.08);c.scale(s,s);c.strokeStyle=C.coral;c.lineWidth=10;c.strokeRect(-230,-70,460,140);txt('ENDED',0,4,'700 96px SMono',C.coral);c.restore();
+  const q=ease((t-tFail)/0.4);
+  for(let i=0;i<10;i++){const x=70+i*104,hh=200+rnd(i)*160,sh=q*Math.sin(t*14+i)*6;c.save();c.globalAlpha=q;c.translate(x+sh,1000);
+    c.fillStyle=i%2?'#4a3c28':'#5a4a33';c.fillRect(-42,-hh,84,hh);c.fillStyle='rgba(242,196,90,.5)';for(let j=0;j<hh/50-1;j++){c.fillRect(-28,-hh+20+j*50,18,22);c.fillRect(10,-hh+20+j*50,18,22)}c.restore()}
+  c.save();c.globalAlpha=q;rr(170,500,740,110,55,C.coral);txt('"150 TO 200 FIRMS COULD FAIL"',540,556,'700 34px SMono','#fff');c.restore();
+}) }
+// L3: this week, an airline blocks AI assistants
+function airline(t,a0,tBan){ c.fillStyle=C.night;c.fillRect(0,0,W,H); inBox(()=>{
+  const p=ease((t-a0)/0.4),q=ease((t-tBan)/0.4);
+  c.save();c.globalAlpha=p;rr(330,0,420,90,45,'#16203a');txt('THIS WEEK',540,46,'700 34px SMono',C.sky);c.restore();
+  c.save();c.globalAlpha=p;c.translate(540,600);rr(-230,-460,460,900,60,'#0a0f1c');rr(-210,-430,420,840,44,'#f4f6fb');
+  txt('BOOK A FLIGHT',0,-370,'700 30px SMono',C.indigo);
+  rr(-180,-320,300,90,24,'#dfe7f7');txt('book me a flight',-30,-274,'34px Inter','#1d2a48');
+  rr(-120,-200,300,120,24,C.indigo);txt('AI assistant:',30,-160,'700 28px Inter','#fff');txt('on it ✈',30,-118,'34px Inter','#fff');
+  c.restore();
+  if(q>0){c.save();c.globalAlpha=q;c.translate(540,640);c.rotate(-0.1);c.scale(0.7+0.3*back(q),0.7+0.3*back(q));rr(-300,-80,600,160,24,C.coral);txt('BLOCKED',0,4,'700 110px SMono','#fff');c.restore()}
+}) }
+// L4: a new door; was it a disaster?
+function question(t,a0,tQ){ floorBg(); inBox(()=>{
+  const p=ease((t-a0)/0.4),o=ease((t-a0-0.3)/0.8);
+  c.save();c.globalAlpha=p;c.fillStyle='#0a0805';c.fillRect(340,140,400,700);
+  c.fillStyle='rgba(242,196,90,'+(0.25+0.5*o)+')';c.fillRect(340,140,400*o*0.35,700);
+  c.fillStyle='#6b5232';c.save();c.translate(340+400*o*0.35,140);c.fillRect(0,0,400-400*o*0.35,700);c.restore();
+  c.strokeStyle=C.gold;c.lineWidth=10;c.strokeRect(340,140,400,700);c.restore();
+  txt('THE NEW THING GETS A FIGHT',540,940,'700 34px SMono',C.gold,'center',p);
+  const q=ease((t-tQ)/0.4);txt('a disaster?',540,1050,'100px ISerifI',C.linen,'center',q);
+}) }
+// L5: the answer: volume up, 97 discount brokers by 1979
+function answer(t,a0,tN){ c.fillStyle=C.linen;c.fillRect(0,0,W,H); inBox(()=>{
+  const p=ease((t-a0)/0.3);
+  c.save();c.translate(540,110);c.scale(0.6+0.4*back((t-a0)/0.4),0.6+0.4*back((t-a0)/0.4));txt('NOT FOR INVESTORS.',0,0,'700 84px Inter',C.indigo,'center',p);c.restore();
+  // volume arrow
+  const v=ease((t-a0-0.4)/0.8);c.save();c.globalAlpha=p;c.strokeStyle=C.lime;c.lineWidth=14;c.lineCap='round';c.beginPath();c.moveTo(120,420);
+  for(let i=1;i<=20;i++){const x=120+i*42*v,y=420-i*9*v-12*Math.sin(i*1.3)*v;c.lineTo(x,y)}c.stroke();c.restore();
+  txt('TRADING ROSE',300,470,'700 30px SMono',C.ink,'center',p);
+  // 97 dots
+  const n=Math.floor(97*clamp((t-tN)/1.4));
+  for(let i=0;i<97;i++){const x=150+(i%12)*68,y=560+Math.floor(i/12)*52;c.beginPath();c.arc(x,y,20,0,7);c.fillStyle=i<n?C.lime:'rgba(0,0,0,.06)';c.fill()}
+  const q=ease((t-tN)/0.4);c.save();c.globalAlpha=q;txt(String(Math.max(n,0)),540,1050-30,'700 120px Inter',C.indigo);c.restore();
+  txt('DISCOUNT BROKERS BY 1979',540,1090,'700 30px SMono',C.ink,'center',q);
+}) }
+function door(t,a0){ c.fillStyle='#1b1712';c.fillRect(0,0,W,H); inBox(()=>{const p=ease((t-a0)/0.5);
+  c.fillStyle='#3a2e22';c.fillRect(250,120,580,860);c.strokeStyle=C.gold;c.lineWidth=12;c.strokeRect(250,120,580,860);
+  for(let i=0;i<2;i++)for(let j=0;j<3;j++){c.strokeStyle='rgba(242,196,90,.35)';c.lineWidth=5;c.strokeRect(300+i*250,170+j*270,230,240)}
+  c.save();c.translate(540,560);c.scale(0.6+0.4*p,0.6+0.4*p);c.globalAlpha=p;rr(-240,-90,480,180,20,C.linen);txt('OFTEN FROM',0,-42,'700 30px SMono',C.brown);txt('$10,000',0,26,'700 96px Inter',C.ink);c.restore();
+  c.save();c.translate(760,700);c.globalAlpha=p;c.strokeStyle=C.gold;c.lineWidth=14;c.beginPath();c.arc(0,-30,34,Math.PI,0);c.stroke();rr(-50,-30,100,80,12,C.gold);c.restore();
+  txt('A FUND OF YOUR OWN',540,1030,'700 30px SMono',C.gold,'center',p);
+}) }
+function fund(t,a0){ c.fillStyle=C.night;c.fillRect(0,0,W,H); inBox(()=>{const p=ease((t-a0)/0.5);
+  const lg=document.getElementById('logo');
+  c.save();c.globalAlpha=p;rr(240,180,600,110,55,C.linen);if(lg.complete&&lg.naturalWidth){const h=54,w=lg.naturalWidth*h/lg.naturalHeight;c.drawImage(lg,540-w/2,235-h/2,w,h)}c.restore();
+  txt('your own fund',540,430,'110px ISerif',C.linen,'center',p);
+  const s=0.7+0.3*ease((t-a0-0.4)/0.5);c.save();c.translate(540,660);c.scale(s,s);txt('$10',0,0,'700 240px Inter',C.lime,'center',ease((t-a0-0.3)/0.4));c.restore();
+  txt('SAME DOOR. JUST WIDER.',540,860,'700 30px SMono',C.sky,'center',ease((t-a0-0.8)/0.4));
+}) }
+function endIG(t,a0){ c.fillStyle=C.linen;c.fillRect(0,0,W,H);const p=ease((t-a0)/0.4);c.save();c.globalAlpha=p;
+  const lg=document.getElementById('logo'),dc=document.getElementById('doc');
+  if(lg.naturalWidth){const h=46,w=lg.naturalWidth*h/lg.naturalHeight;c.drawImage(lg,540-w/2,225,w,h)}
+  txt('7 questions private banks',540,350,'76px ISerif',C.indigo);txt('ask on day one',540,428,'76px ISerif',C.indigo);
+  if(dc.naturalWidth){c.save();c.translate(540,640);c.rotate(-0.07);const w=230,h=dc.naturalHeight*w/dc.naturalWidth;c.shadowColor='rgba(0,0,0,.25)';c.shadowBlur=40;c.drawImage(dc,-w/2,-h/2,w,h);c.restore()}
+  txt('Comment',540,880,'76px ISerif',C.ink);
+  rr(540-190,930,380,150,24,C.coral);txt('FUND',540,1007,'700 124px Inter','#fff');
+  txt("and I'll DM you all seven",540,1135,'50px ISerif',C.indigo);
+  txt('Should owning a fund start at $10? Yes or no?',540,1215,'700 32px Inter',C.ink);
+  txt('FOLLOW @BLOK.CAPITAL FOR PART 5 OF BEFORE THE BELL',540,1262,'700 21px SMono',C.brown);
+  ['Educational content only, not financial or investment advice.','Investing carries risk and you can lose money.','AI-generated voiceover. Sources in the caption.'].forEach((s,i)=>txt(s,540,1318+i*30,'700 19px SMono','#6b665a'));
+  c.restore()}
+
+// subtitles
+const CH=[];L.forEach(l=>{let g=[];l.words.forEach((w,i)=>{g.push(w);const end=/[.,?!:]$/.test(w.w)||g.length>=3||i===l.words.length-1;if(end){CH.push(g);g=[]}})});
+const KEY=/^(1975|1792|1979|150|200|97|investors|disaster|same|AI|Nope|door|narrow|\$10,000|BLOK|\$10|FUND|seven|fail)/i;
+function subs(t,inkBg){if(t>=END)return;const ch=CH.find(g=>t>=g[0].s-0.05&&t<g[g.length-1].e+0.12);if(!ch)return;
+  c.save();c.font=`700 ${SUBSIZE}px Inter`;c.textAlign='left';c.textBaseline='middle';
+  const parts=ch.map(w=>w.w);const sp=c.measureText(' ').width;const tw=parts.reduce((a,s)=>a+c.measureText(s).width,0)+sp*(parts.length-1);
+  let x=W/2-tw/2;parts.forEach(s=>{const k=KEY.test(s);c.fillStyle=inkBg?(k?C.indigo:C.ink):(k?C.gold:'#fff');
+   if(!inkBg){c.shadowColor='rgba(0,0,0,.85)';c.shadowBlur=18;c.shadowOffsetY=4}c.fillText(s,x,SUBY);x+=c.measureText(s).width+sp});c.restore()}
+
+
+function draw(t){c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,W,H);c.globalAlpha=1;
+  const sc=i=>S(i)-0.15, sEnd=sc(8);
+  let ink=false;
+  if(t<sc(1)){floor(t);hookOverlay(t<E(0)?1:clamp(1-(t-E(0))/0.3))}
+  else if(t<sc(2))sameFee(t,sc(1),Wd(1,/^small/));
+  else if(t<sc(3))ended(t,sc(2),Wd(2,/^One/));
+  else if(t<sc(4))airline(t,sc(3),Wd(3,/^stop/));
+  else if(t<sc(5))question(t,sc(4),Wd(4,/^So/));
+  else if(t<sc(6)){answer(t,sc(5),Wd(5,/^97/));ink=true}
+  else if(t<sc(7))door(t,sc(6));
+  else if(t<sEnd)fund(t,sc(7));
+  else {endIG(t,sEnd);ink=true}
+  if(t>=E(0)&&t<sEnd)pill('BEFORE THE BELL · PART 4',ink?C.ink:C.linen,ink?C.linen:C.ink,PILLY,clamp((t-E(0))/0.3));
+  [1,2,3,4,5,6,7].map(sc).concat([sEnd]).forEach(x=>{const d=t-x;if(d>=0&&d<0.18){c.fillStyle=`rgba(255,255,255,${0.35*(1-d/0.18)})`;c.fillRect(0,0,W,H)}});
+  subs(t,ink);
+}
+window.draw=draw;
+</script>
+</body></html>

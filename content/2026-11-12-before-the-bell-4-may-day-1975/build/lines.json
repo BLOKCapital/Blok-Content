@@ -1,0 +1,47 @@
+[
+ {
+  "show": "In 1975, Wall Street brokers said one change would be a disaster.",
+  "say": "In nineteen seventy-five, Wall Street brokers said one change would be a disaster.",
+  "gap": 0.35
+ },
+ {
+  "show": "Since 1792, the stock exchange set what every broker charged, and it discouraged small investors.",
+  "say": "Since seventeen ninety-two, the stock exchange set what every broker charged, and it discouraged small investors.",
+  "gap": 0.35
+ },
+ {
+  "show": "Then regulators ended that rule. One top banker predicted 150 to 200 firms could fail.",
+  "say": "Then regulators ended that rule. One top banker predicted a hundred and fifty to two hundred firms could fail.",
+  "gap": 0.4
+ },
+ {
+  "show": "This week, a big airline moved to stop outside AI agents from booking your flights.",
+  "say": "This week, a big airline moved to stop outside A I agents from booking your flights.",
+  "gap": 0.35
+ },
+ {
+  "show": "People always fight the new thing. So, was 1975 a disaster?",
+  "say": "People always fight the new thing. So, was nineteen seventy-five a disaster?",
+  "gap": 0.45
+ },
+ {
+  "show": "Not for investors. Trading on the exchange rose, and by 1979 there were 97 discount brokers.",
+  "say": "Not for investors. Trading on the exchange rose, and by nineteen seventy-nine there were ninety-seven discount brokers.",
+  "gap": 0.45
+ },
+ {
+  "show": "One door is still narrow. A fund of your own often starts at $10,000 or more.",
+  "say": "One door is still narrow. A fund of your own often starts at ten thousand dollars or more.",
+  "gap": 0.4
+ },
+ {
+  "show": "That's why we're building BLOK, so anyone can have their own fund, from $10.",
+  "say": "That's why we're building Block, so anyone can have their own fund, from ten dollars.",
+  "gap": 0.5
+ },
+ {
+  "show": "Comment FUND and I'll send you the seven questions private banks ask on day one.",
+  "say": "Comment FUND, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]
