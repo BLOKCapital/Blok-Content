@@ -25,3 +25,6 @@ Sources: The Motley Fool, "63 Years Later, What Can Investors Learn From Ford's 
 
 #investing #mutualfunds #moneyhistory #financialliteracy #ipo
 <!-- IG END -->
+
+## Posted
+- Instagram Reel (9:16): 13 Nov 2026, 15:28 UTC, https://www.instagram.com/reel/Dfr89nyhlXu/ (media id 18360229219175047)
