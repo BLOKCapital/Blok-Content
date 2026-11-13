@@ -1,0 +1,34 @@
+OK   0  0.25s match=1.00
+   want: Nineteen oh three. A car company everyone knew, and almost nobody could own.
+   heard: 1903, a car company everyone knew and almost nobody could own.
+OK   1  5.41s match=1.00
+   want: It stayed private for fifty-three years.
+   heard: It stayed private for 53 years.
+OK   2  7.84s match=1.00
+   want: In nineteen fifty-six, Ford finally opened the door. The biggest share sale America had ever seen.
+   heard: In 1956, Ford finally opened the door, the biggest share sale America had ever seen.
+OK   3 14.22s match=1.00
+   want: Seventy years later, one of the biggest A I companies lets you request shares from an app.
+   heard: 70 years later, one of the biggest AI companies lets you request shares from an app.
+OK   4 19.68s match=1.00
+   want: But the fine print says there's no guarantee you get any.
+   heard: But the fine print says there's no guarantee you get any.
+OK   5 23.14s match=1.00
+   want: The line moved to your phone. It's still a line.
+   heard: The line moved to your phone. It's still a line.
+OK   6 26.21s match=1.00
+   want: So next time you open your phone, ask yourself:
+   heard: So, next time you open your phone, ask yourself...
+OK   7 29.29s match=1.00
+   want: am I building my own fund, or just watching someone else's?
+   heard: Am I building my own fund or just watching someone else's?
+OK   8 32.96s match=1.00
+   want: That's why we're building Block, so anyone can have their own fund, from ten dollars.
+   heard: That's why we're building block, so anyone can have their own fund from $10.
+OK   9 37.51s match=1.00
+   want: Part two: who really gets in first. Follow so you don't miss it.
+   heard: Part 2. Who really gets in first. Follow so you don't miss it.
+OK  10 41.70s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment fund and I'll send you the seven questions private banks ask on day one
+lines to check: 0
