@@ -1,0 +1,40 @@
+OK   0   0.25s match=1.00
+   want: Jay waited nine hours in line for one pair of sneakers.
+   heard: Jay waited nine hours in line for one pair of sneakers.
+OK   1   4.19s match=1.00
+   want: He finally gets to the door. Sold out.
+   heard: He finally gets to the door, sold out.
+OK   2   7.30s match=1.00
+   want: But right outside, there's a guy with his size. Same shoes. Three times the price.
+   heard: But right outside, there's a guy with his size, same shoes, three times the price.
+OK   3  12.46s match=1.00
+   want: And Jay pays it. Of course he does.
+   heard: And Jay pays it. Of course he does.
+OK   4  15.35s match=1.00
+   want: But that guy never even stood in line.
+   heard: But that guy never even stood in line.
+OK   5  17.59s match=1.00
+   want: He had his pairs before the doors opened. Then he waited. Let the line get long.
+   heard: He had his pairs before the doors opened. Then he waited. Let the line get long.
+OK   6  23.29s match=1.00
+   want: Big companies work the exact same way.
+   heard: big companies work the exact same way.
+OK   7  25.42s match=0.92
+   want: The early people usually wait a hundred and eighty days after the company goes public. Then they can sell.
+   heard: The early people usually wait 180 days after the company goes public, then they can sell.
+OK   8  31.87s match=1.00
+   want: And a lot of the people buying showed up late. Like Jay.
+   heard: and a lot of the people buying showed up late, like Jay.
+OK   9  35.93s match=1.00
+   want: So with your money, are you Jay, or the guy who got in first?
+   heard: So, with your money, are you Jay or the guy who got in first?
+OK  10  40.10s match=0.94
+   want: We're building Block so anyone can own their own fund, from ten dollars, that only they control.
+   heard: We're building blocks so anyone can own their own fund from $10 that only they control.
+OK  11  45.66s match=1.00
+   want: Part four is coming. Follow so you don't miss it.
+   heard: Part 4 is coming. Follow so you don't miss it.
+OK  12  49.22s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0
