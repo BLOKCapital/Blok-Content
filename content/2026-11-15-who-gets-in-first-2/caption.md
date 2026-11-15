@@ -25,3 +25,6 @@ Sources: CNBC, "Airbnb skyrockets 112% in public market debut" (10 Dec 2020): pr
 
 #investing #mutualfunds #moneyhistory #financialliteracy #ipo
 <!-- IG END -->
+
+## Posted
+- Instagram Reel (9:16): 15 Nov 2026, 04:32 UTC, https://www.instagram.com/reel/Dfv7XtOuMHK/ (media id 18121328033001667)
