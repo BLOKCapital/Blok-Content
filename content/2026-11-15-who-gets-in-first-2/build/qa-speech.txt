@@ -1,0 +1,43 @@
+OK   0   0.25s match=1.00
+   want: So you hit request shares. Now, who's standing in front of you?
+   heard: So you hit request shares. Now, who's standing in front of you?
+OK   1   3.63s match=1.00
+   want: First, the big funds. They got their shares the night before.
+   heard: First, the big funds. They got their shares the night before.
+OK   2   7.63s match=1.00
+   want: Take Airbnb in twenty twenty. The funds paid sixty-eight dollars a share.
+   heard: Take Airbnb in 2020. The funds paid $68 a share.
+OK   3  12.13s match=0.89
+   want: When trading opened to everyone, the first price was a hundred and forty-six.
+   heard: When trading opened to everyone, the first price was 146.
+BAD  4  16.25s match=0.82
+   want: One study of over a thousand I P O's found funds got about double what regular people got.
+   heard: One study of over 1,000 IPOs found funds got about double what regular people got.
+OK   5  22.91s match=0.98
+   want: Keep going up the line. The early backers. In two thousand nine, one of them put twenty thousand dollars into Airbnb, for six percent.
+   heard: Keep going up the line. The early backers? In 2009, one of them put $20,000 into Airbnb for 6%.
+OK   6  31.55s match=1.00
+   want: And at the very front, the founders. They once sold cereal boxes for forty dollars, just to keep going.
+   heard: and at the very front, the Founders.  They once sold cereal boxes for $40, just to keep going.
+OK   7  38.22s match=1.00
+   want: Okay, now pull back and look at the whole line.
+   heard: Okay, now pull back and look at the whole line.
+OK   8  41.07s match=1.00
+   want: None of them got there by being faster. They just owned a piece early.
+   heard: None of them got there by being faster, they just owned a piece early.
+OK   9  45.81s match=1.00
+   want: And to invest that early, the rules usually say you need one million dollars, not counting your home.
+   heard: And to invest that early, the rules usually say you need $1 million, not counting your home.
+OK  10  51.91s match=1.00
+   want: That's why we're building Block, so anyone can have their own fund, from ten dollars.
+   heard: That's why we're building block, so anyone can have their own fund, from ten dollars.
+OK  11  56.14s match=1.00
+   want: So where are you standing in that line? Tell me below.
+   heard: So where are you standing in that line? Tell me below.
+OK  12  58.90s match=1.00
+   want: In part three, the early owners finally get to sell. Follow so you don't miss it.
+   heard: In part three, the early owners finally get to sell. Follow so you don't miss it.
+OK  13  63.58s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 1
