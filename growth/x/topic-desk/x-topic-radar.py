@@ -285,6 +285,16 @@ def main():
     out_dir = os.path.join(HERE, "data")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, NOW.strftime("%Y-%m-%d") + ".json")
+    # A rate-limited re-run must not wipe X lists an earlier run today already found.
+    if os.path.exists(path) and not fresh:
+        try:
+            prev = json.load(open(path))
+            for k in ("quote_now", "reply_targets", "hot_48h", "skipped_unsafe"):
+                if prev.get(k):
+                    data[k] = prev[k]
+                    data.setdefault("kept_from_earlier_run", prev.get("run_at"))
+        except Exception:
+            pass
     with open(path, "w") as f:
         json.dump(data, f, indent=1)
     bad = [x["handle"] for x in health if x["error"] or x["stale"]]
