@@ -56,6 +56,15 @@ Page: `growth/x/topic-desk/desk.html` (open in a browser; rebuilt every morning)
    stance / history / number / question / action / quote / reply). The next morning's radar pulls its likes and replies.
    Weekly, compare replies per post by `type` and `lane` on the desk page and lean the next week's picks toward what won.
 
+## Format experiment and closing-line rule (Sheetal, 16 Nov 2026)
+- **Don't end every post on the same pitch.** The line "we're building blok so your own fund, from $10..." went out on
+  almost every post and reads like an ad. Keep BLOK's context, but put the product line in the **first reply** on most
+  days; at most 2 posts a week carry it in the post itself, and never with the same wording twice in a week.
+- **One format a day for 7 days** on the same kind of topic and the same slot, so only the format changes: greentext,
+  translation joke, plain question, real headline screenshot as the image, 3-post thread, 10 to 15s meme video, ladder.
+  Log each in `posted.json` with `format`; after 24h compare replies per post on the desk page and keep the winners.
+- Every day's picks offer the topic in **2 to 3 different formats**, not one draft.
+
 ## Picks file shape (`data/YYYY-MM-DD-picks.json`)
 ```json
 {
