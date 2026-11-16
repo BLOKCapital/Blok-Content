@@ -23,3 +23,6 @@ Source: SEC Investor.gov, "Initial Public Offerings: Lockup Agreements" (most lo
 
 #investing #moneyhistory #financialliteracy #sneakers #ipo
 <!-- IG END -->
+
+## Posted
+- Instagram Reel (9:16): 16 Nov 2026, 11:01 UTC, https://www.instagram.com/reel/DfzM0CJx-mI/ (media id 18092163473271844)
