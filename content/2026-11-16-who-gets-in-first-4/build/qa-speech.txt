@@ -1,0 +1,43 @@
+OK   0   0.25s match=1.00
+   want: Jay bought tacos here every Friday for ten years. He owns none of it.
+   heard: Jay bought tacos here every Friday for 10 years. He owns none of it.
+OK   1   5.26s match=1.00
+   want: When he found it, it was one window and a folding table.
+   heard: When he found it, it was one window and a folding table.
+OK   2   8.50s match=1.00
+   want: He told everyone. Brought his whole office.
+   heard: He told everyone, brought his whole office.
+OK   3  11.14s match=1.00
+   want: Now it's three hundred restaurants.
+   heard: Now it's 300 restaurants.
+OK   4  13.29s match=1.00
+   want: And then Jay finds out the owner's neighbors put money in. On day one.
+   heard: and then Jay finds out the owner's neighbors put money in. On day one,
+OK   5  17.70s match=1.00
+   want: Ten years as a customer. Not one day as an owner.
+   heard: 10 years as a customer, not one day as an owner.
+OK   6  21.56s match=1.00
+   want: Big companies work the exact same way.
+   heard: big companies work the exact same way.
+OK   7  23.74s match=0.95
+   want: For most of the nineties, the typical company was about nine years old when the public could buy in.
+   heard: For most of the 90s, the typical company was about nine years old when the public could buy in.
+OK   8  29.35s match=1.00
+   want: In twenty twenty-five, it was twelve.
+   heard: In 2025, it was 12.
+OK   9  31.56s match=1.00
+   want: That's twelve years of growing, and it's mostly insiders and big money getting in.
+   heard: That's 12 years of growing, and it's mostly insiders and big money getting in.
+OK  10  36.22s match=1.00
+   want: So no, you won't always get in first. But what you've already got, you can own.
+   heard: So no, you won't always get in first. But what you've already got, you can own.
+OK  11  40.83s match=1.00
+   want: We're building Block so anyone can own their own fund, from ten dollars, that only they control.
+   heard: We're building block so anyone can own their own fund from $10 that only they control.
+OK  12  46.89s match=1.00
+   want: Part five is coming. Follow so you don't miss it.
+   heard: Part 5 is coming. Follow so you don't miss it.
+OK  13  50.22s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0

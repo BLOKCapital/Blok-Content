@@ -1,0 +1,198 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Jak;src:url(fonts/Jakarta.ttf);font-weight:200 800}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#111}
+#stage{position:absolute;inset:0;overflow:hidden}
+svg{position:absolute;left:0;top:0}
+#txt{position:absolute;left:60px;width:960px;top:1270px;display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 22px;text-align:center}
+.w{display:inline-block;font-family:Jak;font-weight:800;font-size:92px;line-height:1.08;color:#fff;letter-spacing:-1.5px;
+  -webkit-text-stroke:14px #101114;paint-order:stroke fill;text-shadow:0 8px 0 rgba(0,0,0,.35);transform-origin:50% 80%}
+.w.hot{color:#C8F25A}
+.w.red{color:#FF6B6B}
+
+#pill{position:absolute;top:226px;left:50%;transform:translateX(-50%);font-family:Jak;font-weight:700;font-size:30px;letter-spacing:1px;color:#fff;
+  padding:12px 30px;border-radius:40px;background:rgba(0,0,0,.55);white-space:nowrap}
+#pill.lt{color:#0f2a5c;background:rgba(255,255,255,.75)}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#vhs{position:absolute;inset:0;pointer-events:none;opacity:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 2px,transparent 2px 6px)}
+</style></head><body>
+<div id="stage"><svg id="sv" width="1080" height="1920"></svg><div id="vhs"></div><div id="txt"></div><div id="pill">WHO GETS IN FIRST? · PART 4</div><div id="flash"></div></div>
+<script src="timeline.js"></script>
+<script>
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+const T=window.TIMELINE;window.DURATION=T[T.length-1].end+0.6+2.4;
+const S=i=>T[i].start,E=i=>T[i].end;
+const wordT=(i,rx)=>{const w=T[i].words.find(w=>rx.test(w.w));return w?w.s:S(i)};
+const ease=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);const eio=x=>x<0?0:x>1?1:x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{x=Math.max(0,Math.min(1,x));const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+function el(tag,a,p){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
+function tx(p,x,y,s,size,fill,w=800,anchor='middle'){const t=el('text',{x,y,'font-size':size,fill,'font-family':'Jak','font-weight':w,'text-anchor':anchor,'letter-spacing':-1},p);t.textContent=s;return t}
+const SV=$('sv');
+// ---------- character ----------
+// returns {g, set(expr), blink}
+function guy(p,o){const g=el('g',{},p);const in_=el('g',{},g);
+ const sk=o.skin||'#c98d63',top=o.top||'#3568d4',pant=o.pant||'#2b2f3a';
+ // legs
+ el('rect',{x:-48,y:150,width:40,height:150,rx:18,fill:pant},in_);el('rect',{x:8,y:150,width:40,height:150,rx:18,fill:pant},in_);
+ el('ellipse',{cx:-30,cy:302,rx:40,ry:20,fill:o.shoe||'#f4f1ea'},in_);el('ellipse',{cx:30,cy:302,rx:40,ry:20,fill:o.shoe||'#f4f1ea'},in_);
+ // body
+ const body=el('path',{d:'M-80 30 Q-90 -10 -40 -20 L40 -20 Q90 -10 80 30 L72 170 L-72 170Z',fill:top},in_);
+ if(o.suit){el('path',{d:'M-14 -20 L0 40 L14 -20Z',fill:'#f4f1ea'},in_);el('path',{d:'M-5 -10 L0 60 L5 -10Z',fill:o.tie||'#EC464D'},in_)}
+ else el('path',{d:'M-30 60 Q0 80 30 60 L30 110 L-30 110Z',fill:'rgba(0,0,0,.15)'},in_);
+ // arms
+ const armL=el('g',{transform:'translate(-74 0)'},in_);el('rect',{x:-20,y:0,width:38,height:140,rx:18,fill:top},armL);el('circle',{cx:0,cy:142,r:20,fill:sk},armL);
+ const armR=el('g',{transform:'translate(74 0)'},in_);el('rect',{x:-18,y:0,width:38,height:140,rx:18,fill:top},armR);el('circle',{cx:0,cy:142,r:20,fill:sk},armR);
+ // neck+head
+ el('rect',{x:-18,y:-40,width:36,height:30,fill:sk},in_);
+ const head=el('g',{transform:'translate(0 -100)'},in_);
+ el('ellipse',{cx:0,cy:0,rx:66,ry:72,fill:sk},head);el('ellipse',{cx:-66,cy:6,rx:12,ry:18,fill:sk},head);el('ellipse',{cx:66,cy:6,rx:12,ry:18,fill:sk},head);
+ if(o.hair)el('path',{d:'M-66 -10 Q-70 -80 0 -80 Q70 -80 66 -10 Q50 -50 0 -48 Q-50 -50 -66 -10Z',fill:o.hair},head);
+ if(o.cap){el('path',{d:'M-68 -20 Q-66 -86 0 -86 Q66 -86 68 -20Z',fill:o.cap},head);el('path',{d:o.capBack?'M-68 -22 L-110 -12 L-100 -2 L-60 -14Z':'M20 -24 L110 -18 L104 -6 L20 -12Z',fill:o.cap},head)}
+ const eyes=el('g',{},head);const eL=el('ellipse',{cx:-24,cy:4,rx:8,ry:10,fill:'#1a1a1a'},eyes),eR=el('ellipse',{cx:24,cy:4,rx:8,ry:10,fill:'#1a1a1a'},eyes);
+ const brow=el('path',{d:'',stroke:'#2a1a10','stroke-width':6,fill:'none','stroke-linecap':'round'},head);
+ const mouth=el('path',{d:'',stroke:'#5a2a1a','stroke-width':6,fill:'none','stroke-linecap':'round'},head);
+ const shades=el('g',{opacity:o.shades?1:0},head);el('rect',{x:-48,y:-8,width:40,height:24,rx:8,fill:'#111'},shades);el('rect',{x:8,y:-8,width:40,height:24,rx:8,fill:'#111'},shades);el('rect',{x:-10,y:-2,width:20,height:5,fill:'#111'},shades);
+ const tear=el('path',{d:'M26 18 q-6 14 0 20 q6 -6 0 -20Z',fill:'#7DD2FD',opacity:0},head);
+ const G={g,in_,armL,armR,head,mouth,brow,eL,eR,tear,expr:'',
+  set(e){if(e===this.expr)return;this.expr=e;const M={happy:'M-22 34 Q0 52 22 34',sad:'M-20 44 Q0 30 20 44',shock:'M-12 36 Q0 56 12 36 Q0 26 -12 36Z',smug:'M-18 38 Q6 46 24 30',neutral:'M-16 40 L16 40',yawn:'M-14 30 Q0 64 14 30 Q0 22 -14 30Z'};
+   mouth.setAttribute('d',M[e]||M.neutral);mouth.setAttribute('fill',(e==='shock'||e==='yawn')?'#5a2a1a':'none');
+   brow.setAttribute('d',e==='sad'?'M-36 -18 L-14 -24 M14 -24 L36 -18':e==='shock'?'M-36 -28 L-14 -30 M14 -30 L36 -28':e==='smug'?'M-36 -20 L-14 -16 M14 -22 L36 -26':'M-34 -20 L-14 -20 M14 -20 L34 -20');
+   tear.setAttribute('opacity',e==='sad'?1:0)},
+  pose(x,y,s=1,t=0,ph=0,flip=1){const b=Math.sin(t*3+ph)*4;g.setAttribute('transform',`translate(${x} ${y}) scale(${s*flip} ${s})`);in_.setAttribute('transform',`translate(0 ${b})`);
+   const bl=((t+ph)%3.3)<0.12;eL.setAttribute('ry',bl?1:10);eR.setAttribute('ry',bl?1:10)},
+  arms(l,r){armL.setAttribute('transform',`translate(-74 0) rotate(${l})`);armR.setAttribute('transform',`translate(74 0) rotate(${r})`)}};
+ G.set(o.expr||'neutral');return G}
+function shoebox(p,x,y,s=1,col='#EC464D'){const g=el('g',{transform:`translate(${x} ${y}) scale(${s})`},p);el('rect',{x:-70,y:-40,width:140,height:80,rx:6,fill:col},g);el('rect',{x:-76,y:-48,width:152,height:22,rx:6,fill:'#f4f1ea'},g);el('path',{d:'M-30 10 q30 -20 60 0',stroke:'#fff','stroke-width':6,fill:'none'},g);return g}
+// ---------- props ----------
+function truck(p,x,y,s=1){const g=el('g',{transform:`translate(${x} ${y}) scale(${s})`},p);
+ el('rect',{x:-260,y:-260,width:520,height:300,rx:30,fill:'#f2b81d'},g);el('rect',{x:-260,y:-300,width:520,height:60,rx:20,fill:'#EC464D'},g);
+ for(let i=0;i<7;i++)el('rect',{x:-252+i*74,y:-300,width:37,height:60,fill:'#fff',opacity:.9},g);
+ el('rect',{x:-200,y:-220,width:260,height:150,rx:12,fill:'#2b2f3a'},g);el('rect',{x:-200,y:-90,width:260,height:22,fill:'#d9d2c6'},g);
+ tx(g,160,-120,'TACOS',52,'#2b2f3a');el('circle',{cx:-150,cy:50,r:46,fill:'#2b2f3a'},g);el('circle',{cx:150,cy:50,r:46,fill:'#2b2f3a'},g);el('circle',{cx:-150,cy:50,r:18,fill:'#9aa3b8'},g);el('circle',{cx:150,cy:50,r:18,fill:'#9aa3b8'},g);
+ return g}
+function lights(p,y){const g=el('g',{},p);el('path',{d:`M-40 ${y} Q540 ${y+90} 1120 ${y}`,stroke:'#2b2f3a','stroke-width':4,fill:'none'},g);
+ for(let i=0;i<14;i++){const x=-20+i*82,yy=y+90*(1-Math.pow((x-540)/580,2))*0.98;el('circle',{cx:x,cy:yy+10,r:11,fill:'#ffd36b',class:'bulb'},g)}return g}
+function table(p,x,y){const g=el('g',{transform:`translate(${x} ${y})`},p);el('rect',{x:-110,y:-14,width:220,height:20,rx:6,fill:'#c9a24a'},g);el('path',{d:'M-90 6 L-60 130 M90 6 L60 130 M-60 6 L90 130 M60 6 L-90 130',stroke:'#8a6a2a','stroke-width':8},g);return g}
+function tray(p){const g=el('g',{},p);el('path',{d:'M-46 0 L46 0 L36 22 L-36 22Z',fill:'#f4f1ea',stroke:'#c9a24a','stroke-width':3},g);el('path',{d:'M-34 2 Q-20 -26 -6 2Z M4 2 Q18 -26 32 2Z',fill:'#f2b81d',stroke:'#7ED116','stroke-width':4},g);return g}
+function badge(p,x,y,w,h,fill,text,size,col='#fff'){const g=el('g',{transform:`translate(${x} ${y})`},p);el('rect',{x:-w/2,y:-h/2,width:w,height:h,rx:h/4,fill},g);const t=tx(g,0,size*0.36,text,size,col);g.t=t;return g}
+function pop(g,x,y,p){g.setAttribute('opacity',p>0?1:0);g.setAttribute('transform',`translate(${x} ${y}) scale(${back(p)})`)}
+// ---------- scenes ----------
+const SC=[];const scene=(bg)=>{const g=el('g',{display:'none'},SV);el('rect',{x:-200,y:-200,width:1480,height:2320,fill:bg},g);const cam=el('g',{},g);SC.push({g,cam});return cam};
+const PEEPS=[{top:'#e8562a',skin:'#8d5a3b',hair:'#1a1a1a'},{top:'#22a99a',skin:'#f1c7a3',cap:'#333'},{top:'#7a54c4',skin:'#c98d63',hair:'#5a3a1a'},{top:'#f2b81d',skin:'#6b4429',hair:'#111'},{top:'#3a8f4f',skin:'#e8b48c',cap:'#d8352f'},{top:'#c43a7a',skin:'#a86b45',hair:'#2a1a10'},{top:'#5c6f99',skin:'#f1c7a3',hair:'#b8862e'},{top:'#d8352f',skin:'#7a4a2c',cap:'#22a99a'}];
+const JAY={top:'#2f6fe0',skin:'#b97a52',cap:'#f2b81d',hair:'#1a1a1a'};
+const OWNER={top:'#f4f1ea',skin:'#8d5a3b',hair:'#111'};
+const NB=[{top:'#5c6f99',skin:'#f1c7a3',hair:'#b8862e',suit:1,tie:'#22a99a'},{top:'#3a3f52',skin:'#c98d63',hair:'#5a3a1a',suit:1}];
+// S0: dusk, Jay at the truck, Friday tally
+const c0=scene('#2a2550');el('rect',{x:-200,y:1180,width:1480,height:800,fill:'#3a3f4f'},c0);el('rect',{x:-200,y:1170,width:1480,height:20,fill:'#5a6070'},c0);
+for(let i=0;i<5;i++)el('rect',{x:-60+i*240,y:640+(i%2)*90,width:220,height:540,fill:['#3b3466','#463d73','#3a3260','#4a4078','#3d3568'][i]},c0);
+lights(c0,560);truck(c0,620,1130,1.35);const jay0=guy(c0,JAY);const tray0=tray(c0);
+const tally=el('g',{transform:'translate(540 420)'},c0);el('rect',{x:-280,y:-80,width:560,height:160,rx:30,fill:'rgba(0,0,0,.5)'},tally);tx(tally,0,-24,'FRIDAYS',36,'#ffd36b');const tallyT=tx(tally,0,56,'1',90,'#fff');
+const own0=badge(c0,540,585,520,130,'#EC464D','JAY OWNS: 0%',64);
+// S1: 10 years ago, one window + folding table, then the office shows up
+const c1=scene('#ffe2a8');el('rect',{x:-200,y:1180,width:1480,height:800,fill:'#b9b2a6'},c1);el('rect',{x:-200,y:1170,width:1480,height:20,fill:'#d9d2c6'},c1);
+const ago=badge(c1,540,420,460,100,'#2b2f3a','10 YEARS AGO',52);
+truck(c1,700,1130,1.1);const tbl=table(c1,250,1050);const jay1=guy(c1,JAY);const crew=[];for(let i=0;i<6;i++)crew.push(guy(c1,PEEPS[i]));
+const bubble1=el('g',{opacity:0},c1);el('path',{d:'M-170 -70 H170 Q200 -70 200 -40 V40 Q200 70 170 70 H-20 L-60 120 L-60 70 H-170 Q-200 70 -200 40 V-40 Q-200 -70 -170 -70Z',fill:'#fff',stroke:'#2b2f3a','stroke-width':6},bubble1);tx(bubble1,0,22,'BEST TACOS',54,'#2b2f3a');
+// S2: now 300 restaurants
+const c2=scene('#0f2a5c');const shops=[];for(let r=0;r<15;r++)for(let k=0;k<20;k++){const g=el('g',{transform:`translate(${70+k*49} ${600+r*44})`,opacity:0},c2);el('rect',{x:-18,y:-14,width:36,height:30,rx:4,fill:'#f2b81d'},g);el('rect',{x:-20,y:-20,width:40,height:10,rx:3,fill:'#EC464D'},g);shops.push(g)}
+const cnt2=el('g',{transform:'translate(540 400)'},c2);const cnt2T=tx(cnt2,0,40,'1',150,'#C8F25A');tx(cnt2,0,110,'RESTAURANTS',50,'#fff');
+// S3: day one, the neighbors put money in; Jay finds out
+const c3=scene('#F6F3E8');el('rect',{x:-200,y:1180,width:1480,height:800,fill:'#d9d2c6'},c3);
+const day1=badge(c3,540,420,360,100,'#2b2f3a','DAY 1',60);
+truck(c3,760,1130,0.9);const owner3=guy(c3,OWNER);const nb3=NB.map(o=>guy(c3,o));const jay3=guy(c3,JAY);
+const cash3=[];for(let i=0;i<5;i++){const b=el('g',{},c3);el('rect',{x:-50,y:-26,width:100,height:52,rx:6,fill:'#7ED116',stroke:'#3d6a08','stroke-width':4},b);tx(b,0,14,'$',36,'#2d5a06');cash3.push(b)}
+const ownTag=badge(c3,500,520,420,100,'#0f2a5c','PART OWNERS',50);
+// S4: customer vs owner
+const c4=scene('#0f2a5c');el('rect',{x:540,y:-200,width:740,height:2320,fill:'#24124a'},c4);
+el('line',{x1:540,y1:300,x2:540,y2:1250,stroke:'#fff','stroke-width':4,'stroke-dasharray':'20 16'},c4);
+tx(c4,270,400,'CUSTOMER',62,'#C8F25A');tx(c4,810,400,'OWNER',62,'#FF6B6B');
+const yrs=tx(c4,270,560,'10 YEARS',70,'#fff');const days=tx(c4,810,560,'0 DAYS',70,'#fff');
+const jay4=guy(c4,JAY);const trays4=[];for(let i=0;i<8;i++){const t_=tray(c4);trays4.push(t_)}
+const empty4=el('g',{},c4);el('rect',{x:700,y:820,width:220,height:300,rx:20,fill:'none',stroke:'#fff','stroke-width':6,'stroke-dasharray':'18 14'},empty4);tx(empty4,810,990,'?',120,'rgba(255,255,255,.5)');
+// S5: big companies, age at going public, then the rope
+const c5=scene('#e9f3ff');el('rect',{x:-200,y:1180,width:1480,height:800,fill:'#c9d6e6'},c5);
+const tower=el('g',{transform:'translate(540 1180) scale(0.86) translate(-540 -1180)'},c5);el('rect',{x:330,y:300,width:420,height:880,fill:'#2f4f8a'},tower);for(let r=0;r<10;r++)for(let k=0;k<4;k++)el('rect',{x:360+k*100,y:340+r*80,width:60,height:46,fill:(r*4+k)%5?'#ffd99a':'#9fd0ff'},tower);
+el('rect',{x:300,y:270,width:480,height:40,fill:'#1f3a6a'},tower);tx(tower,540,262,'BIG CO.',60,'#2f4f8a');
+const chart=el('g',{opacity:0,transform:'translate(540 760) scale(0.9) translate(-540 -700)'},c5);el('rect',{x:90,y:380,width:900,height:640,rx:36,fill:'#fff',stroke:'#2b2f3a','stroke-width':6},chart);
+tx(chart,540,460,'AGE WHEN THE PUBLIC CAN BUY IN',38,'#2b2f3a');
+tx(chart,150,600,'1990s',50,'#2b2f3a',800,'start');tx(chart,150,820,'2025',50,'#2b2f3a',800,'start');
+const bar1=el('rect',{x:330,y:550,width:0,height:80,rx:16,fill:'#7DD2FD'},chart),bar2=el('rect',{x:330,y:770,width:0,height:80,rx:16,fill:'#EC464D'},chart);
+const bar1T=tx(chart,0,606,'',46,'#2b2f3a',800,'start'),bar2T=tx(chart,0,826,'',46,'#2b2f3a',800,'start');
+tx(chart,540,975,'Typical (median) company. Source: Jay Ritter, Univ. of Florida',24,'#5a6070',600);
+const ins=[];for(let i=0;i<3;i++)ins.push(guy(c5,{top:['#1d2433','#262b38','#2f3a46'][i],skin:['#f1c7a3','#8d5a3b','#c98d63'][i],hair:'#1a1a1a',suit:1}));
+const gate=el('g',{},c5);el('rect',{x:640,y:930,width:16,height:250,fill:'#c9a24a'},gate);el('circle',{cx:648,cy:930,r:18,fill:'#c9a24a'},gate);el('path',{d:'M136 950 Q390 1020 640 950',stroke:'#b0283a','stroke-width':16,fill:'none'},gate);
+el('rect',{x:120,y:930,width:16,height:250,fill:'#c9a24a'},gate);el('circle',{cx:128,cy:930,r:18,fill:'#c9a24a'},gate);
+const crowd=[];for(let i=0;i<4;i++)crowd.push(guy(c5,PEEPS[(i+3)%8]));const jay5=guy(c5,JAY);
+const yrsBadge=badge(c5,540,440,640,100,'#2b2f3a','12 YEARS OF GROWING',50);
+// S6: what you've got, you can own
+const c6=scene('#F6F3E8');el('rect',{x:-200,y:1180,width:1480,height:800,fill:'#d9e8c4'},c6);
+const jay6=guy(c6,JAY);const box6=el('g',{},c6);el('rect',{x:-110,y:-80,width:220,height:160,rx:18,fill:'#2f6fe0'},box6);el('rect',{x:-110,y:-80,width:220,height:40,rx:14,fill:'#004EBA'},box6);
+const key6=el('g',{},c6);el('circle',{cx:0,cy:0,r:30,fill:'none',stroke:'#f2b81d','stroke-width':14},key6);el('rect',{x:24,y:-7,width:90,height:14,fill:'#f2b81d'},key6);el('rect',{x:90,y:0,width:12,height:28,fill:'#f2b81d'},key6);
+const mine=badge(c6,540,380,360,110,'#7ED116','MINE',70,'#0f2a5c');
+// S7: BLOK, own fund from $10
+const c7=scene('#F6F3E8');el('rect',{x:-200,y:1180,width:1480,height:800,fill:'#d9e8c4'},c7);
+const myDoor=el('g',{},c7);el('rect',{x:560,y:520,width:380,height:660,rx:20,fill:'#7ED116'},myDoor);el('rect',{x:600,y:560,width:300,height:620,rx:14,fill:'#2d5a06'},myDoor);el('circle',{cx:860,cy:880,r:14,fill:'#C8F25A'},myDoor);
+const myTag=el('g',{transform:'translate(750 460)'},c7);el('rect',{x:-210,y:-56,width:420,height:112,rx:24,fill:'#0f2a5c'},myTag);tx(myTag,0,20,'MY FUND · $10',52,'#fff');
+const jay7=guy(c7,JAY);const logo=el('image',{href:'logo-wordmark.png',x:390,y:1690,width:300,opacity:0},c7);
+// S8: end card
+const c8=scene('#F6F3E8');for(let x=0;x<=1080;x+=90)el('line',{x1:x,y1:0,x2:x,y2:1920,stroke:'rgba(0,78,186,.06)'},c8);
+const jay8=guy(c8,JAY);const bub=el('g',{transform:'translate(730 560)'},c8);el('path',{d:'M-220 -110 H220 Q260 -110 260 -70 V70 Q260 110 220 110 H-60 L-120 170 L-110 110 H-220 Q-260 110 -260 70 V-70 Q-260 -110 -220 -110Z',fill:'#fff',stroke:'#0f2a5c','stroke-width':8},bub);
+tx(bub,0,-6,'Comment',54,'#0f2a5c');tx(bub,0,66,'FUND',84,'#EC464D');el('image',{href:'logo-wordmark.png',x:390,y:1720,width:300},c8);
+// ---------- which scene per line ----------
+const SCN=[0,1,1,2,3,4,5,5,5,5,6,7,8,8];
+function sceneStart(li){let l=li;while(l>0&&SCN[l-1]===SCN[li])l--;return S(l)-0.3}
+// ---------- captions ----------
+const CH=[];T.forEach((L,i)=>{let cur=[];const push=()=>{if(cur.length){CH.push({line:i,ws:cur,s:cur[0].s-0.05});cur=[]}};
+ L.words.forEach((w,k)=>{cur.push(w);const end=/[.,?!]$/.test(w.w);const left=L.words.length-k-1;if((end&&left!==1)||(cur.length>=3&&left>1&&!/^(a|the|of|to|in|for|and|who|own|their|was|about|what|can)$/i.test(w.w)))push()});push()});
+CH.forEach((c,i)=>{const n=CH[i+1];c.e=n?n.s:window.DURATION;if(n&&n.line!==c.line)c.e=Math.min(c.e,E(c.line)+0.15)});
+const HOT=/^(ten|tacos|friday|one|window|everyone|300|day|owner|first|9|12|2025|90s|blok|\$10|own|fund|FUND|5|7|control|same|customer|insiders|growing)/i;
+const RED=/^(none|not|big|money|neighbors)/i;
+let ck=null;function drawText(t){const box=$('txt');const i=CH.findIndex(c=>t>=c.s&&t<c.e);if(i<0){box.innerHTML='';ck=null;return}
+ const c=CH[i];if(i!==ck){box.innerHTML='';c.ws.forEach(w=>{const sp=document.createElement('span');sp.className='w';const r=w.w.replace(/[.,?!]$/,'');
+  if(RED.test(r))sp.classList.add('red');else if(HOT.test(r))sp.classList.add('hot');if(c.line===13&&/^FUND$/.test(r))sp.style.fontSize='130px';sp.textContent=w.w.replace(/[,]$/,'');sp.dataset.s=w.s;box.appendChild(sp)});ck=i}
+ for(const sp of box.children){const p=cl((t-(+sp.dataset.s-0.04))/0.16);sp.style.opacity=p>0?1:0;sp.style.transform=`scale(${0.6+0.4*back(p)})`}}
+// ---------- draw ----------
+window.draw=function(t){
+ const li=Math.max(0,T.findIndex((L,i)=>t<(T[i+1]?T[i+1].start-0.3:1e9)));const si=SCN[li];
+ SC.forEach((s,k)=>s.g.setAttribute('display',k===si?'inline':'none'));
+ const st=t-sceneStart(li);const cam=SC[si].cam;const pin=1+0.03*Math.min(st,4);const enter=ease(st/0.35);
+ cam.setAttribute('transform',`translate(540 960) scale(${pin*(1.08-0.08*enter)}) translate(-540 -960) translate(${(1-enter)*60} 0)`);
+ $('flash').style.opacity=cl(1-st/0.12)*0.25*(t>0.5?1:0);
+ if(si===0){const wn=wordT(0,/^none/);const p=cl((t-0.15)/(wordT(0,/^He$/)-0.15));tallyT.textContent=String(Math.max(1,Math.round(520*eio(p))));
+  for(const b of c0.querySelectorAll('.bulb'))b.setAttribute('opacity',0.6+0.4*Math.sin(t*6+(+b.getAttribute('cx'))));
+  jay0.pose(330,857,1.05,t,0);jay0.set(t>wn?'shock':'happy');jay0.arms(-10,-40);tray0.setAttribute('transform',`translate(${330+110} ${857+40})`);
+  pop(own0,540,585,cl((t-wn)/0.35))}
+ if(si===1){const l2=li===2;const fp=cl((t-S(1))/0.5);pop(ago,540,420,fp);
+  jay1.pose(250,887,1.0,t,1);jay1.set('happy');jay1.arms(l2?-150+Math.sin(t*8)*20:-10,10);
+  crew.forEach((g,i)=>{const p=l2?eio(cl((t-wordT(2,/^Brought/)-i*0.12)/0.5)):0;g.pose(1240-p*(820-i*90)+i*20,947,0.8,t,i,-1);g.g.setAttribute('opacity',p>0?1:0);g.set('happy')});
+  pop(bubble1,330,560,l2?cl((t-S(2))/0.35):0)}
+ if(si===2){const p=cl((t-S(3)+0.2)/1.4);const n=Math.max(1,Math.round(300*eio(p)));cnt2T.textContent=String(n);shops.forEach((g,i)=>g.setAttribute('opacity',i<n?1:0))}
+ if(si===3){pop(day1,540,420,cl((t-S(4))/0.35));owner3.pose(560,887,0.95,t,1);owner3.set('happy');owner3.arms(-40,10);
+  nb3.forEach((g,i)=>{g.pose(240+i*150,897,0.9,t,i+2);g.set('smug');g.arms(-50,10)});
+  const mp=wordT(4,/^money/);cash3.forEach((b,i)=>{const p=cl((t-mp-i*0.12)/0.6);const x=240+(560-240)*eio(p),y=850-220*Math.sin(Math.PI*p);b.setAttribute('transform',`translate(${x} ${y}) rotate(${p*360})`);b.setAttribute('opacity',p>0&&p<1?1:0)});
+  const jp=ease((t-wordT(4,/^Jay/))/0.4);jay3.pose(1150-200*jp,887,1.0,t,4,-1);jay3.set(t>wordT(4,/^day/)?'shock':'neutral');
+  pop(ownTag,500,560,cl((t-wordT(4,/^On/))/0.35))}
+ if(si===4){jay4.pose(270,867,1.0,t,1);jay4.set('sad');trays4.forEach((g,i)=>{const p=cl((t-S(5)-i*0.08)/0.3);g.setAttribute('transform',`translate(270 ${1220-i*28}) scale(${1.3*back(p)})`);g.setAttribute('opacity',p>0?1:0)});
+  yrs.setAttribute('opacity',ease((t-S(5))/0.3));days.setAttribute('opacity',ease((t-wordT(5,/^Not/))/0.3));empty4.setAttribute('opacity',ease((t-wordT(5,/^Not/))/0.3))}
+ if(si===5){const l6=li===6,l78=li===7||li===8,l9=li===9;tower.setAttribute('opacity',l6?1:0.15);chart.setAttribute('opacity',l78?1:0);
+  const p1=li===7?cl((t-wordT(7,/^nine/))/0.8):(li===8?1:0),p2=li===8?cl((t-wordT(8,/^twelve/))/0.9):0;
+  bar1.setAttribute('width',360*eio(p1));bar2.setAttribute('width',480*eio(p2));bar1T.setAttribute('x',350+360*eio(p1));bar2T.setAttribute('x',350+480*eio(p2));
+  bar1T.textContent=p1>0?'~9 YRS':'';bar2T.textContent=p2>0?'12 YRS':'';if(p2>0){bar2T.setAttribute('x',Math.max(330+480*eio(p2)-16,500));bar2T.setAttribute('fill','#fff');bar2T.setAttribute('text-anchor','end')}
+  ins.forEach((g,i)=>{g.pose(230+i*150,938,0.8,t,i);g.set('smug');g.g.setAttribute('opacity',l9?1:0)});gate.setAttribute('opacity',l9?1:0);
+  crowd.forEach((g,i)=>{g.pose(900+i*110,958,0.73,t,i+3,-1);g.g.setAttribute('opacity',l9?1:0);g.set('sad')});jay5.pose(770,950,0.76,t,8,-1);jay5.g.setAttribute('opacity',l9?1:0);jay5.set('sad');
+  pop(yrsBadge,540,440,l9?cl((t-S(9))/0.35):0)}
+ if(si===6){jay6.pose(380,857,1.15,t,2);const w=wordT(10,/^But/);jay6.set(t>w?'happy':'neutral');jay6.arms(-10,-20);
+  box6.setAttribute('transform',`translate(700 1080) scale(${back(cl((t-S(10))/0.4))})`);const kp=eio(cl((t-wordT(10,/^own/))/0.6));key6.setAttribute('transform',`translate(${480+150*kp} ${960+80*kp}) rotate(${-30+30*kp})`);
+  pop(mine,700,880,cl((t-wordT(10,/^own/)-0.3)/0.35))}
+ if(si===7){const w=wordT(11,/^anyone/);const p=eio(cl((t-S(11))/1.6));jay7.pose(160+300*p,818,1.2,t,2);jay7.set(t>w?'happy':'neutral');
+  myDoor.setAttribute('opacity',ease((t-w)/0.4));myTag.setAttribute('opacity',ease((t-wordT(11,/^\$10/))/0.3));myTag.setAttribute('transform',`translate(750 460) scale(${back(cl((t-wordT(11,/^\$10/))/0.35))})`);
+  logo.setAttribute('opacity',ease((t-wordT(11,/^BLOK/))/0.4))}
+ if(si===8){jay8.pose(290,757,1.4,t,0);jay8.set('happy');const wave=Math.sin(t*8)*25;jay8.arms(10,-150+wave);
+  bub.setAttribute('opacity',ease((t-S(13))/0.3));bub.setAttribute('transform',`translate(730 560) scale(${back(cl((t-S(13))/0.4))})`)}
+ const lt=[1,3,5,6,7,8].includes(si);$('pill').classList.toggle('lt',lt);$('pill').textContent=li>=12?'PART 5 SOON · FOLLOW':'WHO GETS IN FIRST? · PART 4';
+ drawText(t);
+};
+draw(0);
+</script></body></html>
