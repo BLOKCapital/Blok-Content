@@ -63,6 +63,11 @@ Page: `growth/x/topic-desk/desk.html` (open in a browser; rebuilt every morning)
 - **One format a day for 7 days** on the same kind of topic and the same slot, so only the format changes: greentext,
   translation joke, plain question, real headline screenshot as the image, 3-post thread, 10 to 15s meme video, ladder.
   Log each in `posted.json` with `format`; after 24h compare replies per post on the desk page and keep the winners.
+  Also append each experiment post (by tweet id, never rewriting other entries) to
+  `/mnt/project-files/growth/dashboard/x-posts.json` with `experiment: "x-format-7day"`, `format`, `topic`, `posted_at`,
+  first line as `text`, and at 24h fill `metrics` (views, likes, replies, reposts, quotes, bookmarks, profile_clicks,
+  link_clicks, follows, checked_at, hours_after_post; null where unknown, by hand from X analytics while the API is out).
+  Then run `python3 /mnt/project-files/growth/dashboard/build.py`.
 - Every day's picks offer the topic in **2 to 3 different formats**, not one draft.
 
 ## Picks file shape (`data/YYYY-MM-DD-picks.json`)
