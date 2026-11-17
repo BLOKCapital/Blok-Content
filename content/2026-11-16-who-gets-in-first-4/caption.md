@@ -25,3 +25,6 @@ Source: Jay Ritter, University of Florida, IPO statistics (updated Dec 2025), me
 
 #investing #financialliteracy #smallbusiness #moneyhistory #ipo
 <!-- IG END -->
+
+## Posted
+- Instagram Reel (9:16): 17 Nov 2026, 04:27 UTC (9:57 AM IST), https://www.instagram.com/reel/Df1EcULStLh/ (media id 17933979531223304)
