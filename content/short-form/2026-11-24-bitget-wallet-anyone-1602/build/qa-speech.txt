@@ -1,0 +1,45 @@
+OK  0  0.25s match=1.00
+   want: In sixteen-oh-two, a company in Amsterdam made a strange offer.
+   heard: In 1602, a company in Amsterdam made a strange offer.
+OK  1  4.36s match=1.00
+   want: Anyone in the country could buy a piece of it. Not just bankers. Anyone.
+   heard: Anyone in the country could buy a piece of it, not just bankers. Anyone.
+OK  2  8.58s match=1.00
+   want: It was the Dutch East India Company. Over a thousand people signed up.
+   heard: It was the Dutch East India Company. Over a thousand people signed up.
+OK  3 13.24s match=0.97
+   want: Four hundred and twenty-four years later, the companies everyone wants a piece of are mostly American.
+   heard: 424 years later, the companies everyone wants a piece of are mostly American.
+   diff: [('delete', 'and', '')]
+OK  4 18.64s match=0.95
+   want: The US has about four percent of the world's people, and about sixty-two percent of its stock market value.
+   heard: The US has about 4% of the world's people and about 62% of its stock market value.
+   diff: [('delete', 'percent', ''), ('delete', 'percent', '')]
+OK  5 24.63s match=1.00
+   want: For billions of people, one share still means a foreign broker. Forms. And then waiting for New York to open.
+   heard: For billions of people, one share still means a foreign broker. Forms. And then waiting for New York to open.
+OK  6 31.46s match=1.00
+   want: Lately, though, there's another way in.
+   heard: Lately though, there's another way in.
+OK  7 33.63s match=1.00
+   want: Tokenized stocks are tokens that track real US shares, held in your own wallet.
+   heard: Tokenized stocks are tokens that track real US shares held in your own wallet.
+OK  8 38.34s match=0.97
+   want: This year they grew from about six hundred and eighty-five million dollars, to over three billion.
+   heard: This year, they grew from about $685 million to over $3 billion.
+   diff: [('delete', 'and', '')]
+CHECK 9 43.91s match=0.72
+   want: On Bit Get Wallet, you can buy over seventeen hundred US stocks and E T Fs, starting from a few dollars.
+   heard: On BitGet Wallet, you can buy over 1700 US stocks and ETFs starting from a few dollars.
+   diff: [('replace', 'bit get', 'bitget'), ('replace', 'seventeen', 'one thousand seven'), ('replace', 'e t fs', 'etfs')]
+OK  10 51.71s match=1.00
+   want: In sixteen-oh-two, anyone meant anyone in one small country.
+   heard: In 1602, anyone meant anyone in one small country.
+OK  11 55.91s match=1.00
+   want: Now, it can mean anyone with a phone.
+   heard: Now, it can mean anyone with a phone.
+CHECK 12 57.96s match=0.87
+   want: We believe that at Blok too. Everyone deserves their own fund. Even a ten-dollar one.
+   heard: We believe that at Block 2. Everyone deserves their own fund, even a $10 one.
+   diff: [('replace', 'blok too', 'block two')]
+lines to check: 2

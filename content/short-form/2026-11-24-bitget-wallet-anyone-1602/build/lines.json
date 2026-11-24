@@ -1,0 +1,67 @@
+[
+ {
+  "show": "In 1602, a company in Amsterdam made a strange offer.",
+  "say": "In sixteen-oh-two, a company in Amsterdam made a strange offer.",
+  "gap": 0.3
+ },
+ {
+  "show": "Anyone in the country could buy a piece of it. Not just bankers. Anyone.",
+  "say": "Anyone in the country could buy a piece of it. Not just bankers. Anyone.",
+  "gap": 0.4
+ },
+ {
+  "show": "It was the Dutch East India Company. Over a thousand people signed up.",
+  "say": "It was the Dutch East India Company. Over a thousand people signed up.",
+  "gap": 0.4
+ },
+ {
+  "show": "424 years later, the companies everyone wants a piece of are mostly American.",
+  "say": "Four hundred and twenty-four years later, the companies everyone wants a piece of are mostly American.",
+  "gap": 0.3
+ },
+ {
+  "show": "The US has about 4% of the world's people, and about 62% of its stock market value.",
+  "say": "The US has about four percent of the world's people, and about sixty-two percent of its stock market value.",
+  "gap": 0.3
+ },
+ {
+  "show": "For billions of people, one share still means a foreign broker. Forms. Then waiting for New York to open.",
+  "say": "For billions of people, one share still means a foreign broker. Forms. And then waiting for New York to open.",
+  "gap": 0.4
+ },
+ {
+  "show": "Lately, there's another way in.",
+  "say": "Lately, though, there's another way in.",
+  "gap": 0.3
+ },
+ {
+  "show": "Tokenized stocks are tokens that track real US shares, held in your own wallet.",
+  "say": "Tokenized stocks are tokens that track real US shares, held in your own wallet.",
+  "gap": 0.3
+ },
+ {
+  "show": "This year they grew from about $685 million to over $3 billion.",
+  "say": "This year they grew from about six hundred and eighty-five million dollars, to over three billion.",
+  "gap": 0.3
+ },
+ {
+  "show": "On Bitget Wallet you can buy over 1,700 US stocks and ETFs, starting from a few dollars.",
+  "say": "On Bit Get Wallet, you can buy over seventeen hundred US stocks and E T Fs, starting from a few dollars.",
+  "gap": 0.4
+ },
+ {
+  "show": "In 1602, anyone meant anyone in one small country.",
+  "say": "In sixteen-oh-two, anyone meant anyone in one small country.",
+  "gap": 0.3
+ },
+ {
+  "show": "Now it can mean anyone with a phone.",
+  "say": "Now, it can mean anyone with a phone.",
+  "gap": 0.4
+ },
+ {
+  "show": "We believe that at BLOK too. Everyone deserves their own fund. Even a $10 one.",
+  "say": "We believe that at Blok too. Everyone deserves their own fund. Even a ten-dollar one.",
+  "gap": 0.6
+ }
+]

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Anyone, 1602</title>
+<link rel="icon" href="data:,">
+<style>
+  @font-face { font-family: IS; src: url(fonts/InstrumentSerif-Regular.ttf); }
+  @font-face { font-family: ISI; src: url(fonts/InstrumentSerif-Italic.ttf); }
+  @font-face { font-family: SM; src: url(fonts/SpaceMono-Regular.ttf); }
+  @font-face { font-family: SMB; src: url(fonts/SpaceMono-Bold.ttf); }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #ddd3b8; }
+  canvas { display: block; }
+  #ov { position: fixed; inset: 0; z-index: 50; pointer-events: none; font-family: IS, serif; color: #2e1f18; }
+  .tag { position: absolute; left: 3.2%; top: 4.5%; font: 20px SM, monospace; letter-spacing: .04em; background: rgba(246,243,232,.9); padding: 7px 14px; border-radius: 8px; box-shadow: 0 2px 8px rgba(60,30,10,.18); }
+  .era { position: absolute; right: 3.2%; top: 4.5%; font: 24px SMB, monospace; letter-spacing: .12em; background: #2e1f18; color: #f6f3e8; padding: 8px 16px; border-radius: 8px; transition: none; }
+  .cap { position: absolute; left: 50%; bottom: 6.5%; transform: translateX(-50%); width: 78%; text-align: center; font-size: 50px; line-height: 1.12;
+         background: rgba(246,243,232,.94); padding: 14px 28px 16px; border-radius: 14px; box-shadow: 0 4px 18px rgba(60,30,10,.22); }
+  .cap b { font-family: ISI, serif; font-weight: normal; color: #b8443c; }
+  .chip { position: absolute; font-family: SMB, monospace; background: rgba(246,243,232,.95); border-radius: 12px; padding: 12px 20px; box-shadow: 0 4px 14px rgba(60,30,10,.22); text-align: left; }
+  .chip .n { font-size: 64px; line-height: 1; } .chip .l { font: 22px SM, monospace; margin-top: 6px; }
+  .end { position: absolute; inset: 0; background: #f6f3e8; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+  .end h1 { font: 92px IS, serif; margin: 0; } .end h1 i { font-family: ISI, serif; color: #4f8a20; font-style: normal; }
+  .end .brand { font: 30px SMB, monospace; letter-spacing: .2em; margin-top: 26px; color: #004EBA; }
+  .end .fine { font: 19px/1.5 SM, monospace; color: #5a4a3e; width: 74%; text-align: center; margin-top: 40px; }
+</style>
+<script src="timeline.js"></script>
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js", "papercraft/": "./" } }</script>
+</head>
+<body>
+<div class="hint" id="hint"></div>
+<div id="ov">
+  <div class="tag">#ad · Paid partnership with Bitget Wallet</div>
+  <div class="era" id="era">1602 · AMSTERDAM</div>
+  <div class="chip" id="c1" style="left:5%;top:20%;opacity:0"><div class="n">4%</div><div class="l">of the world's people<br>live in the US</div></div>
+  <div class="chip" id="c2" style="left:5%;top:44%;opacity:0"><div class="n" style="color:#3d63a8">62%</div><div class="l">of the world's stock<br>market value is American</div></div>
+  <div class="chip" id="c3" style="right:5%;top:20%;opacity:0"><div class="n" style="color:#b8443c">$685M</div><div class="l">tokenized stocks, Jan 2026</div></div>
+  <div class="chip" id="c4" style="right:5%;top:43%;opacity:0"><div class="n" style="color:#4f8a20">$3B+</div><div class="l">by Nov 2026</div></div>
+  <div class="chip" id="c5" style="left:5%;top:20%;opacity:0"><div class="n">1,700+</div><div class="l">US stocks and ETFs<br>in Bitget Wallet</div></div>
+  <div class="cap" id="cap"></div>
+  <div class="end" id="end">
+    <h1>Everyone deserves <i>their own fund.</i></h1>
+    <div class="brand">BLOK CAPITAL × BITGET WALLET</div>
+    <div class="fine">Paid partnership with Bitget Wallet. Not financial advice. Tokenized stocks track the price of US shares; they are not the shares themselves and carry no voting rights. Availability varies by country. Investing involves risk: only invest what you can afford to lose.<br><br>Sources: VOC 1602 (Wikipedia) · US share of population and market cap (Russell Investments) · tokenized stock value (rwa.xyz via ByteTree, The Block) · Bitget Wallet product page, Sept 2026</div>
+  </div>
+</div>
+<script>
+(() => {
+  const TL = window.TIMELINE || [], $ = (id) => document.getElementById(id);
+  const start = (i) => TL[i] ? TL[i].start : 1e9, end = (i) => TL[i] ? TL[i].end : 1e9;
+  const fade = (t, a, b, f = 0.35) => Math.max(0, Math.min(1, (t - a) / f, (b - t) / f));
+  const eras = [[0, '1602 · AMSTERDAM'], [start(3), '2026 · THE WORLD'], [start(6), '2026 · YOUR PHONE'], [start(10), '1602 → 2026']];
+  window.__overlay = (t) => {
+    let line = -1; for (let i = 0; i < TL.length; i++) if (t >= TL[i].start - 0.08 && t < (TL[i + 1] ? TL[i + 1].start - 0.08 : TL[i].end + 0.5)) line = i;
+    const cap = $('cap'); const txt = line >= 0 ? TL[line].text : '';
+    if (cap.dataset.t !== txt) { cap.dataset.t = txt; cap.textContent = txt; }
+    cap.style.opacity = txt ? 1 : 0;
+    let era = eras[0][1]; for (const [a, s] of eras) if (t >= a - 0.3) era = s; $('era').textContent = era;
+    $('c1').style.opacity = fade(t, start(4) + 0.3, start(6) - 0.2);
+    $('c2').style.opacity = fade(t, start(4) + 2.2, start(6) - 0.2);
+    $('c3').style.opacity = fade(t, start(8) + 0.3, start(10) - 0.1);
+    $('c4').style.opacity = fade(t, start(8) + 2.4, start(10) - 0.1);
+    $('c5').style.opacity = fade(t, start(9) + 0.4, start(10) - 0.1);
+    const e = Math.max(0, Math.min(1, (t - (end(TL.length - 1) + 0.6)) / 0.6));
+    $('end').style.opacity = e; $('era').style.opacity = 1 - e; cap.style.opacity = txt && e < 0.5 ? 1 : 0;
+  };
+})();
+</script>
+<script type="module" src="./scene.js"></script>
+</body>
+</html>
