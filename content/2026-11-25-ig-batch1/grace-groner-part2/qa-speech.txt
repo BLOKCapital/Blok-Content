@@ -1,0 +1,37 @@
+OK   0   0.25s match=1.00
+   want: Three shares. Never sold. Seven million dollars.
+   heard: Three shares, never sold, seven million dollars.
+OK   1   3.77s match=0.89
+   want: Quick recap from Part one. Grace Groner was a secretary, and in nineteen thirty-five she paid a hundred and eighty dollars for them.
+   heard: Quick recap from part one. Grace Groener was a secretary and in 1935 she paid $180 for them.
+OK   2  10.62s match=0.87
+   want: So, a hundred and eighty dollars to seven million. Three things did it.
+   heard: So, $180 to $7 million.  Three things did it.
+OK   3  15.48s match=1.00
+   want: One. The company kept splitting its shares. So her three turned into way more.
+   heard: One, the company kept splitting its shares, so her three turned into way more.
+OK   4  20.51s match=1.00
+   want: Two. Every payout the company sent her went straight back in.
+   heard: 2. Every payout the company sent her went straight back in.
+OK   5  24.21s match=1.00
+   want: Three. She waited. Seventy-five years.
+   heard: 3. She waited 75 years.
+OK   6  27.38s match=1.00
+   want: And the whole time, she lived in a small cottage and shopped at rummage sales.
+   heard: and the whole time she lived in a small cottage and shopped at rummage sales.
+OK   7  31.71s match=1.00
+   want: Then she left seven million dollars to her old college, to help students get ready for careers.
+   heard: Then she left $7 million to her old college to help students get ready for careers.
+OK   8  36.73s match=1.00
+   want: Her story is rare. The habit isn't. Start small, own it, and be patient.
+   heard: Her story is rare. The habit isn't. Start small, own it, and be patient.
+OK   9  42.22s match=1.00
+   want: We're building Block so anyone can start a fund of their own, from ten dollars.
+   heard: We're building block, so anyone can start a fund of their own from $10.
+OK  10  46.17s match=1.00
+   want: Who in your family would never have sold those shares? Tell me below.
+   heard: Who in your family would never have sold those shares? Tell me below.
+OK  11  50.17s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0

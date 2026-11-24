@@ -1,0 +1,47 @@
+[
+ {
+  "show": "Every Thanksgiving, someone's uncle says this.",
+  "say": "Every Thanksgiving, someone's uncle says this.",
+  "gap": 0.35
+ },
+ {
+  "show": "You need a hundred grand to even start investing.",
+  "say": "You need a hundred grand to even start investing.",
+  "gap": 0.45
+ },
+ {
+  "show": "Is he right? Yes or no.",
+  "say": "Is he right? Yes or no.",
+  "gap": 0.7
+ },
+ {
+  "show": "Okay, so. Back in 1954, the New York Stock Exchange launched a plan to buy shares with as little as $40 at a time.",
+  "say": "Okay, so. Back in nineteen fifty-four, the New York Stock Exchange launched a plan to buy shares with as little as forty dollars at a time.",
+  "gap": 0.35
+ },
+ {
+  "show": "So for shares, he's been wrong for at least 70 years.",
+  "say": "So for shares, he's been wrong for at least seventy years.",
+  "gap": 0.4
+ },
+ {
+  "show": "Now, a fund run just for you? Those often start at $100,000.",
+  "say": "Now, a fund run just for you? Those often start at a hundred thousand dollars.",
+  "gap": 0.4
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "Send this to the family group chat before Thursday.",
+  "say": "Send this to the family group chat before Thursday.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]
