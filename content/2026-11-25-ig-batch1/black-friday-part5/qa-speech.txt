@@ -1,0 +1,40 @@
+OK   0   0.25s match=0.92
+   want: Jay camped out fourteen hours for a hundred and ninety-nine dollar TV.
+   heard: Jay camped out 14 hours for a $199 TV.
+OK   1   4.98s match=1.00
+   want: The store had five. He was number six.
+   heard: The store had five. He was number six.
+OK   2   8.06s match=1.00
+   want: But the first Black Friday wasn't a sale at all.
+   heard: But the first Black Friday wasn't a sale at all.
+OK   3  11.20s match=1.00
+   want: It was a crash. New York, September, eighteen sixty-nine.
+   heard: It was a crash. New York, September 1869.
+OK   4  15.10s match=1.00
+   want: Two traders. One of them, no joke, also named Jay.
+   heard: Two traders, one of them, no joke, also named Jay.
+OK   5  18.64s match=1.00
+   want: They tried to buy so much gold, they could set the price.
+   heard: They tried to buy so much gold, they could set the price.
+OK   6  22.02s match=1.00
+   want: Then on the Friday, the government sold gold, and the price just fell. Many traders were ruined.
+   heard: Then, on the Friday, the government sold gold and the price just fell.  Many traders were ruined.
+OK   7  28.61s match=1.00
+   want: But that other Jay had already started selling.
+   heard: But that other Jay had already started selling.
+OK   8  31.45s match=1.00
+   want: Different century, same lesson. The people with access move first.
+   heard: Different century, same lesson, the people with access move first.
+OK   9  36.29s match=0.89
+   want: We're building Block so anyone can own a fund of their own from ten dollars. And only you control it.
+   heard: We're building blocks so anyone could own a fund of their own from $10, and only you control it.
+OK  10  42.08s match=1.00
+   want: Would you camp out for a deal? Tell me below.
+   heard: Would you camp out for a deal? Tell me below.
+OK  11  44.94s match=1.00
+   want: Part six is coming. Follow so you don't miss it.
+   heard: Part 6 is coming. Follow so you don't miss it.
+OK  12  47.59s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0

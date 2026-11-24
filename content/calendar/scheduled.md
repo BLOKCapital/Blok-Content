@@ -9,3 +9,12 @@ A one-shot Routine wakes the Claude session at each time; it publishes via `docs
 | 2026-10-10 04:30 | 10:00 / 00:30 | `content/carousels/2026-10-10-what-is-a-public-ledger/` | `trig_01WrNnB8u937hXivqiN9Dqa4` | posted https://www.instagram.com/p/DeTWE4cldnO/ (05:35 UTC) |
 | 2026-10-10 12:30 | 18:00 / 08:30 | `content/carousels/2026-10-10-is-on-chain-gambling/` | `trig_01FXCYUciAoSbcKow7Yp99Df` | scheduled |
 | 2026-10-10 16:30 | 22:00 / 12:30 | `content/carousels/2026-10-10-index-investing-in-the-open/` | `trig_01UWuv5Gor9Cwe8uxsCbLnQV` | paused 2026-10-10 (routine disabled at the user's request; replaced by `2026-10-10-sold-is-not-paid`) |
+
+## 2026-11-25 · Instagram Reels batch 1 (pre-approved by Sheetal 2026-11-24: "no need to ask for my ok. just start posting 3 reels from NOV 25")
+Files on branch `claude/project-thread-rg56sh`, folder `content/2026-11-25-ig-batch1/`. Caption = text between `<!-- IG START -->` and `<!-- IG END -->` in each `caption.md`.
+
+| When (UTC) | ET / IST | Piece | md5 | Status |
+|---|---|---|---|---|
+| 2026-11-25 13:30 | 08:30 / 19:00 | `thanksgiving-uncle/thanksgiving-uncle.mp4` | 9415b9a99c43c79a7cfe7ce5918d0d28 | scheduled (trig_013PXDqQY7mf95kkr7bTsuN3) |
+| 2026-11-25 19:30 | 14:30 / 01:00 | `grace-groner-part2/grace-groner-part2.mp4` | d30e67506cac6c60af1d9cfefed6e7f9 | scheduled (trig_01YJXsfXENAYzpG7ZaCdBYjT) |
+| 2026-11-26 00:30 | 19:30 / 06:00 | `black-friday-part5/black-friday-part5.mp4` | 9bdcbe3bfd58824510e37761bb0d5430 | scheduled |
