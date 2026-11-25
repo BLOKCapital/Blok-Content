@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Reference Library</title>
+<style>
+:root{--bg:#F6F3E8;--card:#fff;--ink:#1d2433;--muted:#5d6577;--line:#e3dfd2;--accent:#004EBA;--sky:#7DD2FD;--lime:#7ED116;--coral:#EC464D;--chip:#eef3fb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161f;--card:#1b2130;--ink:#eef1f6;--muted:#9aa3b5;--line:#2a3244;--accent:#7DD2FD;--chip:#24304a}}
+:root[data-theme="dark"]{--bg:#12161f;--card:#1b2130;--ink:#eef1f6;--muted:#9aa3b5;--line:#2a3244;--accent:#7DD2FD;--chip:#24304a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+header{padding:20px 16px 8px;max-width:1200px;margin:auto}
+h1{margin:0 0 4px;font-size:24px}
+.sub{color:var(--muted);margin:0}
+.warn{display:inline-block;margin-top:8px;background:#fdecec;color:#8a1c21;border-radius:8px;padding:4px 10px;font-size:13px}
+.bar{max-width:1200px;margin:auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input[type=search]{flex:1 1 240px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:15px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:13px}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.chip .n{opacity:.7;margin-left:4px}
+.stats{max-width:1200px;margin:auto;padding:4px 16px 0;display:flex;gap:10px;flex-wrap:wrap}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}
+.tile span{color:var(--muted);font-size:12px}
+#chart{max-width:1200px;margin:10px auto 0;padding:0 16px}
+#chart svg{width:100%;height:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+main{max-width:1200px;margin:auto;padding:12px 16px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;background:#ddd}
+.card .b{padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:15px}
+.meta{color:var(--muted);font-size:12px}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.tag{background:var(--chip);color:var(--accent);border-radius:6px;padding:2px 7px;font-size:12px}
+.why{font-size:13px;margin-top:6px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px}
+dialog{border:none;border-radius:16px;padding:0;max-width:min(1000px,96vw);width:100%;background:var(--card);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+.dh{position:sticky;top:0;background:var(--card);padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.db{padding:14px 16px}
+.db h4{margin:18px 0 6px}
+.db img{max-width:100%;border-radius:8px;border:1px solid var(--line)}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row video{width:240px;max-width:100%;border-radius:10px;background:#000}
+.frames{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}
+.frames figure{margin:0;font-size:11px;color:var(--muted)}
+.frames img.hl{outline:3px solid var(--lime)}
+.note{background:var(--chip);border-radius:10px;padding:8px 10px;margin:6px 0}
+.note b{color:var(--accent)}
+pre{white-space:pre-wrap;background:var(--bg);padding:10px;border-radius:8px;font-size:13px}
+button.x{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Video Reference Library</h1>
+  <p class="sub">Reels we study for motion graphics, subtitles, hooks and storytelling. Click a card for the full breakdown.</p>
+  <span class="warn">Reference only. Never reupload or cut these clips into our videos.</span>
+</header>
+<div class="stats" id="stats"></div>
+<div id="chart"></div>
+<div class="bar"><input type="search" id="q" placeholder="Search notes, creators, transcripts…"></div>
+<div class="bar" id="cats"></div>
+<main id="grid"></main>
+<dialog id="dlg"><div class="dh"><div><h3 id="dt" style="margin:0"></h3><div class="meta" id="dm"></div></div><button class="x" onclick="dlg.close()">Close</button></div><div class="db" id="dbody"></div></dialog>
+<script>
+const DATA=/*__DATA__*/null;
+const E=(DATA&&DATA.entries)||[],C=(DATA&&DATA.categories)||{};
+let cat=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const src=(e,f)=>`entries/${e.id}/${f}`;
+function stats(){
+  const tagged=E.filter(e=>Object.keys(e.tags).length).length;
+  const avg=E.length?(E.reduce((s,e)=>s+e.stats.cuts_per_min,0)/E.length).toFixed(0):0;
+  const sh=E.length?(E.reduce((s,e)=>s+e.stats.avg_shot,0)/E.length).toFixed(1):0;
+  $("stats").innerHTML=[["References",E.length],["Tagged",tagged],["Avg cuts / min",avg],["Avg shot length",sh+"s"]].map(([l,v])=>`<div class="tile"><b>${v}</b><span>${l}</span></div>`).join("");
+  // bar chart: references per category
+  const ks=Object.keys(C),n=ks.map(k=>E.filter(e=>k in e.tags).length),mx=Math.max(1,...n);
+  const W=1000,rh=22,H=ks.length*rh+30;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="References per category"><text x="12" y="18" font-size="13" fill="currentColor" opacity=".7">References per category (click a bar to filter)</text>`;
+  ks.forEach((k,i)=>{const y=28+i*rh,w=(W-200)*n[i]/mx;s+=`<g style="cursor:pointer" onclick="pick('${k}')"><text x="12" y="${y+14}" font-size="13" fill="currentColor">${k}</text><rect x="150" y="${y+3}" width="${Math.max(w,2)}" height="14" rx="4" fill="${cat===k?'#EC464D':'#7ED116'}"/><text x="${156+w}" y="${y+14}" font-size="12" fill="currentColor">${n[i]}</text></g>`});
+  $("chart").innerHTML=s+"</svg>";
+  $("chart").style.color=getComputedStyle(document.body).color;
+}
+function chips(){
+  $("cats").innerHTML=`<button class="chip ${cat?'':'on'}" onclick="pick(null)">All<span class="n">${E.length}</span></button>`+
+   Object.keys(C).map(k=>`<button class="chip ${cat===k?'on':''}" title="${esc(C[k])}" onclick="pick('${k}')">${k}<span class="n">${E.filter(e=>k in e.tags).length}</span></button>`).join("")+
+   `<button class="chip ${cat==='_u'?'on':''}" onclick="pick('_u')">untagged<span class="n">${E.filter(e=>!Object.keys(e.tags).length).length}</span></button>`;
+}
+function pick(k){cat=cat===k?null:k;try{localStorage.setItem("vref-cat",cat||"")}catch(e){}render()}
+function render(){
+  chips();stats();
+  const q=$("q").value.toLowerCase().split(/\s+/).filter(Boolean);
+  const list=E.filter(e=>{
+    if(cat==="_u"&&Object.keys(e.tags).length)return false;
+    if(cat&&cat!=="_u"&&!(cat in e.tags))return false;
+    const blob=[e.creator,e.title,e.why,e.caption,e.transcript,...Object.entries(e.tags).map(([k,t])=>k+" "+t.note)].join(" ").toLowerCase();
+    return q.every(w=>blob.includes(w));
+  }).sort((a,b)=>b.added.localeCompare(a.added));
+  $("grid").innerHTML=list.length?list.map(e=>{
+    const note=cat&&e.tags[cat]?e.tags[cat].note:e.why;
+    return `<div class="card" onclick="openE('${e.id}')"><img loading="lazy" src="${src(e,e.files.sheet)}" alt=""><div class="b"><h3>${esc(e.creator||"unknown")}</h3><div class="meta">${e.duration.toFixed(0)}s · ${e.stats.cuts} cuts · ${e.stats.cuts_per_min}/min · ${e.width}×${e.height}</div><div class="tags">${Object.keys(e.tags).map(t=>`<span class="tag">${t}</span>`).join("")||'<span class="tag">untagged</span>'}</div>${note?`<div class="why">${esc(note)}</div>`:""}</div></div>`}).join("")
+   :`<div class="empty">${E.length?"No references match.":"No references yet. Send a reel link in the project and a thread will add it."}</div>`;
+}
+function openE(id){
+  const e=E.find(x=>x.id===id),hl=new Set(Object.values(e.tags).flatMap(t=>t.frames));
+  $("dt").textContent=e.creator||"unknown";
+  $("dm").innerHTML=`${esc(e.id)}${e.url?` · <a href="${esc(e.url)}" target="_blank" rel="noopener">open original</a>`:""}`;
+  const s=e.stats;
+  let h=`<div class="row"><video controls preload="metadata" src="${src(e,e.files.preview)}"></video><div style="flex:1;min-width:220px">
+   <div class="stats" style="padding:0">${[["Length",e.duration.toFixed(1)+"s"],["Cuts",s.cuts],["Cuts/min",s.cuts_per_min],["Avg shot",s.avg_shot+"s"],["First cut",s.first_cut!=null?s.first_cut+"s":"none"],["Words/min",s.wpm||"–"]].map(([l,v])=>`<div class="tile"><b>${v}</b><span>${l}</span></div>`).join("")}</div>
+   ${e.why?`<div class="note"><b>Why it works:</b> ${esc(e.why)}</div>`:""}
+   ${Object.entries(e.tags).map(([k,t])=>`<div class="note"><b>${k}</b>${t.t?` <span class="meta">@ ${esc(t.t)}</span>`:""}: ${esc(t.note)}${t.frames.length?` <span class="meta">(frames ${t.frames.join(", ")})</span>`:""}</div>`).join("")}
+  </div></div>`;
+  h+=`<h4>Hook: first 3 seconds</h4><img loading="lazy" src="${src(e,e.files.hook)}" alt="">`;
+  h+=`<h4>Keyframes (green = tagged)</h4><div class="frames">${e.frames.map(f=>`<figure><a href="${src(e,f.file)}" target="_blank"><img loading="lazy" class="${hl.has(f.n)?'hl':''}" src="${src(e,f.file)}" alt=""></a>#${f.n} · ${f.t.toFixed(1)}s</figure>`).join("")}</div>`;
+  if(e.files.transitions)h+=`<h4>Transitions: before / after each cut</h4><img loading="lazy" src="${src(e,e.files.transitions)}" alt="">`;
+  if(e.files.waveform)h+=`<h4>Audio waveform (red lines = cuts)</h4><img loading="lazy" src="${src(e,e.files.waveform)}" alt="">`;
+  if(e.transcript)h+=`<h4>Transcript</h4><pre>${esc(e.transcript)}</pre>`;
+  if(e.caption)h+=`<h4>Original caption</h4><pre>${esc(e.caption)}</pre>`;
+  $("dbody").innerHTML=h;$("dlg").showModal();
+}
+$("q").addEventListener("input",render);
+try{const c=localStorage.getItem("vref-cat");if(c)cat=c}catch(e){}
+render();
+</script>
+</body>
+</html>
