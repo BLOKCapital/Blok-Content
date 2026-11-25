@@ -187,6 +187,7 @@ Project skills in `.claude/skills/` (invoke with `/skill-name`):
 - `instagram-reel` — finished Reels with AI voiceover + motion graphics, no filming (playbook section 5).
 - `x-thread` — X posts and threads in BLOK voice. Always follows `growth/x/x-algorithm-playbook.md` (how X ranks posts).
 - `composio-publish` — publish/schedule via Composio (Instagram, X, LinkedIn, etc.).
+- `video-references` — add reels Sheetal sends to the video reference library, and look up hooks, subtitles, motion, transitions and storytelling references before building any video (`scripts/video-refs/`, library in the shared folder at `growth/video-references/`).
 
 Recommended marketplace plugins (install from the Claude plugin directory):
 **Social Media Skills**, **Remotion** (programmatic video rendering), **Marketing** (Anthropic).
