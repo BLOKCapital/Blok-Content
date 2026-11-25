@@ -1,0 +1,37 @@
+OK   0   0.25s match=1.00
+   want: Grandma asked Jay one question at dinner.
+   heard: Grandma asked Jay one question at dinner.
+OK   1   2.45s match=1.00
+   want: What do you actually own?
+   heard: What do you actually own?
+OK   2   4.32s match=1.00
+   want: Jay goes, a phone, a game console, and way too many sneakers.
+   heard: Jay goes, a phone, a game console, and way too many sneakers.
+OK   3   8.69s match=1.00
+   want: She said, those are things companies sold you.
+   heard: She said, those are things companies sold you.
+OK   4  12.17s match=1.00
+   want: Do you own a piece of any of those companies?
+   heard: Do you own a piece of any of those companies?
+OK   5  14.71s match=1.00
+   want: He didn't.
+   heard: He didn't.
+OK   6  15.93s match=1.00
+   want: So she pulled out an old share certificate.
+   heard: So she pulled out an old share certificate.
+OK   7  18.50s match=1.00
+   want: One share. Bought with her first paycheck.
+   heard: One share, bought with her first paycheck.
+OK   8  21.38s match=1.00
+   want: Because buying their stuff, that makes them money. Owning even one share makes you part of the company.
+   heard: Because buying their stuff, that makes them money.  Owning even one share makes you part of the company.
+OK   9  27.73s match=1.00
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building block, so anyone can own a fund of their own from $10.
+OK  10  32.24s match=1.00
+   want: What's one company you buy from every week? Tell me below.
+   heard: What's one company you buy from every week? Tell me below.
+OK  11  35.53s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0

@@ -1,0 +1,52 @@
+[
+ {
+  "show": "POV: you ask the whole table for money advice.",
+  "say": "POV: you ask the whole table for money advice.",
+  "gap": 0.45
+ },
+ {
+  "show": "Grandma: pay yourself first.",
+  "say": "Grandma: pay yourself first.",
+  "gap": 0.4
+ },
+ {
+  "show": "Dad: don't touch it.",
+  "say": "Dad: don't touch it.",
+  "gap": 0.4
+ },
+ {
+  "show": "Mom: if you can't buy it twice, you can't afford it.",
+  "say": "Mom: if you can't buy it twice, you can't afford it.",
+  "gap": 0.4
+ },
+ {
+  "show": "Uncle Dave: you need a hundred grand to start.",
+  "say": "Uncle Dave: you need a hundred grand to start.",
+  "gap": 0.5
+ },
+ {
+  "show": "Uncle Dave, we talked about this.",
+  "say": "Uncle Dave, we talked about this.",
+  "gap": 0.5
+ },
+ {
+  "show": "Three out of four. Not bad.",
+  "say": "Three out of four. Not bad.",
+  "gap": 0.4
+ },
+ {
+  "show": "And no, you don't need a hundred grand. We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "And no, you don't need a hundred grand. We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "What's the best money advice your family gave you? Tell me below.",
+  "say": "What's the best money advice your family gave you? Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]

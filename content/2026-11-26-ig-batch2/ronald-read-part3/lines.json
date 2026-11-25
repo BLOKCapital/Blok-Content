@@ -1,0 +1,62 @@
+[
+ {
+  "show": "A janitor left his town $6 million.",
+  "say": "A janitor left his town six million dollars.",
+  "gap": 0.45
+ },
+ {
+  "show": "Ronald Read pumped gas in Vermont for about 25 years, then worked as a janitor for 17 more.",
+  "say": "Ronald Read pumped gas in Vermont for about twenty-five years, then worked as a janitor for seventeen more.",
+  "gap": 0.35
+ },
+ {
+  "show": "He drove a used car, and held his coat together with safety pins.",
+  "say": "He drove a used car, and held his coat together with safety pins.",
+  "gap": 0.4
+ },
+ {
+  "show": "He died in 2014, at 92. And then his town found out.",
+  "say": "He died in twenty fourteen, at ninety-two. And then his town found out.",
+  "gap": 0.4
+ },
+ {
+  "show": "$4.8 million went to the local hospital.",
+  "say": "Four point eight million dollars went to the local hospital.",
+  "gap": 0.3
+ },
+ {
+  "show": "And $1.2 million to the town library.",
+  "say": "And one point two million dollars to the town library.",
+  "gap": 0.35
+ },
+ {
+  "show": "The biggest gift either of them had ever gotten.",
+  "say": "The biggest gift either of them had ever gotten.",
+  "gap": 0.4
+ },
+ {
+  "show": "So for decades, he just bought shares in big companies he understood. And he rarely sold.",
+  "say": "So for decades, he just bought shares in big companies he understood. And he rarely sold.",
+  "gap": 0.4
+ },
+ {
+  "show": "Same as Grace Groner. He owned shares, and he just waited.",
+  "say": "Same as Grace Groner. He owned shares, and he just waited.",
+  "gap": 0.4
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "Who would you thank this Thanksgiving? Tell me below.",
+  "say": "Who would you thank this Thanksgiving? Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]

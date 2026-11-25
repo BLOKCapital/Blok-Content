@@ -1,0 +1,37 @@
+OK   0   0.25s match=1.00
+   want: A janitor left his town six million dollars.
+   heard: A janitor left his town six million dollars.
+OK   1   4.68s match=0.95
+   want: Ronald Read pumped gas in Vermont for about twenty-five years, then worked as a janitor for seventeen more.
+   heard: Ronald Redd pumped gas in Vermont for about 25 years, then worked as a janitor for 17 more.
+OK   2  10.63s match=1.00
+   want: He drove a used car, and held his coat together with safety pins.
+   heard: He drove a used car and held his coat together with safety pins.
+OK   3  14.49s match=1.00
+   want: He died in twenty fourteen, at ninety-two. And then his town found out.
+   heard: He died in 2014, at 92, and then his town found out.
+OK   4  19.63s match=0.94
+   want: Four point eight million dollars went to the local hospital.
+   heard: $4.8 million went to the local hospital.
+OK   5  22.86s match=0.94
+   want: And one point two million dollars to the town library.
+   heard: and $1.2 million to the town library.
+OK   6  27.00s match=1.00
+   want: The biggest gift either of them had ever gotten.
+   heard: the biggest gift either of them had ever gotten.
+OK   7  29.84s match=1.00
+   want: So for decades, he just bought shares in big companies he understood. And he rarely sold.
+   heard: So for decades, he just bought shares in big companies he understood, and he rarely sold.
+OK   8  36.54s match=0.91
+   want: Same as Grace Groner. He owned shares, and he just waited.
+   heard: Same as Grace Groener, he owned shares and he just waited.
+OK   9  40.46s match=1.00
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building block, so anyone can own a fund of their own from $10.
+OK  10  44.98s match=1.00
+   want: Who would you thank this Thanksgiving? Tell me below.
+   heard: Who would you thank this Thanksgiving? Tell me below.
+OK  11  47.96s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0

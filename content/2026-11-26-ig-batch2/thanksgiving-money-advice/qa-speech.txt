@@ -1,0 +1,31 @@
+BAD  0   0.25s match=0.80
+   want: POV: you ask the whole table for money advice.
+   heard: P.O.V. You ask the whole table for money advice.
+OK   1   3.91s match=1.00
+   want: Grandma: pay yourself first.
+   heard: Grandma, pay yourself first.
+OK   2   6.01s match=1.00
+   want: Dad: don't touch it.
+   heard: Dad, don't touch it.
+OK   3   7.75s match=1.00
+   want: Mom: if you can't buy it twice, you can't afford it.
+   heard: Mom, if you can't buy it twice, you can't afford it.
+OK   4  11.05s match=1.00
+   want: Uncle Dave: you need a hundred grand to start.
+   heard: Uncle Dave, you need a hundred grand to start.
+OK   5  14.09s match=1.00
+   want: Uncle Dave, we talked about this.
+   heard: Uncle Dave, we talked about this.
+OK   6  16.16s match=1.00
+   want: Three out of four. Not bad.
+   heard: 3 out of 4. Not bad.
+OK   7  18.29s match=0.93
+   want: And no, you don't need a hundred grand. We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: No, you don't need a hundred grand. We're building blocks so anyone can own a fund of their own from $10
+OK   8  25.07s match=1.00
+   want: What's the best money advice your family gave you? Tell me below.
+   heard: What's the best money advice your family gave you? Tell me below.
+OK   9  28.64s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 1

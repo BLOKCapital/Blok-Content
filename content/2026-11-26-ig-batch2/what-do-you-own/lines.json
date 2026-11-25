@@ -1,0 +1,62 @@
+[
+ {
+  "show": "Grandma asked Jay one question at dinner.",
+  "say": "Grandma asked Jay one question at dinner.",
+  "gap": 0.35
+ },
+ {
+  "show": "What do you actually own?",
+  "say": "What do you actually own?",
+  "gap": 0.5
+ },
+ {
+  "show": "Jay goes, a phone, a game console, and way too many sneakers.",
+  "say": "Jay goes, a phone, a game console, and way too many sneakers.",
+  "gap": 0.4
+ },
+ {
+  "show": "She said, those are things companies sold you.",
+  "say": "She said, those are things companies sold you.",
+  "gap": 0.35
+ },
+ {
+  "show": "Do you own a piece of any of those companies?",
+  "say": "Do you own a piece of any of those companies?",
+  "gap": 0.5
+ },
+ {
+  "show": "He didn't.",
+  "say": "He didn't.",
+  "gap": 0.5
+ },
+ {
+  "show": "So she pulled out an old share certificate.",
+  "say": "So she pulled out an old share certificate.",
+  "gap": 0.3
+ },
+ {
+  "show": "One share. Bought with her first paycheck.",
+  "say": "One share. Bought with her first paycheck.",
+  "gap": 0.45
+ },
+ {
+  "show": "Because buying their stuff, that makes them money. Owning even one share makes you part of the company.",
+  "say": "Because buying their stuff, that makes them money. Owning even one share makes you part of the company.",
+  "gap": 0.4
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "What's one company you buy from every week? Tell me below.",
+  "say": "What's one company you buy from every week? Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]
