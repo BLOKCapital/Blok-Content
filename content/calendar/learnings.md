@@ -17,3 +17,6 @@ What worked, what didn't, and why. Update after each analytics pull.
 - Changes in batch 2: hooks name a person in 8 words or fewer; comment question asks about the viewer's own life; a running character
   (the uncle) links reels across days. Lengths 44 s / 56 s / 38 s.
 - To measure next: does the uncle callback lift sends? Does Part 3 of a weak series (Read Parts 1 and 2: 133 and 126 views) recover with a gift hook?
+- 2026-11-25 19:30 UTC, Thanksgiving uncle reel at ~6 h: 81 views, 71 reached, skip rate 50%, avg watch 8.0 s of 42 s, 3 likes, 2 comments
+  ("Just amazing", "No never"), 0 shares, 0 saves. Versus baseline: below the character-story median (643.5 views, 35% skip), above
+  history openers at this age. The yes/no question drew a comment; the "send to the family chat" ask drew no shares yet. Re-check at 24 h.
