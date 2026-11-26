@@ -23,3 +23,14 @@ What worked, what didn't, and why. Update after each analytics pull.
 - 2026-11-26 00:30 UTC: uncle reel at ~11 h: 127 views, 113 reached, skip 50.9%, avg watch 8.7 s, 3 likes, 2 comments, 0 shares, 0 saves.
   Grace Groner Part 2 at ~5 h: 14 views, 10 reached, skip 60%, avg watch 13.7 s (of 58 s), 1 like, 0 comments. Very low distribution so far;
   watch whether the 2nd post of the day gets throttled or if the "Part 2" number hook only works for people who saw Part 1.
+
+## 2026-11-26 daily review (first full day of 3 a day)
+| Reel | Age | Views | Skip 3 s | Avg watch | Likes / comments / shares / saves |
+|---|---|---|---|---|---|
+| Thanksgiving uncle (8:30 AM ET, POV/family, 42 s) | 12.7 h | 127 | 50.9% | 8.7 s | 3 / 2 / 0 / 0 |
+| Grace Groner Part 2 (2:30 PM ET, number + series, 58 s) | 6.7 h | 16 | 63.6% | 12.9 s | 1 / 0 / 0 / 0 |
+| Black Friday Part 5 (7:30 PM ET, Jay + history, 55 s) | 1.7 h | 10 | 16.7% | 1.9 s | 0 / 0 / 0 / 0 |
+What worked: the relatable family/POV hook in the morning slot (8x the views of the next reel). Comment question got 2 replies.
+What didn't: "Part N" series hooks (Grace P1 44 views, P2 16); long reels (42 to 58 s) with 8 to 13 s average watch; skip 51 to 64% vs a 35% bar.
+Open question: is the 2nd/3rd post of a day throttled? Track slot vs views over the next days before changing the times.
+Changes for 27 Nov batch: (1) whole hook line on screen from frame 0, big; (2) about 30 s cap; (3) no "Part N" in hooks; (4) timely everyday topic.
