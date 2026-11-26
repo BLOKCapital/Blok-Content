@@ -17,7 +17,7 @@ Files on branch `claude/project-thread-rg56sh`, folder `content/2026-11-25-ig-ba
 |---|---|---|---|---|
 | 2026-11-25 13:30 | 08:30 / 19:00 | `thanksgiving-uncle/thanksgiving-uncle.mp4` | 9415b9a99c43c79a7cfe7ce5918d0d28 | posted https://www.instagram.com/reel/DgKpM7Io7SR/ (13:32 UTC) |
 | 2026-11-25 19:30 | 14:30 / 01:00 | `grace-groner-part2/grace-groner-part2.mp4` | d30e67506cac6c60af1d9cfefed6e7f9 | posted https://www.instagram.com/reel/DgLSTqPBgKw/ (19:31 UTC) |
-| 2026-11-26 00:30 | 19:30 / 06:00 | `black-friday-part5/black-friday-part5.mp4` | 9bdcbe3bfd58824510e37761bb0d5430 | scheduled |
+| 2026-11-26 00:30 | 19:30 / 06:00 | `black-friday-part5/black-friday-part5.mp4` | 9bdcbe3bfd58824510e37761bb0d5430 | posted https://www.instagram.com/reel/DgL0rGrzGpc/ (00:32 UTC) |
 
 ## 2026-11-26 · Instagram Reels batch 2 (Thanksgiving Day; same standing approval)
 Folder `content/2026-11-26-ig-batch2/` on branch `claude/project-thread-rg56sh`. Scripts, gate receipts: `hooks-and-scripts.md`.

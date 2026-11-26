@@ -20,3 +20,6 @@ What worked, what didn't, and why. Update after each analytics pull.
 - 2026-11-25 19:30 UTC, Thanksgiving uncle reel at ~6 h: 81 views, 71 reached, skip rate 50%, avg watch 8.0 s of 42 s, 3 likes, 2 comments
   ("Just amazing", "No never"), 0 shares, 0 saves. Versus baseline: below the character-story median (643.5 views, 35% skip), above
   history openers at this age. The yes/no question drew a comment; the "send to the family chat" ask drew no shares yet. Re-check at 24 h.
+- 2026-11-26 00:30 UTC: uncle reel at ~11 h: 127 views, 113 reached, skip 50.9%, avg watch 8.7 s, 3 likes, 2 comments, 0 shares, 0 saves.
+  Grace Groner Part 2 at ~5 h: 14 views, 10 reached, skip 60%, avg watch 13.7 s (of 58 s), 1 like, 0 comments. Very low distribution so far;
+  watch whether the 2nd post of the day gets throttled or if the "Part 2" number hook only works for people who saw Part 1.
