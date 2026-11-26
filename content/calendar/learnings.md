@@ -34,3 +34,6 @@ What worked: the relatable family/POV hook in the morning slot (8x the views of 
 What didn't: "Part N" series hooks (Grace P1 44 views, P2 16); long reels (42 to 58 s) with 8 to 13 s average watch; skip 51 to 64% vs a 35% bar.
 Open question: is the 2nd/3rd post of a day throttled? Track slot vs views over the next days before changing the times.
 Changes for 27 Nov batch: (1) whole hook line on screen from frame 0, big; (2) about 30 s cap; (3) no "Part N" in hooks; (4) timely everyday topic.
+- 2026-11-26 13:31 UTC (posting "What do you own?"): uncle at ~24 h: 137 views, 122 reached, skip 49.6%, avg 9.0 s, 3 likes, 2 comments.
+  Grace P2 at ~18 h: 39 views, 32 reached, skip 65.6%, avg 7.6 s, 1 like. Black Friday P5 at ~13 h: 53 views, 44 reached, skip 36.4% (best so far), avg 11.9 s, 1 like.
+  Evening slot recovered overnight (10 → 53), so the 3rd slot is not dead; it is slower. The BF reel's near-bar skip rate suggests the camping/number-six hook held people.
