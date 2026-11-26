@@ -1,0 +1,42 @@
+[
+ {
+  "show": "POV: your Black Friday cart versus your portfolio.",
+  "say": "POV: your Black Friday cart versus your portfolio.",
+  "gap": 0.45
+ },
+ {
+  "show": "Cart: a TV, new sneakers, an air fryer, and a candle you'll never light.",
+  "say": "Cart: a TV, new sneakers, an air fryer, and a candle you'll never light.",
+  "gap": 0.4
+ },
+ {
+  "show": "Portfolio: one fund. Picked in 2019. Never checked.",
+  "say": "Portfolio: one fund. Picked in twenty nineteen. Never checked.",
+  "gap": 0.5
+ },
+ {
+  "show": "Okay. Swap one thing. Just one.",
+  "say": "Okay. Swap one thing. Just one.",
+  "gap": 0.4
+ },
+ {
+  "show": "The candle. Start with the candle.",
+  "say": "The candle. Start with the candle.",
+  "gap": 0.35
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "What's the one thing you'd swap? Tell me below.",
+  "say": "What's the one thing you'd swap? Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]

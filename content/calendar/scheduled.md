@@ -27,3 +27,12 @@ Folder `content/2026-11-26-ig-batch2/` on branch `claude/project-thread-rg56sh`.
 | 2026-11-26 13:30 | 08:30 / 19:00 | `what-do-you-own/what-do-you-own.mp4` | 9208ee18a3a6d673a3116edaac57dca9 | scheduled |
 | 2026-11-26 19:30 | 14:30 / 01:00 | `ronald-read-part3/ronald-read-part3.mp4` | 356d981c8de1391a72e31cf31e610909 | scheduled |
 | 2026-11-27 00:30 | 19:30 / 06:00 | `thanksgiving-money-advice/thanksgiving-money-advice.mp4` | e32cc6f1d4b763cd0097b94706977bdc | scheduled |
+
+## 2026-11-27 · Instagram Reels batch 3 (Black Friday; same standing approval)
+Folder `content/2026-11-27-ig-batch3/` on branch `claude/project-thread-rg56sh`. Scripts, data and gate receipts: `hooks-and-scripts.md`.
+
+| When (UTC) | ET / IST | Piece | md5 | Status |
+|---|---|---|---|---|
+| 2026-11-27 13:30 | 08:30 / 19:00 | `jay-40-tvs/jay-40-tvs.mp4` | cbad00cb7c86dff5533cf9d30f391622 | scheduled |
+| 2026-11-27 19:30 | 14:30 / 01:00 | `sylvia-bloom/sylvia-bloom.mp4` | 7341d5e0a6e656458fa373bdcbc9dd39 | scheduled |
+| 2026-11-28 00:30 | 19:30 / 06:00 | `black-friday-cart-pov/black-friday-cart-pov.mp4` | 169dc196df928ee2649100fc6c44c85f | scheduled |

@@ -1,0 +1,47 @@
+[
+ {
+  "show": "She worked one job for 67 years. Then left $8.2 million for scholarships.",
+  "say": "She worked one job for sixty-seven years. Then left eight point two million dollars for scholarships.",
+  "gap": 0.45
+ },
+ {
+  "show": "Sylvia Bloom was a legal secretary in New York.",
+  "say": "Sylvia Bloom was a legal secretary in New York.",
+  "gap": 0.35
+ },
+ {
+  "show": "And she was still taking the subway to work in her 90s.",
+  "say": "And she was still taking the subway to work in her nineties.",
+  "gap": 0.4
+ },
+ {
+  "show": "For decades she just kept buying shares. Small amounts.",
+  "say": "For decades she just kept buying shares. Small amounts.",
+  "gap": 0.4
+ },
+ {
+  "show": "$6.24 million went to scholarships, for students who needed help paying for college.",
+  "say": "Six point two four million dollars went to scholarships, for students who needed help paying for college.",
+  "gap": 0.4
+ },
+ {
+  "show": "Small amounts. Lots of time.",
+  "say": "Small amounts. Lots of time.",
+  "gap": 0.4
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "Who taught you about money? Tell me below.",
+  "say": "Who taught you about money? Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]

@@ -1,0 +1,42 @@
+[
+ {
+  "show": "Jay compared 40 TVs before buying one.",
+  "say": "Jay compared forty TVs before buying one.",
+  "gap": 0.4
+ },
+ {
+  "show": "Reviews, specs, price history. Three whole hours.",
+  "say": "Reviews, specs, price history. Three whole hours.",
+  "gap": 0.4
+ },
+ {
+  "show": "Then his sister asked what's in his 401(k).",
+  "say": "Then his sister asked what's in his four-oh-one-k.",
+  "gap": 0.45
+ },
+ {
+  "show": "He had no idea. He'd never opened it.",
+  "say": "He had no idea. He'd never opened it.",
+  "gap": 0.45
+ },
+ {
+  "show": "So, three hours on a TV, and zero on the money he actually owns.",
+  "say": "So, three hours on a TV, and zero on the money he actually owns.",
+  "gap": 0.4
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "When did you last open yours? Be honest. Tell me below.",
+  "say": "When did you last open yours? Be honest. Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]

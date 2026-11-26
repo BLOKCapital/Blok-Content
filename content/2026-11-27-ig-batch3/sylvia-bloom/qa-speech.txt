@@ -1,0 +1,28 @@
+OK   0   0.25s match=0.97
+   want: She worked one job for sixty-seven years. Then left eight point two million dollars for scholarships.
+   heard: She worked one job for 67 years, then left $8.2 million for scholarships.
+OK   1   6.54s match=1.00
+   want: Sylvia Bloom was a legal secretary in New York.
+   heard: Sylvia Bloom was a legal secretary in New York.
+OK   2  10.27s match=0.92
+   want: And she was still taking the subway to work in her nineties.
+   heard: and she was still taking the subway to work in her 90s.
+OK   3  13.92s match=1.00
+   want: For decades she just kept buying shares. Small amounts.
+   heard: For decades, she just kept buying shares, small amounts.
+OK   4  17.69s match=0.90
+   want: Six point two four million dollars went to scholarships, for students who needed help paying for college.
+   heard: $6.24 million went to scholarships for students who needed help paying for college.
+OK   5  23.79s match=1.00
+   want: Small amounts. Lots of time.
+   heard: Small amounts, lots of time.
+OK   6  26.51s match=1.00
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building block so anyone can own a fund of their own from $10.
+OK   7  31.07s match=1.00
+   want: Who taught you about money? Tell me below.
+   heard: Who taught you about money? Tell me below.
+OK   8  33.53s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment Fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0

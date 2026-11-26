@@ -1,0 +1,25 @@
+BAD  0   0.25s match=0.78
+   want: POV: your Black Friday cart versus your portfolio.
+   heard: P.O.V. Your Black Friday Cart versus Your Portfolio
+OK   1   4.22s match=1.00
+   want: Cart: a TV, new sneakers, an air fryer, and a candle you'll never light.
+   heard: Cart, a TV, new sneakers, an air fryer, and a candle you'll never light.
+OK   2   9.70s match=1.00
+   want: Portfolio: one fund. Picked in twenty nineteen. Never checked.
+   heard: Portfolio One Fund. Picked in 2019. Never checked.
+OK   3  14.11s match=1.00
+   want: Okay. Swap one thing. Just one.
+   heard: Okay, swap one thing just one
+OK   4  17.00s match=1.00
+   want: The candle. Start with the candle.
+   heard: The candle. Start with the candle.
+OK   5  19.43s match=0.93
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building blocks so anyone can own a fund of their own from $10.
+OK   6  23.63s match=1.00
+   want: What's the one thing you'd swap? Tell me below.
+   heard: What's the one thing you'd swap? Tell me below.
+OK   7  26.27s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment Fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 1

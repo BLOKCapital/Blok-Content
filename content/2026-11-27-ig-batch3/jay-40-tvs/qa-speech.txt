@@ -1,0 +1,25 @@
+OK   0   0.25s match=1.00
+   want: Jay compared forty TVs before buying one.
+   heard: Jay compared 40 TVs before buying one.
+OK   1   3.06s match=1.00
+   want: Reviews, specs, price history. Three whole hours.
+   heard: Reviews. Specs. Price History. Three whole hours.
+BAD  2   7.62s match=0.76
+   want: Then his sister asked what's in his four-oh-one-k.
+   heard: Then his sister asked, what's in his 401k?
+OK   3  11.23s match=1.00
+   want: He had no idea. He'd never opened it.
+   heard: He had no idea. He'd never opened it.
+OK   4  14.52s match=1.00
+   want: So, three hours on a TV, and zero on the money he actually owns.
+   heard: So, three hours on a TV and zero on the money he actually owns.
+OK   5  19.62s match=0.93
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building blocks so anyone can own a fund of their own from $10.
+OK   6  23.82s match=1.00
+   want: When did you last open yours? Be honest. Tell me below.
+   heard: When did you last open yours? Be honest, tell me below.
+OK   7  27.27s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund, and I'll send you the seven questions private banks ask on day one.
+lines flagged: 1
