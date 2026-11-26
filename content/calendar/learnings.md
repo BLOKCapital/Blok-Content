@@ -37,3 +37,5 @@ Changes for 27 Nov batch: (1) whole hook line on screen from frame 0, big; (2) a
 - 2026-11-26 13:31 UTC (posting "What do you own?"): uncle at ~24 h: 137 views, 122 reached, skip 49.6%, avg 9.0 s, 3 likes, 2 comments.
   Grace P2 at ~18 h: 39 views, 32 reached, skip 65.6%, avg 7.6 s, 1 like. Black Friday P5 at ~13 h: 53 views, 44 reached, skip 36.4% (best so far), avg 11.9 s, 1 like.
   Evening slot recovered overnight (10 → 53), so the 3rd slot is not dead; it is slower. The BF reel's near-bar skip rate suggests the camping/number-six hook held people.
+- 2026-11-26 19:31 UTC (posting Ronald Read P3): "What do you own?" at ~6 h: 124 views, 110 reached, skip 32.7% (first reel under the 35% bar), avg watch 13.7 s, 2 likes, 0 comments.
+  Second family/holiday-dinner morning reel in a row to lead; it reached in 6 h what the uncle reel took 24 h to reach. Keep the morning slot for relatable family/POV hooks.
