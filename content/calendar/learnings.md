@@ -58,3 +58,8 @@ Open question: afternoon slot vs series format (both afternoon reels were series
 and 28 Nov 2:30 PM Grandpa (everyday family, no real person).
 Changes for 28 Nov batch: (1) all three slots are everyday family/holiday-weekend scenes; (2) viewer question answerable in one word or a number;
 (3) keep hook-first frame and ~25 to 30 s.
+- 2026-11-27 13:32 UTC (posting "Jay compared 40 TVs"): big overnight jump. Ronald Read P3 at ~18 h: 197 views, 187 reached, skip 33.2%, avg 11.9 s
+  (was 14 views at 7 h). Thanksgiving money advice POV at ~13 h: 167 views, 155 reached, skip 37.3%, avg 13.7 s (was 3 at 2 h).
+  "What do you own?" at ~24 h: 129 views, skip 32.7%. Lesson: afternoon and evening reels pick up overnight, so early (under 12 h) numbers
+  understate them. Judge reels at about 18 to 24 h, not at the next posting slot. The "Part N is dead" read from 26/27 Nov was premature
+  for Read P3 (now our top reel); keep "no Part N in the hook" as a test rather than a rule until there are more data points.
