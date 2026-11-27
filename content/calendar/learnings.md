@@ -41,3 +41,20 @@ Changes for 27 Nov batch: (1) whole hook line on screen from frame 0, big; (2) a
   Second family/holiday-dinner morning reel in a row to lead; it reached in 6 h what the uncle reel took 24 h to reach. Keep the morning slot for relatable family/POV hooks.
 - 2026-11-27 00:31 UTC (posting Thanksgiving money advice POV): Ronald Read P3 at ~5 h: 10 views, 8 reached, skip 62.5%, avg 13.3 s. Another "Part N" reel at the bottom, confirming the batch 3 rule.
   "What do you own?" insights unchanged since 19:31 (124 views, skip 32.7%); may be insights lag, re-check at the 02:13 daily review.
+
+## 2026-11-27 daily review (two full days of 3 a day; 440 followers)
+| Reel | Slot | Age | Views | Skip 3 s | Avg watch | Likes / comments / shares / saves |
+|---|---|---|---|---|---|---|
+| Thanksgiving uncle (family POV, 42 s) | A 8:30 AM | 41 h | 139 | 49.6% | 8.9 s | 3 / 2 / 0 / 0 |
+| Grace Groner Part 2 (real person, series) | B 2:30 PM | 35 h | 42 | 65.7% | 7.2 s | 1 / 0 / 0 / 0 |
+| Black Friday Part 5 (Jay + history, series) | C 7:30 PM | 30 h | 77 | 51.5% | 9.3 s | 2 / 0 / 1 / 0 |
+| What do you own? (Grandma, family) | A 8:30 AM | 18 h | 124 | 32.7% | 13.7 s | 2 / 0 / 0 / 0 |
+| Ronald Read Part 3 (real person, series) | B 2:30 PM | 7 h | 14 | 50% | 13.6 s | 1 / 0 / 0 / 0 |
+| Thanksgiving money advice POV | C 7:30 PM | 2 h | 3 | n/a | n/a | 0 / 0 / 0 / 0 |
+What worked: 8:30 AM family-dinner reels (139, 124 views); "What do you own?" is the first reel under the 35% skip bar with the longest avg watch.
+First share came on Black Friday P5. Comments answer simple yes/no questions ("No never").
+What didn't: every "Part N" real-person reel (44, 42, 14 views). Long reels hold 7 to 9 s.
+Open question: afternoon slot vs series format (both afternoon reels were series). Test: 27 Nov 2:30 PM Sylvia Bloom (real person, no Part N)
+and 28 Nov 2:30 PM Grandpa (everyday family, no real person).
+Changes for 28 Nov batch: (1) all three slots are everyday family/holiday-weekend scenes; (2) viewer question answerable in one word or a number;
+(3) keep hook-first frame and ~25 to 30 s.
