@@ -63,3 +63,8 @@ Changes for 28 Nov batch: (1) all three slots are everyday family/holiday-weeken
   "What do you own?" at ~24 h: 129 views, skip 32.7%. Lesson: afternoon and evening reels pick up overnight, so early (under 12 h) numbers
   understate them. Judge reels at about 18 to 24 h, not at the next posting slot. The "Part N is dead" read from 26/27 Nov was premature
   for Read P3 (now our top reel); keep "no Part N in the hook" as a test rather than a rule until there are more data points.
+- 2026-11-27 19:31 UTC (posting "Sylvia Bloom"): Janitor (Read P3) at ~24 h is now 212 views, skip 34.8%, avg 11.4 s, still our top reel.
+  Thanksgiving advice POV ~19 h: 172 views, skip 37.8%, avg 13.5 s. Grandma one question (Nov 26 AM) ~30 h: 131, skip 33.9%, avg 13.6 s.
+  Jay 40 TVs at ~6 h: 125 views, skip 44.5%, avg 6.8 s (higher skip than the family/story reels; recheck at 18 h before judging).
+  BF camping 85 / skip 55.3%; Ronald Read P2 43 / 66.7%. Pattern holding: grandparent/real-person story hooks keep skip near 34%;
+  POV/consumer hooks run 38 to 55%. Zero saves across all reels so far: next batch should test a saveable element (the 7 questions on screen).
