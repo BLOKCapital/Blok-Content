@@ -1,0 +1,28 @@
+OK   0   0.25s match=1.00
+   want: Grandpa bought his first stock in nineteen sixty-eight. On a landline.
+   heard: Grandpa bought his first stock in 1968 on a landline.
+OK   1   4.91s match=1.00
+   want: He called a man in a suit. Then waited for him to call back.
+   heard: He called a man in a suit, then waited for him to call back.
+OK   2   8.65s match=1.00
+   want: Back then, every broker had to charge the same set price.
+   heard: Back then, every broker had to charge the same set price.
+OK   3  12.01s match=1.00
+   want: Then a paper slip came in the mail, days later.
+   heard: Then a paper slip came in the mail, days later.
+OK   4  14.74s match=1.00
+   want: I told him I can do it from the couch. With ten dollars.
+   heard: I told him I can do it from the couch with $10.
+OK   5  18.07s match=1.00
+   want: He asked if that's even allowed.
+   heard: He asked if that's even allowed.
+OK   6  19.98s match=1.00
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building block, so anyone can own a fund of their own, from $10.
+OK   7  24.54s match=1.00
+   want: What's the oldest money habit in your family? Tell me below.
+   heard: What's the oldest money habit in your family? Tell me below.
+OK   8  27.60s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0

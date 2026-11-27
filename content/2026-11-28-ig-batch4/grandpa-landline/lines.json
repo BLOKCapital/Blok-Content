@@ -1,0 +1,47 @@
+[
+ {
+  "show": "Grandpa bought his first stock in 1968. On a landline.",
+  "say": "Grandpa bought his first stock in nineteen sixty-eight. On a landline.",
+  "gap": 0.4
+ },
+ {
+  "show": "He called a man in a suit. Then waited for him to call back.",
+  "say": "He called a man in a suit. Then waited for him to call back.",
+  "gap": 0.4
+ },
+ {
+  "show": "Back then, every broker had to charge the same set price.",
+  "say": "Back then, every broker had to charge the same set price.",
+  "gap": 0.4
+ },
+ {
+  "show": "Then a paper slip came in the mail, days later.",
+  "say": "Then a paper slip came in the mail, days later.",
+  "gap": 0.45
+ },
+ {
+  "show": "I told him I can do it from the couch. With ten dollars.",
+  "say": "I told him I can do it from the couch. With ten dollars.",
+  "gap": 0.4
+ },
+ {
+  "show": "He asked if that's even allowed.",
+  "say": "He asked if that's even allowed.",
+  "gap": 0.45
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "What's the oldest money habit in your family? Tell me below.",
+  "say": "What's the oldest money habit in your family? Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]

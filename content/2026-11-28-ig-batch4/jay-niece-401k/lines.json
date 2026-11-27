@@ -1,0 +1,42 @@
+[
+ {
+  "show": "Jay's 12-year-old niece asked what he invests in.",
+  "say": "Jay's twelve-year-old niece asked what he invests in.",
+  "gap": 0.4
+ },
+ {
+  "show": "He said, \"My 401(k). Whatever work set up.\"",
+  "say": "He said, \"My four-oh-one-k. Whatever work set up.\"",
+  "gap": 0.4
+ },
+ {
+  "show": "She said, \"But what do you pick?\"",
+  "say": "She said, \"But what do you pick?\"",
+  "gap": 0.45
+ },
+ {
+  "show": "He thought about it. \"Nothing. You need like... ten grand for that.\"",
+  "say": "He thought about it. \"Nothing. You need like... ten grand for that.\"",
+  "gap": 0.45
+ },
+ {
+  "show": "He's been saying that for six years. He never checked.",
+  "say": "He's been saying that for six years. He never checked.",
+  "gap": 0.4
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "What number did you think you needed? Tell me below.",
+  "say": "What number did you think you needed? Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]

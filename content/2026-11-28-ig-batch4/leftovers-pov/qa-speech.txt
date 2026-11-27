@@ -1,0 +1,25 @@
+OK   0   0.25s match=1.00
+   want: POV: it's Saturday and the leftovers are almost gone.
+   heard: POV, it's Saturday and the leftovers are almost gone.
+OK   1   4.83s match=1.00
+   want: The turkey: gone. The pie: gone.
+   heard: The turkey, gone. The pie, gone.
+OK   2   7.75s match=1.00
+   want: The Black Friday budget: very gone.
+   heard: The Black Friday budget. Very gone.
+OK   3  10.51s match=1.00
+   want: Okay. Name one thing from this week you actually own.
+   heard: Okay, name one thing from this week you actually own
+OK   4  14.37s match=1.00
+   want: Not the pie. Maybe a small piece of a fund.
+   heard: not the pie, maybe a small piece of a fund.
+OK   5  17.32s match=0.93
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building blocks so anyone can own a fund of their own from $10.
+OK   6  21.52s match=1.00
+   want: What went first in your house? Tell me below.
+   heard: What went first in your house? Tell me below.
+OK   7  24.26s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund and I'll send you the seven questions private banks ask on day one.
+lines flagged: 0

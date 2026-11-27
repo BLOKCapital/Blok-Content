@@ -36,3 +36,12 @@ Folder `content/2026-11-27-ig-batch3/` on branch `claude/project-thread-rg56sh`.
 | 2026-11-27 13:30 | 08:30 / 19:00 | `jay-40-tvs/jay-40-tvs.mp4` | cbad00cb7c86dff5533cf9d30f391622 | scheduled |
 | 2026-11-27 19:30 | 14:30 / 01:00 | `sylvia-bloom/sylvia-bloom.mp4` | 7341d5e0a6e656458fa373bdcbc9dd39 | scheduled |
 | 2026-11-28 00:30 | 19:30 / 06:00 | `black-friday-cart-pov/black-friday-cart-pov.mp4` | 169dc196df928ee2649100fc6c44c85f | scheduled |
+
+## 2026-11-28 · Instagram Reels batch 4 (Saturday after Thanksgiving; same standing approval)
+Folder `content/2026-11-28-ig-batch4/` on branch `claude/project-thread-rg56sh`. Scripts, data and gate receipts: `hooks-and-scripts.md`.
+
+| When (UTC) | ET / IST | Piece | md5 | Status |
+|---|---|---|---|---|
+| 2026-11-28 13:30 | 08:30 / 19:00 | `jay-niece-401k/jay-niece-401k.mp4` | 058d7d2f2cc1722e75575d3ce139289d | scheduled |
+| 2026-11-28 19:30 | 14:30 / 01:00 | `grandpa-landline/grandpa-landline.mp4` | 557f934a3a2f6ed45b9114c25cb24b84 | scheduled |
+| 2026-11-29 00:30 | 19:30 / 06:00 | `leftovers-pov/leftovers-pov.mp4` | 886aa1f31e4178d306bb5a2d5238b934 | scheduled |

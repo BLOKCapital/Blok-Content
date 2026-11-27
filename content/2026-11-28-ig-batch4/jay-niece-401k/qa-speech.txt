@@ -1,0 +1,25 @@
+OK   0   0.25s match=1.00
+   want: Jay's twelve-year-old niece asked what he invests in.
+   heard: Jay's 12-year-old niece asked what he invests in.
+BAD  1   3.04s match=0.67
+   want: He said, "My four-oh-one-k. Whatever work set up."
+   heard: He said, my 401k, whatever works set up.
+OK   2   6.39s match=1.00
+   want: She said, "But what do you pick?"
+   heard: She said, but what do you pick?
+OK   3   8.83s match=1.00
+   want: He thought about it. "Nothing. You need like... ten grand for that."
+   heard: He thought about it. Nothing. You need like 10 grand for that.
+OK   4  13.01s match=1.00
+   want: He's been saying that for six years. He never checked.
+   heard: He's been saying that for six years. He never checked.
+OK   5  16.25s match=0.93
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building blocks so anyone can own a fund of their own from $10.
+OK   6  20.45s match=1.00
+   want: What number did you think you needed? Tell me below.
+   heard: What number did you think you needed? Tell me below.
+OK   7  23.36s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: Comment Fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 1
