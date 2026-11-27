@@ -45,3 +45,10 @@ Folder `content/2026-11-28-ig-batch4/` on branch `claude/project-thread-rg56sh`.
 | 2026-11-28 13:30 | 08:30 / 19:00 | `jay-niece-401k/jay-niece-401k.mp4` | 058d7d2f2cc1722e75575d3ce139289d | scheduled |
 | 2026-11-28 19:30 | 14:30 / 01:00 | `grandpa-landline/grandpa-landline.mp4` | 557f934a3a2f6ed45b9114c25cb24b84 | scheduled |
 | 2026-11-29 00:30 | 19:30 / 06:00 | `leftovers-pov/leftovers-pov.mp4` | 886aa1f31e4178d306bb5a2d5238b934 | scheduled |
+
+## 2026-11-29 · Papercraft format test (skill `papercraft`, added Nov 27 at Sheetal's ask)
+Folder `content/papercraft/2026-11-29-grandmas-garden/`. Same standing approval. Counts as one of the day's 3 reels; the Nov 29 daily run builds the other two.
+
+| When (UTC) | ET / IST | Piece | md5 | Status |
+|---|---|---|---|---|
+| 2026-11-29 13:30 | 08:30 / 19:00 | `grandmas-garden.mp4` | 89b26f1a2bc95cbd89e2593fd17315da | scheduled |

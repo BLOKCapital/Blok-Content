@@ -1,0 +1,31 @@
+OK   0   0.25s match=1.00
+   want: Grandma's garden took thirty years.
+   heard: Grandma's garden took 30 years.
+OK   1   2.45s match=1.00
+   want: She never planted it all at once.
+   heard: She never planted it all at once.
+OK   2   4.99s match=1.00
+   want: A few seeds every spring. Nothing fancy.
+   heard: A few seeds every spring. Nothing fancy.
+OK   3   7.92s match=1.00
+   want: The neighbors kept waiting for a bigger yard.
+   heard: The neighbors kept waiting for a bigger yard.
+OK   4  10.29s match=1.00
+   want: She just kept planting.
+   heard: She just kept planting.
+OK   5  11.93s match=1.00
+   want: And thirty springs later, people slowed down on the sidewalk just to look.
+   heard: and 30 springs later, people slowed down on the sidewalk just to look.
+OK   6  16.40s match=1.00
+   want: Now, money isn't a garden. Nothing's promised. But you don't need a big yard to start.
+   heard: Now money isn't a garden, nothing's promised, but you don't need a big yard to start.
+OK   7  21.62s match=0.93
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building blocks so anyone can own a fund of their own from $10.
+OK   8  26.34s match=1.00
+   want: What did your grandparents grow? Tell me below.
+   heard: What did your grandparents grow? Tell me below.
+OK   9  28.82s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 0

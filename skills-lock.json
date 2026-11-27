@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "skills": {
+    "papercraft": {
+      "source": "xikhar/papercraft",
+      "commit": "5eea4eb004727f03492cfb40309224e150475002",
+      "sourceType": "github",
+      "skillPath": "skills/papercraft/SKILL.md",
+      "computedHash": "3770fa65348ffbadb9eea2d5eb54a32e2de3d87b16fec89e27abb33eca8a96a7"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+[
+ {
+  "show": "Grandma's garden took 30 years.",
+  "say": "Grandma's garden took thirty years.",
+  "gap": 0.3
+ },
+ {
+  "show": "She never planted it all at once.",
+  "say": "She never planted it all at once.",
+  "gap": 0.4
+ },
+ {
+  "show": "A few seeds every spring. Nothing fancy.",
+  "say": "A few seeds every spring. Nothing fancy.",
+  "gap": 0.4
+ },
+ {
+  "show": "The neighbors kept waiting for a bigger yard.",
+  "say": "The neighbors kept waiting for a bigger yard.",
+  "gap": 0.45
+ },
+ {
+  "show": "She just kept planting.",
+  "say": "She just kept planting.",
+  "gap": 0.45
+ },
+ {
+  "show": "And thirty springs later, people slowed down on the sidewalk just to look.",
+  "say": "And thirty springs later, people slowed down on the sidewalk just to look.",
+  "gap": 0.45
+ },
+ {
+  "show": "Now, money isn't a garden. Nothing's promised. But you don't need a big yard to start.",
+  "say": "Now, money isn't a garden. Nothing's promised. But you don't need a big yard to start.",
+  "gap": 0.4
+ },
+ {
+  "show": "We're building BLOK so anyone can own a fund of their own, from $10.",
+  "say": "We're building Block so anyone can own a fund of their own, from ten dollars.",
+  "gap": 0.35
+ },
+ {
+  "show": "What did your grandparents grow? Tell me below.",
+  "say": "What did your grandparents grow? Tell me below.",
+  "gap": 0.3
+ },
+ {
+  "show": "Comment FUND and I'll send you the 7 questions private banks ask on day one.",
+  "say": "Comment Fund, and I'll send you the seven questions private banks ask on day one.",
+  "gap": 0
+ }
+]
