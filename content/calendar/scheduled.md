@@ -52,3 +52,11 @@ Folder `content/papercraft/2026-11-29-grandmas-garden/`. Same standing approval.
 | When (UTC) | ET / IST | Piece | md5 | Status |
 |---|---|---|---|---|
 | 2026-11-29 13:30 | 08:30 / 19:00 | `grandmas-garden.mp4` | 89b26f1a2bc95cbd89e2593fd17315da | scheduled |
+
+## 2026-11-29 · Instagram Reels batch 5 (same standing approval; slot A is the papercraft reel above)
+Folder `content/2026-11-29-ig-batch5/`. Scripts, data and gate receipts: `hooks-and-scripts.md`.
+
+| When (UTC) | ET / IST | Piece | md5 | Status |
+|---|---|---|---|---|
+| 2026-11-29 19:30 | 14:30 / 01:00 | `anne-scheiber/anne-scheiber.mp4` | a11c3f5e75fa7fb4e893de5aefd75c8e | scheduled |
+| 2026-11-30 00:30 | 19:30 / 06:00 | `first-paycheck-3-questions/first-paycheck-3-questions.mp4` | 71b1481911ab5494fb8c83cf98221c17 | scheduled |

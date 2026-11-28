@@ -1,0 +1,31 @@
+OK   0   0.25s match=1.00
+   want: She never earned more than four thousand dollars a year. She left twenty-two million.
+   heard: She never earned more than $4,000 a year. She left $22 million.
+BAD  1   5.43s match=0.77
+   want: Anne Scheiber audited taxes for the government.
+   heard: Ansheiba audited taxes for the government.
+OK   2   8.04s match=1.00
+   want: And she got stuck there. Years of it, and the pay barely moved.
+   heard: and she got stuck there. Years of it, and the pay barely moved.
+OK   3  12.70s match=1.00
+   want: By her forties, she owned pieces of several companies she understood.
+   heard: By her forties, she owned pieces of several companies she understood.
+OK   4  16.58s match=1.00
+   want: Then she mostly left them alone. For decades.
+   heard: then she mostly left them alone, for decades.
+OK   5  19.42s match=0.89
+   want: She died at a hundred and one, and left it to scholarships for women.
+   heard: She died at 101 and left it to scholarships for women.
+OK   6  23.46s match=1.00
+   want: One story, not a promise. Markets fall. But she started with what she had.
+   heard: One story, not a promise, markets fall, but she started with what she had.
+OK   7  28.09s match=0.93
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building blocks so anyone can own a fund of their own from $10.
+OK   8  32.81s match=1.00
+   want: Who taught you to save? Tell me below.
+   heard: Who taught you to save? Tell me below.
+OK   9  35.31s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund. And I'll send you the seven questions private banks ask on day one.
+lines flagged: 1

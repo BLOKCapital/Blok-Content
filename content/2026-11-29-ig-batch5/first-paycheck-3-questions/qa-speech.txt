@@ -1,0 +1,31 @@
+BAD  0   0.25s match=0.80
+   want: POV: your little sister just got her first paycheck.
+   heard: P.O.B., your little sister, just got her first paycheck.
+OK   1   4.10s match=0.88
+   want: She asks where to put some of it.
+   heard: She asked where to put some of it.
+OK   2   5.78s match=1.00
+   want: You don't give her a tip. You give her three questions.
+   heard: You don't give her a tip, you give her three questions.
+OK   3   9.08s match=1.00
+   want: One. What's actually inside the fund?
+   heard: 1. What's actually inside the fund?
+OK   4  11.89s match=1.00
+   want: Two. Who decides when it changes?
+   heard: 2. Who decides when it changes?
+OK   5  14.33s match=1.00
+   want: Three. Can I check it any day I want?
+   heard: 3. Can I check it any day I want?
+OK   6  17.34s match=1.00
+   want: Save this for your first fund.
+   heard: Save this for your first fund.
+OK   7  19.35s match=0.93
+   want: We're building Block so anyone can own a fund of their own, from ten dollars.
+   heard: We're building blocks so anyone can own a fund of their own from $10.
+OK   8  24.06s match=1.00
+   want: Which one would you ask first? One, two, or three? Tell me below.
+   heard: Which one would you ask first, one, two, or three? Tell me below.
+OK   9  28.64s match=1.00
+   want: Comment Fund, and I'll send you the seven questions private banks ask on day one.
+   heard: comment fund and I'll send you the seven questions private banks ask on day one
+lines flagged: 1
