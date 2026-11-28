@@ -71,3 +71,19 @@ Changes for 28 Nov batch: (1) all three slots are everyday family/holiday-weeken
 - 2026-11-28 00:31 UTC (posting "Black Friday cart POV"): Sylvia Bloom at ~5 h: 147 views, skip 40.7%, avg 7.2 s (fast start, highest
   5-hour count yet). Jay 40 TVs at ~11 h: 125 views (flat since 6 h), skip 48.2%, avg 6.7 s: likely an underperformer; the
   "compared 40 TVs" consumer hook isn't holding. Thanksgiving advice POV ~24 h: 172, skip 37.8%. Still zero saves.
+
+## 2026-11-28 daily review (02:14 UTC, reels judged at 18-24 h where possible)
+| Reel | Age | Views | Reach | Skip | Avg watch | Likes/Comments/Shares/Saves |
+|---|---|---|---|---|---|---|
+| Janitor (Ronald Read P3), real person, 2:30 PM | 31 h | 212 | 195 | 35.4% | 11.4 s | 2/0/0/0 |
+| Thanksgiving advice POV, 7:30 PM | 26 h | 172 | 157 | 37.8% | 13.5 s | 2/0/0/0 |
+| Sylvia Bloom, real person, 2:30 PM | 7 h | 147 | 135 | 40.7% | 7.2 s | 1/0/0/0 |
+| Uncle, 8:30 AM Nov 25 | 3 d | 141 | 123 | 50% | 8.8 s | 4/2/0/0 |
+| Grandma one question, 8:30 AM | 37 h | 131 | 114 | 33.9% | 13.6 s | 3/0/0/0 |
+| Jay 40 TVs, 8:30 AM | 13 h | 125 | 109 | 48.2% | 6.7 s | 4/0/0/0 |
+| BF camping, 7:30 PM Nov 25 | 2 d | 85 | 76 | 55.3% | 8.4 s | 3/0/1/0 |
+| Ronald Read P2, 2:30 PM Nov 25 | 2.3 d | 43 | 34 | 66.7% | 7.0 s | 2/0/0/0 |
+Followers flat at 440. Zero saves on every reel; comments almost zero; no FUND comments yet.
+What worked: grandparent / real-person story hooks with a number (skip 34-35%, watch 11-14 s); the advice POV at the evening slot.
+What didn't: consumer/shopping hooks (40 TVs, camping) skip 48-55%; "Part 2" of a series 67%.
+Changes for Nov 29: (1) no Jay reel (the Jay niece 401k reel posting today is the last Jay test); (2) one reel with a saveable payoff (3-question checklist + "save this") to test saves; (3) keep a sourced real person at 2:30 PM (Anne Scheiber), hook built on a supported number; (4) papercraft "Grandma's garden" at 8:30 AM as the first format test against the flat cartoon.
