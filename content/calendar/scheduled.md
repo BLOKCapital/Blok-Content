@@ -35,7 +35,7 @@ Folder `content/2026-11-27-ig-batch3/` on branch `claude/project-thread-rg56sh`.
 |---|---|---|---|---|
 | 2026-11-27 13:30 | 08:30 / 19:00 | `jay-40-tvs/jay-40-tvs.mp4` | cbad00cb7c86dff5533cf9d30f391622 | posted https://www.instagram.com/reel/DgPyyRIKRSM/ (13:32 UTC) |
 | 2026-11-27 19:30 | 14:30 / 01:00 | `sylvia-bloom/sylvia-bloom.mp4` | 7341d5e0a6e656458fa373bdcbc9dd39 | posted https://www.instagram.com/reel/DgQb6tyBaH_/ (19:31 UTC) |
-| 2026-11-28 00:30 | 19:30 / 06:00 | `black-friday-cart-pov/black-friday-cart-pov.mp4` | 169dc196df928ee2649100fc6c44c85f | scheduled |
+| 2026-11-28 00:30 | 19:30 / 06:00 | `black-friday-cart-pov/black-friday-cart-pov.mp4` | 169dc196df928ee2649100fc6c44c85f | posted https://www.instagram.com/reel/DgQ-SLgTivo/ (00:31 UTC) |
 
 ## 2026-11-28 · Instagram Reels batch 4 (Saturday after Thanksgiving; same standing approval)
 Folder `content/2026-11-28-ig-batch4/` on branch `claude/project-thread-rg56sh`. Scripts, data and gate receipts: `hooks-and-scripts.md`.

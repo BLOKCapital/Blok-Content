@@ -68,3 +68,6 @@ Changes for 28 Nov batch: (1) all three slots are everyday family/holiday-weeken
   Jay 40 TVs at ~6 h: 125 views, skip 44.5%, avg 6.8 s (higher skip than the family/story reels; recheck at 18 h before judging).
   BF camping 85 / skip 55.3%; Ronald Read P2 43 / 66.7%. Pattern holding: grandparent/real-person story hooks keep skip near 34%;
   POV/consumer hooks run 38 to 55%. Zero saves across all reels so far: next batch should test a saveable element (the 7 questions on screen).
+- 2026-11-28 00:31 UTC (posting "Black Friday cart POV"): Sylvia Bloom at ~5 h: 147 views, skip 40.7%, avg 7.2 s (fast start, highest
+  5-hour count yet). Jay 40 TVs at ~11 h: 125 views (flat since 6 h), skip 48.2%, avg 6.7 s: likely an underperformer; the
+  "compared 40 TVs" consumer hook isn't holding. Thanksgiving advice POV ~24 h: 172, skip 37.8%. Still zero saves.
